@@ -1,40 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investing.com Technical Summary Widget</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .poweredBy {
-            font-family: Arial, Helvetica, sans-serif;
-            direction: ltr;
-            margin-top: 10px;
-        }
-        .poweredBy span {
-            font-size: 11px;
-            color: #333333;
-            text-decoration: none;
-        }
-        .poweredBy a {
-            font-size: 11px;
-            color: #06529D;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .poweredBy a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta name="description" content="Роман Пуртов - маркетолог, продюсер, диванный эксперт. Сайты на Тильде, интересные проекты, контакты и ссылки на социальные сети.">
+    <meta name="author" content="Роман Пуртов">
+    <title>Роман Пуртов — маркетолог и продюсер</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    <iframe src="https://ssltsw.investing.com?lang=1&forex=1,2,3,5,7,9,10&commodities=8830,8836,8831,8849,8833,8862,8832&indices=175,166,172,27,179,170,174&stocks=345,346,347,348,349,350,352&tabs=1,2,3,4" width="317" height="467"></iframe>
-    <div class="poweredBy">
-        <span>Technical Summary Widget Powered by 
-            <a href="https://www.investing.com/" rel="nofollow" target="_blank" class="underline_link">Investing.com</a>
-        </span>
+<body class="bg-white text-gray-800 font-sans py-16">
+
+    <!-- Основной контейнер -->
+    <div class="container mx-auto px-4 py-8 max-w-lg">
+
+        <!-- Фотография и Заголовок -->
+        <div class="text-center mb-8">
+            <img src="images/roman.jpg" alt="Роман Пуртов" class="w-24 h-24 mx-auto shadow-lg rounded-full hover:shadow-xl transition">
+            <h1 class="text-3xl font-bold mt-4">Роман Пуртов</h1>
+            <p class="mt-2 text-gray-600 leading-relaxed">
+                Маркетолог. Продюсер. Диванный эксперт.<br>
+                Обожаю упаковывать и запускать интересные проекты 🤗<br>
+                Последние 2 года активно делаю сайты на Тильде 🧑‍💻
+            </p>
+        </div>
+
+        <!-- Портфолио и Резюме -->
+        <div class="flex flex-col gap-4 mb-8">
+            <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fas fa-briefcase text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Портфолио</h3>
+                <p class="text-sm drop-shadow-sm">Сайты на «Тильде» (далеко не все работы)</p>
+            </a>
+            <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fas fa-file-pdf text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Моё резюме</h3>
+                <p class="text-sm drop-shadow-sm">Должность «Интернет-маркетолог»</p>
+            </a>
+        </div>
+
+        <!-- Контакты и ссылки -->
+        <h2 class="text-xl font-bold mb-4 text-center">Контакты и ссылки</h2>
+        <div class="flex flex-col gap-4 mb-8">
+            <a href="tel:+79526797776" class="block p-3 bg-gradient-to-r from-gray-400 to-gray-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fas fa-phone text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Телефон</h3>
+                <p class="text-sm drop-shadow-sm">+7 952 679-77-76</p>
+            </a>
+
+            <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fab fa-telegram text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Telegram</h3>
+                <p class="text-sm drop-shadow-sm">@roman_purtow</p>
+            </a>
+
+            <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-green-400 to-green-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fab fa-whatsapp text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">WhatsApp</h3>
+                <p class="text-sm drop-shadow-sm">+7 952 679-77-76</p>
+            </a>
+
+            <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fab fa-instagram text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Instagram</h3>
+                <p class="text-sm drop-shadow-sm">@roman.purtow</p>
+            </a>
+
+            <a href="https://vk.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fab fa-vk text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">ВКонтакте</h3>
+                <p class="text-sm drop-shadow-sm">@roman.purtow</p>
+            </a>
+
+            <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-red-400 to-red-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fab fa-youtube text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">YouTube</h3>
+                <p class="text-sm drop-shadow-sm">@roman-purtow</p>
+            </a>
+
+            <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-gray-700 to-black text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fab fa-github text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">GitHub</h3>
+                <p class="text-sm drop-shadow-sm">@baslie</p>
+            </a>
+        </div>
+
+        <!-- Блог -->
+        <h2 class="text-xl font-bold mb-4 text-center">Блог</h2>
+        <div class="flex flex-col gap-4 mb-8">
+            <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+                <i class="fas fa-blog text-3xl drop-shadow-sm"></i>
+                <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Пурточка вещает</h3>
+                <p class="text-sm drop-shadow-sm">Канал в Телеграм</p>
+            </a>
+        </div>
+
+        <!-- Проекты, хобби -->
+        <h2 class="text-xl font-bold mb-4 text-center">Проекты, хобби</h2>
+        <p class="text-gray-600 leading-relaxed mb-4 text-center">
+            Со-организатор «Томской Прогулки».<br>
+            Гуляю сам, вожу людей по лесам и полям 🌲
+        </p>
+        <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-green-400 to-green-500 text-white rounded-3xl text-center shadow-lg hover:shadow-xl transition">
+            <i class="fas fa-hiking text-3xl drop-shadow-sm"></i>
+            <h3 class="text-lg font-bold mt-2 drop-shadow-sm">Томская Прогулка</h3>
+            <p class="text-sm drop-shadow-sm">Ходите, гуляйте, чтобы природа зря не простаивала ☝</p>
+        </a>
+
     </div>
+
 </body>
 </html>
