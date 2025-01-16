@@ -39,8 +39,32 @@
             color: #a0a0a0;
         }
 
+        .dark-mode .bg-white {
+            background-color: #1a1a1a;
+        }
+
         .dark-mode .bg-gradient-to-r {
             background-image: linear-gradient(to right, #333, #444);
+        }
+
+        .dark-mode .shadow-lg {
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .hover\:shadow-xl:hover {
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .bg-gray-200 {
+            background-color: #333;
+        }
+
+        .dark-mode .hover\:bg-gray-300:hover {
+            background-color: #444;
+        }
+
+        .dark-mode .text-gray-800 {
+            color: #ffffff;
         }
     </style>
 </head>
@@ -154,15 +178,22 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
 
+        // Проверяем сохранённую тему в localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+
+        // Переключение темы
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             const icon = themeToggle.querySelector('i');
             if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
             }
         });
     </script>
