@@ -433,7 +433,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         // Запрашиваем случайное фото по ключевому слову "nature" в горизонтальной ориентации
-        fetch(`https://api.unsplash.com/photos/random?query=nature&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
+        fetch(`https://api.unsplash.com/photos/random?query=forest+night&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.urls && data.urls.full) {
