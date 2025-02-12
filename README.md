@@ -1,4 +1,4 @@
-# Роман Пуртов — маркетолог и продюсер / Roman Purtov — Marketer and Producer
+# Роман Пуртов — маркетолог и продюсер
 
 <img src="https://baslie.github.io/images/roman.jpg" alt="Роман Пуртов" width="120" height="120" style="border-radius: 50%;" />
 
