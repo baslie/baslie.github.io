@@ -25,81 +25,64 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="/styles/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script type="text/javascript">
-    (function(m, e, t, r, i, k, a) {
-        m[i] = m[i] || function() {
-            (m[i].a = m[i].a || []).push(arguments)
-        };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) {
-                return;
-            }
-        }
-        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-    ym(99831486, "init", {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true
-    });
-    </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/99831486" style="position:absolute; left:-9999px;" alt=""></div>
-    </noscript>
-    <!-- JSON-LD Разметка -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Роман Пуртов — маркетолог и продюсер",
-        "description": "Роман Пуртов - маркетолог, продюсер, диванный эксперт. Сайты на Тильде, интересные проекты, контакты и ссылки на социальные сети.",
-        "url": "https://roman-purtow.ru/",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "Роман Пуртов",
-            "description": "Маркетолог, продюсер, диванный эксперт. Запуск и упаковка проектов, создание сайтов на Тильде.",
-            "image": "/images/roman.jpg",
-            "jobTitle": "Интернет-маркетолог",
-            "telephone": "+7 952 679-77-76",
-            "sameAs": [
-                "https://t.me/roman_purtow",
-                "https://wa.me/79526797776",
-                "https://instagram.com/roman.purtow",
-                "https://vk.com/roman.purtow",
-                "https://www.youtube.com/@roman-purtow",
-                "https://github.com/baslie",
-                "https://gist.github.com/baslie"
-            ]
-        }
-    }
-    </script>
     <style>
-    /* -----------------------------
-       СТИЛИ ФОНОВОГО ИЗОБРАЖЕНИЯ
-       ----------------------------- */
+    :root {
+        --primary-color: #3B82F6;
+        --secondary-color: #1E40AF;
+        --text-primary: #1F2937;
+        --text-secondary: #4B5563;
+        --background-light: #FFFFFF;
+        --background-dark: #111827;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --transition-default: all 0.3s ease;
+        --border-radius: 1.5rem;
+    }
+
     html,
     body {
         height: 100%;
         margin: 0;
         padding: 0;
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+        scroll-behavior: smooth;
     }
 
-    /* Фон будет фиксированным, без повторения и растянутым на весь экран */
     body {
         background-attachment: fixed;
-        background-color: #222222;
+        background-color: var(--background-light);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+        transition: var(--transition-default);
+        position: relative;
     }
 
-    /* -----------------------------
-       ВАШИ ИСХОДНЫЕ СТИЛИ:
-       ----------------------------- */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+        transition: var(--transition-default);
+    }
+
+    .dark-mode {
+        --text-primary: #F9FAFB;
+        --text-secondary: #D1D5DB;
+        --background-light: #111827;
+        --card-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
+        --card-shadow-hover: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-mode::before {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -113,174 +96,360 @@
     }
 
     .fade-in {
-        animation: fadeIn 0.8s ease-out;
+        animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .hover-scale {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .container {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
     }
 
-    .hover-scale:hover {
+    .card {
+        background: var(--background-light);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition-default);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow-hover);
+    }
+
+    .card:active {
+        transform: translateY(0);
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        opacity: 0;
+        transition: var(--transition-default);
+    }
+
+    .card:hover::before {
+        opacity: 1;
+    }
+
+    .profile-image {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        box-shadow: var(--card-shadow);
+        border: 3px solid var(--background-light);
+        transition: var(--transition-default);
+    }
+
+    .profile-image:hover {
         transform: scale(1.05);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
-    body.dark-mode {
-        /* Если хотите, чтобы фон был тёмным вместо фото, раскомментируйте:
-        background-color: #1a1a1a !important; 
-        Но тогда картинка не будет видна.
-        */
-        color: #ffffff !important;
+    .title {
+        color: var(--text-primary);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
     }
 
-    .dark-mode .text-gray-600 {
-        color: #a0a0a0 !important;
+    .subtitle {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        text-align: center;
+        margin-bottom: 2rem;
     }
 
-    .dark-mode .bg-gray-200 {
-        background-color: #333 !important;
+    .link-card {
+        display: block;
+        padding: 1.25rem;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        transition: var(--transition-default);
+        position: relative;
+        overflow: hidden;
     }
 
-    .dark-mode .hover\:bg-gray-300:hover {
-        background-color: #444 !important;
+    .link-card:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
     }
 
-    .dark-mode .text-gray-800 {
-        color: #ffffff !important;
+    .link-card:focus:not(:focus-visible) {
+        box-shadow: none;
     }
 
-    .dark-mode .bg-gradient-to-r {
-        background-image: linear-gradient(to right, #333, #444) !important;
+    .link-card-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        color: #FFFFFF;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
     }
 
-    .dark-mode .shadow-lg {
-        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1) !important;
+    .link-card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #FFFFFF;
+        margin-bottom: 0.25rem;
     }
 
-    .dark-mode .hover\:shadow-xl:hover {
-        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2) !important;
+    .link-card-description {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
     }
 
-    .dark-mode .bg-yellow-400,
-    .dark-mode .bg-blue-400,
-    .dark-mode .bg-green-400,
-    .dark-mode .bg-pink-400,
-    .dark-mode .bg-purple-500,
-    .dark-mode .bg-blue-700,
-    .dark-mode .bg-red-400,
-    .dark-mode .bg-gray-700,
-    .dark-mode .bg-black {
-        background-color: #444 !important;
+    .theme-toggle,
+    .lang-toggle {
+        position: fixed;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: var(--background-light);
+        border: none;
+        box-shadow: var(--card-shadow);
+        cursor: pointer;
+        transition: var(--transition-default);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+    }
+
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .lang-toggle {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .theme-toggle:hover,
+    .lang-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: var(--card-shadow-hover);
+    }
+
+    .theme-toggle:active,
+    .lang-toggle:active {
+        transform: scale(0.95);
+    }
+
+    .theme-toggle:focus,
+    .lang-toggle:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    }
+
+    .section-title {
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin: 2rem 0 1.5rem;
+    }
+
+    .section-description {
+        color: var(--text-secondary);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.125rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .inline-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        position: relative;
+        transition: var(--transition-default);
+    }
+
+    .inline-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--primary-color);
+        transform: scaleX(0);
+        transition: var(--transition-default);
+        transform-origin: right;
+    }
+
+    .inline-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    @media (max-width: 640px) {
+        .container {
+            padding: 1rem;
+        }
+
+        .title {
+            font-size: 1.75rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+        }
+
+        .theme-toggle,
+        .lang-toggle {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+    }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-default);
+    }
+
+    .loading-overlay.active {
+        opacity: 1;
+        visibility: visible;
     }
     </style>
 </head>
 
-<body class="text-gray-800 font-sans py-16">
-    <button id="theme-toggle" class="fixed top-4 right-4 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg transition cursor-pointer" aria-label="Toggle theme">
-        <i class="fas fa-moon text-gray-800"></i>
+<body class="text-gray-800 font-sans">
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+        <i class="fas fa-moon"></i>
     </button>
-    <button id="lang-toggle" class="fixed top-4 left-4 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg transition cursor-pointer" aria-label="Toggle language">
-        <span id="lang-toggle-text" class="text-gray-800"></span>
+    <button id="lang-toggle" class="lang-toggle" aria-label="Переключить язык">
+        <span id="lang-toggle-text">EN</span>
     </button>
-    <main class="container mx-auto px-6 py-8 max-w-lg">
-        <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition hover-scale text-center mb-8 fade-in p-6">
-            <img src="/images/roman.jpg" alt="Роман Пуртов" class="w-24 h-24 mx-auto rounded-full shadow-lg" loading="lazy" itemprop="image">
-            <h1 id="i18n-name" data-i18n="name" class="text-3xl font-bold mt-4">Роман Пуртов</h1>
-            <p id="i18n-mainDescription" data-i18n="mainDescription" class="mt-2 text-gray-600 leading-relaxed"></p>
+    <main class="container">
+        <div class="card fade-in">
+            <img src="/images/roman.jpg" alt="Роман Пуртов" class="profile-image" loading="lazy" itemprop="image">
+            <h1 id="i18n-name" data-i18n="name" class="title">Роман Пуртов</h1>
+            <p id="i18n-mainDescription" data-i18n="mainDescription" class="subtitle"></p>
         </div>
-        <div class="flex flex-col gap-4 mb-8 fade-in">
-            <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fas fa-briefcase text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-portfolio_title" data-i18n="portfolio_title" class="text-lg font-bold mt-2 drop-shadow-sm">Портфолио</h3>
-                <p id="i18n-portfolio_description" data-i18n="portfolio_description" class="text-sm drop-shadow-sm">Сайты на «Тильде» (далеко не все работы)</p>
+        <div class="grid fade-in">
+            <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #FCD34D, #F59E0B);">
+                <i class="fas fa-briefcase link-card-icon"></i>
+                <h3 id="i18n-portfolio_title" data-i18n="portfolio_title" class="link-card-title">Портфолио</h3>
+                <p id="i18n-portfolio_description" data-i18n="portfolio_description" class="link-card-description"></p>
             </a>
-            <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fas fa-file-pdf text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-resume_title" data-i18n="resume_title" class="text-lg font-bold mt-2 drop-shadow-sm">Моё резюме</h3>
-                <p id="i18n-resume_description" data-i18n="resume_description" class="text-sm drop-shadow-sm">Должность «Интернет-маркетолог»</p>
+            <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #60A5FA, #3B82F6);">
+                <i class="fas fa-file-pdf link-card-icon"></i>
+                <h3 id="i18n-resume_title" data-i18n="resume_title" class="link-card-title">Моё резюме</h3>
+                <p id="i18n-resume_description" data-i18n="resume_description" class="link-card-description"></p>
             </a>
         </div>
-        <h2 id="i18n-contacts_title" data-i18n="contacts_title" class="text-white text-xl font-bold mb-4 text-center fade-in">Контакты и ссылки</h2>
-        <div class="flex flex-col gap-4 mb-8 fade-in">
-            <a href="tel:+79526797776" class="block p-3 bg-gradient-to-r from-gray-400 to-gray-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fas fa-phone text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-phone_title" data-i18n="phone_title" class="text-lg font-bold mt-2 drop-shadow-sm">Телефон</h3>
-                <p id="i18n-phone_description" data-i18n="phone_description" class="text-sm drop-shadow-sm">+7 952 679-77-76</p>
+        <h2 id="i18n-contacts_title" data-i18n="contacts_title" class="section-title">Контакты и ссылки</h2>
+        <div class="grid fade-in">
+            <a href="tel:+79526797776" class="link-card" style="background: linear-gradient(135deg, #9CA3AF, #4B5563);">
+                <i class="fas fa-phone link-card-icon"></i>
+                <h3 id="i18n-phone_title" data-i18n="phone_title" class="link-card-title">Телефон</h3>
+                <p id="i18n-phone_description" data-i18n="phone_description" class="link-card-description">+7 952 679-77-76</p>
             </a>
-            <a href="mailto:rytrycon@gmail.com" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fas fa-envelope text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-email_title" data-i18n="email_title" class="text-lg font-bold mt-2 drop-shadow-sm">Почта</h3>
-                <p id="i18n-email_description" data-i18n="email_description" class="text-sm drop-shadow-sm">rytrycon@gmail.com</p>
+            <a href="mailto:rytrycon@gmail.com" class="link-card" style="background: linear-gradient(135deg, #F97316, #EA580C);">
+                <i class="fas fa-envelope link-card-icon"></i>
+                <h3 id="i18n-email_title" data-i18n="email_title" class="link-card-title">Почта</h3>
+                <p id="i18n-email_description" data-i18n="email_description" class="link-card-description">rytrycon@gmail.com</p>
             </a>
-            <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fab fa-telegram text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-telegram_title" data-i18n="telegram_title" class="text-lg font-bold mt-2 drop-shadow-sm">Telegram</h3>
-                <p id="i18n-telegram_description" data-i18n="telegram_description" class="text-sm drop-shadow-sm">@roman_purtow</p>
+            <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #38BDF8, #0284C7);">
+                <i class="fab fa-telegram link-card-icon"></i>
+                <h3 id="i18n-telegram_title" data-i18n="telegram_title" class="link-card-title">Telegram</h3>
+                <p id="i18n-telegram_description" data-i18n="telegram_description" class="link-card-description">@roman_purtow</p>
             </a>
-            <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-green-400 to-green-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fab fa-whatsapp text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-whatsapp_title" data-i18n="whatsapp_title" class="text-lg font-bold mt-2 drop-shadow-sm">WhatsApp</h3>
-                <p id="i18n-whatsapp_description" data-i18n="whatsapp_description" class="text-sm drop-shadow-sm">+7 952 679-77-76</p>
+            <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4ADE80, #16A34A);">
+                <i class="fab fa-whatsapp link-card-icon"></i>
+                <h3 id="i18n-whatsapp_title" data-i18n="whatsapp_title" class="link-card-title">WhatsApp</h3>
+                <p id="i18n-whatsapp_description" data-i18n="whatsapp_description" class="link-card-description">+7 952 679-77-76</p>
             </a>
-            <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fab fa-instagram text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-instagram_title" data-i18n="instagram_title" class="text-lg font-bold mt-2 drop-shadow-sm">Instagram</h3>
-                <p id="i18n-instagram_description" data-i18n="instagram_description" class="text-sm drop-shadow-sm">@roman.purtow</p>
+            <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #EC4899, #BE185D);">
+                <i class="fab fa-instagram link-card-icon"></i>
+                <h3 id="i18n-instagram_title" data-i18n="instagram_title" class="link-card-title">Instagram</h3>
+                <p id="i18n-instagram_description" data-i18n="instagram_description" class="link-card-description">@roman.purtow</p>
             </a>
-            <a href="https://vk.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fab fa-vk text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-vk_title" data-i18n="vk_title" class="text-lg font-bold mt-2 drop-shadow-sm">ВКонтакте</h3>
-                <p id="i18n-vk_description" data-i18n="vk_description" class="text-sm drop-shadow-sm">@roman.purtow</p>
+            <a href="https://vk.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #1D4ED8, #1E40AF);">
+                <i class="fab fa-vk link-card-icon"></i>
+                <h3 id="i18n-vk_title" data-i18n="vk_title" class="link-card-title">ВКонтакте</h3>
+                <p id="i18n-vk_description" data-i18n="vk_description" class="link-card-description">@roman.purtow</p>
             </a>
-            <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-red-400 to-red-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fab fa-youtube text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="text-lg font-bold mt-2 drop-shadow-sm">YouTube</h3>
-                <p id="i18n-youtube_description" data-i18n="youtube_description" class="text-sm drop-shadow-sm">@roman-purtow</p>
+            <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #EF4444, #DC2626);">
+                <i class="fab fa-youtube link-card-icon"></i>
+                <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="link-card-title">YouTube</h3>
+                <p id="i18n-youtube_description" data-i18n="youtube_description" class="link-card-description">@roman-purtow</p>
             </a>
-            <div class="flex flex-row gap-4">
-                <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="flex-1 block p-3 bg-gradient-to-r from-gray-700 to-black text-white rounded-3xl text-center shadow-lg hover-scale">
-                    <i class="fab fa-github text-3xl drop-shadow-sm"></i>
-                    <h3 id="i18n-github_title" data-i18n="github_title" class="text-lg font-bold mt-2 drop-shadow-sm">GitHub</h3>
-                    <p id="i18n-github_description" data-i18n="github_description" class="text-sm drop-shadow-sm">@baslie</p>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4B5563, #1F2937);">
+                    <i class="fab fa-github link-card-icon"></i>
+                    <h3 id="i18n-github_title" data-i18n="github_title" class="link-card-title">GitHub</h3>
+                    <p id="i18n-github_description" data-i18n="github_description" class="link-card-description">@baslie</p>
                 </a>
-                <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="flex-1 block p-3 bg-gradient-to-r from-gray-700 to-black text-white rounded-3xl text-center shadow-lg hover-scale">
-                    <i class="fab fa-github text-3xl drop-shadow-sm"></i>
-                    <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="text-lg mt-2 drop-shadow-sm"><span class="font-bold">GitHub</span> Gist</h3>
-                    <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="text-sm drop-shadow-sm">@baslie</p>
+                <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4B5563, #1F2937);">
+                    <i class="fab fa-github link-card-icon"></i>
+                    <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="link-card-title">GitHub Gist</h3>
+                    <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="link-card-description">@baslie</p>
                 </a>
             </div>
         </div>
-        <h2 id="i18n-blog_title" data-i18n="blog_title" class="text-white text-xl font-bold mb-4 text-center fade-in">Блог</h2>
-        <div class="flex flex-col gap-4 mb-8 fade-in">
-            <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-                <i class="fas fa-blog text-3xl drop-shadow-sm"></i>
-                <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="text-lg font-bold mt-2 drop-shadow-sm">Пурточка вещает</h3>
-                <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="text-sm drop-shadow-sm">Канал в Телеграм</p>
+        <h2 id="i18n-blog_title" data-i18n="blog_title" class="section-title">Блог</h2>
+        <div class="fade-in">
+            <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #38BDF8, #0284C7);">
+                <i class="fas fa-blog link-card-icon"></i>
+                <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="link-card-title">Пурточка вещает</h3>
+                <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="link-card-description"></p>
             </a>
         </div>
-        <h2 id="i18n-projects_title" data-i18n="projects_title" class="text-white text-xl font-bold mb-4 text-center fade-in">Проекты, хобби</h2>
-        <p id="i18n-projects_description" data-i18n="projects_description" class="text-white leading-relaxed mb-4 text-center fade-in">
-            Со-организатор «Томской Прогулки».<br>
-            Гуляю сам, вожу людей по лесам и полям 🌲
-        </p>
-        <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="block p-3 bg-gradient-to-r from-green-400 to-green-500 text-white rounded-3xl text-center shadow-lg hover-scale">
-            <i class="fas fa-hiking text-3xl drop-shadow-sm"></i>
-            <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="text-lg font-bold mt-2 drop-shadow-sm">Томская Прогулка</h3>
-            <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="text-sm drop-shadow-sm">Ходите, гуляйте, чтобы природа зря не простаивала ☝</p>
-        </a>
+        <h2 id="i18n-projects_title" data-i18n="projects_title" class="section-title">Проекты, хобби</h2>
+        <p id="i18n-projects_description" data-i18n="projects_description" class="section-description"></p>
+        <div class="fade-in">
+            <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4ADE80, #16A34A);">
+                <i class="fas fa-hiking link-card-icon"></i>
+                <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="link-card-title">Томская Прогулка</h3>
+                <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="link-card-description"></p>
+            </a>
+        </div>
     </main>
-    <!-- Скрипты переключения языка и темы -->
     <script>
     const translations = {
         ru: {
             title: "Роман Пуртов — маркетолог и продюсер",
             metaDescription: "Роман Пуртов - маркетолог, продюсер, диванный эксперт. Сайты на Тильде, интересные проекты, контакты и ссылки на социальные сети.",
             name: "Роман Пуртов",
-            mainDescription: "Маркетолог. Продюсер. Диванный эксперт.<br>" +
-                "Обожаю упаковывать и&nbsp;запускать интересные проекты 🤗<br>" +
-                "Последние 3 года активно делаю сайты " +
-                "<a href='https://experts.tilda.cc/roman-purtow' target='_blank' rel='noopener noreferrer' class='text-black underline hover:text-blue-500'>на Тильде</a> " +
-                "и <a href='https://github.com/baslie' target='_blank' rel='noopener noreferrer' class='text-black underline hover:text-blue-500'>пишу код</a> 🧑‍💻",
+            mainDescription: `Маркетолог. Продюсер. Диванный эксперт.<br>
+                    Обожаю упаковывать и&nbsp;запускать интересные проекты 🤗<br>
+                    Последние 3 года активно делаю сайты 
+                    <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">на Тильде</a> 
+                    и <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">пишу код</a> 🧑‍💻`,
             portfolio_title: "Портфолио",
             portfolio_description: "Сайты на&nbsp;«Тильде» (далеко не&nbsp;все работы)",
             resume_title: "Моё резюме",
@@ -308,7 +477,7 @@
             blog_link_title: "Пурточка вещает",
             blog_link_description: "Канал в&nbsp;Телеграм",
             projects_title: "Проекты, хобби",
-            projects_description: "Со-организатор «Томской Прогулки». Гуляю сам, вожу людей по&nbsp;лесам и&nbsp;полям 🌲",
+            projects_description: "Со-организатор «Томской Прогулки».<br>Гуляю сам, вожу людей по&nbsp;лесам и&nbsp;полям 🌲",
             tomsk_walk_title: "Томская Прогулка",
             tomsk_walk_description: "Ходите, гуляйте, чтобы природа зря не&nbsp;простаивала ☝"
         },
@@ -316,11 +485,11 @@
             title: "Roman Purtov — Marketer and Producer",
             metaDescription: "Roman Purtov — Marketer, Producer, Couch Expert. Tilda websites, interesting projects, contacts and social media links.",
             name: "Roman Purtov",
-            mainDescription: "Marketer. Producer. Couch expert.<br>" +
-                "I love packaging and launching interesting projects 🤗<br>" +
-                "For the past 3 years, I've been actively building websites " +
-                "<a href='https://experts.tilda.cc/roman-purtow' target='_blank' rel='noopener noreferrer' class='text-black underline hover:text-blue-500'>on Tilda</a> " +
-                "and <a href='https://github.com/baslie' target='_blank' rel='noopener noreferrer' class='text-black underline hover:text-blue-500'>writing code</a> 🧑‍💻",
+            mainDescription: `Marketer. Producer. Couch expert.<br>
+                    I love packaging and launching interesting projects 🤗<br>
+                    For the past 3 years, I've been actively building websites 
+                    <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">on Tilda</a> 
+                    and <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">writing code</a> 🧑‍💻`,
             portfolio_title: "Portfolio",
             portfolio_description: "Websites built on Tilda (not all works)",
             resume_title: "My Resume",
@@ -348,19 +517,31 @@
             blog_link_title: "Purtochka Broadcasts",
             blog_link_description: "Telegram Channel",
             projects_title: "Projects & Hobbies",
-            projects_description: "Co-organizer of 'Tomsk Walk'. I walk alone, drive people through forests and fields 🌲",
+            projects_description: "Co-organizer of 'Tomsk Walk'.<br>I walk alone, guide people through forests and fields 🌲",
             tomsk_walk_title: "Tomsk Walk",
             tomsk_walk_description: "Go out and walk so that nature doesn't idle ☝"
         }
     };
 
+    function showLoading() {
+        document.getElementById('loading-overlay').classList.add('active');
+    }
+
+    function hideLoading() {
+        document.getElementById('loading-overlay').classList.remove('active');
+    }
+
     function updateLanguage(lang) {
+        showLoading();
+
         document.documentElement.lang = lang;
         document.title = translations[lang].title;
+
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
             metaDesc.setAttribute("content", translations[lang].metaDescription);
         }
+
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(el => {
             const key = el.getAttribute("data-i18n");
@@ -368,22 +549,20 @@
                 el.innerHTML = translations[lang][key];
             }
         });
+
+        setTimeout(hideLoading, 300);
     }
 
-    let currentLang = localStorage.getItem("lang");
-    if (!currentLang) {
-        currentLang = navigator.language.toLowerCase().startsWith("ru") ? "ru" : "en";
-    }
+    let currentLang = localStorage.getItem("lang") ||
+        (navigator.language.toLowerCase().startsWith("ru") ? "ru" : "en");
+
     updateLanguage(currentLang);
 
     const langToggle = document.getElementById("lang-toggle");
+    const themeToggle = document.getElementById("theme-toggle");
 
     function updateLangToggleText() {
-        if (currentLang === "ru") {
-            langToggle.innerText = "EN";
-        } else {
-            langToggle.innerText = "RU";
-        }
+        langToggle.innerText = currentLang === "ru" ? "EN" : "RU";
         if (document.body.classList.contains("dark-mode")) {
             langToggle.classList.remove("text-gray-800");
             langToggle.classList.add("text-white");
@@ -396,54 +575,91 @@
     updateLangToggleText();
 
     langToggle.addEventListener("click", function() {
+        showLoading();
         currentLang = currentLang === "ru" ? "en" : "ru";
         localStorage.setItem("lang", currentLang);
         updateLanguage(currentLang);
         updateLangToggleText();
     });
-    </script>
-    <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
 
     if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
+        document.body.classList.add('dark-mode');
         themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
     }
 
     themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
+        showLoading();
+        document.body.classList.toggle('dark-mode');
         const icon = themeToggle.querySelector('i');
-        if (body.classList.contains('dark-mode')) {
+
+        if (document.body.classList.contains('dark-mode')) {
             icon.classList.replace('fa-moon', 'fa-sun');
             localStorage.setItem('theme', 'dark');
         } else {
             icon.classList.replace('fa-sun', 'fa-moon');
             localStorage.setItem('theme', 'light');
         }
+
         updateLangToggleText();
+        setTimeout(hideLoading, 300);
     });
-    </script>
-    <!-- ==============================================
-         СКРИПТ ДЛЯ ПОЛУЧЕНИЯ СЛУЧАЙНОГО ФОНА ИЗ UNSPLASH
-         ============================================== -->
-    <script>
-    // Ваш ключ для Unsplash:
+
+    // Yandex.Metrika counter
+    (function(m, e, t, r, i, k, a) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(99831486, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true
+    });
+
+    // Unsplash background
     const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
 
+    function setBackground(imageUrl) {
+        const img = new Image();
+        img.onload = function() {
+            document.body.style.backgroundImage = `url("${imageUrl}")`;
+            hideLoading();
+        };
+        img.src = imageUrl;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-        // Запрашиваем случайное фото по ключевому слову "nature" в горизонтальной ориентации
+        showLoading();
+
         fetch(`https://api.unsplash.com/photos/random?query=forest+night&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.urls && data.urls.full) {
-                    // Устанавливаем фоновое изображение для body (через inline-стиль)
-                    document.body.style.backgroundImage = `url("${data.urls.full}")`;
+                    setBackground(data.urls.full);
+                } else {
+                    hideLoading();
                 }
             })
             .catch(err => {
-                console.error('Ошибка при загрузке фото с Unsplash:', err);
+                console.error('Error loading Unsplash photo:', err);
+                hideLoading();
             });
+    });
+
+    // Preload card hover gradients
+    window.addEventListener('load', function() {
+        const cards = document.querySelectorAll('.link-card');
+        cards.forEach(card => {
+            const style = getComputedStyle(card);
+            const gradient = style.backgroundImage;
+            const img = new Image();
+            img.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><linearGradient>${gradient}</linearGradient></defs></svg>`;
+        });
     });
     </script>
 </body>
