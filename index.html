@@ -35,7 +35,8 @@
     <script type="text/javascript">
     (function(m, e, t, r, i, k, a) {
         m[i] = m[i] || function() {
-            (m[i].a = m[i].a || []).push(arguments) };
+            (m[i].a = m[i].a || []).push(arguments)
+        };
         m[i].l = 1 * new Date();
         for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
         k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
@@ -158,11 +159,11 @@
 
 <body class="text-gray-800 font-sans py-16">
     <!-- Переключатель темы -->
-    <button id="theme-toggle" class="fixed top-4 right-4 w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition" aria-label="Toggle theme">
+    <button id="theme-toggle" class="fixed top-4 right-4 w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition cursor-pointer" aria-label="Toggle theme">
         <i class="fas fa-moon text-gray-800"></i>
     </button>
-    <!-- Переключатель языка (единственная кнопка) -->
-    <button id="lang-toggle" class="fixed top-4 left-4 w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition" aria-label="Toggle language">
+    <!-- Переключатель языка -->
+    <button id="lang-toggle" class="fixed top-4 left-4 w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition cursor-pointer" aria-label="Toggle language">
         <span id="lang-toggle-text" class="text-gray-800"></span>
     </button>
     <!-- Основной контент -->
