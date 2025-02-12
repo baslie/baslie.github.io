@@ -1,8 +1,15 @@
 # Роман Пуртов — маркетолог и продюсер / Roman Purtov — Marketer and Producer
 
-<img src="https://baslie.github.io/images/roman.jpg" alt="Роман Пуртов" width="120" height="120" style="border-radius: 50%;" />
-
-Простой одностраничный сайт Романа Пуртова, где представлены ссылки на портфолио, резюме, контакты, социальные сети, блог и проекты. Аналог Taplink. На сайте реализован динамический перевод на два языка (RU/EN) с помощью JavaScript.
+<div style="display: flex; align-items: center;">
+    <div style="flex: 1; text-align: left;">
+        <p>
+            Простой одностраничный сайт Романа Пуртова, где представлены ссылки на портфолио, резюме, контакты, социальные сети, блог и проекты. Аналог Taplink. На сайте реализован динамический перевод на два языка (RU/EN) с помощью JavaScript.
+        </p>
+    </div>
+    <div style="flex-shrink: 0; margin-left: 20px;">
+        <img src="https://baslie.github.io/images/roman.jpg" alt="Роман Пуртов" width="120" height="120" style="border-radius: 50%;" />
+    </div>
+</div>
 
 ## Описание
 
