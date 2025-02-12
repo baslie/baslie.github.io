@@ -636,13 +636,15 @@
     const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
     const UNSPLASH_QUERY = 'forest woods';
 
-    function setBackground(imageUrl) {
+    function setBackground(smallImageUrl, regularImageUrl) {
+        document.body.style.backgroundImage = `url("${smallImageUrl}")`;
+
         const img = new Image();
         img.onload = function() {
-            document.body.style.backgroundImage = `url("${imageUrl}")`;
+            document.body.style.backgroundImage = `url("${regularImageUrl}")`;
             hideLoading();
         };
-        img.src = imageUrl;
+        img.src = regularImageUrl;
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -650,8 +652,8 @@
         fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
-                if (data && data.urls && data.urls.full) {
-                    setBackground(data.urls.full);
+                if (data && data.urls && data.urls.thumb && data.urls.regular) {
+                    setBackground(data.urls.thumb, data.urls.regular);
                 } else {
                     hideLoading();
                 }
