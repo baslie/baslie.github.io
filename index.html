@@ -424,24 +424,18 @@
         </div>
     </main>
     <script>
-    // Функция для подсчёта дней с 20 января 2022 года
     function calculateDaysSince(dateString) {
         const startDate = new Date(dateString);
         const now = new Date();
         const diffInMs = now - startDate;
-        // Количество целых дней (округляем вниз)
         return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
     }
 
-    // Склонение "день" в русском
     function getDayDeclensionRu(num) {
-        // Проверяем последние две цифры
         const lastTwo = num % 100;
-        // 11-19 -> "дней"
         if (lastTwo >= 11 && lastTwo <= 19) {
             return "дней";
         }
-        // Иначе проверяем последнюю цифру
         const lastDigit = num % 10;
         if (lastDigit === 1) {
             return "день";
@@ -452,12 +446,10 @@
         }
     }
 
-    // Склонение "day/days" для английского
     function getDayDeclensionEn(num) {
         return (num === 1) ? "day" : "days";
     }
 
-    // Подсчитываем дни с 20 января 2022
     const daysSinceStart = calculateDaysSince("2022-01-20");
     const dayDeclRu = getDayDeclensionRu(daysSinceStart);
     const dayDeclEn = getDayDeclensionEn(daysSinceStart);
@@ -642,6 +634,7 @@
 
     // Unsplash background
     const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
+    const UNSPLASH_QUERY = 'forest woods';
 
     function setBackground(imageUrl) {
         const img = new Image();
@@ -654,7 +647,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         showLoading();
-        fetch(`https://api.unsplash.com/photos/random?query=forest+night&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
+        fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.urls && data.urls.full) {
