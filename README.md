@@ -6,7 +6,7 @@
             Простой одностраничный сайт Романа Пуртова, где представлены ссылки на портфолио, резюме, контакты, социальные сети, блог и проекты. Аналог Taplink. На сайте реализован динамический перевод на два языка (RU/EN) с помощью JavaScript.
         </td>
         <td style="vertical-align: middle;">
-            <img src="https://baslie.github.io/images/roman.jpg" alt="Роман Пуртов" width="120" height="120" style="border-radius: 50%;" />
+            <img src="https://baslie.github.io/images/roman.jpg" alt="Роман Пуртов" width="120" height="120" />
         </td>
     </tr>
 </table>
