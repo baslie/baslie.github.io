@@ -50,6 +50,7 @@
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/99831486" style="position:absolute; left:-9999px;" alt=""></div>
     </noscript>
+    <!-- JSON-LD Разметка -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -77,6 +78,27 @@
     }
     </script>
     <style>
+    /* -----------------------------
+       СТИЛИ ФОНОВОГО ИЗОБРАЖЕНИЯ
+       ----------------------------- */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Фон будет фиксированным, без повторения и растянутым на весь экран */
+    body {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    /* -----------------------------
+       ВАШИ ИСХОДНЫЕ СТИЛИ:
+       ----------------------------- */
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -103,7 +125,10 @@
     }
 
     body.dark-mode {
-        background-color: #1a1a1a !important;
+        /* Если хотите, чтобы фон был тёмным вместо фото, раскомментируйте:
+        background-color: #1a1a1a !important; 
+        Но тогда картинка не будет видна.
+        */
         color: #ffffff !important;
     }
 
@@ -243,6 +268,7 @@
             <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="text-sm drop-shadow-sm">Ходите, гуляйте, чтобы природа зря не простаивала ☝</p>
         </a>
     </main>
+    <!-- Скрипты переключения языка и темы -->
     <script>
     const translations = {
         ru: {
@@ -395,6 +421,28 @@
             localStorage.setItem('theme', 'light');
         }
         updateLangToggleText();
+    });
+    </script>
+    <!-- ==============================================
+         СКРИПТ ДЛЯ ПОЛУЧЕНИЯ СЛУЧАЙНОГО ФОНА ИЗ UNSPLASH
+         ============================================== -->
+    <script>
+    // Ваш ключ для Unsplash:
+    const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Запрашиваем случайное фото по ключевому слову "nature" в горизонтальной ориентации
+        fetch(`https://api.unsplash.com/photos/random?query=nature&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.urls && data.urls.full) {
+                    // Устанавливаем фоновое изображение для body (через inline-стиль)
+                    document.body.style.backgroundImage = `url("${data.urls.full}")`;
+                }
+            })
+            .catch(err => {
+                console.error('Ошибка при загрузке фото с Unsplash:', err);
+            });
     });
     </script>
 </body>
