@@ -157,15 +157,14 @@
 </head>
 
 <body class="text-gray-800 font-sans py-16">
-    <!-- Переключатель темы (оставляем как было) -->
+    <!-- Переключатель темы -->
     <button id="theme-toggle" class="fixed top-4 right-4 w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition" aria-label="Toggle theme">
         <i class="fas fa-moon text-gray-800"></i>
     </button>
-    <!-- Переключатель языков (добавляем в левый верхний угол) -->
-    <div id="language-toggle" class="fixed top-4 left-4 flex gap-2">
-        <button data-lang="ru" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">RU</button>
-        <button data-lang="en" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">EN</button>
-    </div>
+    <!-- Переключатель языка (единственная кнопка) -->
+    <button id="lang-toggle" class="fixed top-4 left-4 w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition" aria-label="Toggle language">
+        <span id="lang-toggle-text" class="text-gray-800"></span>
+    </button>
     <!-- Основной контент -->
     <main class="container mx-auto px-6 py-8 max-w-lg">
         <!-- Фотография и Заголовок -->
@@ -343,64 +342,58 @@
 
     // Функция для обновления текстов на странице в зависимости от выбранного языка
     function updateLanguage(lang) {
-        // Обновляем атрибут lang у тега html
         document.documentElement.lang = lang;
-        // Обновляем заголовок страницы
         document.title = translations[lang].title;
-        // Обновляем meta description
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
             metaDesc.setAttribute("content", translations[lang].metaDescription);
         }
-        // Обновляем все элементы с атрибутом data-i18n
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(el => {
             const key = el.getAttribute("data-i18n");
             if (translations[lang][key]) {
-                // Используем innerHTML для поддержки тегов (например, <br>)
                 el.innerHTML = translations[lang][key];
             }
         });
     }
 
-    // Определяем язык пользователя (из localStorage или по настройкам браузера)
+    // Определяем текущий язык (из localStorage или по настройкам браузера)
     let currentLang = localStorage.getItem("lang");
     if (!currentLang) {
-        // Если браузерный язык начинается с ru – выбираем русский, иначе английский
         currentLang = navigator.language.toLowerCase().startsWith("ru") ? "ru" : "en";
     }
-    // Применяем язык
     updateLanguage(currentLang);
 
-    // Обновляем стили переключателя языков: выделяем активную кнопку
-    function updateLanguageToggle() {
-        const langButtons = document.querySelectorAll("#language-toggle button");
-        langButtons.forEach(btn => {
-            if (btn.getAttribute("data-lang") === currentLang) {
-                btn.classList.add("bg-blue-500", "text-white");
-                btn.classList.remove("bg-gray-200");
-            } else {
-                btn.classList.add("bg-gray-200", "text-black");
-                btn.classList.remove("bg-blue-500", "text-white");
-            }
-        });
-    }
-    updateLanguageToggle();
+    // Логика переключателя языка (единая кнопка)
+    const langToggle = document.getElementById("lang-toggle");
 
-    // Обработчик клика по кнопкам переключения языка
-    document.querySelectorAll("#language-toggle button").forEach(btn => {
-        btn.addEventListener("click", function() {
-            const selectedLang = this.getAttribute("data-lang");
-            if (selectedLang && selectedLang !== currentLang) {
-                currentLang = selectedLang;
-                localStorage.setItem("lang", currentLang);
-                updateLanguage(currentLang);
-                updateLanguageToggle();
-            }
-        });
+    function updateLangToggleText() {
+        // Если текущий язык ru, то кнопка должна показывать "EN" (для переключения)
+        if (currentLang === "ru") {
+            langToggle.innerText = "EN";
+        } else {
+            langToggle.innerText = "RU";
+        }
+        // Обновляем цвет текста кнопки в зависимости от темы: на светлом фоне – чёрный, на тёмном – белый
+        if (document.body.classList.contains("dark-mode")) {
+            langToggle.classList.remove("text-gray-800");
+            langToggle.classList.add("text-white");
+        } else {
+            langToggle.classList.remove("text-white");
+            langToggle.classList.add("text-gray-800");
+        }
+    }
+
+    updateLangToggleText();
+
+    langToggle.addEventListener("click", function() {
+        currentLang = currentLang === "ru" ? "en" : "ru";
+        localStorage.setItem("lang", currentLang);
+        updateLanguage(currentLang);
+        updateLangToggleText();
     });
     </script>
-    <!-- Скрипт для переключения темы (без изменений) -->
+    <!-- Скрипт для переключения темы -->
     <script>
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -422,6 +415,8 @@
             icon.classList.replace('fa-sun', 'fa-moon');
             localStorage.setItem('theme', 'light');
         }
+        // При переключении темы обновляем цвет текста кнопки языка
+        updateLangToggleText();
     });
     </script>
 </body>
