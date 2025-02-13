@@ -403,36 +403,6 @@
         </div>
     </main>
     <script>
-    function calculateDaysSince(dateString) {
-        const startDate = new Date(dateString);
-        const now = new Date();
-        const diffInMs = now - startDate;
-        return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-    }
-
-    function getDayDeclensionRu(num) {
-        const lastTwo = num % 100;
-        if (lastTwo >= 11 && lastTwo <= 19) {
-            return "дней";
-        }
-        const lastDigit = num % 10;
-        if (lastDigit === 1) {
-            return "день";
-        } else if (lastDigit >= 2 && lastDigit <= 4) {
-            return "дня";
-        } else {
-            return "дней";
-        }
-    }
-
-    function getDayDeclensionEn(num) {
-        return (num === 1) ? "day" : "days";
-    }
-
-    const daysSinceStart = calculateDaysSince("2022-01-20");
-    const dayDeclRu = getDayDeclensionRu(daysSinceStart);
-    const dayDeclEn = getDayDeclensionEn(daysSinceStart);
-
     const translations = {
         ru: {
             title: "Роман Пуртов. Ваш маркетолог и дизайнер из тайги.",
@@ -508,6 +478,37 @@
         }
     };
 
+    function calculateDaysSince(dateString) {
+        const startDate = new Date(dateString);
+        const now = new Date();
+        const diffInMs = now - startDate;
+        return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    }
+
+    function getDayDeclensionRu(num) {
+        const lastTwo = num % 100;
+        if (lastTwo >= 11 && lastTwo <= 19) {
+            return "дней";
+        }
+        const lastDigit = num % 10;
+        if (lastDigit === 1) {
+            return "день";
+        } else if (lastDigit >= 2 && lastDigit <= 4) {
+            return "дня";
+        } else {
+            return "дней";
+        }
+    }
+
+    function getDayDeclensionEn(num) {
+        return num === 1 ? "day" : "days";
+    }
+
+    const daysSinceStart = calculateDaysSince("2022-01-20");
+    const dayDeclRu = getDayDeclensionRu(daysSinceStart);
+    const dayDeclEn = getDayDeclensionEn(daysSinceStart);
+
+    // Функция обновления языка страницы
     function updateLanguage(lang) {
         document.documentElement.lang = lang;
         document.title = translations[lang].title;
@@ -515,7 +516,7 @@
         if (metaDesc) {
             metaDesc.setAttribute("content", translations[lang].metaDescription);
         }
-        const elements = document.querySelectorAll('[data-i18n]');
+        const elements = document.querySelectorAll("[data-i18n]");
         elements.forEach(el => {
             const key = el.getAttribute("data-i18n");
             if (translations[lang][key]) {
@@ -540,7 +541,6 @@
             langToggle.classList.add("text-gray-800");
         }
     }
-
     updateLangToggleText();
 
     langToggle.addEventListener("click", function() {
@@ -550,91 +550,63 @@
         updateLangToggleText();
     });
 
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+    // Глобальная переменная для canvas StarBack
+    let starContainer;
+
+    // Если тема уже установлена как темная, применяем её
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        themeToggle.querySelector("i").classList.replace("fa-moon", "fa-sun");
     }
 
+    // Функция обновления видимости звездного фона
     function updateStarVisibility() {
-        starContainer.style.opacity = document.body.classList.contains('dark-mode') ? '1' : '0';
-    }
-
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const icon = themeToggle.querySelector('i');
-        if (document.body.classList.contains('dark-mode')) {
-            icon.classList.replace('fa-moon', 'fa-sun');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            icon.classList.replace('fa-sun', 'fa-moon');
-            localStorage.setItem('theme', 'light');
+        if (starContainer) {
+            starContainer.style.opacity = document.body.classList.contains("dark-mode") ? "1" : "0";
         }
-        updateStarVisibility();
-        updateLangToggleText();
-    });
-
-    updateStarVisibility();
-
-    const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
-    const UNSPLASH_QUERY = 'night+forest+winter';
-
-    function setBackground(regularImageUrl) {
-        document.body.style.backgroundImage = `url("${regularImageUrl}")`;
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const starContainer = document.createElement('canvas');
-        starContainer.id = 'star-container';
+    document.addEventListener("DOMContentLoaded", function() {
+        // Создаем canvas для StarBack и добавляем его в body
+        starContainer = document.createElement("canvas");
+        starContainer.id = "star-container";
         document.body.appendChild(starContainer);
 
+        // Инициализация StarBack (версия 2.1.1)
         const starBackground = new Starback(starContainer, {
-            type: 'dot',
-            quantity: 150,
-            direction: 225,
-            speed: 3, // если требуется увеличить скорость
-            starColor: "#ffffff",
+            type: "dot", // Обязательное поле: 'dot' или 'line'
+            quantity: 150, // Количество звезд (вместо устаревшего numStars)
+            direction: 225, // Направление движения звезд (для типа "dot")
+            speed: 3, // Скорость движения звезд (вместо maxStarSpeed)
+            starColor: "#ffffff", // Цвет звезд
             backgroundColor: "transparent"
         });
 
-        function updateStarVisibility() {
-            starContainer.style.opacity = document.body.classList.contains('dark-mode') ? '1' : '0';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-            updateStarVisibility();
-            updateLangToggleText();
-        });
-
-        updateStarVisibility();
-
-        window.addEventListener('resize', () => {
+        // Обновляем размеры canvas при изменении размера окна
+        window.addEventListener("resize", () => {
             starBackground.width = window.innerWidth;
             starBackground.height = window.innerHeight;
         });
 
+        // Запрос случайного изображения с Unsplash для фона (обязательно замените ACCESS_KEY, если потребуется)
+        const UNSPLASH_ACCESS_KEY = "BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0";
+        const UNSPLASH_QUERY = "night+forest+winter";
         fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.urls && data.urls.regular) {
-                    setBackground(data.urls.regular);
+                    document.body.style.backgroundImage = `url("${data.urls.regular}")`;
                 }
             })
             .catch(err => {
-                console.error('Error loading Unsplash photo:', err);
+                console.error("Error loading Unsplash photo:", err);
             });
-    });
 
-    window.addEventListener('load', function() {
-        const cards = document.querySelectorAll('.link-card');
+        // Применяем видимость звездного фона
+        updateStarVisibility();
+
+        // Предзагрузка фонов для карточек (опционально)
+        const cards = document.querySelectorAll(".link-card");
         cards.forEach(card => {
             const style = getComputedStyle(card);
             const gradient = style.backgroundImage;
@@ -643,9 +615,25 @@
         });
     });
 
+    // Обработчик переключения темы
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        const icon = themeToggle.querySelector("i");
+        if (document.body.classList.contains("dark-mode")) {
+            icon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "dark");
+        } else {
+            icon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "light");
+        }
+        updateStarVisibility();
+        updateLangToggleText();
+    });
+
+    // Yandex Metrika
     (function(m, e, t, r, i, k, a) {
         m[i] = m[i] || function() {
-            (m[i].a = m[i].a || []).push(arguments)
+            (m[i].a = m[i].a || []).push(arguments);
         };
         m[i].l = 1 * new Date();
         for (var j = 0; j < document.scripts.length; j++) {
@@ -653,8 +641,11 @@
                 return;
             }
         }
-        k = e.createElement(t), a = e.getElementsByTagName(t)[0],
-            k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        k = e.createElement(t),
+            a = e.getElementsByTagName(t)[0];
+        k.async = 1;
+        k.src = r;
+        a.parentNode.insertBefore(k, a);
     })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
     ym(99831486, "init", {
@@ -664,8 +655,7 @@
         webvisor: true
     });
     </script>
-
-    <!-- upd2 -->
+    <!-- upd3 -->
 </body>
 
 </html>
