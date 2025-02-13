@@ -284,6 +284,7 @@
         height: 100%;
         z-index: -1;
         pointer-events: none;
+        transition: opacity 0.3s ease;
     }
 
     @media (max-width: 640px) {
@@ -554,25 +555,6 @@
         themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
     }
 
-    const starContainer = document.createElement('div');
-    starContainer.id = 'star-container';
-    document.body.appendChild(starContainer);
-
-    const starBackground = new Starback(starContainer, {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        starCount: 150,
-        starColor: [255, 255, 255],
-        speed: 3,
-        direction: 45,
-        backgroundColor: "transparent"
-    });
-
-    window.addEventListener('resize', () => {
-        starBackground.width = window.innerWidth;
-        starBackground.height = window.innerHeight;
-    });
-
     function updateStarVisibility() {
         starContainer.style.opacity = document.body.classList.contains('dark-mode') ? '1' : '0';
     }
@@ -601,6 +583,25 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        const starContainer = document.createElement('canvas');
+        starContainer.id = 'star-container';
+        document.body.appendChild(starContainer);
+
+        const starBackground = new Starback({
+            el: starContainer,
+            width: window.innerWidth,
+            height: window.innerHeight,
+            numStars: 150,
+            maxStarSpeed: 3,
+            starColor: "#ffffff",
+            backgroundColor: "transparent"
+        });
+
+        window.addEventListener('resize', () => {
+            starBackground.width = window.innerWidth;
+            starBackground.height = window.innerHeight;
+        });
+
         fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
