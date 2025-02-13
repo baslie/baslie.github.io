@@ -25,6 +25,7 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="/styles/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/starback@2.1.1/dist/starback.min.js"></script>
     <style>
     :root {
         --primary-color: #3B82F6;
@@ -74,9 +75,10 @@
     .dark-mode {
         --text-primary: #F9FAFB;
         --text-secondary: #D1D5DB;
-        --background-light: #222222;
-        --card-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
-        --card-shadow-hover: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+        --background-light: #1a1a1a;
+        --card-background: #2d2d2d;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     }
 
     .dark-mode::before {
@@ -111,18 +113,14 @@
         padding: 1.5rem;
         margin-bottom: 1.5rem;
         box-shadow: var(--card-shadow);
-        transition: var(--transition-default);
+        transition: transform 0.3s ease;
         position: relative;
         overflow: hidden;
     }
 
     .card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-8px);
         box-shadow: var(--card-shadow-hover);
-    }
-
-    .card:active {
-        transform: translateY(0);
     }
 
     .profile-image {
@@ -159,18 +157,13 @@
         padding: 1.25rem;
         border-radius: var(--border-radius);
         text-decoration: none;
-        transition: var(--transition-default);
+        transition: transform 0.3s ease;
         position: relative;
         overflow: hidden;
     }
 
-    .link-card:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-    }
-
-    .link-card:focus:not(:focus-visible) {
-        box-shadow: none;
+    .link-card:hover {
+        transform: translateY(-8px);
     }
 
     .link-card-icon {
@@ -234,7 +227,6 @@
     .theme-toggle:focus,
     .lang-toggle:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
     }
 
     .section-title {
@@ -284,6 +276,16 @@
         transform-origin: left;
     }
 
+    #star-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+
     @media (max-width: 640px) {
         .container {
             padding: 1rem;
@@ -303,34 +305,10 @@
             height: 2.5rem;
         }
     }
-
-    .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition-default);
-    }
-
-    .loading-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
     </style>
 </head>
 
 <body class="text-gray-800 font-sans">
-    <div id="loading-overlay" class="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
     <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
         <i class="fas fa-moon"></i>
     </button>
@@ -525,20 +503,11 @@
             projects_title: "Projects&nbsp;&amp;&nbsp;Hobbies",
             projects_description: "Co‑organizer of &laquo;Tomsk Walk&raquo;.<br>I walk alone, guide people through&nbsp;forests and&nbsp;fields 🌲",
             tomsk_walk_title: "Tomsk Walk",
-            tomsk_walk_description: "Go out and walk so that nature doesn’t idle&nbsp;☝"
+            tomsk_walk_description: "Go out and walk so that nature doesn't idle&nbsp;☝"
         }
     };
 
-    function showLoading() {
-        document.getElementById('loading-overlay').classList.add('active');
-    }
-
-    function hideLoading() {
-        document.getElementById('loading-overlay').classList.remove('active');
-    }
-
     function updateLanguage(lang) {
-        showLoading();
         document.documentElement.lang = lang;
         document.title = translations[lang].title;
         const metaDesc = document.querySelector('meta[name="description"]');
@@ -552,7 +521,6 @@
                 el.innerHTML = translations[lang][key];
             }
         });
-        setTimeout(hideLoading, 300);
     }
 
     let currentLang = localStorage.getItem("lang") || (navigator.language.toLowerCase().startsWith("ru") ? "ru" : "en");
@@ -575,7 +543,6 @@
     updateLangToggleText();
 
     langToggle.addEventListener("click", function() {
-        showLoading();
         currentLang = currentLang === "ru" ? "en" : "ru";
         localStorage.setItem("lang", currentLang);
         updateLanguage(currentLang);
@@ -587,8 +554,30 @@
         themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
     }
 
+    const starContainer = document.createElement('div');
+    starContainer.id = 'star-container';
+    document.body.appendChild(starContainer);
+
+    const starBackground = new Starback(starContainer, {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        starCount: 150,
+        starColor: [255, 255, 255],
+        speed: 3,
+        direction: 45,
+        backgroundColor: "transparent"
+    });
+
+    window.addEventListener('resize', () => {
+        starBackground.width = window.innerWidth;
+        starBackground.height = window.innerHeight;
+    });
+
+    function updateStarVisibility() {
+        starContainer.style.opacity = document.body.classList.contains('dark-mode') ? '1' : '0';
+    }
+
     themeToggle.addEventListener('click', () => {
-        showLoading();
         document.body.classList.toggle('dark-mode');
         const icon = themeToggle.querySelector('i');
         if (document.body.classList.contains('dark-mode')) {
@@ -598,8 +587,40 @@
             icon.classList.replace('fa-sun', 'fa-moon');
             localStorage.setItem('theme', 'light');
         }
+        updateStarVisibility();
         updateLangToggleText();
-        setTimeout(hideLoading, 300);
+    });
+
+    updateStarVisibility();
+
+    const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
+    const UNSPLASH_QUERY = 'night+forest+winter';
+
+    function setBackground(regularImageUrl) {
+        document.body.style.backgroundImage = `url("${regularImageUrl}")`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.urls && data.urls.regular) {
+                    setBackground(data.urls.regular);
+                }
+            })
+            .catch(err => {
+                console.error('Error loading Unsplash photo:', err);
+            });
+    });
+
+    window.addEventListener('load', function() {
+        const cards = document.querySelectorAll('.link-card');
+        cards.forEach(card => {
+            const style = getComputedStyle(card);
+            const gradient = style.backgroundImage;
+            const img = new Image();
+            img.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><linearGradient>${gradient}</linearGradient></defs></svg>`;
+        });
     });
 
     (function(m, e, t, r, i, k, a) {
@@ -621,46 +642,6 @@
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true
-    });
-
-    const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
-    const UNSPLASH_QUERY = 'night+forest+winter';
-
-    function setBackground(smallImageUrl, regularImageUrl) {
-        document.body.style.backgroundImage = `url("${smallImageUrl}")`;
-        const img = new Image();
-        img.onload = function() {
-            document.body.style.backgroundImage = `url("${regularImageUrl}")`;
-            hideLoading();
-        };
-        img.src = regularImageUrl;
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        showLoading();
-        fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.urls && data.urls.thumb && data.urls.regular) {
-                    setBackground(data.urls.thumb, data.urls.regular);
-                } else {
-                    hideLoading();
-                }
-            })
-            .catch(err => {
-                console.error('Error loading Unsplash photo:', err);
-                hideLoading();
-            });
-    });
-
-    window.addEventListener('load', function() {
-        const cards = document.querySelectorAll('.link-card');
-        cards.forEach(card => {
-            const style = getComputedStyle(card);
-            const gradient = style.backgroundImage;
-            const img = new Image();
-            img.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><linearGradient>${gradient}</linearGradient></defs></svg>`;
-        });
     });
     </script>
 </body>
