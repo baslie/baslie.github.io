@@ -597,6 +597,26 @@
             backgroundColor: "transparent"
         });
 
+        function updateStarVisibility() {
+            starContainer.style.opacity = document.body.classList.contains('dark-mode') ? '1' : '0';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+            updateStarVisibility();
+            updateLangToggleText();
+        });
+
+        updateStarVisibility();
+
         window.addEventListener('resize', () => {
             starBackground.width = window.innerWidth;
             starBackground.height = window.innerHeight;
@@ -645,6 +665,7 @@
         webvisor: true
     });
     </script>
+    <!-- upd -->
 </body>
 
 </html>
