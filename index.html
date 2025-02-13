@@ -8,7 +8,6 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="Роман Пуртов">
     <meta name="yandex-verification" content="baba7a3a035222ee">
-    <title>Роман Пуртов. Ваш маркетолог и дизайнер из тайги.</title>
     <link rel="icon" href="/images/favicon.png" type="image/png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="canonical" href="https://roman-purtow.ru/">
@@ -21,9 +20,7 @@
     <meta name="twitter:title" content="Роман Пуртов. Ваш маркетолог и дизайнер из тайги.">
     <meta name="twitter:description" content="Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.">
     <meta name="twitter:image" content="https://roman-purtow.ru/images/preview.jpg">
-    <!-- Tailwind CSS и Font Awesome -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="/styles/all.css">
+    <title>Роман Пуртов. Ваш маркетолог и дизайнер из тайги.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
     :root {
@@ -67,20 +64,22 @@
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.4);
-        z-index: -1;
+        z-index: -2;
         transition: var(--transition-default);
-    }
-
-    .dark-mode {
-        --text-primary: #F9FAFB;
-        --text-secondary: #D1D5DB;
-        --background-light: #222222;
-        --card-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
-        --card-shadow-hover: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
     }
 
     .dark-mode::before {
         background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Контейнер для анимированных звёзд */
+    #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
     }
 
     @keyframes fadeIn {
@@ -103,6 +102,8 @@
         max-width: 42rem;
         margin: 0 auto;
         padding: 2rem 1.5rem;
+        position: relative;
+        z-index: 1;
     }
 
     .card {
@@ -162,15 +163,11 @@
         transition: var(--transition-default);
         position: relative;
         overflow: hidden;
+        color: #FFFFFF;
     }
 
     .link-card:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-    }
-
-    .link-card:focus:not(:focus-visible) {
-        box-shadow: none;
     }
 
     .link-card-icon {
@@ -190,6 +187,31 @@
     .link-card-description {
         font-size: 0.875rem;
         color: rgba(255, 255, 255, 0.9);
+    }
+
+    .inline-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        position: relative;
+        transition: var(--transition-default);
+    }
+
+    .inline-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--primary-color);
+        transform: scaleX(0);
+        transition: var(--transition-default);
+        transform-origin: right;
+    }
+
+    .inline-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
     }
 
     .theme-toggle,
@@ -234,7 +256,6 @@
     .theme-toggle:focus,
     .lang-toggle:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
     }
 
     .section-title {
@@ -259,29 +280,91 @@
         margin-bottom: 2rem;
     }
 
-    .inline-link {
-        color: var(--primary-color);
-        text-decoration: none;
-        position: relative;
-        transition: var(--transition-default);
-    }
-
-    .inline-link::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
+    .loading-overlay {
+        position: fixed;
+        top: 0;
         left: 0;
-        width: 100%;
-        height: 1px;
-        background: var(--primary-color);
-        transform: scaleX(0);
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
         transition: var(--transition-default);
-        transform-origin: right;
     }
 
-    .inline-link:hover::after {
-        transform: scaleX(1);
-        transform-origin: left;
+    .loading-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Классы для светлого режима карточек с индивидуальными градиентами */
+    .card-portfolio {
+        background: linear-gradient(135deg, #FCD34D, #F59E0B);
+    }
+
+    .card-resume {
+        background: linear-gradient(135deg, #60A5FA, #3B82F6);
+    }
+
+    .card-contact {
+        background: linear-gradient(135deg, #9CA3AF, #4B5563);
+    }
+
+    .card-email {
+        background: linear-gradient(135deg, #F97316, #EA580C);
+    }
+
+    .card-telegram {
+        background: linear-gradient(135deg, #38BDF8, #0284C7);
+    }
+
+    .card-whatsapp {
+        background: linear-gradient(135deg, #4ADE80, #16A34A);
+    }
+
+    .card-instagram {
+        background: linear-gradient(135deg, #EC4899, #BE185D);
+    }
+
+    .card-vk {
+        background: linear-gradient(135deg, #1D4ED8, #1E40AF);
+    }
+
+    .card-youtube {
+        background: linear-gradient(135deg, #EF4444, #DC2626);
+    }
+
+    .card-github {
+        background: linear-gradient(135deg, #4B5563, #1F2937);
+    }
+
+    .card-githubgist {
+        background: linear-gradient(135deg, #4B5563, #1F2937);
+    }
+
+    .card-blog {
+        background: linear-gradient(135deg, #38BDF8, #0284C7);
+    }
+
+    .card-project {
+        background: linear-gradient(135deg, #4ADE80, #16A34A);
+    }
+
+    /* Темный режим для карточек */
+    .dark-mode .card {
+        background: #2c2c2c;
+        color: #F9FAFB;
+        box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
+    }
+
+    .dark-mode .link-card {
+        background: linear-gradient(135deg, #444444, #222222) !important;
+        color: #F9FAFB;
+        box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
     }
 
     @media (max-width: 640px) {
@@ -303,31 +386,11 @@
             height: 2.5rem;
         }
     }
-
-    .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition-default);
-    }
-
-    .loading-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
     </style>
 </head>
 
 <body class="text-gray-800 font-sans">
+    <div id="particles-js"></div>
     <div id="loading-overlay" class="loading-overlay">
         <div class="loading-spinner"></div>
     </div>
@@ -343,86 +406,87 @@
             <h1 id="i18n-name" data-i18n="name" class="title">Роман Пуртов</h1>
             <p id="i18n-mainDescription" data-i18n="mainDescription" class="subtitle"></p>
         </div>
-        <div class="grid fade-in">
-            <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #FCD34D, #F59E0B);">
+        <div class="grid">
+            <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="link-card card-portfolio fade-in">
                 <i class="fas fa-briefcase link-card-icon"></i>
                 <h3 id="i18n-portfolio_title" data-i18n="portfolio_title" class="link-card-title">Портфолио</h3>
                 <p id="i18n-portfolio_description" data-i18n="portfolio_description" class="link-card-description"></p>
             </a>
-            <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #60A5FA, #3B82F6);">
+            <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-card card-resume fade-in">
                 <i class="fas fa-file-pdf link-card-icon"></i>
                 <h3 id="i18n-resume_title" data-i18n="resume_title" class="link-card-title">Моё резюме</h3>
                 <p id="i18n-resume_description" data-i18n="resume_description" class="link-card-description"></p>
             </a>
         </div>
-        <h2 id="i18n-contacts_title" data-i18n="contacts_title" class="section-title">Контакты и&nbsp;ссылки</h2>
-        <div class="grid fade-in">
-            <a href="tel:+79526797776" class="link-card" style="background: linear-gradient(135deg, #9CA3AF, #4B5563);">
+        <h2 id="i18n-contacts_title" data-i18n="contacts_title" class="section-title fade-in">Контакты и ссылки</h2>
+        <div class="grid">
+            <a href="tel:+79526797776" class="link-card card-contact fade-in">
                 <i class="fas fa-phone link-card-icon"></i>
                 <h3 id="i18n-phone_title" data-i18n="phone_title" class="link-card-title">Телефон</h3>
                 <p id="i18n-phone_description" data-i18n="phone_description" class="link-card-description">+7&nbsp;952&nbsp;679‑77‑76</p>
             </a>
-            <a href="mailto:rytrycon@gmail.com" class="link-card" style="background: linear-gradient(135deg, #F97316, #EA580C);">
+            <a href="mailto:rytrycon@gmail.com" class="link-card card-email fade-in">
                 <i class="fas fa-envelope link-card-icon"></i>
                 <h3 id="i18n-email_title" data-i18n="email_title" class="link-card-title">Почта</h3>
                 <p id="i18n-email_description" data-i18n="email_description" class="link-card-description">rytrycon@gmail.com</p>
             </a>
-            <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #38BDF8, #0284C7);">
+            <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="link-card card-telegram fade-in">
                 <i class="fab fa-telegram link-card-icon"></i>
                 <h3 id="i18n-telegram_title" data-i18n="telegram_title" class="link-card-title">Telegram</h3>
                 <p id="i18n-telegram_description" data-i18n="telegram_description" class="link-card-description">@roman_purtow</p>
             </a>
-            <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4ADE80, #16A34A);">
+            <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="link-card card-whatsapp fade-in">
                 <i class="fab fa-whatsapp link-card-icon"></i>
                 <h3 id="i18n-whatsapp_title" data-i18n="whatsapp_title" class="link-card-title">WhatsApp</h3>
                 <p id="i18n-whatsapp_description" data-i18n="whatsapp_description" class="link-card-description">+7&nbsp;952&nbsp;679‑77‑76</p>
             </a>
-            <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #EC4899, #BE185D);">
+            <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="link-card card-instagram fade-in">
                 <i class="fab fa-instagram link-card-icon"></i>
                 <h3 id="i18n-instagram_title" data-i18n="instagram_title" class="link-card-title">Instagram</h3>
                 <p id="i18n-instagram_description" data-i18n="instagram_description" class="link-card-description">@roman.purtow</p>
             </a>
-            <a href="https://vk.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #1D4ED8, #1E40AF);">
+            <a href="https://vk.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="link-card card-vk fade-in">
                 <i class="fab fa-vk link-card-icon"></i>
                 <h3 id="i18n-vk_title" data-i18n="vk_title" class="link-card-title">ВКонтакте</h3>
                 <p id="i18n-vk_description" data-i18n="vk_description" class="link-card-description">@roman.purtow</p>
             </a>
-            <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #EF4444, #DC2626);">
+            <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="link-card card-youtube fade-in">
                 <i class="fab fa-youtube link-card-icon"></i>
                 <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="link-card-title">YouTube</h3>
                 <p id="i18n-youtube_description" data-i18n="youtube_description" class="link-card-description">@roman-purtow</p>
             </a>
-            <div class="grid grid-cols-2 gap-4">
-                <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4B5563, #1F2937);">
+            <div class="grid">
+                <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="link-card card-github fade-in">
                     <i class="fab fa-github link-card-icon"></i>
                     <h3 id="i18n-github_title" data-i18n="github_title" class="link-card-title">GitHub</h3>
                     <p id="i18n-github_description" data-i18n="github_description" class="link-card-description">@baslie</p>
                 </a>
-                <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4B5563, #1F2937);">
+                <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="link-card card-githubgist fade-in">
                     <i class="fab fa-github link-card-icon"></i>
                     <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="link-card-title">GitHub Gist</h3>
                     <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="link-card-description">@baslie</p>
                 </a>
             </div>
         </div>
-        <h2 id="i18n-blog_title" data-i18n="blog_title" class="section-title">Блог</h2>
+        <h2 id="i18n-blog_title" data-i18n="blog_title" class="section-title fade-in">Блог</h2>
         <div class="fade-in">
-            <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #38BDF8, #0284C7);">
+            <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="link-card card-blog fade-in">
                 <i class="fas fa-blog link-card-icon"></i>
                 <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="link-card-title">Пурточка вещает</h3>
                 <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="link-card-description"></p>
             </a>
         </div>
-        <h2 id="i18n-projects_title" data-i18n="projects_title" class="section-title">Проекты, хобби</h2>
-        <p id="i18n-projects_description" data-i18n="projects_description" class="section-description"></p>
+        <h2 id="i18n-projects_title" data-i18n="projects_title" class="section-title fade-in">Проекты, хобби</h2>
+        <p id="i18n-projects_description" data-i18n="projects_description" class="section-description fade-in"></p>
         <div class="fade-in">
-            <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="link-card" style="background: linear-gradient(135deg, #4ADE80, #16A34A);">
+            <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="link-card card-project fade-in">
                 <i class="fas fa-hiking link-card-icon"></i>
                 <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="link-card-title">Томская Прогулка</h3>
                 <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="link-card-description"></p>
             </a>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
     function calculateDaysSince(dateString) {
         const startDate = new Date(dateString);
@@ -621,6 +685,42 @@
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true
+    });
+
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 100, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            shape: {
+                type: "circle",
+                stroke: { width: 0, color: "#000000" },
+                polygon: { nb_sides: 5 }
+            },
+            opacity: { value: 0.5, random: true },
+            size: { value: 2, random: true },
+            line_linked: { enable: false },
+            move: {
+                enable: true,
+                speed: 0.2,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: false },
+                resize: true
+            },
+            modes: {
+                repulse: { distance: 50, duration: 0.4 }
+            }
+        },
+        retina_detect: true
     });
 
     const UNSPLASH_ACCESS_KEY = 'BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0';
