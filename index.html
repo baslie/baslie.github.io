@@ -477,8 +477,8 @@
     <script>
     function calculateDaysSince(dateString) {
         const startDate = new Date(dateString);
-        const now = new Date();
-        const diffInMs = now - startDate;
+        const nowTomsk = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tomsk" }));
+        const diffInMs = nowTomsk - startDate;
         return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
     }
 
@@ -580,7 +580,6 @@
         }
     };
 
-    // Функция обновления языка страницы
     function updateLanguage(lang) {
         document.documentElement.lang = lang;
         document.title = translations[lang].title;
@@ -622,21 +621,18 @@
         updateLangToggleText();
     });
 
-    // Глобальная переменная для canvas StarBack
     let starContainer;
-
-    // Если тема уже установлена как темная, применяем её
-    if (localStorage.getItem("theme") === "dark") {
+    
+        if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");
         themeToggle.querySelector("i").classList.replace("fa-moon", "fa-sun");
     }
 
-    // Функция обновления видимости и порядка слоёв звездного фона
     function updateStarVisibility() {
         if (starContainer) {
             if (document.body.classList.contains("dark-mode")) {
                 starContainer.style.opacity = "1";
-                starContainer.style.zIndex = "1"; // Помещаем canvas выше overlay
+                starContainer.style.zIndex = "1";
             } else {
                 starContainer.style.opacity = "0";
                 starContainer.style.zIndex = "-1";
@@ -645,30 +641,26 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        // Создаем canvas для StarBack и добавляем его в body
         starContainer = document.createElement("canvas");
         starContainer.id = "star-container";
         document.body.appendChild(starContainer);
 
-        // Инициализация StarBack (версия 2.1.1) с указанием размеров canvas
         const starBackground = new Starback(starContainer, {
-            type: "dot", // Обязательное поле: 'dot' или 'line'
-            width: window.innerWidth, // Устанавливаем ширину canvas
-            height: window.innerHeight, // Устанавливаем высоту canvas
-            quantity: 150, // Количество звезд (вместо устаревшего numStars)
-            direction: 225, // Направление движения звезд (для типа "dot")
-            speed: 3, // Скорость движения звезд
-            starColor: "#ffffff", // Цвет звезд
+            type: "dot",                   // Обязательное поле: 'dot' или 'line'
+            width: window.innerWidth,      // Устанавливаем ширину canvas
+            height: window.innerHeight,    // Устанавливаем высоту canvas
+            quantity: 150,                 // Количество звезд (вместо устаревшего numStars)
+            direction: 225,                // Направление движения звезд (для типа "dot")
+            speed: 3,                      // Скорость движения звезд
+            starColor: "#ffffff",          // Цвет звезд
             backgroundColor: "transparent"
         });
 
-        // Обновляем размеры canvas при изменении размера окна
         window.addEventListener("resize", () => {
             starBackground.width = window.innerWidth;
             starBackground.height = window.innerHeight;
         });
 
-        // Запрос случайного изображения с Unsplash для фона
         const UNSPLASH_ACCESS_KEY = "BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0";
         const UNSPLASH_QUERY = "night+forest+winter";
         fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
@@ -682,10 +674,8 @@
                 console.error("Error loading Unsplash photo:", err);
             });
 
-        // Применяем видимость звездного фона
         updateStarVisibility();
 
-        // Предзагрузка фонов для карточек (опционально)
         const cards = document.querySelectorAll(".link-card");
         cards.forEach(card => {
             const style = getComputedStyle(card);
