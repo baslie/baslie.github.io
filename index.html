@@ -403,6 +403,36 @@
         </div>
     </main>
     <script>
+    function calculateDaysSince(dateString) {
+        const startDate = new Date(dateString);
+        const now = new Date();
+        const diffInMs = now - startDate;
+        return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    }
+
+    function getDayDeclensionRu(num) {
+        const lastTwo = num % 100;
+        if (lastTwo >= 11 && lastTwo <= 19) {
+            return "дней";
+        }
+        const lastDigit = num % 10;
+        if (lastDigit === 1) {
+            return "день";
+        } else if (lastDigit >= 2 && lastDigit <= 4) {
+            return "дня";
+        } else {
+            return "дней";
+        }
+    }
+
+    function getDayDeclensionEn(num) {
+        return num === 1 ? "day" : "days";
+    }
+
+    const daysSinceStart = calculateDaysSince("2022-01-20");
+    const dayDeclRu = getDayDeclensionRu(daysSinceStart);
+    const dayDeclEn = getDayDeclensionEn(daysSinceStart);
+
     const translations = {
         ru: {
             title: "Роман Пуртов. Ваш маркетолог и дизайнер из тайги.",
@@ -477,36 +507,6 @@
             tomsk_walk_description: "Go out and walk so that nature doesn't idle&nbsp;☝"
         }
     };
-
-    function calculateDaysSince(dateString) {
-        const startDate = new Date(dateString);
-        const now = new Date();
-        const diffInMs = now - startDate;
-        return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-    }
-
-    function getDayDeclensionRu(num) {
-        const lastTwo = num % 100;
-        if (lastTwo >= 11 && lastTwo <= 19) {
-            return "дней";
-        }
-        const lastDigit = num % 10;
-        if (lastDigit === 1) {
-            return "день";
-        } else if (lastDigit >= 2 && lastDigit <= 4) {
-            return "дня";
-        } else {
-            return "дней";
-        }
-    }
-
-    function getDayDeclensionEn(num) {
-        return num === 1 ? "day" : "days";
-    }
-
-    const daysSinceStart = calculateDaysSince("2022-01-20");
-    const dayDeclRu = getDayDeclensionRu(daysSinceStart);
-    const dayDeclEn = getDayDeclensionEn(daysSinceStart);
 
     // Функция обновления языка страницы
     function updateLanguage(lang) {
@@ -655,7 +655,7 @@
         webvisor: true
     });
     </script>
-    <!-- upd3 -->
+    <!-- upd4 -->
 </body>
 
 </html>
