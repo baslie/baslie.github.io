@@ -558,10 +558,16 @@
         themeToggle.querySelector("i").classList.replace("fa-moon", "fa-sun");
     }
 
-    // Функция обновления видимости звездного фона
+    // Функция обновления видимости и порядка слоёв звездного фона
     function updateStarVisibility() {
         if (starContainer) {
-            starContainer.style.opacity = document.body.classList.contains("dark-mode") ? "1" : "0";
+            if (document.body.classList.contains("dark-mode")) {
+                starContainer.style.opacity = "1";
+                starContainer.style.zIndex = "0"; // Помещаем canvas выше overlay
+            } else {
+                starContainer.style.opacity = "0";
+                starContainer.style.zIndex = "-1";
+            }
         }
     }
 
@@ -571,12 +577,14 @@
         starContainer.id = "star-container";
         document.body.appendChild(starContainer);
 
-        // Инициализация StarBack (версия 2.1.1)
+        // Инициализация StarBack (версия 2.1.1) с указанием размеров canvas
         const starBackground = new Starback(starContainer, {
             type: "dot", // Обязательное поле: 'dot' или 'line'
+            width: window.innerWidth, // Устанавливаем ширину canvas
+            height: window.innerHeight, // Устанавливаем высоту canvas
             quantity: 150, // Количество звезд (вместо устаревшего numStars)
             direction: 225, // Направление движения звезд (для типа "dot")
-            speed: 3, // Скорость движения звезд (вместо maxStarSpeed)
+            speed: 3, // Скорость движения звезд
             starColor: "#ffffff", // Цвет звезд
             backgroundColor: "transparent"
         });
@@ -587,7 +595,7 @@
             starBackground.height = window.innerHeight;
         });
 
-        // Запрос случайного изображения с Unsplash для фона (обязательно замените ACCESS_KEY, если потребуется)
+        // Запрос случайного изображения с Unsplash для фона
         const UNSPLASH_ACCESS_KEY = "BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0";
         const UNSPLASH_QUERY = "night+forest+winter";
         fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
@@ -654,7 +662,7 @@
         webvisor: true
     });
     </script>
-    <!-- upd6 -->
+    <!-- upd7 -->
 </body>
 
 </html>
