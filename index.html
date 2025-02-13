@@ -25,7 +25,7 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="/styles/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://unpkg.com/starback@1.1.0/dist/starback.js"></script>
+    <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
     <style>
     :root {
         --primary-color: #3B82F6;
@@ -587,12 +587,11 @@
         starContainer.id = 'star-container';
         document.body.appendChild(starContainer);
 
-        const starBackground = new Starback({
-            el: starContainer,
-            width: window.innerWidth,
-            height: window.innerHeight,
-            numStars: 150,
-            maxStarSpeed: 3,
+        const starBackground = new Starback(starContainer, {
+            type: 'dot',
+            quantity: 150,
+            direction: 225,
+            speed: 3, // если требуется увеличить скорость
             starColor: "#ffffff",
             backgroundColor: "transparent"
         });
@@ -665,7 +664,8 @@
         webvisor: true
     });
     </script>
-    <!-- upd -->
+
+    <!-- upd2 -->
 </body>
 
 </html>
