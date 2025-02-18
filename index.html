@@ -622,8 +622,8 @@
     });
 
     let starContainer;
-    
-        if (localStorage.getItem("theme") === "dark") {
+
+    if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");
         themeToggle.querySelector("i").classList.replace("fa-moon", "fa-sun");
     }
@@ -646,13 +646,13 @@
         document.body.appendChild(starContainer);
 
         const starBackground = new Starback(starContainer, {
-            type: "dot",                   // Обязательное поле: 'dot' или 'line'
-            width: window.innerWidth,      // Устанавливаем ширину canvas
-            height: window.innerHeight,    // Устанавливаем высоту canvas
-            quantity: 150,                 // Количество звезд (вместо устаревшего numStars)
-            direction: 225,                // Направление движения звезд (для типа "dot")
-            speed: 3,                      // Скорость движения звезд
-            starColor: "#ffffff",          // Цвет звезд
+            type: "dot", // Обязательное поле: 'dot' или 'line'
+            width: window.innerWidth, // Устанавливаем ширину canvas
+            height: window.innerHeight, // Устанавливаем высоту canvas
+            quantity: 150, // Количество звезд (вместо устаревшего numStars)
+            direction: 225, // Направление движения звезд (для типа "dot")
+            speed: 3, // Скорость движения звезд
+            starColor: "#ffffff", // Цвет звезд
             backgroundColor: "transparent"
         });
 
@@ -661,18 +661,43 @@
             starBackground.height = window.innerHeight;
         });
 
-        const UNSPLASH_ACCESS_KEY = "BwQBKmOyGUN6Sq776QdQGGoJcy5DSg6R58plLxWsjr0";
+        const UNSPLASH_ACCESS_KEY = "BwQBKmOyGUN6Sq776QdGGoJcy5DSg6R58plLxWsjr0";
         const UNSPLASH_QUERY = "mountain+night";
+
         fetch(`https://api.unsplash.com/photos/random?query=${UNSPLASH_QUERY}&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`)
             .then(response => response.json())
             .then(data => {
-                if (data && data.urls && data.urls.regular) {
-                    document.body.style.backgroundImage = `url("${data.urls.regular}")`;
+                if (data && data.urls && data.urls.raw) {
+                    // Используем ширину экрана и плотность пикселей для оптимизации параметров
+                    const screenWidth = window.innerWidth || 1920;
+                    const deviceDPR = window.devicePixelRatio || 1;
+
+                    // Формируем URL с нужными параметрами:
+                    // - w: ширина в пикселях (можно задать screenWidth или фиксированное значение)
+                    // - dpr: плотность пикселей устройства
+                    // - fit: обрезка (crop)
+                    // - auto: форматирование (например, webp, если поддерживается)
+                    // - q: качество (80 — хороший баланс между качеством и размером файла)
+                    const imageUrl = new URL(data.urls.raw);
+                    imageUrl.searchParams.set("w", screenWidth);
+                    imageUrl.searchParams.set("dpr", deviceDPR);
+                    imageUrl.searchParams.set("fit", "crop");
+                    imageUrl.searchParams.set("auto", "format");
+                    imageUrl.searchParams.set("q", "80");
+
+                    // Создаём изображение с ленивой загрузкой
+                    const bgImage = new Image();
+                    bgImage.loading = "lazy";
+                    bgImage.src = imageUrl.toString();
+                    bgImage.onload = () => {
+                        document.body.style.backgroundImage = `url("${imageUrl.toString()}")`;
+                    };
                 }
             })
             .catch(err => {
                 console.error("Error loading Unsplash photo:", err);
             });
+
 
         updateStarVisibility();
 
