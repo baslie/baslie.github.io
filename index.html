@@ -94,6 +94,39 @@
         padding: 2rem 1.5rem;
     }
 
+    .link-card {
+        display: block;
+        padding: 1.25rem;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .link-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .link-card-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        color: #FFFFFF;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .link-card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #FFFFFF;
+        margin-bottom: 0.25rem;
+    }
+
+    .link-card-description {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
     .card {
         background: var(--background-light);
         border-radius: var(--border-radius);
@@ -189,44 +222,15 @@
 
     .vc-card {
         background: #FFE6EB;
+    }
+
+    .vc-card .link-card-title,
+    .vc-card .link-card-description {
         color: #000;
     }
 
     .progulka-card {
         background: linear-gradient(135deg, #4ADE80, #16A34A);
-    }
-
-    .link-card {
-        display: block;
-        padding: 1.25rem;
-        border-radius: var(--border-radius);
-        text-decoration: none;
-        transition: transform 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .link-card:hover {
-        transform: translateY(-8px);
-    }
-
-    .link-card-icon {
-        font-size: 2rem;
-        margin-bottom: 0.75rem;
-        color: #FFFFFF;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    }
-
-    .link-card-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #FFFFFF;
-        margin-bottom: 0.25rem;
-    }
-
-    .link-card-description {
-        font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.9);
     }
 
     .theme-toggle,
