@@ -1,0 +1,100 @@
+/* =====================================
+   1. Анимации
+   ===================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================
+   2. Общие классы
+   ===================================== */
+
+/* Градиентная карточка */
+.card-gradient {
+    background: linear-gradient(135deg, #2A3454 0%, #3B456C 100%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(12px);
+    position: relative;
+}
+
+.card-gradient:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15);
+}
+
+.card-gradient::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 5%;
+    width: 90%;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(59, 130, 246, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-gradient:hover::after {
+    opacity: 1;
+}
+
+/* Прогресс-бар (полоска) */
+.progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Фон body (общая подложка) */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Подставьте реальный путь к вашему фоновому изображению */
+    background: url('bg.jpg') no-repeat center/cover fixed;
+    opacity: 0.75;
+    z-index: -1;
+}
+
+/* Иконки уведомлений */
+.notification-icon {
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+/* Лейблы для диаграмм (Chart.js и т.п.) */
+.chart-label {
+    color: white !important;
+}
+
+/* Убираем системный скроллбар (если необходимо) */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Анимация появления для выпадающих панелей, модалок и т.п. */
+.animate-fadeIn {
+    animation: fadeIn 0.3s forwards;
+}
+
+/* Подсвеченный ребёнок (например, при выборе) */
+.selected-child {
+    border: 2px solid #3B82F6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    position: relative;
+}
