@@ -98,3 +98,15 @@ body::after {
     box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
     position: relative;
 }
+
+/* Прячем «выход» заливки за скругление */
+#notificationsPanel {
+    overflow: hidden !important;
+    /* перекрываем tailwind-стили */
+}
+
+/* Убираем нижнюю границу у последнего уведомления,
+   чтобы не торчала линия */
+#notificationsPanel .max-h-96>div:last-child {
+    border-bottom: 0 !important;
+}
