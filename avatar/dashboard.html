@@ -604,16 +604,16 @@
         </section>
     </main>
     <!-- Системное сообщение -->
-    <div class="bg-blue-500 fixed bottom-4 right-4 bg-accent rounded-lg shadow-dropdown p-4 max-w-sm transform transition-transform duration-300 flex items-start">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <div>
-            <h4 class="font-semibold mb-1">Обновление системы</h4>
-            <p class="text-sm">Мы обновили интерфейс личного кабинета. Изучите новые возможности!</p>
-            <div class="flex justify-end mt-2">
-                <button class="text-xs underline">Закрыть</button>
-            </div>
+    <div id="systemMessage" class="fixed z-50 bottom-4 right-4 w-80">
+        <div class="bg-blue-500 text-white p-4 rounded-lg relative shadow-lg">
+            <!-- Кнопка закрытия -->
+            <button class="absolute top-2 right-2 text-xl leading-none hover:text-gray-300" onclick="closeSystemMessage()" aria-label="Закрыть сообщение">
+                &times;
+            </button>
+            <!-- Текст сообщения -->
+            <p class="pr-8">
+                Это тестовое системное сообщение. Подробности или предупреждение для пользователя.
+            </p>
         </div>
     </div>
     <!-- Мобильное меню -->
@@ -679,6 +679,13 @@
             document.getElementById('notificationsPanel').classList.add('hidden');
         }
     });
+
+    function closeSystemMessage() {
+        const msg = document.getElementById('systemMessage');
+        if (msg) {
+            msg.remove(); // полностью удаляем элемент из DOM
+        }
+    }
     </script>
 </body>
 
