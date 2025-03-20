@@ -26,7 +26,7 @@
 }
 
 .card-gradient:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
     box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15);
 }
 
