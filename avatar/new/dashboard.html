@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Аватар — Главная</title>
+    <!-- Подключение шрифта Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Свои стили -->
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body class="font-montserrat bg-gradient-to-br from-[#0C1339] to-[#3A1166] text-white">
+    <!-- Хедер -->
+    <header class="fixed top-0 left-0 right-0 h-16 glass-panel z-50 flex items-center">
+        <div class="container mx-auto px-8 h-full flex items-center justify-between">
+            <!-- Логотип/иконка -->
+            <a href="dashboard.html" class="hover-glow flex items-center" aria-label="Главная">
+                <img src="assets/avatar.svg" alt="Аватар" class="h-8" />
+            </a>
+            <div class="flex items-center gap-6">
+                <!-- Уведомления -->
+                <div class="relative">
+                    <button id="notificationsBtn" type="button" aria-label="Уведомления" class="p-2 relative group hover:opacity-90 transition-colors">
+                        <svg class="w-6 h-6 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                    </button>
+                    <!-- Панель уведомлений -->
+                    <div id="notificationsPanel" class="hidden absolute right-0 top-12 w-80 card-modern animate-fadeIn origin-top-right" role="menu" aria-label="Список уведомлений">
+                        <div class="p-4 border-b border-white/10 flex justify-between items-center">
+                            <h3 class="font-semibold">Уведомления</h3>
+                            <button type="button" class="text-xs hover:opacity-80" aria-label="Отметить все прочитанными">Отметить прочитанным</button>
+                        </div>
+                        <div class="max-h-96 overflow-y-auto no-scrollbar">
+                            <!-- Уведомление 1 -->
+                            <div class="p-4 border-b border-white/10 hover:bg-white/5 transition-colors" role="menuitem">
+                                <div class="flex items-start gap-3">
+                                    <div class="shrink-0 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium truncate">Подписка Анны заканчивается</p>
+                                        <p class="text-sm mt-1 truncate">Осталось 20 дней</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Уведомление 2 -->
+                            <div class="p-4 border-b border-white/10 hover:bg-white/5 transition-colors" role="menuitem">
+                                <div class="flex items-start gap-3">
+                                    <div class="shrink-0 w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                        </svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium truncate">Новый реферал</p>
+                                        <p class="text-sm mt-1 truncate">По вашей ссылке зарегистрировался новый пользователь</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Дополнительные уведомления -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Профиль -->
+                <div class="relative group" id="profileMenu">
+                    <button type="button" aria-label="Профиль" class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center">ИИ</div>
+                        <span class="hidden md:inline">Иван Иванов</span>
+                    </button>
+                    <div class="hidden absolute right-0 top-12 w-72 card-modern group-hover:block animate-fadeIn" role="menu">
+                        <div class="p-2 space-y-1">
+                            <a href="profile.html" role="menuitem" class="block p-3 hover:bg-white/5 rounded-lg transition-colors">Ваш профиль</a>
+                            <a href="login.html" role="menuitem" class="block p-3 hover:bg-white/5 rounded-lg transition-colors">Выйти</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Кнопка переключения мобильного меню -->
+                <button id="mobileMenuToggle" type="button" aria-label="Открыть меню" aria-controls="mainSidebar" aria-expanded="false" class="md:hidden p-2 text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Единое меню (для десктопа и мобильных) -->
+    <nav id="mainSidebar" role="navigation" aria-label="Основное меню" class="glass-panel fixed left-0 top-16 bottom-0 w-64 overflow-y-auto z-40 hidden md:block">
+        <ul class="p-4 space-y-2">
+            <li>
+                <a href="dashboard.html" class="flex items-start gap-3 p-3 btn-common btn-menu button-primary rounded-xl" aria-current="page">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg> Главная </a>
+            </li>
+            <li>
+                <a href="children.html" role="menuitem" class="flex items-start gap-3 p-3 bg-white/3 hover:bg-white/10 btn-menu rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg> Мои дети </a>
+            </li>
+            <li>
+                <a href="messages.html" role="menuitem" class="flex items-start gap-3 p-3 bg-white/3 hover:bg-white/10 btn-menu rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg> Сообщения ребенку </a>
+            </li>
+            <li>
+                <a href="history.html" role="menuitem" class="flex items-start gap-3 p-3 bg-white/3 hover:bg-white/10 btn-menu rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg> История общения </a>
+            </li>
+            <li>
+                <a href="profile.html" role="menuitem" class="flex items-start gap-3 p-3 bg-white/3 hover:bg-white/10 btn-menu rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg> Ваш профиль </a>
+            </li>
+            <li>
+                <a href="referrals.html" role="menuitem" class="flex items-start gap-3 p-3 bg-white/3 hover:bg-white/10 btn-menu rounded-xl transition-colors">
+                    <svg class="w-5 h-5 mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.75V8.25C21 7.007 19.993 6 18.75 6H5.25C4.007 6 3 7.007 3 8.25v4.5M21 12.75v3.75c0 1.243-1.007 2.25-2.25 2.25H5.25C4.007 18.75 3 17.743 3 16.5v-3.75M21 12.75H3" />
+                    </svg> Реферальная программа </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Основной контент -->
+    <main class="md:ml-64 mt-16 p-8 overflow-y-auto">
+        <!-- Приветствие -->
+        <section class="mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2" id="greeting">Добрый день, Иван!</h1>
+                    <p class="text-sm" id="currentDate"></p>
+                </div>
+            </div>
+        </section>
+        <!-- Мои дети -->
+        <section class="mb-8" aria-labelledby="childrenSection">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold" id="childrenSection">Мои дети</h2>
+                <a href="children.html" class="hover:opacity-80">Все профили</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Карточка ребенка 1 -->
+                <article class="card-modern p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">М</div>
+                        <div class="flex-1 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Михаил</h3>
+                                    <p class="text-xs">10 лет, 4 класс</p>
+                                </div>
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Онлайн</span>
+                            </div>
+                            <div>
+                                <p class="text-xs mb-1">Отвечено вопросов</p>
+                                <div class="progress-bar h-2 rounded-full">
+                                    <div class="bg-blue-500 h-2" style="width: 5%;"></div>
+                                </div>
+                                <p class="text-xs mt-1">10 из 200 (5%)</p>
+                            </div>
+                            <div class="flex justify-between items-center gap-4">
+                                <div>
+                                    <p class="text-xs">Заработано</p>
+                                    <p class="font-medium">250 ₽</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Подписка до</p>
+                                    <p class="font-medium">19.06.2025</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <a href="child-1.html" class="btn-common button-primary text-center py-2">Открыть</a>
+                                <button type="button" class="btn-common button-secondary text-center py-2">Оплатить</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Карточка ребенка 2 -->
+                <article class="card-modern p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">С</div>
+                        <div class="flex-1 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Светлана</h3>
+                                    <p class="text-xs">8 лет, 2 класс</p>
+                                </div>
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Онлайн</span>
+                            </div>
+                            <div>
+                                <p class="text-xs mb-1">Отвечено вопросов</p>
+                                <div class="progress-bar h-2 rounded-full">
+                                    <div class="bg-blue-500 h-2" style="width: 10%;"></div>
+                                </div>
+                                <p class="text-xs mt-1">20 из 200 (10%)</p>
+                            </div>
+                            <div class="flex justify-between items-center gap-4">
+                                <div>
+                                    <p class="text-xs">Заработано</p>
+                                    <p class="font-medium">180 ₽</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Подписка до</p>
+                                    <p class="font-medium">15.07.2025</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <a href="child-1.html" class="btn-common button-primary text-center py-2">Открыть</a>
+                                <button type="button" class="btn-common button-secondary text-center py-2">Оплатить</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Карточка ребенка 3 -->
+                <article class="card-modern p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">А</div>
+                        <div class="flex-1 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Алексей</h3>
+                                    <p class="text-xs">12 лет, 6 класс</p>
+                                </div>
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Оффлайн</span>
+                            </div>
+                            <div>
+                                <p class="text-xs mb-1">Отвечено вопросов</p>
+                                <div class="progress-bar h-2 rounded-full">
+                                    <div class="bg-blue-500 h-2" style="width: 25%;"></div>
+                                </div>
+                                <p class="text-xs mt-1">50 из 200 (25%)</p>
+                            </div>
+                            <div class="flex justify-between items-center gap-4">
+                                <div>
+                                    <p class="text-xs">Заработано</p>
+                                    <p class="font-medium">300 ₽</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Подписка до</p>
+                                    <p class="font-medium">30.08.2025</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1">
+                                <a href="child-1.html" class="btn-common button-primary text-center py-2">Открыть</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Карточка "Добавить ребенка" -->
+                <a href="new.html" class="block">
+                    <article class="card-modern p-6 flex items-center justify-center cursor-pointer hover:opacity-90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                                <svg class="w-8 h-8 text-gradient" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </div>
+                            <p>Добавить ребенка</p>
+                        </div>
+                    </article>
+                </a>
+            </div>
+        </section>
+        <!-- Последние сообщения -->
+        <section class="mb-8" aria-labelledby="latestMessages">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold" id="latestMessages">Последние сообщения</h2>
+                <a href="messages.html" class="hover:opacity-80 transition-colors">Все сообщения</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Сообщение 1 -->
+                <article class="card-modern rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">М</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Михаил</h3>
+                                    <p class="text-xs">Сегодня, 14:35</p>
+                                </div>
+                                <span class="text-xs text-green-400">Прочитано</span>
+                            </div>
+                            <p class="mt-3 text-sm line-clamp-3"> Привет! Напоминаю, что завтра у тебя контрольная по математике... </p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Сообщение 2 -->
+                <article class="card-modern rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">С</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Светлана</h3>
+                                    <p class="text-xs">Сегодня, 14:35</p>
+                                </div>
+                                <span class="text-xs text-green-400">Прочитано</span>
+                            </div>
+                            <p class="mt-3 text-sm line-clamp-3"> Привет! Напоминаю, что завтра у тебя контрольная по математике... </p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Сообщение 3 -->
+                <article class="card-modern rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">А</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Алексей</h3>
+                                    <p class="text-xs">Сегодня, 14:35</p>
+                                </div>
+                                <span class="text-xs text-green-400">Прочитано</span>
+                            </div>
+                            <p class="mt-3 text-sm line-clamp-3"> Привет! Напоминаю, что завтра у тебя контрольная по математике... </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- История общения -->
+        <section class="mb-8" aria-labelledby="chatHistory">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold" id="chatHistory">История общения с аватаром</h2>
+                <a href="history.html" class="text-blue-400 hover:opacity-80 transition-colors">Смотреть диалоги</a>
+            </div>
+            <div class="space-y-4">
+                <!-- Сообщение 1 -->
+                <article class="card-modern rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold">Михаил</h3>
+                                <p class="text-xs">Сегодня, 15:20</p>
+                            </div>
+                            <span class="text-xs bg-white/10 text-white px-2 py-1 rounded-full">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-sm">Как решить уравнение 2x + 5 = 15?</p>
+                    </div>
+                </article>
+                <!-- Сообщение 2 -->
+                <article class="card-modern rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">С</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold">Светлана</h3>
+                                <p class="text-xs">Сегодня, 15:22</p>
+                            </div>
+                            <span class="text-xs bg-white/10 text-white px-2 py-1 rounded-full">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-sm">А можешь посоветовать учебник для практики?</p>
+                    </div>
+                </article>
+                <!-- Сообщение 3 -->
+                <article class="card-modern rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">А</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold">Алексей</h3>
+                                <p class="text-xs">Сегодня, 15:30</p>
+                            </div>
+                            <span class="text-xs bg-white/10 text-white px-2 py-1 rounded-full">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-sm">Поможешь с домашкой по русскому языку?</p>
+                    </div>
+                </article>
+                <!-- Сообщение 4 -->
+                <article class="card-modern rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold">Михаил</h3>
+                                <p class="text-xs">Вчера, 19:10</p>
+                            </div>
+                            <span class="text-xs bg-white/10 text-white px-2 py-1 rounded-full">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-sm">Спасибо за подсказку! Всё сделал правильно.</p>
+                    </div>
+                </article>
+                <!-- Сообщение 5 -->
+                <article class="card-modern rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">С</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold">Светлана</h3>
+                                <p class="text-xs">Вчера, 18:45</p>
+                            </div>
+                            <span class="text-xs bg-white/10 text-white px-2 py-1 rounded-full">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-sm">Привет! Как у тебя дела? Готова к контрольной?</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- Общая статистика -->
+        <section class="mb-8" aria-labelledby="statisticsSection">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold" id="statisticsSection">Общая статистика</h2>
+                <a href="stats.html" class="hover:opacity-80 transition-colors">Подробнее</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Статистика 1 -->
+                <article class="card-modern rounded-xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">М</div>
+                        <h3 class="font-bold">Михаил</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs mb-1">Решено задач</p>
+                            <div class="progress-bar h-2">
+                                <div class="bg-blue-500 h-2" style="width: 5%;"></div>
+                            </div>
+                            <p class="font-medium mt-1">80 из 200 (40%)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Общее время в игре</p>
+                            <p class="font-medium">14 ч 35 мин</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Заработано средств</p>
+                            <p class="font-medium">420 ₽</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Правильные ответы</p>
+                            <p class="font-medium">87%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs mb-2">Прогресс</p>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-xs">Математика — 82 из 100 (82%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1" style="width: 82%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Русский язык — 65 из 100 (65%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1" style="width: 65%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-xs">Время в чате</p>
+                            <p class="font-medium">5 ч 20 мин</p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Статистика 2 -->
+                <article class="card-modern rounded-xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">С</div>
+                        <h3 class="font-bold">Светлана</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs mb-1">Решено задач</p>
+                            <div class="progress-bar h-2 rounded-full">
+                                <div class="bg-blue-500 h-2" style="width: 30%;"></div>
+                            </div>
+                            <p class="font-medium mt-1">60 из 200 (30%)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Общее время в игре</p>
+                            <p class="font-medium">10 ч 20 мин</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Заработано средств</p>
+                            <p class="font-medium">350 ₽</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Правильные ответы</p>
+                            <p class="font-medium">80%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs mb-2">Прогресс</p>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-xs">Математика — 70 из 100 (70%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Русский язык — 50 из 100 (50%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1" style="width: 50%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-xs">Время в чате</p>
+                            <p class="font-medium">3 ч 15 мин</p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Статистика 3 -->
+                <article class="card-modern rounded-xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center" aria-hidden="true">А</div>
+                        <h3 class="font-bold">Алексей</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs mb-1">Решено задач</p>
+                            <div class="progress-bar h-2 rounded-full">
+                                <div class="bg-blue-500 h-2" style="width: 50%;"></div>
+                            </div>
+                            <p class="font-medium mt-1">100 из 200 (50%)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Общее время в игре</p>
+                            <p class="font-medium">16 ч 00 мин</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Заработано средств</p>
+                            <p class="font-medium">500 ₽</p>
+                        </div>
+                        <div>
+                            <p class="text-xs">Правильные ответы</p>
+                            <p class="font-medium">92%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs mb-2">Прогресс</p>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-xs">Математика — 90 из 100 (90%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Русский язык — 85 из 100 (85%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-xs">Время в чате</p>
+                            <p class="font-medium">6 ч 00 мин</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <!-- Мобильное меню (нижняя панель) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0C1339] border-t border-white/10 z-50">
+        <nav class="flex justify-around p-2" aria-label="Мобильное меню">
+            <a href="dashboard.html" class="p-2 text-gray-400 hover:text-white" aria-label="Главная">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+            </a>
+            <a href="children.html" class="p-2 text-gray-400 hover:text-white" aria-label="Мои дети">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </a>
+            <a href="messages.html" class="p-2 text-gray-400 hover:text-white" aria-label="Сообщения ребенку">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                </svg>
+            </a>
+            <a href="history.html" class="p-2 text-gray-400 hover:text-white" aria-label="История общения">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+            </a>
+            <a href="profile.html" class="p-2 text-gray-400 hover:text-white" aria-label="Профиль">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+            </a>
+        </nav>
+    </div>
+    <!-- Мобильный сайдбар -->
+    <div id="mobileSidebar" class="hidden fixed top-16 left-0 bottom-0 w-64 glass-panel overflow-y-auto z-40 md:hidden" aria-label="Мобильное меню">
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="dashboard.html" class="flex items-center gap-3 p-3 btn-common button-primary rounded-xl" aria-current="page">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg> Главная </a>
+                </li>
+                <li>
+                    <a href="children.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197" />
+                        </svg> Мои дети </a>
+                </li>
+                <li>
+                    <a href="messages.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg> Сообщения ребенку </a>
+                </li>
+                <li>
+                    <a href="history.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72" />
+                        </svg> История общения </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg> Ваш профиль </a>
+                </li>
+                <li>
+                    <a href="referrals.html" class="flex items-start gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5 mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.75V8.25C21 7.007 19.993 6 18.75 6H5.25C4.007 6 3 7.007 3 8.25v4.5M21 12.75v3.75c0 1.243-1.007 2.25-2.25 2.25H5.25C4.007 18.75 3 17.743 3 16.5v-3.75M21 12.75H3" />
+                        </svg> Реферальная программа </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Системное сообщение -->
+    <div id="systemMessage" class="fixed z-50 bottom-4 right-4 w-80 bg-blue-500 text-white p-4 rounded-lg shadow-lg flex items-start space-x-3 transition-transform hidden" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <div class="flex-1">
+            <h4 class="font-semibold mb-1">Обновление системы</h4>
+            <p class="text-sm">Мы обновили интерфейс личного кабинета. Изучите новые возможности!</p>
+            <div class="flex justify-end mt-2">
+                <button type="button" class="text-xs underline hover:text-gray-300" aria-label="Закрыть системное сообщение">Закрыть</button>
+            </div>
+        </div>
+    </div>
+    <!-- Подключение JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Обновление приветствия в зависимости от времени суток
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const greetingElem = document.getElementById('greeting');
+            let text = '';
+            if (hour < 6) {
+                text = 'Доброй ночи';
+            } else if (hour < 12) {
+                text = 'Доброе утро';
+            } else if (hour < 18) {
+                text = 'Добрый день';
+            } else {
+                text = 'Добрый вечер';
+            }
+            if (greetingElem) {
+                greetingElem.textContent = text + ', Иван!';
+            }
+        }
+        // Обновление текущей даты
+        function updateDate() {
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            const currentDateElem = document.getElementById('currentDate');
+            if (currentDateElem) {
+                currentDateElem.textContent = new Date().toLocaleDateString('ru-RU', options);
+            }
+        }
+        updateGreeting();
+        updateDate();
+        // Переключение мобильного меню (одной кнопкой переключаем как mobileSidebar, так и mainSidebar, если они существуют)
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                const mobileSidebar = document.getElementById('mobileSidebar');
+                if (mobileSidebar) {
+                    mobileSidebar.classList.toggle('hidden');
+                }
+                const sidebar = document.getElementById('mainSidebar');
+                if (sidebar) {
+                    sidebar.classList.toggle('active');
+                }
+                // Обновление атрибута aria-expanded
+                const expanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', String(!expanded));
+            });
+        }
+        // Переключение панели уведомлений
+        const notificationsBtn = document.getElementById('notificationsBtn');
+        if (notificationsBtn) {
+            notificationsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const panel = document.getElementById('notificationsPanel');
+                if (panel) {
+                    panel.classList.toggle('hidden');
+                }
+            });
+        }
+        // Закрытие панели уведомлений при клике вне её области
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#notificationsPanel') && !e.target.closest('#notificationsBtn')) {
+                const panel = document.getElementById('notificationsPanel');
+                if (panel && !panel.classList.contains('hidden')) {
+                    panel.classList.add('hidden');
+                }
+            }
+        });
+        // Делегирование события для закрытия системного сообщения
+        document.body.addEventListener('click', function(e) {
+            if (e.target && e.target.matches('[aria-label="Закрыть системное сообщение"]')) {
+                const sysMsg = document.getElementById('systemMessage');
+                if (sysMsg) {
+                    sysMsg.classList.add('hidden');
+                }
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

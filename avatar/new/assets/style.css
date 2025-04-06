@@ -1,0 +1,389 @@
+/* 
+  Блок CSS-переменных и базовых настроек:
+  - Фоновые цвета, шрифты, радиусы и т.п.
+*/
+:root {
+    --font-sans: "Montserrat", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+    --color-blue-500: #1E3A8A;
+    --color-blue-600: #1E40AF;
+    --color-green-500: #10B981;
+    --color-red-500: #EF4444;
+    --color-white: #fff;
+    --color-text: #202020;
+
+    --radius-lg: 0.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 
+  Кастомный скроллбар:
+  - Узкий, с градиентной «полоской» (thumb)
+*/
+::-webkit-scrollbar {
+    width: 6px;
+    /* Толщина скролла */
+}
+
+::-webkit-scrollbar-track {
+    /* Цвет фона "дорожки" скроллбара */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    /* Скругление */
+    margin-block: 2px;
+    /* Небольшие отступы сверху/снизу */
+}
+
+::-webkit-scrollbar-thumb {
+    /* Сам «ползунок» */
+    background: linear-gradient(145deg, #1D2A5D, #2A2A6D);
+    border-radius: 9999px;
+    /* Максимальное скругление */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Лёгкая обводка для контраста */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    /* При наведении можно чуть менять цвет/градиент, 
+     чтобы пользователь понимал, что скроллбар интерактивный */
+    background: #3B82F6;
+}
+
+/* 
+  Общие стили для body:
+  - Подключаем нужный шрифт
+*/
+body {
+    font-family: var(--font-sans);
+}
+
+/* 
+  Эффект "стекла":
+  - Применяется к панелям, шапке, меню и т.п.
+*/
+.glass-panel {
+    background: rgba(29, 42, 93, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* 
+  Современный стиль карточек:
+  - Плавный градиент
+  - Тень и небольшая анимация при наведении
+*/
+.card-modern {
+    background: linear-gradient(145deg, #1D2A5D 0%, #2A2A6D 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    transition: transform 0.3s var(--default-transition-timing-function),
+        box-shadow 0.3s var(--default-transition-timing-function);
+}
+
+.card-modern:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3),
+        inset 0 2px 6px rgba(255, 255, 255, 0.15);
+}
+
+/* 
+  Прогресс-бар (основа):
+  - Можно размещать любой заполненный элемент внутри с нужной шириной
+*/
+.progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    height: 2px;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+/* 
+  Общие стили для кнопок:
+  - btn-common: базовые свойства (дисплей, позиционирование, анимации)
+  - далее модификаторы (menu, primary, secondary)
+*/
+.btn-common {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-common:hover {
+    filter: brightness(1.1);
+}
+
+.btn-common:active {
+    transform: scale(0.98);
+    filter: brightness(1.15);
+}
+
+.btn-common:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Для кнопок в меню (выравнивание текста слева) */
+.btn-menu {
+    text-align: left;
+    justify-content: left;
+}
+
+/* 
+  Модификатор .button-primary:
+  - Основная (синяя) кнопка
+*/
+.button-primary {
+    background-color: var(--color-blue-500);
+    color: var(--color-white);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.button-primary:hover {
+    background-color: var(--color-blue-600);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 
+  Модификатор .button-secondary:
+  - Светлая альтернатива
+*/
+.button-secondary {
+    background-color: #F3F4F6;
+    border: 1px solid #D1D5DB;
+    color: #1F2937;
+    /* Тёмный текст */
+    box-shadow: none;
+}
+
+.button-secondary:hover {
+    background-color: #E5E7EB;
+    transform: translateY(-1px);
+}
+
+.button-secondary:active {
+    transform: scale(0.98);
+}
+
+/* 
+  Стили для полей ввода текста:
+  - input-text
+*/
+.input-text {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+    transition: border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-text:hover {
+    border-color: var(--color-blue-500);
+}
+
+.input-text:focus {
+    outline: none;
+    border-color: var(--color-blue-600);
+    box-shadow: 0 0 5px var(--color-blue-600);
+}
+
+.input-text:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 
+  Дополнительные утилити-классы:
+  - hover-glow: свечение при наведении
+  - text-gradient: градиентный текст (используется совместно с WebKit-прятками)
+  - no-scrollbar: скрыть скроллбар
+*/
+.hover-glow {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hover-glow:hover {
+    filter: drop-shadow(0 0 8px rgba(123, 42, 199, 0.4));
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #7B2AC7 0%, #C42BB9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* 
+  Адаптивное отображение бокового меню:
+  - По умолчанию скрываем sidebar при ширине экрана до 767px
+  - Класс .active (может добавляться JS-скриптом), чтобы показать
+*/
+@media (max-width: 767px) {
+    #mainSidebar {
+        display: none;
+    }
+
+    #mainSidebar.active {
+        display: block;
+    }
+}
+
+/* 
+  Блок адаптивных стилей для типографики и компонентов:
+  - Подстраиваем размеры текста, отступы и т.д. под разные ширины экрана
+*/
+
+/* Очень маленькие экраны (до 480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    .btn-common {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .card-modern {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    nav {
+        padding: 0.5rem;
+    }
+}
+
+/* Маленькие мобильные устройства (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    body {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.125rem;
+    }
+
+    .btn-common {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .card-modern {
+        padding: 1.1rem;
+        max-width: 100%;
+    }
+
+    nav {
+        padding: 0.5rem;
+    }
+}
+
+/* Планшеты и небольшие ноутбуки (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .btn-common {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .card-modern {
+        padding: 1.5rem;
+    }
+}
+
+/* 
+  Большие экраны (1025px и выше):
+  - Обычно оставляем базовые стили, 
+    но при необходимости можно добавить что-то особое
+*/
+@media (min-width: 1025px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* 
+  Утилита для обрезки длинного текста, если нужно в списках, заголовках и т.п.
+*/
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

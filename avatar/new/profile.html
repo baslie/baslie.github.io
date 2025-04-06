@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Аватар — Профиль</title>
+    <!-- Подключение шрифта Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js (если нужен) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Свои стили -->
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body class="font-montserrat bg-gradient-to-br from-[#0C1339] to-[#3A1166] text-white">
+    <!-- Шапка -->
+    <header class="fixed top-0 left-0 right-0 h-16 glass-panel z-50 flex items-center">
+        <div class="container mx-auto px-8 h-full flex items-center justify-between">
+            <!-- Логотип -->
+            <a href="dashboard.html" class="flex items-center hover:opacity-90 transition-opacity">
+                <img src="assets/avatar.svg" alt="Аватар" class="h-8">
+            </a>
+            <div class="flex items-center gap-6">
+                <!-- Уведомления -->
+                <div class="relative">
+                    <button id="notificationsBtn" type="button" class="p-2 relative group hover:opacity-90 transition-colors">
+                        <svg class="w-6 h-6 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0
+                     0118 14.158V11a6.002 6.002 0
+                     00-4-5.659V5a2 2 0
+                     10-4 0v.341C7.67 6.165
+                     6 8.388 6 11v3.159c0
+                     .538-.214 1.055-.595
+                     1.436L4 17h5m6 0v1a3 3 0
+                     11-6 0v-1m6 0H9" />
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                    </button>
+                    <!-- Панель уведомлений -->
+                    <div id="notificationsPanel" class="hidden absolute right-0 top-12 w-80 card-modern rounded-xl shadow-xl animate-fadeIn origin-top-right">
+                        <div class="p-4 border-b border-[#3B456C] flex justify-between items-center">
+                            <h3 class="font-semibold">Уведомления</h3>
+                            <button type="button" class="text-xs hover:opacity-80">
+                                Отметить прочитанным
+                            </button>
+                        </div>
+                        <div class="max-h-96 overflow-y-auto no-scrollbar">
+                            <!-- Пример уведомлений -->
+                            <div class="p-4 border-b border-[#3B456C] hover:bg-[#2A3454] transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <div class="shrink-0 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0
+                             11-18 0 9 9 0
+                             0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium truncate">Подписка Анны заканчивается</p>
+                                        <p class="text-sm text-white mt-1 truncate">Осталось 20 дней</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 border-b border-[#3B456C] hover:bg-[#2A3454] transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <div class="shrink-0 w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3
+                             m-2-5a4 4 0
+                             11-8 0 4 4
+                             0 018 0zM3
+                             20a6 6 0
+                             0112 0v1H3v-1z" />
+                                        </svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium truncate">Новый реферал</p>
+                                        <p class="text-sm text-white mt-1 truncate">
+                                            По вашей ссылке зарегистрировался новый пользователь
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Пример уведомлений -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Профиль -->
+                <div class="relative group" id="profileMenu">
+                    <button type="button" class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center">
+                            ИИ
+                        </div>
+                        <span class="hidden md:inline">Иван Иванов</span>
+                    </button>
+                    <!-- Выпадающее меню профиля -->
+                    <div class="hidden absolute right-0 top-12 w-72 card-modern rounded-lg shadow-xl group-hover:block animate-fadeIn">
+                        <div class="p-2 space-y-1">
+                            <a href="profile.html" class="block p-3 hover:bg-[#2A3454] rounded-lg transition-colors">Ваш профиль</a>
+                            <a href="login.html" class="block p-3 hover:bg-[#2A3454] rounded-lg transition-colors">Выйти</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Кнопка для мобильного меню -->
+                <button id="mobileMenuToggle" type="button" class="md:hidden p-2 text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Сайдбар (десктоп) -->
+    <nav id="mainSidebar" class="glass-panel fixed left-0 top-16 bottom-0 w-64 overflow-y-auto z-40 hidden md:block" aria-label="Основное меню">
+        <ul class="p-4 space-y-2">
+            <li>
+                <a href="dashboard.html" class="flex items-start gap-3 p-3 hover:bg-white/10 rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7
+                   7 7M5 10v10a1
+                   1 0 001 1h3m10-11l2
+                   2m-2-2v10a1
+                   1 0 01-1 1h-3m-6
+                   0a1 1 0 001-1v-4a1
+                   1 0 011-1h2a1 1
+                   0 011 1v4a1 1
+                   0 001 1m-6 0h6" />
+                    </svg>
+                    Главная
+                </a>
+            </li>
+            <li>
+                <a href="children.html" class="flex items-start gap-3 p-3 hover:bg-white/10 rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0
+                   110 5.292M15
+                   21H3v-1a6 6 0
+                   0112 0v1zm0 0h6v-1a6
+                   6 0 00-9-5.197M13
+                   7a4 4 0 11-8
+                   0 4 4 0 018 0z" />
+                    </svg>
+                    Мои дети
+                </a>
+            </li>
+            <li>
+                <a href="messages.html" class="flex items-start gap-3 p-3 hover:bg-white/10 rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12
+                   10h.01M16
+                   10h.01M9
+                   16H5a2 2 0
+                   01-2-2V6a2 2
+                   0 012-2h14a2
+                   2 0 012 2v8a2
+                   2 0 01-2 2h-5l-5
+                   5v-5z" />
+                    </svg>
+                    Сообщения ребенку
+                </a>
+            </li>
+            <li>
+                <a href="history.html" class="flex items-start gap-3 p-3 hover:bg-white/10 rounded-xl transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12
+                   12h.01M16
+                   12h.01M21
+                   12c0 4.418-4.03
+                   8-9 8a9.863
+                   9.863 0
+                   01-4.255-.949L3
+                   20l1.395-3.72
+                   C3.512
+                   15.042 3
+                   13.574 3
+                   12c0-4.418
+                   4.03-8 9-8s9
+                   3.582 9 8z" />
+                    </svg>
+                    История общения
+                </a>
+            </li>
+            <li>
+                <a href="profile.html" class="flex items-start gap-3 p-3 btn-common btn-menu button-primary rounded-xl">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488
+                   7.488 0 0012
+                   15.75a7.488
+                   7.488 0
+                   00-5.982
+                   2.975m11.963
+                   0a9 9 0
+                   10-11.963
+                   0m11.963
+                   0A8.966
+                   8.966 0
+                   0112 21a8.966
+                   8.966 0
+                   01-5.982-2.275M15
+                   9.75a3 3 0
+                   11-6
+                   0 3 3 0
+                   0 1 6 0z" />
+                    </svg>
+                    Ваш профиль
+                </a>
+            </li>
+            <li>
+                <a href="referrals.html" class="flex items-start gap-3 p-3 hover:bg-white/10 rounded-xl transition-colors">
+                    <svg class="w-5 h-5 mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.75V8.25C21
+                   7.007 19.993
+                   6 18.75 6H5.25C4.007
+                   6 3 7.007 3
+                   8.25v4.5M21
+                   12.75v3.75c0
+                   1.243-1.007
+                   2.25-2.25
+                   2.25H5.25C4.007
+                   18.75 3
+                   17.743 3
+                   16.5v-3.75M21
+                   12.75H3" />
+                    </svg>
+                    Реферальная программа
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Основной контент -->
+    <main class="md:ml-64 mt-16 p-8">
+        <!-- Заголовок и описание -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Ваш профиль</h1>
+            <p class="text-sm">
+                На этой странице вы можете изменить личные данные, настройки безопасности и уведомлений,
+                а также управлять своим аккаунтом.
+            </p>
+        </div>
+        <!-- Личные данные -->
+        <section class="mb-8 card-modern rounded-xl p-6">
+            <h2 class="text-xl font-bold mb-4">Личные данные</h2>
+            <form class="space-y-4">
+                <!-- Имя родителя -->
+                <div>
+                    <label for="parentName" class="block text-sm mb-2">Имя родителя</label>
+                    <input type="text" id="parentName" name="parentName" class="input-text bg-white w-full" placeholder="Введите ваше имя" />
+                </div>
+                <!-- Телефон -->
+                <div>
+                    <label for="parentPhone" class="block text-sm mb-2">Телефон</label>
+                    <input type="tel" id="parentPhone" name="parentPhone" class="input-text bg-white w-full" placeholder="+7 (___) ___-__-__" />
+                </div>
+                <!-- Кнопка -->
+                <button type="submit" class="btn-common button-primary">
+                    Сохранить изменения
+                </button>
+            </form>
+        </section>
+        <!-- Безопасность -->
+        <section class="mb-8 card-modern rounded-xl p-6">
+            <h2 class="text-xl font-bold mb-4">Безопасность</h2>
+            <form class="space-y-4">
+                <!-- Текущий пароль -->
+                <div>
+                    <label for="currentPassword" class="block text-sm mb-2">Текущий пароль</label>
+                    <input type="password" id="currentPassword" name="currentPassword" class="input-text bg-white w-full" placeholder="Введите текущий пароль" />
+                </div>
+                <!-- Новый пароль -->
+                <div>
+                    <label for="newPassword" class="block text-sm mb-2">Новый пароль</label>
+                    <input type="password" id="newPassword" name="newPassword" class="input-text bg-white w-full" placeholder="Введите новый пароль" />
+                </div>
+                <!-- Подтверждение нового пароля -->
+                <div>
+                    <label for="confirmPassword" class="block text-sm mb-2">Подтвердите новый пароль</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input-text bg-white w-full" placeholder="Повторно введите новый пароль" />
+                </div>
+                <!-- Кнопка -->
+                <button type="submit" class="btn-common button-primary">
+                    Изменить пароль
+                </button>
+            </form>
+        </section>
+        <!-- Уведомления -->
+        <section class="mb-8 card-modern rounded-xl p-6">
+            <h2 class="text-xl font-bold mb-4">Уведомления</h2>
+            <form class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="smsNotifications" name="smsNotifications" class="w-5 h-5 rounded text-blue-500 bg-white" checked />
+                    <label for="smsNotifications" class="font-medium">SMS-уведомления</label>
+                </div>
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="emailNotifications" name="emailNotifications" class="w-5 h-5 rounded text-blue-500 bg-white" />
+                    <label for="emailNotifications" class="font-medium">Email-уведомления</label>
+                </div>
+                <button type="submit" class="btn-common button-primary">
+                    Сохранить настройки уведомлений
+                </button>
+            </form>
+        </section>
+    </main>
+    <!-- Мобильное меню (нижняя панель) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0C1339] border-t border-white/10 z-50">
+        <nav class="flex justify-around p-2" aria-label="Мобильное меню">
+            <a href="dashboard.html" class="p-2 text-gray-400 hover:text-white" aria-label="Главная">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7
+                 7 7M5 10v10a1 1
+                 0 001 1h3m10-11l2
+                 2m-2-2v10a1
+                 1 0 01-1
+                 1h-3m-6 0a1 1
+                 0 001-1v-4a1
+                 1 0 011-1h2a1
+                 1 0 011 1v4a1
+                 1 0 001 1m-6 0h6" />
+                </svg>
+            </a>
+            <a href="children.html" class="p-2 text-gray-400 hover:text-white" aria-label="Мои дети">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0
+                 110 5.292M15
+                 21H3v-1a6 6 0
+                 0112 0v1zm0 0h6v-1a6
+                 6 0 00-9-5.197" />
+                </svg>
+            </a>
+            <a href="messages.html" class="p-2 text-gray-400 hover:text-white" aria-label="Сообщения ребенку">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12
+                 10h.01M16
+                 10h.01M9
+                 16H5a2 2 0
+                 01-2-2V6a2 2
+                 0 012-2h14a2
+                 2 0 012 2v8a2
+                 2 0 01-2 2h-5l-5
+                 5v-5z" />
+                </svg>
+            </a>
+            <a href="history.html" class="p-2 text-gray-400 hover:text-white" aria-label="История общения">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12
+                 12h.01M16
+                 12h.01M21
+                 12c0 4.418-4.03
+                 8-9 8a9.863
+                 9.863 0
+                 01-4.255-.949L3
+                 20l1.395-3.72" />
+                </svg>
+            </a>
+            <a href="profile.html" class="p-2 text-gray-400 hover:text-white" aria-label="Профиль">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488
+                 7.488 0 0012
+                 15.75a7.488
+                 7.488 0
+                 00-5.982
+                 2.975m11.963
+                 0a9 9 0
+                 10-11.963
+                 0m11.963
+                 0A8.966
+                 8.966 0
+                 0112 21a8.966
+                 8.966 0
+                 01-5.982-2.275M15
+                 9.75a3 3 0
+                 11-6
+                 0 3 3 0
+                 0 1 6 0z" />
+                </svg>
+            </a>
+        </nav>
+    </div>
+    <!-- Мобильный сайдбар -->
+    <div id="mobileSidebar" class="hidden fixed top-16 left-0 bottom-0 w-64 glass-panel overflow-y-auto z-40 md:hidden">
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="dashboard.html" class="flex items-center gap-3 p-3 btn-common button-primary rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7
+                     7 7M5 10v10a1 1
+                     0 001 1h3m10-11l2
+                     2m-2-2v10a1 1
+                     0 01-1 1h-3m-6
+                     0a1 1 0
+                     001-1v-4a1 1
+                     0 011-1h2a1
+                     1 0 011 1v4a1
+                     1 0 001 1m-6 0h6" />
+                        </svg>
+                        Главная
+                    </a>
+                </li>
+                <li>
+                    <a href="children.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4
+                     0 110
+                     5.292M15
+                     21H3v-1a6
+                     6 0
+                     0112
+                     0v1zm0
+                     0h6v-1a6
+                     6 0
+                     00-9-5.197" />
+                        </svg>
+                        Мои дети
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12
+                     10h.01M16
+                     10h.01M9
+                     16H5a2 2
+                     0 01-2-2V6a2
+                     2 0
+                     012-2h14a2
+                     2 0
+                     012
+                     2v8a2 2
+                     0
+                     01-2
+                     2h-5l-5
+                     5v-5z" />
+                        </svg>
+                        Сообщения ребенку
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12
+                     12h.01M16
+                     12h.01M21
+                     12c0
+                     4.418-4.03
+                     8-9
+                     8a9.863
+                     9.863
+                     0
+                     01-4.255-.949L3
+                     20l1.395-3.72" />
+                        </svg>
+                        История общения
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488
+                     7.488 0 0012
+                     15.75a7.488
+                     7.488 0
+                     00-5.982
+                     2.975m11.963
+                     0a9 9 0
+                     10-11.963
+                     0m11.963
+                     0A8.966
+                     8.966 0
+                     0112 21a8.966
+                     8.966 0
+                     01-5.982-2.275M15
+                     9.75a3 3
+                     0 11-6
+                     0 3 3
+                     0 0 1
+                     6 0z" />
+                        </svg>
+                        Ваш профиль
+                    </a>
+                </li>
+                <li>
+                    <a href="referrals.html" class="flex items-start gap-3 p-3 hover:bg-white/5 rounded-xl transition-colors">
+                        <svg class="w-5 h-5 mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.75V8.25C21
+                     7.007 19.993
+                     6 18.75 6H5.25C4.007
+                     6 3 7.007 3
+                     8.25v4.5M21
+                     12.75v3.75c0
+                     1.243-1.007
+                     2.25-2.25
+                     2.25H5.25C4.007
+                     18.75 3
+                     17.743 3
+                     16.5v-3.75M21
+                     12.75H3" />
+                        </svg>
+                        Реферальная программа
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Скрипты -->
+    <script>
+    // Переключение панели уведомлений
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    const notificationsPanel = document.getElementById('notificationsPanel');
+    if (notificationsBtn && notificationsPanel) {
+        notificationsBtn.addEventListener('click', () => {
+            notificationsPanel.classList.toggle('hidden');
+        });
+    }
+
+    // Переключение мобильного меню
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mainSidebar = document.getElementById('mainSidebar');
+    if (mobileMenuToggle && mainSidebar) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mainSidebar.classList.toggle('active');
+        });
+    }
+    </script>
+</body>
+
+</html>

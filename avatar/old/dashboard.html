@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аватар — Дашборд</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body class="font-montserrat bg-[#0A0916] text-white">
+    <!-- Хедер -->
+    <header class="fixed top-0 left-0 right-0 h-16 bg-[#0A0916]/90 backdrop-blur-sm border-b border-[#2A3454] z-50">
+        <div class="container mx-auto px-8 h-full flex items-center justify-between">
+            <!-- Логотип/иконка -->
+            <a href="dashboard.html">
+                <img src="assets/avatar.svg" alt="Аватар" class="h-8">
+            </a>
+            <div class="flex items-center gap-6">
+                <!-- Уведомления -->
+                <div class="relative">
+                    <button id="notificationsBtn" class="p-2 relative group">
+                        <svg class="w-6 h-6 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                    </button>
+                    <div id="notificationsPanel" class="hidden absolute right-0 top-12 w-80 card-gradient rounded-xl shadow-xl animate-fadeIn origin-top-right">
+                        <div class="p-4 border-b border-[#3B456C] flex justify-between items-center">
+                            <h3 class="font-semibold">Уведомления</h3>
+                            <button class="text-blue-400 text-sm hover:text-blue-300">Отметить прочитанным</button>
+                        </div>
+                        <div class="max-h-96 overflow-y-auto">
+                            <!-- Уведомление 1 -->
+                            <div class="p-4 border-b border-[#3B456C] hover:bg-[#2A3454] transition-colors">
+                                <div class="flex items-start gap-3 align-top">
+                                    <div class="shrink-0 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium truncate">Подписка Анны заканчивается</p>
+                                        <p class="text-sm text-white mt-1 truncate">Осталось 20 дней</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Уведомление 2 -->
+                            <div class="p-4 border-b border-[#3B456C] hover:bg-[#2A3454] transition-colors">
+                                <div class="flex items-start gap-3 align-top">
+                                    <div class="shrink-0 w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                        </svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-gray-400 truncate">Новый реферал</p>
+                                        <p class="text-sm text-gray-400 mt-1 truncate">По вашей ссылке зарегистрировался новый пользователь</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Профиль -->
+                <div class="relative group" id="profileMenu">
+                    <button class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">ИИ</div>
+                        <span class="hidden md:inline">Иван Иванов</span>
+                    </button>
+                    <div class="hidden absolute right-0 top-12 w-72 card-gradient rounded-lg shadow-xl group-hover:block animate-fadeIn">
+                        <div class="p-2 space-y-1">
+                            <a href="profile.html" class="block p-3 hover:bg-[#2A3454] rounded-lg transition-colors">
+                                Ваш профиль
+                            </a>
+                            <a href="login.html" class="block p-3 hover:bg-[#2A3454] rounded-lg transition-colors">
+                                Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Сайдбар -->
+    <aside class="hidden md:block fixed left-0 top-16 bottom-0 w-64 bg-[#0A0916] border-r border-[#2A3454] overflow-y-auto z-40">
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <!-- Дашборд -->
+                <li>
+                    <a href="dashboard.html" class="flex items-center gap-3 p-3 bg-blue-500 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 
+                         0 001 1h3m10-11l2 2m-2-2v10a1 1 0
+                         01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1
+                         0 011-1h2a1 1 0 011 1v4a1 1 0
+                         001 1m-6 0h6" />
+                        </svg>
+                        Дашборд
+                    </a>
+                </li>
+                <!-- Мои дети -->
+                <li>
+                    <a href="children.html" class="flex items-center gap-3 p-3 hover:bg-[#2A3454] rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6
+                         6 0 0112 0v1zm0 0h6v-1a6 6 0
+                         00-9-5.197M13 7a4 4 0 11-8 0 4 4
+                         0 018 0z" />
+                        </svg>
+                        Мои дети
+                    </a>
+                </li>
+                <!-- Сообщения ребенку -->
+                <li>
+                    <a href="messages.html" class="flex items-center gap-3 p-3 hover:bg-[#2A3454] rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9
+                         16H5a2 2 0 01-2-2V6a2 2 0
+                         012-2h14a2 2 0
+                         012 2v8a2 2 0
+                         01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        Сообщения ребенку
+                    </a>
+                </li>
+                <!-- История общения -->
+                <li>
+                    <a href="history.html" class="flex items-center gap-3 p-3 hover:bg-[#2A3454] rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21
+                         12c0 4.418-4.03 8-9 8a9.863
+                         9.863 0 01-4.255-.949L3
+                         20l1.395-3.72C3.512
+                         15.042 3 13.574 3 12c0-4.418
+                         4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        История общения
+                    </a>
+                </li>
+                <!-- Новые пункты: Ваш профиль -->
+                <li>
+                    <a href="profile.html" class="flex items-center gap-3 p-3 hover:bg-[#2A3454] rounded-lg">
+                        <!-- Иконка "пользователь" -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        Ваш профиль
+                    </a>
+                </li>
+                <!-- Реферальная программа -->
+                <li>
+                    <a href="referrals.html" class="flex items-start gap-3 p-3 hover:bg-[#2A3454] rounded-lg">
+                        <!-- Иконка "banknotes" (купюры) -->
+                        <!-- Добавляем mt-1, чтобы чуть приподнять иконку относительно текста -->
+                        <svg class="w-5 h-5 mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.75V8.25C21 7.007 19.993 6 18.75 
+                     6H5.25C4.007 6 3 7.007 3 8.25v4.5M21 
+                     12.75v3.75c0 1.243-1.007 2.25-2.25 
+                     2.25H5.25C4.007 18.75 3 17.743 3 
+                     16.5v-3.75M21 12.75H3M7.5 8.25h.008v.008H7.5V8.25zM7.5
+                     15.75h.008v.008H7.5v-.008zM12 12a1.5 1.5 
+                     0 100-3 1.5 1.5 0 000 3zm0 3a1.5 1.5 
+                     0 100-3 1.5 1.5 0 000 3zm4.5-6h.008v.008H16.5V9.75zm0 
+                     7.5h.008v.008H16.5v-.008z" />
+                        </svg>
+                        Реферальная программа
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- Основной контент -->
+    <main class="md:ml-64 mt-16 p-8 overflow-y-auto">
+        <!-- Приветствие -->
+        <div class="flex flex-col md:flex-row justify-between items-start mb-8">
+            <div>
+                <h1 class="text-2xl font-bold mb-2" id="greeting">Добрый день, Иван!</h1>
+                <p class="text-gray-400" id="currentDate"></p>
+            </div>
+        </div>
+        <!-- Мои дети -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Мои дети</h2>
+                <a href="children.html" class="text-blue-400 hover:text-blue-300">Все профили</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Карточка ребенка 1 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        </div>
+                        <div class="flex-1 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Михаил</h3>
+                                    <p class="text-sm text-gray-400">10 лет, 4 класс</p>
+                                </div>
+                                <span class="text-sm bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Онлайн</span>
+                            </div>
+                            <div class="space-y-4 mt-4">
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-1">Отвечено вопросов</p>
+                                    <div class="progress-bar h-2 rounded-full">
+                                        <div class="bg-blue-500 h-2 rounded-full w-1/12"></div>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">10 из 200 (5%)</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-400">Заработано</p>
+                                        <p class="font-medium">250 ₽</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Подписка до</p>
+                                        <p class="font-medium">19.06.2025</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <a href="child-1.html" class="btn bg-blue-500 hover:bg-blue-600 text-center py-2 rounded-lg transition-colors">Открыть</a>
+                                    <button class="btn bg-red-500 hover:bg-red-600 py-2 rounded-lg transition-colors">Оплатить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Карточка ребенка 2 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        </div>
+                        <div class="flex-1 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Михаил</h3>
+                                    <p class="text-sm text-gray-400">10 лет, 4 класс</p>
+                                </div>
+                                <span class="text-sm bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Онлайн</span>
+                            </div>
+                            <div class="space-y-4 mt-4">
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-1">Отвечено вопросов</p>
+                                    <div class="progress-bar h-2 rounded-full">
+                                        <div class="bg-blue-500 h-2 rounded-full w-1/12"></div>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">10 из 200 (5%)</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-400">Заработано</p>
+                                        <p class="font-medium">250 ₽</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Подписка до</p>
+                                        <p class="font-medium">19.06.2025</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <a href="child-1.html" class="btn bg-blue-500 hover:bg-blue-600 text-center py-2 rounded-lg transition-colors">Открыть</a>
+                                    <button class="btn bg-red-500 hover:bg-red-600 py-2 rounded-lg transition-colors">Оплатить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Карточка ребенка 3 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        </div>
+                        <div class="flex-1 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold">Михаил</h3>
+                                    <p class="text-sm text-gray-400">10 лет, 4 класс</p>
+                                </div>
+                                <span class="text-sm bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Онлайн</span>
+                            </div>
+                            <div class="space-y-4 mt-4">
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-1">Отвечено вопросов</p>
+                                    <div class="progress-bar h-2 rounded-full">
+                                        <div class="bg-blue-500 h-2 rounded-full w-1/12"></div>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">10 из 200 (5%)</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-400">Заработано</p>
+                                        <p class="font-medium">250 ₽</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Подписка до</p>
+                                        <p class="font-medium">19.06.2025</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1">
+                                    <a href="child-1.html" class="btn bg-blue-500 hover:bg-blue-600 text-center py-2 rounded-lg transition-colors">Открыть</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Карточка "Добавить ребенка" -->
+                <a href="new.html">
+                    <div class="card-gradient rounded-xl p-6 flex items-center justify-center cursor-pointer">
+                        <div class="text-center">
+                            <div class="w-16 h-16 rounded-xl bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </div>
+                            <p class="text-blue-400">Добавить ребенка</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- Последние сообщения -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Последние сообщения</h2>
+                <a href="messages.html" class="text-blue-400 hover:text-blue-300">
+                    Все сообщения
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Пример сообщения 1 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">Михаил</h3>
+                                    <p class="text-sm text-gray-400">Сегодня, 14:35</p>
+                                </div>
+                                <span class="text-xs text-green-400">Прочитано</span>
+                            </div>
+                            <p class="mt-3 text-gray-300 text-sm line-clamp-3">
+                                Привет! Напоминаю, что завтра у тебя контрольная по математике...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Пример сообщения 2 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">Михаил</h3>
+                                    <p class="text-sm text-gray-400">Сегодня, 14:35</p>
+                                </div>
+                                <span class="text-xs text-green-400">Прочитано</span>
+                            </div>
+                            <p class="mt-3 text-gray-300 text-sm line-clamp-3">
+                                Привет! Напоминаю, что завтра у тебя контрольная по математике...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Пример сообщения 3 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">Михаил</h3>
+                                    <p class="text-sm text-gray-400">Сегодня, 14:35</p>
+                                </div>
+                                <span class="text-xs text-green-400">Прочитано</span>
+                            </div>
+                            <p class="mt-3 text-gray-300 text-sm line-clamp-3">
+                                Привет! Напоминаю, что завтра у тебя контрольная по математике...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- История общения -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">История общения с аватаром</h2>
+                <a href="history.html" class="text-blue-400 hover:text-blue-300">
+                    Смотреть диалоги
+                </a>
+            </div>
+            <!-- Контейнер для вертикального списка (не более 5 сообщений) -->
+            <div class="space-y-4">
+                <!-- Сообщение 1 -->
+                <div class="card-gradient rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium">Михаил</h3>
+                                <p class="text-sm text-gray-400">Сегодня, 15:20</p>
+                            </div>
+                            <span class="text-xs text-gray-400">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-gray-300 text-sm">
+                            Как решить уравнение 2x + 5 = 15?
+                        </p>
+                    </div>
+                </div>
+                <!-- Сообщение 2 -->
+                <div class="card-gradient rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium">Михаил</h3>
+                                <p class="text-sm text-gray-400">Сегодня, 15:22</p>
+                            </div>
+                            <span class="text-xs text-gray-400">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-gray-300 text-sm">
+                            А можешь посоветовать учебник для практики?
+                        </p>
+                    </div>
+                </div>
+                <!-- Сообщение 3 -->
+                <div class="card-gradient rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium">Михаил</h3>
+                                <p class="text-sm text-gray-400">Сегодня, 15:30</p>
+                            </div>
+                            <span class="text-xs text-gray-400">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-gray-300 text-sm">
+                            Поможешь с домашкой по русскому языку?
+                        </p>
+                    </div>
+                </div>
+                <!-- Сообщение 4 -->
+                <div class="card-gradient rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium">Михаил</h3>
+                                <p class="text-sm text-gray-400">Вчера, 19:10</p>
+                            </div>
+                            <span class="text-xs text-gray-400">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-gray-300 text-sm">
+                            Спасибо за подсказку! Всё сделал правильно.
+                        </p>
+                    </div>
+                </div>
+                <!-- Сообщение 5 -->
+                <div class="card-gradient rounded-xl p-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium">Михаил</h3>
+                                <p class="text-sm text-gray-400">Вчера, 18:45</p>
+                            </div>
+                            <span class="text-xs text-gray-400">Отправлено</span>
+                        </div>
+                        <p class="mt-2 text-gray-300 text-sm">
+                            Привет! Как у тебя дела? Готов к контрольной?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Общая статистика -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Общая статистика</h2>
+                <a href="stats.html" class="text-blue-400 hover:text-blue-300">
+                    Подробнее
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Карточка статистики 1 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        <h3 class="font-bold">Михаил</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-400">Общее время в игре</p>
+                            <p class="font-medium">14 ч 35 мин</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Заработано средств</p>
+                            <p class="font-medium">420 ₽</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Правильные ответы</p>
+                            <p class="font-medium">87%</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400 mb-2">Прогресс</p>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-xs">Математика — 82 из 100 (82%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1 rounded-full w-4/5"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Русский язык — 65 из 100 (65%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1 rounded-full w-3/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Карточка статистики 2 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        <h3 class="font-bold">Михаил</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-400">Общее время в игре</p>
+                            <p class="font-medium">14 ч 35 мин</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Заработано средств</p>
+                            <p class="font-medium">420 ₽</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Правильные ответы</p>
+                            <p class="font-medium">87%</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400 mb-2">Прогресс</p>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-xs">Математика — 82 из 100 (82%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1 rounded-full w-4/5"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Русский язык — 65 из 100 (65%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1 rounded-full w-3/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Карточка статистики 3 -->
+                <div class="card-gradient rounded-xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">М</div>
+                        <h3 class="font-bold">Михаил</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-400">Общее время в игре</p>
+                            <p class="font-medium">14 ч 35 мин</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Заработано средств</p>
+                            <p class="font-medium">420 ₽</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Правильные ответы</p>
+                            <p class="font-medium">87%</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400 mb-2">Прогресс</p>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-xs">Математика — 82 из 100 (82%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1 rounded-full w-4/5"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs">Русский язык — 65 из 100 (65%)</p>
+                                    <div class="progress-bar h-1 rounded-full">
+                                        <div class="bg-blue-500 h-1 rounded-full w-3/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Системное сообщение (пример) -->
+    <div id="systemMessage" class="fixed z-50 bottom-4 right-4 w-80 bg-blue-500 text-white p-4 
+            rounded-lg shadow-lg flex items-start space-x-3 transition-transform">
+        <!-- Иконка -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 
+                 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <!-- Текстовая часть -->
+        <div class="flex-1">
+            <h4 class="font-semibold mb-1">Обновление системы</h4>
+            <p class="text-sm">
+                Мы обновили интерфейс личного кабинета. Изучите новые возможности!
+            </p>
+            <div class="flex justify-end mt-2">
+                <button class="text-xs underline hover:text-gray-300" onclick="closeSystemMessage()">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Мобильное меню -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0A0916] border-t border-[#2A3454]">
+        <nav class="flex justify-around p-2">
+            <a href="dashboard.html" class="p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7
+                         M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0
+                         01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1
+                         0 011-1h2a1 1 0 011 1v4a1 1
+                         0 001 1m-6 0h6" />
+                </svg>
+            </a>
+            <button id="mobileMenuToggle" class="p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </nav>
+    </div>
+    <script>
+    // Динамическое приветствие
+    function updateGreeting() {
+        const hour = new Date().getHours();
+        const greeting = document.getElementById('greeting');
+        let text = '';
+
+        if (hour < 6) text += 'Доброй ночи';
+        else if (hour < 12) text += 'Доброе утро';
+        else if (hour < 18) text += 'Добрый день';
+        else text += 'Добрый вечер';
+
+        greeting.textContent = text + ', Иван!';
+    }
+
+    // Обновление даты
+    function updateDate() {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU', options);
+    }
+
+    // Инициализация
+    document.addEventListener('DOMContentLoaded', () => {
+        updateGreeting();
+        updateDate();
+    });
+
+    // Адаптивное меню
+    document.getElementById('mobileMenuToggle').addEventListener('click', () => {
+        document.querySelector('aside').classList.toggle('hidden');
+    });
+
+    // Управление уведомлениями
+    document.getElementById('notificationsBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('notificationsPanel').classList.toggle('hidden');
+    });
+
+    // Закрытие при клике вне области
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('#notificationsPanel') && !e.target.closest('#notificationsBtn')) {
+            document.getElementById('notificationsPanel').classList.add('hidden');
+        }
+    });
+
+    function closeSystemMessage() {
+        const msg = document.getElementById('systemMessage');
+        if (msg) {
+            msg.remove(); // полностью удаляем элемент из DOM
+        }
+    }
+    </script>
+</body>
+
+</html>

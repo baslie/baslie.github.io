@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Аватар — Авторизация</title>
+    <!-- Подключение шрифта Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js (может не использоваться на странице, но включаем для соответствия референсу) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Свои стили -->
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body class="bg-gradient-to-br from-[#0C1339] to-[#3A1166] text-white min-h-screen">
+    <!-- Основная часть страницы -->
+    <main class="p-8 min-h-screen flex flex-col items-center justify-center">
+        <!-- Карточка авторизации -->
+        <div class="card-modern rounded-xl p-8 w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-6 text-center">Авторизация</h1>
+            <!-- Поле для телефона -->
+            <div class="mb-4">
+                <label for="phone" class="block text-sm mb-2">Телефон</label>
+                <input type="tel" id="phone" name="phone" class="input-text bg-white text-black w-full" placeholder="+7 999 000-00-00" />
+            </div>
+            <!-- Поле для пароля -->
+            <div class="mb-6">
+                <label for="password" class="block text-sm mb-2">Пароль</label>
+                <input type="password" id="password" name="password" class="input-text bg-white text-black w-full" placeholder="Ваш пароль" />
+            </div>
+            <!-- Кнопка «Войти» -->
+            <button class="w-full px-4 py-2 btn-common button-primary rounded-lg transition-colors" onclick="handleLogin()">
+                Войти
+            </button>
+            <!-- Сообщение об ошибке -->
+            <div id="errorMessage" class="mt-4 p-3 bg-red-600/50 rounded hidden">
+                <p>Неверный телефон или пароль.</p>
+            </div>
+            <!-- Ссылка на регистрацию -->
+            <div class="mt-6 text-center">
+                Нет аккаунта? <a href="reg.html" class="hover:text-blue-300 underline">
+                    Зарегистрироваться
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- JS-логика для меню, уведомлений и обработки логина -->
+    <script>
+    // Функция авторизации
+    function handleLogin() {
+        // Здесь своя логика: AJAX-запрос и т.п.
+        // Для примера покажем ошибку:
+        document.getElementById('errorMessage').classList.remove('hidden');
+    }
+    </script>
+</body>
+
+</html>

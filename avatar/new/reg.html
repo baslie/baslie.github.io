@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Аватар — Регистрация</title>
+    <!-- Подключение шрифта Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Свои стили -->
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body class="bg-gradient-to-br from-[#0C1339] to-[#3A1166] text-white min-h-screen">
+    <!-- Основное содержимое -->
+    <main class="p-8 min-h-screen flex flex-col items-center justify-center">
+        <!-- Карточка регистрации -->
+        <div class="card-modern rounded-xl p-8 w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-6 text-center">Регистрация</h1>
+            <!-- Реферальный код -->
+            <div class="mb-4">
+                <label for="refCode" class="block text-sm mb-2">Реферальный код</label>
+                <input type="text" id="refCode" name="refCode" maxlength="6" class="input-text bg-white text-black w-full" placeholder="6-значный код" />
+            </div>
+            <!-- Имя -->
+            <div class="mb-4">
+                <label for="userName" class="block text-sm mb-2">Ваше имя</label>
+                <input type="text" id="userName" name="userName" class="input-text bg-white text-black w-full" placeholder="Иван Иванов" />
+            </div>
+            <!-- Телефон -->
+            <div class="mb-4">
+                <label for="phone" class="block text-sm mb-2">Телефон</label>
+                <input type="tel" id="phone" name="phone" class="input-text bg-white text-black w-full" placeholder="+7 999 000-00-00" />
+            </div>
+            <!-- Пароль -->
+            <div class="mb-6">
+                <label for="password" class="block text-sm mb-2">Пароль</label>
+                <input type="password" id="password" name="password" class="input-text bg-white text-black w-full" placeholder="Ваш пароль" />
+            </div>
+            <!-- Кнопка «Зарегистрироваться» -->
+            <button class="w-full px-4 py-2 btn-common button-primary rounded-lg transition-colors" onclick="handleRegistration()">
+                Зарегистрироваться
+            </button>
+            <!-- Сообщение об успехе -->
+            <div id="successMessage" class="mt-4 p-3 bg-green-600/50 rounded hidden">
+                <p>Регистрация прошла успешно!</p>
+            </div>
+            <!-- Сообщение об ошибке -->
+            <div id="errorMessage" class="mt-4 p-3 bg-red-600/50 rounded hidden">
+                <p>Ошибка при регистрации. Проверьте введённые данные.</p>
+            </div>
+            <!-- Ссылка на Авторизацию -->
+            <div class="mt-6 text-center">
+                Уже есть аккаунт? <a href="login.html" class="hover:text-blue-300 underline">
+                    Войти
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- Скрипты -->
+    <script>
+    // Логика регистрации
+    function handleRegistration() {
+        // Здесь ваша реальная логика...
+        // Для примера показываем "успех":
+        document.getElementById('successMessage').classList.remove('hidden');
+        document.getElementById('errorMessage').classList.add('hidden');
+    }
+    </script>
+</body>
+
+</html>
