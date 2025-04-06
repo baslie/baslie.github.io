@@ -38,17 +38,15 @@
 
 ::-webkit-scrollbar-thumb {
     /* Сам «ползунок» */
-    background: linear-gradient(145deg, #1D2A5D, #2A2A6D);
+    background: #3B82F6;
     border-radius: 9999px;
     /* Максимальное скругление */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Лёгкая обводка для контраста */
 }
 
 ::-webkit-scrollbar-thumb:hover {
     /* При наведении можно чуть менять цвет/градиент, 
      чтобы пользователь понимал, что скроллбар интерактивный */
-    background: #3B82F6;
+    background: #66a0ff;
 }
 
 /* 
@@ -195,7 +193,6 @@ body {
     padding: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-lg);
-    background-color: rgba(255, 255, 255, 0.05);
     color: var(--color-text);
     transition: border-color 0.2s ease,
         box-shadow 0.2s ease;

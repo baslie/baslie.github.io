@@ -1,3 +1,4 @@
+V
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -199,12 +200,14 @@
                             М
                         </div>
                         <div class="flex-1 space-y-2">
-                            <h3 class="font-bold">Михаил</h3>
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold">Михаил</h3>
+                                <!-- Статус -->
+                                <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">
+                                    Онлайн
+                                </span>
+                            </div>
                             <p class="text-gray-300 text-sm">10 лет, 4 класс</p>
-                            <!-- Статус -->
-                            <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">
-                                Онлайн
-                            </span>
                             <!-- Примерное описание -->
                             <p class="text-sm text-gray-200 mt-2">Аватар: Математик Макс</p>
                         </div>
@@ -217,12 +220,14 @@
                             А
                         </div>
                         <div class="flex-1 space-y-2">
-                            <h3 class="font-bold">Анна</h3>
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold">Анна</h3>
+                                <!-- Статус -->
+                                <span class="text-xs bg-gray-600/40 text-gray-200 px-2 py-1 rounded-full">
+                                    Не в сети
+                                </span>
+                            </div>
                             <p class="text-gray-300 text-sm">8 лет, 2 класс</p>
-                            <!-- Статус -->
-                            <span class="text-xs bg-gray-600/40 text-gray-200 px-2 py-1 rounded-full">
-                                Не в сети
-                            </span>
                             <p class="text-sm text-gray-200 mt-2">Аватар: Грамотей Глаша</p>
                         </div>
                     </div>
@@ -270,7 +275,7 @@
                 <form class="space-y-4">
                     <!-- Текст сообщения -->
                     <div>
-                        <textarea id="messageText" rows="4" class="w-full bg-white input-text" placeholder="Введите текст сообщения..."></textarea>
+                        <textarea id="messageText" rows="4" class="w-full input-text bg-white" placeholder="Введите текст сообщения..."></textarea>
                     </div>
                     <!-- Выбор даты и времени -->
                     <div class="flex flex-col md:flex-row gap-4">
@@ -278,7 +283,7 @@
                             <label for="sendDate" class="block text-sm mb-2">
                                 Дата и время отправки
                             </label>
-                            <input type="datetime-local" id="sendDate" class="w-full bg-white input-text">
+                            <input type="datetime-local" id="sendDate" class="w-full input-text bg-white">
                         </div>
                     </div>
                     <!-- Кнопка "Отправить" -->
