@@ -9,66 +9,145 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
-    /* Изолированные стили с префиксом uc- */
+    /* CSS ПЕРЕМЕННЫЕ - ЕДИНЫЙ БЛОК */
+    :root {
+        /* Цветовая палитра */
+        --uc-primary-blue: #007bff;
+        --uc-primary-blue-light: #1a73e8;
+        --uc-primary-blue-bg: #e8f0fe;
+        --uc-white: #fff;
+        --uc-gray-50: #f8f9fa;
+        --uc-gray-100: #f1f3f4;
+        --uc-gray-200: #e9ecef;
+        --uc-gray-300: #dee2e6;
+        --uc-gray-400: #6c757d;
+        --uc-gray-500: #5f6368;
+        --uc-gray-600: #495057;
+        --uc-gray-800: #212529;
+        --uc-gray-900: #202124;
+        --uc-black-overlay: rgba(0, 0, 0, 0.8);
+        --uc-black-overlay-light: rgba(0, 0, 0, 0.7);
+        
+        /* Тени */
+        --uc-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+        --uc-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --uc-shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+        --uc-shadow-focus: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        --uc-shadow-tap: 0 2px 8px rgba(0, 0, 0, 0.2);
+        
+        /* Размеры и отступы */
+        --uc-max-width: 1200px;
+        --uc-border-radius: 12px;
+        --uc-border-radius-sm: 6px;
+        --uc-border-radius-md: 8px;
+        --uc-border-radius-lg: 16px;
+        --uc-border-radius-xl: 20px;
+        --uc-border-width: 2px;
+        --uc-border-width-thick: 3px;
+        
+        --uc-spacing-xs: 4px;
+        --uc-spacing-sm: 8px;
+        --uc-spacing-md: 12px;
+        --uc-spacing-lg: 15px;
+        --uc-spacing-xl: 20px;
+        --uc-spacing-2xl: 30px;
+        
+        --uc-gap-sm: 10px;
+        --uc-gap-md: 15px;
+        --uc-gap-lg: 20px;
+        --uc-gap-xl: 30px;
+        
+        /* Высоты и размеры элементов */
+        --uc-min-height-sm: 280px;
+        --uc-min-height-md: 300px;
+        --uc-min-height-lg: 400px;
+        --uc-min-touch-target: 48px;
+        --uc-min-touch-target-lg: 52px;
+        --uc-min-touch-target-xl: 56px;
+        --uc-min-touch-target-2xl: 64px;
+        
+        /* Шрифты */
+        --uc-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        --uc-font-size-xs: 11px;
+        --uc-font-size-sm: 12px;
+        --uc-font-size-md: 13px;
+        --uc-font-size-base: 14px;
+        --uc-font-size-lg: 15px;
+        --uc-font-size-xl: 18px;
+        --uc-font-size-2xl: 20px;
+        --uc-font-weight-normal: 500;
+        --uc-font-weight-semibold: 600;
+        --uc-font-weight-bold: 700;
+        --uc-letter-spacing: 0.3px;
+        --uc-letter-spacing-wide: 0.5px;
+        
+        /* Переходы и анимации */
+        --uc-transition-fast: all 0.2s ease;
+        --uc-transition-base: all 0.3s ease;
+        --uc-transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --uc-animation-shimmer: uc-shimmer 1.5s infinite;
+        --uc-animation-mobile-slide: uc-mobileSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        --uc-animation-fade: uc-fadeIn 0.5s ease-in-out;
+        
+        /* Темная тема */
+        --uc-dark-bg: #1a1a1a;
+        --uc-dark-surface: #2d2d2d;
+        --uc-dark-surface-alt: #242424;
+        --uc-dark-border: #404040;
+        --uc-dark-text: #e8eaed;
+        --uc-dark-text-secondary: #9aa0a6;
+    }
+
+    /* ОСНОВНЫЕ СТИЛИ */
     .uc-constructor {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        max-width: 1200px;
+        font-family: var(--uc-font-family);
+        max-width: var(--uc-max-width);
         margin: 0 auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: var(--uc-spacing-xl);
+        background: var(--uc-white);
+        border-radius: var(--uc-border-radius);
+        box-shadow: var(--uc-shadow-md);
     }
 
     .uc-constructor * {
         box-sizing: border-box;
     }
 
-    /* Верхний блок с образцом и предпросмотром */
+    /* ВЕРХНИЙ БЛОК */
     .uc-constructor-header {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        margin-bottom: 30px;
-        min-height: 400px;
+        gap: var(--uc-gap-xl);
+        margin-bottom: var(--uc-gap-xl);
+        min-height: var(--uc-min-height-lg);
     }
 
-    /* Левая панель с образцом и характеристиками - ЕДИНЫЙ БЛОК */
+    /* ЛЕВАЯ ПАНЕЛЬ - МАТЕРИАЛ + ХАРАКТЕРИСТИКИ */
     .uc-material-panel {
-        background: #f8f9fa;
-        border: 2px solid #e9ecef;
-        border-radius: 12px;
-        padding: 20px;
+        background: var(--uc-gray-50);
+        border: var(--uc-border-width) solid var(--uc-gray-200);
+        border-radius: var(--uc-border-radius);
+        padding: var(--uc-spacing-xl);
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        transition: all 0.3s ease;
+        gap: var(--uc-spacing-xl);
+        transition: var(--uc-transition-base);
         position: relative;
     }
 
     .uc-material-panel:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        box-shadow: var(--uc-shadow-lg);
     }
 
-    /* Образец материала внутри левой панели */
-    .uc-material-sample {
-        aspect-ratio: 2/1;
-        border-radius: 8px;
-        overflow: hidden;
-        position: relative;
-        background: #fff;
-        border: 1px solid #dee2e6;
-    }
-
-    /* Правая панель с предпросмотром - ВЫСОКИЙ БЛОК */
+    /* ПРАВАЯ ПАНЕЛЬ - ПРЕДПРОСМОТР */
     .uc-preview-panel {
-        background: #f8f9fa;
-        border: 2px solid #e9ecef;
-        border-radius: 12px;
+        background: var(--uc-gray-50);
+        border: var(--uc-border-width) solid var(--uc-gray-200);
+        border-radius: var(--uc-border-radius);
         overflow: hidden;
         position: relative;
-        transition: all 0.3s ease;
+        transition: var(--uc-transition-base);
         min-height: 100%;
         display: flex;
         flex-direction: column;
@@ -76,7 +155,17 @@
 
     .uc-preview-panel:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        box-shadow: var(--uc-shadow-lg);
+    }
+
+    /* ОБРАЗЕЦ МАТЕРИАЛА */
+    .uc-material-sample {
+        aspect-ratio: 2/1;
+        border-radius: var(--uc-border-radius-md);
+        overflow: hidden;
+        position: relative;
+        background: var(--uc-white);
+        border: 1px solid var(--uc-gray-300);
     }
 
     .uc-sample-image,
@@ -84,7 +173,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: opacity 0.3s ease;
+        transition: var(--uc-transition-base);
     }
 
     .uc-preview-image {
@@ -94,34 +183,34 @@
     .uc-sample-label,
     .uc-preview-label {
         position: absolute;
-        top: 15px;
-        left: 15px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
+        top: var(--uc-spacing-lg);
+        left: var(--uc-spacing-lg);
+        background: var(--uc-black-overlay);
+        color: var(--uc-white);
+        padding: var(--uc-spacing-sm) var(--uc-spacing-md);
+        border-radius: var(--uc-border-radius-sm);
+        font-size: var(--uc-font-size-base);
+        font-weight: var(--uc-font-weight-normal);
         z-index: 2;
     }
 
-    /* Блок характеристик внутри левой панели */
+    /* ХАРАКТЕРИСТИКИ МАТЕРИАЛА */
     .uc-material-info {
-        background: #fff;
-        border-radius: 8px;
-        padding: 15px;
+        background: var(--uc-white);
+        border-radius: var(--uc-border-radius-md);
+        padding: var(--uc-spacing-lg);
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        border: 1px solid #dee2e6;
+        gap: var(--uc-spacing-sm);
+        border: 1px solid var(--uc-gray-300);
     }
 
     .uc-info-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 4px 0;
-        border-bottom: 1px solid #f1f3f4;
+        padding: var(--uc-spacing-xs) 0;
+        border-bottom: 1px solid var(--uc-gray-100);
     }
 
     .uc-info-item:last-child {
@@ -129,91 +218,91 @@
     }
 
     .uc-info-label {
-        font-size: 13px;
-        color: #6c757d;
-        font-weight: 500;
+        font-size: var(--uc-font-size-md);
+        color: var(--uc-gray-400);
+        font-weight: var(--uc-font-weight-normal);
     }
 
     .uc-info-value {
-        font-size: 13px;
-        font-weight: 600;
-        color: #212529;
+        font-size: var(--uc-font-size-md);
+        font-weight: var(--uc-font-weight-semibold);
+        color: var(--uc-gray-800);
         text-align: right;
     }
 
-    /* Навигационные вкладки */
+    /* ВКЛАДКИ */
     .uc-tabs {
         display: flex;
-        margin-bottom: 30px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        padding: 4px;
-        gap: 4px;
+        margin-bottom: var(--uc-gap-xl);
+        background: var(--uc-gray-50);
+        border-radius: var(--uc-border-radius-md);
+        padding: var(--uc-spacing-xs);
+        gap: var(--uc-spacing-xs);
     }
 
     .uc-tab-button {
         flex: 1;
-        padding: 12px 16px;
+        padding: var(--uc-spacing-md) var(--uc-spacing-lg);
         background: transparent;
         border: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #6c757d;
+        border-radius: var(--uc-border-radius-sm);
+        font-size: var(--uc-font-size-base);
+        font-weight: var(--uc-font-weight-normal);
+        color: var(--uc-gray-400);
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: var(--uc-transition-base);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: var(--uc-letter-spacing-wide);
     }
 
     .uc-tab-button:hover {
         background: rgba(0, 0, 0, 0.05);
-        color: #495057;
+        color: var(--uc-gray-600);
     }
 
     .uc-tab-active {
-        background: #fff !important;
-        color: #212529 !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background: var(--uc-white) !important;
+        color: var(--uc-gray-800) !important;
+        box-shadow: var(--uc-shadow-sm);
     }
 
-    /* Заголовок палитры */
+    /* ЗАГОЛОВОК ПАЛИТРЫ */
     .uc-palette-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: var(--uc-spacing-xl);
     }
 
     .uc-palette-title {
-        font-size: 18px;
-        font-weight: 600;
-        color: #212529;
+        font-size: var(--uc-font-size-xl);
+        font-weight: var(--uc-font-weight-semibold);
+        color: var(--uc-gray-800);
     }
 
     .uc-materials-count {
-        font-size: 14px;
-        color: #6c757d;
-        background: #f8f9fa;
-        padding: 6px 12px;
-        border-radius: 20px;
+        font-size: var(--uc-font-size-base);
+        color: var(--uc-gray-400);
+        background: var(--uc-gray-50);
+        padding: var(--uc-spacing-sm) var(--uc-spacing-md);
+        border-radius: var(--uc-border-radius-xl);
     }
 
-    /* Палитра материалов */
+    /* ПАЛИТРА МАТЕРИАЛОВ */
     .uc-materials-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: var(--uc-gap-md);
+        margin-bottom: var(--uc-spacing-xl);
     }
 
     .uc-material-item {
         aspect-ratio: 1;
-        border: 2px solid #e9ecef;
-        border-radius: 8px;
-        background: #fff;
+        border: var(--uc-border-width) solid var(--uc-gray-200);
+        border-radius: var(--uc-border-radius-md);
+        background: var(--uc-white);
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: var(--uc-transition-base);
         position: relative;
         overflow: hidden;
         padding: 0;
@@ -221,13 +310,13 @@
 
     .uc-material-item:hover {
         transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        border-color: #007bff;
+        box-shadow: var(--uc-shadow-lg);
+        border-color: var(--uc-primary-blue);
     }
 
     .uc-material-selected {
-        border-color: #007bff !important;
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25) !important;
+        border-color: var(--uc-primary-blue) !important;
+        box-shadow: var(--uc-shadow-focus) !important;
         transform: translateY(-2px) !important;
     }
 
@@ -235,7 +324,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: opacity 0.3s ease;
+        transition: var(--uc-transition-base);
     }
 
     .uc-loading-placeholder {
@@ -243,95 +332,16 @@
         height: 100%;
         background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
         background-size: 200% 100%;
-        animation: uc-shimmer 1.5s infinite;
+        animation: var(--uc-animation-shimmer);
     }
 
     @keyframes uc-shimmer {
-        0% {
-            background-position: -200% 0;
-        }
-
-        100% {
-            background-position: 200% 0;
-        }
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
     }
 
-    /* Адаптивная верстка */
-    @media (max-width: 1023px) {
-        .uc-constructor-header {
-            grid-template-columns: 1fr;
-            gap: 20px;
-            min-height: auto;
-        }
-
-        .uc-materials-grid {
-            grid-template-columns: repeat(8, 1fr);
-        }
-
-        .uc-material-panel {
-            order: 1;
-        }
-
-        .uc-preview-panel {
-            order: 2;
-            min-height: 300px;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .uc-constructor {
-            padding: 15px;
-        }
-
-        .uc-materials-grid {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .uc-material-panel {
-            padding: 15px;
-            gap: 15px;
-        }
-
-        .uc-material-info {
-            padding: 12px;
-            gap: 6px;
-        }
-
-        .uc-tabs {
-            flex-direction: column;
-        }
-
-        .uc-tab-button {
-            text-align: center;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .uc-materials-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .uc-palette-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .uc-info-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2px;
-        }
-
-        .uc-info-value {
-            text-align: left;
-        }
-    }
-
-    /* Анимации загрузки */
     .uc-fade-in {
-        animation: uc-fadeIn 0.5s ease-in-out;
+        animation: var(--uc-animation-fade);
     }
 
     @keyframes uc-fadeIn {
@@ -339,76 +349,146 @@
             opacity: 0;
             transform: translateY(10px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
 
-    /* Состояние загрузки */
     .uc-loading {
         opacity: 0.6;
         pointer-events: none;
     }
-    </style>
-    <style>
-    /* Базовые улучшения для мобильных устройств */
-    @media (max-width: 767px) {
 
-        /* УВЕЛИЧЕННЫЕ ТАП-ЗОНЫ И УЛУЧШЕННАЯ НАВИГАЦИЯ */
+    /* АДАПТИВНАЯ ВЕРСТКА */
+    
+    /* ПЛАНШЕТЫ И МОБИЛЬНЫЕ (ОСНОВНОЕ ИЗМЕНЕНИЕ ПОРЯДКА) */
+    @media (max-width: 1023px) {
+        .uc-constructor-header {
+            grid-template-columns: 1fr;
+            gap: var(--uc-spacing-xl);
+            min-height: auto;
+        }
+
+        .uc-materials-grid {
+            grid-template-columns: repeat(8, 1fr);
+        }
+
+        /* ИЗМЕНЕН ПОРЯДОК: СНАЧАЛА ПРЕДПРОСМОТР, ПОТОМ ОБРАЗЕЦ */
+        .uc-preview-panel {
+            order: 1;
+            min-height: var(--uc-min-height-md);
+        }
+
+        .uc-material-panel {
+            order: 2;
+        }
+    }
+
+    /* ПЛАНШЕТЫ */
+    @media (max-width: 1023px) and (min-width: 768px) {
+        .uc-materials-grid {
+            grid-template-columns: repeat(6, 1fr) !important;
+            gap: var(--uc-gap-base);
+        }
+
+        .uc-material-item {
+            min-height: var(--uc-min-touch-target-xl);
+            border-radius: var(--uc-border-radius-gap);
+        }
+
         .uc-tabs {
-            flex-direction: row !important;
-            gap: 2px;
-            padding: 6px;
-            margin-bottom: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #f8f9fa;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: calc(var(--uc-spacing-xl) + var(--uc-spacing-md));
         }
 
         .uc-tab-button {
-            padding: 14px 8px !important;
-            font-size: 12px !important;
-            font-weight: 600;
-            min-height: 48px;
-            border-radius: 8px;
-            letter-spacing: 0.3px;
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
+            padding: var(--uc-spacing-lg) var(--uc-spacing-xl);
+            font-size: var(--uc-font-size-lg);
+            min-height: var(--uc-min-touch-target-lg);
         }
 
-        /* Тактильная обратная связь при тапе */
+        .uc-constructor-header {
+            gap: calc(var(--uc-spacing-xl) + var(--uc-spacing-xs));
+            margin-bottom: calc(var(--uc-spacing-xl) + var(--uc-spacing-md));
+        }
+
+        .uc-material-panel,
+        .uc-preview-panel {
+            border-radius: var(--uc-border-radius-lg);
+        }
+    }
+
+    /* МОБИЛЬНЫЕ УСТРОЙСТВА */
+    @media (max-width: 767px) {
+        .uc-constructor {
+            padding: var(--uc-spacing-lg);
+        }
+
+        .uc-materials-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--uc-gap-sm);
+        }
+
+        .uc-material-panel {
+            padding: var(--uc-spacing-lg);
+            gap: var(--uc-spacing-lg);
+        }
+
+        .uc-material-info {
+            padding: var(--uc-spacing-md);
+            gap: var(--uc-spacing-sm);
+        }
+
+        .uc-tabs {
+            flex-direction: row !important;
+            gap: 2px;
+            padding: var(--uc-spacing-sm);
+            margin-bottom: var(--uc-spacing-xl);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--uc-gray-50);
+            border-radius: var(--uc-border-radius);
+            box-shadow: var(--uc-shadow-sm);
+        }
+
+        .uc-tab-button {
+            padding: var(--uc-spacing-base) var(--uc-spacing-sm) !important;
+            font-size: var(--uc-font-size-sm) !important;
+            font-weight: var(--uc-font-weight-semibold);
+            min-height: var(--uc-min-touch-target);
+            border-radius: var(--uc-border-radius-md);
+            letter-spacing: var(--uc-letter-spacing);
+            transition: var(--uc-transition-fast);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
         .uc-tab-button:active {
             transform: scale(0.95);
             background: rgba(0, 123, 255, 0.1) !important;
         }
 
-        /* ОПТИМИЗИРОВАННАЯ ПАЛИТРА МАТЕРИАЛОВ */
         .uc-materials-grid {
             grid-template-columns: repeat(3, 1fr) !important;
-            gap: 12px;
-            padding: 0 4px;
+            gap: var(--uc-spacing-md);
+            padding: 0 var(--uc-spacing-xs);
         }
 
         .uc-material-item {
-            min-height: 48px;
-            min-width: 48px;
-            border-radius: 12px;
-            border-width: 3px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: var(--uc-min-touch-target);
+            min-width: var(--uc-min-touch-target);
+            border-radius: var(--uc-border-radius);
+            border-width: var(--uc-border-width-thick);
+            transition: var(--uc-transition-slow);
             position: relative;
             overflow: hidden;
         }
 
-        /* Улучшенная обратная связь при тапе */
         .uc-material-item:active {
             transform: scale(0.92);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--uc-shadow-tap);
         }
 
         .uc-material-item::after {
@@ -420,7 +500,7 @@
             bottom: 0;
             background: radial-gradient(circle, rgba(0, 123, 255, 0.3) 0%, transparent 70%);
             opacity: 0;
-            transition: opacity 0.2s ease;
+            transition: var(--uc-transition-fast);
             pointer-events: none;
         }
 
@@ -428,112 +508,100 @@
             opacity: 1;
         }
 
-        /* УЛУЧШЕННЫЙ ВЕРХНИЙ БЛОК */
         .uc-constructor-header {
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: var(--uc-spacing-lg);
+            margin-bottom: calc(var(--uc-spacing-xl) + var(--uc-spacing-xs));
         }
 
         .uc-material-panel {
-            padding: 16px;
-            gap: 12px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: var(--uc-spacing-lg);
+            gap: var(--uc-spacing-md);
+            border-radius: var(--uc-border-radius-lg);
+            box-shadow: var(--uc-shadow-md);
         }
 
         .uc-preview-panel {
-            min-height: 280px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            min-height: var(--uc-min-height-sm);
+            border-radius: var(--uc-border-radius-lg);
+            box-shadow: var(--uc-shadow-md);
         }
 
-        /* УЛУЧШЕННАЯ ТИПОГРАФИКА */
         .uc-material-info {
-            padding: 16px;
-            gap: 12px;
-            border-radius: 12px;
+            padding: var(--uc-spacing-lg);
+            gap: var(--uc-spacing-md);
+            border-radius: var(--uc-border-radius);
         }
 
         .uc-info-item {
-            padding: 8px 0;
-            border-bottom: 1px solid #f1f3f4;
+            padding: var(--uc-spacing-sm) 0;
+            border-bottom: 1px solid var(--uc-gray-100);
             flex-direction: row !important;
             align-items: center !important;
             justify-content: space-between;
         }
 
         .uc-info-label {
-            font-size: 14px !important;
-            font-weight: 500;
-            color: #5f6368;
+            font-size: var(--uc-font-size-base) !important;
+            font-weight: var(--uc-font-weight-normal);
+            color: var(--uc-gray-500);
         }
 
         .uc-info-value {
-            font-size: 14px !important;
-            font-weight: 600;
-            color: #202124;
+            font-size: var(--uc-font-size-base) !important;
+            font-weight: var(--uc-font-weight-semibold);
+            color: var(--uc-gray-900);
             text-align: right !important;
             max-width: 60%;
             word-break: break-word;
         }
 
-        /* УЛУЧШЕННЫЕ ЗАГОЛОВКИ */
         .uc-palette-header {
             flex-direction: row !important;
             align-items: center !important;
             gap: 0 !important;
-            margin-bottom: 16px;
-            padding: 0 4px;
+            margin-bottom: var(--uc-spacing-lg);
+            padding: 0 var(--uc-spacing-xs);
         }
 
         .uc-palette-title {
-            font-size: 20px !important;
-            font-weight: 700;
-            color: #202124;
+            font-size: var(--uc-font-size-2xl) !important;
+            font-weight: var(--uc-font-weight-bold);
+            color: var(--uc-gray-900);
         }
 
         .uc-materials-count {
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: #e8f0fe;
-            color: #1a73e8;
-            font-weight: 500;
+            font-size: var(--uc-font-size-sm);
+            padding: var(--uc-spacing-xs) var(--uc-spacing-sm);
+            border-radius: var(--uc-border-radius);
+            background: var(--uc-primary-blue-bg);
+            color: var(--uc-primary-blue-light);
+            font-weight: var(--uc-font-weight-normal);
         }
 
-        /* УЛУЧШЕННЫЕ ЛЕЙБЛЫ */
         .uc-sample-label,
         .uc-preview-label {
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.7);
+            font-size: var(--uc-font-size-sm);
+            padding: var(--uc-spacing-sm) var(--uc-spacing-sm);
+            border-radius: var(--uc-border-radius-md);
+            background: var(--uc-black-overlay-light);
             backdrop-filter: blur(4px);
-            font-weight: 600;
-            letter-spacing: 0.3px;
+            font-weight: var(--uc-font-weight-semibold);
+            letter-spacing: var(--uc-letter-spacing);
         }
 
-        /* УЛУЧШЕННЫЕ ОТСТУПЫ */
-        .uc-constructor {
-            padding: 16px 12px;
-        }
-
-        /* СОСТОЯНИЯ ЗАГРУЗКИ */
         .uc-loading-placeholder {
-            border-radius: 8px;
+            border-radius: var(--uc-border-radius-md);
         }
 
-        /* АНИМАЦИИ ПОЯВЛЕНИЯ */
         .uc-fade-in {
-            animation: uc-mobileSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: var(--uc-animation-mobile-slide);
         }
 
         @keyframes uc-mobileSlideIn {
             from {
                 opacity: 0;
-                transform: translateY(16px) scale(0.95);
+                transform: translateY(var(--uc-spacing-lg)) scale(0.95);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -541,88 +609,53 @@
         }
     }
 
-    /* ДОПОЛНИТЕЛЬНЫЕ УЛУЧШЕНИЯ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ */
+    /* ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ */
     @media (max-width: 480px) {
         .uc-materials-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 16px;
+            gap: var(--uc-spacing-lg);
         }
 
         .uc-material-item {
             aspect-ratio: 1.2;
-            min-height: 64px;
+            min-height: var(--uc-min-touch-target-2xl);
         }
 
         .uc-constructor {
-            padding: 12px 8px;
+            padding: var(--uc-spacing-md) var(--uc-spacing-sm);
         }
 
         .uc-palette-title {
-            font-size: 18px !important;
+            font-size: var(--uc-font-size-xl) !important;
         }
 
         .uc-tab-button {
-            padding: 12px 6px !important;
-            font-size: 11px !important;
+            padding: var(--uc-spacing-md) var(--uc-spacing-sm) !important;
+            font-size: var(--uc-font-size-xs) !important;
         }
 
-        /* Больше места для характеристик */
         .uc-info-item {
             flex-direction: column !important;
             align-items: flex-start !important;
-            gap: 4px;
-            padding: 12px 0;
+            gap: var(--uc-spacing-xs);
+            padding: var(--uc-spacing-md) 0;
         }
 
         .uc-info-value {
             text-align: left !important;
             max-width: 100%;
-            font-size: 15px !important;
-            color: #1a73e8;
+            font-size: var(--uc-font-size-lg) !important;
+            color: var(--uc-primary-blue-light);
         }
 
         .uc-info-label {
-            font-size: 13px !important;
-            color: #5f6368;
+            font-size: var(--uc-font-size-md) !important;
+            color: var(--uc-gray-500);
         }
     }
 
-    /* УЛУЧШЕНИЯ ДЛЯ ПЛАНШЕТОВ */
-    @media (max-width: 1023px) and (min-width: 768px) {
-        .uc-materials-grid {
-            grid-template-columns: repeat(6, 1fr) !important;
-            gap: 14px;
-        }
-
-        .uc-material-item {
-            min-height: 56px;
-            border-radius: 10px;
-        }
-
-        .uc-tabs {
-            margin-bottom: 32px;
-        }
-
-        .uc-tab-button {
-            padding: 16px 20px;
-            font-size: 15px;
-            min-height: 52px;
-        }
-
-        .uc-constructor-header {
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-
-        .uc-material-panel,
-        .uc-preview-panel {
-            border-radius: 16px;
-        }
-    }
-
-    /* ACCESSIBILITY УЛУЧШЕНИЯ */
+    /* ACCESSIBILITY */
     @media (prefers-reduced-motion: reduce) {
-
         .uc-material-item,
         .uc-tab-button,
         .uc-material-panel,
@@ -635,51 +668,51 @@
         }
     }
 
-    /* ТЕМНАЯ ТЕМА ДЛЯ МОБИЛЬНЫХ */
+    /* ТЕМНАЯ ТЕМА */
     @media (prefers-color-scheme: dark) and (max-width: 767px) {
         .uc-constructor {
-            background: #1a1a1a;
-            color: #e8eaed;
+            background: var(--uc-dark-bg);
+            color: var(--uc-dark-text);
         }
 
         .uc-material-panel,
         .uc-preview-panel {
-            background: #2d2d2d;
-            border-color: #404040;
+            background: var(--uc-dark-surface);
+            border-color: var(--uc-dark-border);
         }
 
         .uc-material-info {
-            background: #242424;
-            border-color: #404040;
+            background: var(--uc-dark-surface-alt);
+            border-color: var(--uc-dark-border);
         }
 
         .uc-tabs {
-            background: #2d2d2d;
+            background: var(--uc-dark-surface);
         }
 
         .uc-tab-button {
-            color: #9aa0a6;
+            color: var(--uc-dark-text-secondary);
         }
 
         .uc-tab-active {
-            background: #1a73e8 !important;
-            color: #fff !important;
+            background: var(--uc-primary-blue-light) !important;
+            color: var(--uc-white) !important;
         }
 
         .uc-materials-count {
-            background: #1a73e8;
-            color: #fff;
+            background: var(--uc-primary-blue-light);
+            color: var(--uc-white);
         }
     }
 
-    /* СВАЙП-ИНДИКАТОРЫ ДЛЯ ПАЛИТРЫ */
+    /* СВАЙП ДЛЯ ПАЛИТРЫ */
     @media (max-width: 767px) {
         .uc-materials-grid {
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            padding-bottom: 8px;
+            padding-bottom: var(--uc-spacing-sm);
         }
 
         .uc-materials-grid::-webkit-scrollbar {
@@ -691,15 +724,14 @@
             flex-shrink: 0;
         }
 
-        /* Индикатор свайпа */
         .uc-materials-grid::after {
             content: '← Свайпните для просмотра →';
             position: sticky;
             right: 0;
-            background: linear-gradient(90deg, transparent, #f8f9fa 20%);
-            padding: 8px 12px;
-            font-size: 11px;
-            color: #5f6368;
+            background: linear-gradient(90deg, transparent, var(--uc-gray-50) 20%);
+            padding: var(--uc-spacing-sm) var(--uc-spacing-md);
+            font-size: var(--uc-font-size-xs);
+            color: var(--uc-gray-500);
             text-align: center;
             pointer-events: none;
             opacity: 0.7;
@@ -746,6 +778,7 @@
                 <div x-show="!selectedMaterial" class="uc-loading-placeholder"></div>
             </div>
         </div>
+
         <!-- Навигационные вкладки -->
         <nav class="uc-tabs">
             <template x-for="tab in tabs" :key="tab.id">
@@ -753,11 +786,13 @@
                 </button>
             </template>
         </nav>
+
         <!-- Заголовок палитры -->
         <div class="uc-palette-header">
             <h3 class="uc-palette-title" x-text="currentTabLabel"></h3>
             <div class="uc-materials-count" x-text="filteredMaterials.length + ' материалов'"></div>
         </div>
+
         <!-- Палитра материалов -->
         <div class="uc-materials-grid">
             <template x-for="material in filteredMaterials" :key="material.id">
@@ -767,7 +802,9 @@
             </template>
         </div>
     </div>
+
     <script>
+    // [Весь JavaScript код остается без изменений]
     // Безопасная функция для кодирования Unicode в base64
     function safeBase64Encode(str) {
         try {
