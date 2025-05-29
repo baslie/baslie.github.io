@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭБИС — Центр кровли | Европейская кровля с гарантией до 50 лет</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a2332;
+            --primary-blue: #2962ff;
+            --accent-orange: #ff6d00;
+            --accent-red: #e53935;
+            --text-dark: #1a2332;
+            --text-gray: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header-top {
+            background: var(--primary-dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .header-main {
+            background: var(--primary-dark);
+            padding: 15px 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: 700;
+            color: white !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-orange) !important;
+        }
+
+        .header-buttons .btn {
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+            color: white;
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            border: none;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 109, 0, 0.3);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2c3e50 100%);
+            color: white;
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill="rgba(255,255,255,0.05)" d="M0,0 L1000,300 L1000,1000 L0,700 Z"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero-content .lead {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            margin-bottom: 48px;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            border: none;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-right: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 109, 0, 0.3);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid white;
+            color: white;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .hero-advantages {
+            list-style: none;
+        }
+
+        .hero-advantages li {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-advantages i {
+            color: var(--accent-orange);
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            text-align: center;
+            margin-bottom: 64px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards and Stats */
+        .stats-card, .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .stats-card:hover, .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stats-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stats-label {
+            color: var(--text-gray);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .feature-text {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            margin-bottom: 32px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+            color: white;
+            padding: 24px 32px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-body {
+            padding: 32px;
+        }
+
+        .product-item {
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-item h5 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        /* Process Steps */
+        .process-step {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .step-text {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            padding: 24px;
+            width: 100%;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 48px;
+            color: var(--accent-orange);
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            margin-top: 24px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Tables */
+        .custom-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .custom-table .table {
+            margin-bottom: 0;
+        }
+
+        .custom-table .table thead th {
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-weight: 600;
+        }
+
+        .custom-table .table tbody td {
+            padding: 16px 20px;
+            border-color: #eee;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 64px 0 32px;
+        }
+
+        .footer h5 {
+            color: var(--accent-orange);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 48px;
+            padding-top: 32px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .hero-buttons .btn {
+                display: block;
+                margin-bottom: 16px;
+                margin-right: 0;
+            }
+            
+            .stats-number {
+                font-size: 36px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <i class="fas fa-phone me-2"></i>+7 (4012) XX-XX-XX
+                    <span class="ms-4"><i class="fas fa-map-marker-alt me-2"></i>Калининград, складской комплекс</span>
+                    <span class="ms-4"><i class="fas fa-clock me-2"></i>Пн-Пт 9:00-18:00, Сб 10:00-15:00</span>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="header-buttons">
+                        <button class="btn btn-outline-light btn-sm me-2">Заказать звонок</button>
+                        <button class="btn btn-accent btn-sm">Получить прайс</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Main -->
+    <header class="header-main">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">ЭБИС — Центр кровли</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#catalog">Каталог</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">О компании</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Портфолио</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#reviews">Отзывы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#guarantees">Гарантии</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#delivery">Доставка</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#partner">Стать партнёром</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1>Европейская кровля с заводской гарантией до 50 лет — в наличии в Калининграде</h1>
+                        <p class="lead">Модульная металлочерепица, мансардные окна, водостоки прямо с польских и шведских заводов Hanbud, Hornval, Bratex. Точный расчёт от профессионалов, экспертные консультации, доставка по всей России.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary-custom">Заказать расчёт кровли</button>
+                            <button class="btn btn-outline-custom">Скачать каталог продукции</button>
+                        </div>
+                        <ul class="hero-advantages">
+                            <li><i class="fas fa-check-circle"></i>Товар в наличии — забираете через неделю</li>
+                            <li><i class="fas fa-check-circle"></i>Расчёт «до листочка» — остатков практически нет</li>
+                            <li><i class="fas fa-check-circle"></i>Европейское качество — цинк 275 г/м² против 140-180 г/м² у российских</li>
+                            <li><i class="fas fa-check-circle"></i>8 лет на рынке — ни одной жалобы на выгорание</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">8 лет привозим настоящую европейскую кровлю</h2>
+            <p class="section-subtitle">Когда началась военная операция и введены санкции, многие компании перешли на российские аналоги. Мы остались верны европейскому качеству и сохранили логистические маршруты.</p>
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <p class="lead mb-4">Сегодня ЭБИС — единственный в Калининградской области поставщик модульной металлочерепицы Hanbud, Hornval, Bratex напрямую со складов заводов-производителей.</p>
+                    <h4 class="mb-3" style="color: var(--primary-blue);">Работаем по всей России</h4>
+                    <p>Основные склады в Калининграде, филиалы в Санкт-Петербурге и Москве. Отправляем кровельные материалы транспортными компаниями в любой город. Мансардные окна доставляем по всем регионам России и странам СНГ.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="stats-card">
+                                <span class="stats-number">223</span>
+                                <p class="stats-label">отзыва с рейтингом 5.0 на Яндекс.Картах</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="stats-card">
+                                <span class="stats-number">8</span>
+                                <p class="stats-label">лет безупречной работы</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="stats-card">
+                                <span class="stats-number">3</span>
+                                <p class="stats-label">города присутствия</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="stats-card">
+                                <span class="stats-number">0</span>
+                                <p class="stats-label">жалоб на выгорание</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Catalog Section -->
+    <section id="catalog" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Полный каталог европейских кровельных решений</h2>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <h3 class="product-title">Модульная металлочерепица — наша специализация</h3>
+                        </div>
+                        <div class="product-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="product-item">
+                                        <h5>Hanbud Retto (Польша)</h5>
+                                        <p>Имитирует классическую керамическую черепицу, высота перештамповки 35 мм</p>
+                                    </div>
+                                    <div class="product-item">
+                                        <h5>Hanbud Claro (Польша)</h5>
+                                        <p>Современный плоский дизайн в стиле минимализм</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="product-item">
+                                        <h5>Hornval Flamenko (Польша)</h5>
+                                        <p>Классический 6-волновой профиль, бюджетный вариант от 1000 руб/модуль</p>
+                                    </div>
+                                    <div class="product-item">
+                                        <h5>Bratex Scandinavia (Польша)</h5>
+                                        <p>Премиум-сегмент с асимметричной волной</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-info mt-4" style="background: var(--bg-light); border: none; border-left: 4px solid var(--primary-blue);">
+                                <strong>Технические характеристики:</strong> толщина металла 0,5 мм, содержание цинка 275 г/м² (в 1,5-2 раза больше российских), гарантия 20-50 лет. Размер модулей 1,18×0,72 м, вес 3,5 кг.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4 class="feature-title">Мансардные окна</h4>
+                        <p class="feature-text">Европейские производители, все размеры в наличии на складах в Москве и Санкт-Петербурге. Профессиональная консультация по выбору размера и типа открывания.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4 class="feature-title">Цементно-песчаная черепица</h4>
+                        <p class="feature-text">Benders (Швеция). Единственные в регионе поставщики шведской черепицы. Основная модель Palema S — альтернатива керамике по доступной цене.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4 class="feature-title">Дополнительные позиции</h4>
+                        <p class="feature-text">Фальцевая кровля, водосточные системы Bud-Masz, фиброцементная плитка Cedral, доборные элементы собственного производства.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-primary-custom">Посмотреть полный каталог с ценами</button>
+            </div>
+        </div>
+    </section>
+    <!-- Advantages Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">6 причин выбрать ЭБИС среди конкурентов</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4 class="feature-title">Настоящее европейское качество</h4>
+                        <p class="feature-text">275 г/м² цинка против 140-180 г/м² у российских производителей — это в 1,5-2 раза больше защиты от коррозии. За 8 лет работы у нас нет ни одной жалобы на изменение цвета или качества покрытия.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4 class="feature-title">Консультация профессионалов</h4>
+                        <p class="feature-text">Наши менеджеры не просто продавцы — это специалисты, которые сами использовали нашу продукцию. Готовы провести с клиентом несколько часов, чтобы он ушёл с полным пониманием своего выбора.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4 class="feature-title">Расчёт материалов «до листочка»</h4>
+                        <p class="feature-text">После монтажа остаётся минимум обрезков, часто не остаётся ни одного целого листа. При изменении проекта лишний материал принимаем обратно.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h4 class="feature-title">Товар в наличии, быстрая отгрузка</h4>
+                        <p class="feature-text">Основные позиции модульной металлочерепицы всегда на складе. Стандартный срок отгрузки — 5 рабочих дней. В 95% случаев клиенты покупают товар из наличия.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4 class="feature-title">Собственное производство доборов</h4>
+                        <p class="feature-text">Собственный гибочный станок позволяет изготовить планки, уголки, заглушки любой конфигурации точно в цвет вашей кровли. Делаем элементы по вашим размерам.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4 class="feature-title">Клиентоориентированный сервис</h4>
+                        <p class="feature-text">Работаем «по-человечески», а не как роботы. С многими клиентами поддерживаем связь спустя годы. При спорных ситуациях идём навстречу и решаем проблемы «без вопросов».</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Process Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Как мы работаем: от заявки до готовой кровли</h2>
+            <div class="row">
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h5 class="step-title">Заявка и консультация</h5>
+                        <p class="step-text">Перезваниваем в течение часа. Выясняем потребности, сроки, бюджет.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h5 class="step-title">Расчёт и КП</h5>
+                        <p class="step-text">Составляем подробную смету с указанием каждой позиции. Расчёт бесплатный.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h5 class="step-title">Заказ и производство</h5>
+                        <p class="step-text">Заключаем договор. Изготавливаем доборы на собственном станке.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h5 class="step-title">Отгрузка и доставка</h5>
+                        <p class="step-text">Уведомляем о готовности. Самовывоз или доставка по вашему выбору.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h5 class="step-title">Сопровождение монтажа</h5>
+                        <p class="step-text">Рекомендации по монтажу, ответы на вопросы в процессе строительства.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Ответы на 12 самых частых вопросов</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Почему ваши цены выше, чем у конкурентов? Можете ли работать дешевле?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Мы работаем с оригинальными европейскими материалами с содержанием цинка 275 г/м² — это в 1,5-2 раза больше, чем у российских аналогов. Европейские покрытия не выгорают годами, в отличие от китайских и российских. Да, можно купить дешевле — но через 2-3 года вы увидите разницу в качестве.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Есть ли товар в наличии или нужно ждать месяцами?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Основные позиции модульной металлочерепицы всегда на складе. Отгружаем в течение 5 рабочих дней — за это время доукомплектовываем заказ и изготавливаем индивидуальные доборы. Позиции «под заказ» привозим за 1-2 месяца.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Можете ли рассчитать точное количество материалов?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Расчёт «до листочка» — наша фишка. Часто после монтажа не остаётся ни одного целого листа. При изменении проекта лишний материал принимаем обратно.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Какая реальная гарантия на ваши материалы?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Заводская гарантия: 20 лет на внешний вид покрытия, 50 лет на сквозную коррозию (для покрытий Green Coat). Мы — официальные представители заводов, поэтому гарантийные случаи решаем напрямую с производителем.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Доставляете ли по России? Какие сроки и стоимость?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Кровельные материалы доставляем по всей России транспортными компаниями. Мансардные окна отправляем со складов в Москве и Санкт-Петербурге. Стоимость доставки зависит от региона и веса груза — рассчитываем индивидуально.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Портфолио: более 1000 крыш за 8 лет работы</h2>
+            <div class="row mb-5">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5 style="color: var(--primary-blue); margin-bottom: 16px;">Частный дом в Калининграде</h5>
+                        <p><strong>Материал:</strong> Hanbud Retto, чёрный матовый полиэстер<br>
+                            <strong>Площадь:</strong> 180 м²<br>
+                            <strong>Год:</strong> 2024</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5 style="color: var(--primary-blue); margin-bottom: 16px;">Коттедж в посёлке Прибрежное</h5>
+                        <p><strong>Материал:</strong> Bratex Scandinavia, антрацит<br>
+                            <strong>Площадь:</strong> 240 м²<br>
+                            <strong>Дополнительно:</strong> комплект с мансардными окнами</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <h5 style="color: var(--primary-blue); margin-top: 24px;">История Аллы Суман: новички в кровле создали идеальную крышу</h5>
+                <p class="testimonial-text">При выборе кровельной компании полагались на отзывы. Выбрали Эбис и не ошиблись! Мы в этом деле новички, а крышу решили накрывать сами. Расчёт был произведён настолько точно, что после сборки крыши осталось минимум обрезков и ни одного целого листа модульной черепицы.</p>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <strong>Задача:</strong> семья без опыта строительства хотела самостоятельно смонтировать кровлю
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Решение:</strong> подробные консультации, точный расчёт, рекомендации по монтажу
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Результат:</strong> успешный самостоятельный монтаж без переплат за материалы
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Reviews Section -->
+    <section id="reviews" class="section">
+        <div class="container">
+            <h2 class="section-title">223 честных отзыва с рейтингом 5.0</h2>
+            <div class="row text-center mb-5">
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <span class="stats-number">223</span>
+                        <p class="stats-label">отзыва на Яндекс.Картах</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <span class="stats-number">5.0</span>
+                        <p class="stats-label">средний рейтинг</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <span class="stats-number">8</span>
+                        <p class="stats-label">лет без негативных отзывов</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <span class="stats-number">97%</span>
+                        <p class="stats-label">клиентов рекомендуют нас</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <h6 style="color: var(--primary-blue); margin-top: 24px;">О точности расчётов</h6>
+                        <p class="testimonial-text">Расчёт был произведён настолько точно, что после сборки крыши осталось минимум обрезков и ни одного целого листа модульной черепицы.</p>
+                        <p class="testimonial-author">— Алла Суман</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <h6 style="color: var(--primary-blue); margin-top: 24px;">О качестве материалов</h6>
+                        <p class="testimonial-text">Европейский металл по цене китайского, отдельное спасибо менеджерам — такого профессионального коллектива мы не видели больше нигде.</p>
+                        <p class="testimonial-author">— Анна</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <h6 style="color: var(--primary-blue); margin-top: 24px;">О долгосрочном сотрудничестве</h6>
+                        <p class="testimonial-text">Работаю с этой компанией более пяти лет, за это время не произошло ни одного форс-мажора. Грамотный расчёт материала, всегда хватает.</p>
+                        <p class="testimonial-author">— Сергей Краснов</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <h6 style="color: var(--primary-blue); margin-top: 24px;">О сервисе</h6>
+                        <p class="testimonial-text">Здесь покупали мансардные окна, и когда одно из них оказалось некачественным, без вопросов была выполнена его замена.</p>
+                        <p class="testimonial-author">— Инна П.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Guarantees Section -->
+    <section id="guarantees" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Заводские гарантии и сертификаты качества</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="custom-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Тип покрытия</th>
+                                    <th>Гарантия на внешний вид</th>
+                                    <th>Гарантия от коррозии</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Матовый полиэстер</strong></td>
+                                    <td>20 лет</td>
+                                    <td>25 лет</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Полиуретан Green Coat</strong></td>
+                                    <td>25 лет</td>
+                                    <td>50 лет</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Цементно-песчаная черепица</strong></td>
+                                    <td>30 лет</td>
+                                    <td>100+ лет</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4">
+                        <h5 style="color: var(--primary-blue);">Дополнительно:</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check me-2" style="color: var(--accent-orange);"></i>Заводские сертификаты на всю продукцию</li>
+                            <li><i class="fas fa-check me-2" style="color: var(--accent-orange);"></i>Паспорта качества на каждую партию</li>
+                            <li><i class="fas fa-check me-2" style="color: var(--accent-orange);"></i>Протоколы испытаний покрытий</li>
+                            <li><i class="fas fa-check me-2" style="color: var(--accent-orange);"></i>Официальное представительство заводов</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Partnership Section -->
+    <section id="partner" class="section">
+        <div class="container">
+            <h2 class="section-title">Приглашаем к сотрудничеству строительные компании</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-card h-100">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 24px;">Что мы предлагаем партнёрам:</h4>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-star me-2" style="color: var(--accent-orange);"></i>Специальные цены в зависимости от объёмов</li>
+                            <li><i class="fas fa-star me-2" style="color: var(--accent-orange);"></i>Возможность работы с отсрочкой платежа</li>
+                            <li><i class="fas fa-star me-2" style="color: var(--accent-orange);"></i>Приоритет в очереди на отгрузку</li>
+                            <li><i class="fas fa-star me-2" style="color: var(--accent-orange);"></i>Маркетинговая поддержка</li>
+                            <li><i class="fas fa-star me-2" style="color: var(--accent-orange);"></i>Техническая поддержка монтажников</li>
+                            <li><i class="fas fa-star me-2" style="color: var(--accent-orange);"></i>Гибкие условия возврата материалов</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-card h-100">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 24px;">Кому подходит партнёрство:</h4>
+                        <p>Кровельным компаниям, строительным организациям, прорабам с постоянными объёмами от 50 м² в месяц</p>
+                        <div class="mt-4">
+                            <button class="btn btn-primary-custom">Стать партнёром</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contacts Section -->
+    <section id="contacts" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Контакты и как нас найти</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="feature-card h-100">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 24px;">Главный офис-склад в Калининграде:</h4>
+                        <p><i class="fas fa-map-marker-alt me-2" style="color: var(--accent-orange);"></i>ул. Кутузова, 37</p>
+                        <p><i class="fas fa-phone me-2" style="color: var(--accent-orange);"></i>+7 (4012) XX-XX-XX</p>
+                        <p><i class="fas fa-envelope me-2" style="color: var(--accent-orange);"></i>info@ebis-kld.ru</p>
+                        <p><i class="fas fa-clock me-2" style="color: var(--accent-orange);"></i>Пн-Пт 9:00-18:00, Сб 10:00-15:00, Вс — выходной</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="feature-card h-100">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 24px;">Филиалы для мансардных окон:</h4>
+                        <p><strong>Санкт-Петербург</strong> — склад и отгрузка</p>
+                        <p><strong>Москва</strong> — склад и отгрузка</p>
+                        <h4 style="color: var(--primary-blue); margin-top: 32px; margin-bottom: 16px;">Доставка:</h4>
+                        <p>По Калининградской области — собственным транспортом</p>
+                        <p>По России — ТК «Деловые Линии», «ПЭК», «КИТ»</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="feature-card h-100 text-center">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 32px;">Связаться с нами:</h4>
+                        <button class="btn btn-primary-custom mb-3 w-100">Заказать обратный звонок</button>
+                        <button class="btn btn-outline-primary mb-3 w-100">Получить прайс-лист</button>
+                        <button class="btn btn-outline-primary mb-3 w-100">Рассчитать доставку</button>
+                        <button class="btn btn-outline-primary w-100">Стать партнёром</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <h5>Компания</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">История</a></li>
+                        <li><a href="#">Команда</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>Каталог</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Металлочерепица</a></li>
+                        <li><a href="#">Мансардные окна</a></li>
+                        <li><a href="#">Водостоки</a></li>
+                        <li><a href="#">Доборы</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>Клиентам</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Гарантии</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Возврат</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>Поддержка</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Монтаж</a></li>
+                        <li><a href="#">Сертификаты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-start">
+                        <p>© 2024 ЭБИС — Центр кровли. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <p>
+                            <strong>ООО «ЭБИС»</strong><br>
+                            ИНН 3905601123, ОГРН 1083925006483<br>
+                            236010, Калининградская обл., г. Калининград, ул. Кутузова, д. 37, кв. 3
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // FAQ Toggle Function
+    function toggleFaq(element) {
+        const faqItem = element.closest('.faq-item');
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('.faq-icon');
+
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.classList.remove('active');
+                const otherAnswer = item.querySelector('.faq-answer');
+                const otherIcon = item.querySelector('.faq-icon');
+                otherAnswer.style.display = 'none';
+                otherIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Toggle current item
+        if (faqItem.classList.contains('active')) {
+            faqItem.classList.remove('active');
+            answer.style.display = 'none';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            faqItem.classList.add('active');
+            answer.style.display = 'block';
+            icon.style.transform = 'rotate(180deg)';
+        }
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 100;
+                const elementPosition = target.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.stats-card, .feature-card, .product-card, .testimonial-card, .process-step').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Add active class to navbar on scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.header-main');
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(26, 35, 50, 0.95)';
+            navbar.style.backdropFilter = 'blur(10px)';
+        } else {
+            navbar.style.background = 'var(--primary-dark)';
+            navbar.style.backdropFilter = 'none';
+        }
+    });
+    </script>
+</body>
+
+</html>
