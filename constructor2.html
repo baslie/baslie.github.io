@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор выбора облицовки дома</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .constructor {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .top-section {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .left-column {
+        flex: 0 0 350px;
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .brick-preview {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        overflow: hidden;
+    }
+
+    .brick-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        transition: opacity 0.3s ease;
+    }
+
+    .brick-info {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .brick-info p {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .brick-info strong {
+        color: #555;
+        font-weight: 600;
+    }
+
+    .brick-info span {
+        font-weight: 500;
+    }
+
+    .right-column {
+        flex: 1;
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    #houseCanvas {
+        max-width: 100%;
+        max-height: 400px;
+        object-fit: contain;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .bottom-section {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .tabs {
+        display: flex;
+        gap: 0;
+        margin-bottom: 30px;
+        background: #f0f0f0;
+        border-radius: 8px;
+        padding: 4px;
+    }
+
+    .tab {
+        flex: 1;
+        padding: 15px 20px;
+        background: transparent;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #666;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .tab:hover {
+        background: rgba(0, 123, 255, 0.1);
+        color: #555555;
+    }
+
+    .tab.active {
+        background: #555555;
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .brick-gallery {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scrollbar-width: thin;
+        scrollbar-color: #555555 #f0f0f0;
+    }
+
+    .brick-gallery::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .brick-gallery::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 4px;
+    }
+
+    .brick-gallery::-webkit-scrollbar-thumb {
+        background: #555555;
+        border-radius: 4px;
+    }
+
+    .brick-item {
+        flex: 0 0 70px;
+        height: 50px;
+        border: 3px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f8f8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .brick-item:hover {
+        border-color: #555555;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+    }
+
+    .brick-item.active {
+        border-color: #555555;
+        background: rgba(0, 123, 255, 0.1);
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .brick-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .brick-item:hover img {
+        transform: scale(1.05);
+    }
+
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #666;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 15px;
+        border-radius: 4px;
+        z-index: 10;
+    }
+
+    /* Адаптивная верстка */
+    @media (max-width: 1024px) {
+        .top-section {
+            flex-direction: column;
+        }
+
+        .left-column {
+            flex: none;
+            max-width: none;
+        }
+
+        #houseCanvas {
+            max-height: 400px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .constructor {
+            padding: 10px;
+        }
+
+        .left-column,
+        .right-column,
+        .bottom-section {
+            padding: 20px;
+        }
+
+        .tabs {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .tab {
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        .brick-item {
+            flex: 0 0 80px;
+            height: 80px;
+        }
+
+        #houseCanvas {
+            max-height: 300px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .brick-gallery {
+            gap: 10px;
+        }
+
+        .brick-item {
+            flex: 0 0 80px;
+            height: 80px;
+        }
+
+        .brick-info p {
+            font-size: 12px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="constructor">
+        <div class="top-section">
+            <div class="left-column">
+                <div class="brick-preview">
+                    <img id="previewImage" src="" alt="Превью кирпича">
+                    <div class="loading" id="previewLoading">Загрузка...</div>
+                </div>
+                <div class="brick-info">
+                    <p><strong>Название:</strong> <span id="brickName"></span></p>
+                    <p><strong>Базовый цвет:</strong> <span id="baseColor"></span></p>
+                    <p><strong>Напыление:</strong> <span id="coating"></span></p>
+                    <p><strong>Рельеф:</strong> <span id="relief"></span></p>
+                </div>
+            </div>
+            <div class="right-column">
+                <canvas id="houseCanvas" width="672" height="864"></canvas>
+                <div class="loading" id="canvasLoading">Загрузка изображения...</div>
+            </div>
+        </div>
+        <div class="bottom-section">
+            <div class="tabs">
+                <button class="tab active" data-tab="facade">ФАСАД</button>
+                <button class="tab" data-tab="basement">ЦОКОЛЬ</button>
+                <button class="tab" data-tab="fence">ЗАБОР</button>
+            </div>
+            <h2>ВЫБЕРИ СВОЕ СОЧЕТАНИЕ</h2>
+            <div class="brick-gallery" id="brickGallery">
+                <!-- Миниатюры кирпичей будут добавлены динамически -->
+            </div>
+        </div>
+    </div>
+    <script>
+    // Данные кирпичей
+    const bricks = [{
+            id: "GS1-T1-2",
+            name: "GS1-T1-2",
+            displayName: "Красный с косым напылением",
+            characteristics: {
+                baseColor: "Красный",
+                coating: "Черное по диагонали",
+                relief: "Земля"
+            },
+            images: {
+                preview: "dom/GS1-T1-2 (Красный с косым напылением) - превью.png",
+                brick: "dom/GS1-T1-2 (Красный с косым напылением) - кирпич.png",
+                facade: "dom/GS1-T1-2 (Красный с косым напылением) - фасад.png",
+                basement: "dom/GS1-T1-2 (Красный с косым напылением) - цоколь.jpg",
+                fence: "dom/GS1-T1-2 (Красный с косым напылением) - забор.png"
+            }
+        },
+        {
+            id: "GS1-T5-2",
+            name: "GS1-T5-2",
+            displayName: "Красный",
+            characteristics: {
+                baseColor: "Красный",
+                coating: "Черное",
+                relief: "Каньон"
+            },
+            images: {
+                preview: "dom/GS1-T5-2 (Красный) - превью.png",
+                brick: "dom/GS1-T5-2 (Красный) - кирпич.png",
+                facade: "dom/GS1-T5-2 (Красный) - фасад.png",
+                basement: "dom/GS1-T5-2 (Красный) - цоколь.jpg",
+                fence: "dom/GS1-T5-2 (Красный) - забор.png"
+            }
+        },
+        {
+            id: "GS2-GS3.3-T4-2.0",
+            name: "GS2 GS3.3-T4-2.0",
+            displayName: "Черный с вулканическими вставками",
+            characteristics: {
+                baseColor: "Графит\\Охра",
+                coating: "Черное",
+                relief: "Равнина\\ Лава"
+            },
+            images: {
+                preview: "dom/GS2 GS3.3-T4-2.0 (Черный с вулканическими вставками) - превью.png",
+                brick: "dom/GS2 GS3.3-T4-2.0 (Черный с вулканическими вставками) - кирпич.png",
+                facade: "dom/GS2 GS3.3-T4-2.0 (Черный с вулканическими вставками) - фасад.png",
+                basement: "dom/GS2 GS3.3-T4-2.0 (Черный с вулканическими вставками) - цоколь.jpg",
+                fence: "dom/GS2 GS3.3-T4-2.0 (Черный с вулканическими вставками) - забор.png"
+            }
+        },
+        {
+            id: "GS2",
+            name: "GS2",
+            displayName: "Графит",
+            characteristics: {
+                baseColor: "Графит",
+                coating: "-",
+                relief: "Равнина"
+            },
+            images: {
+                preview: "dom/GS2 (Графит) - превью.png",
+                brick: "dom/GS2 (Графит) - кирпич.png",
+                facade: "dom/GS2 (Графит) - фасад.png",
+                basement: "dom/GS2 (Графит) - цоколь.jpg",
+                fence: "dom/GS2 (Графит) - забор.png"
+            }
+        },
+        {
+            id: "GS3.1-T3-GS3.3-T3-GS12-T3",
+            name: "GS3.1-T3 GS3.3-T3 GS12-T3",
+            displayName: "Солнечный микс",
+            characteristics: {
+                baseColor: "Охра\\Слоновая кость",
+                coating: "-",
+                relief: "Дюна"
+            },
+            images: {
+                preview: "dom/GS3.1-T3 GS3.3-T3 GS12-T3 (Солнечный микс) - превью.png",
+                brick: "dom/GS3.1-T3 GS3.3-T3 GS12-T3 (Солнечный микс) - кирпич.png",
+                facade: "dom/GS3.1-T3 GS3.3-T3 GS12-T3 (Солнечный микс) - фасад.png",
+                basement: "dom/GS3.1-T3 GS3.3-T3 GS12-T3 (Солнечный микс) - цоколь.jpg",
+                fence: "dom/GS3.1-T3 GS3.3-T3 GS12-T3 (Солнечный микс) - забор.png"
+            }
+        },
+        {
+            id: "GS4-T3-12",
+            name: "GS4-T3-12",
+            displayName: "Коричневый с белым напылением",
+            characteristics: {
+                baseColor: "Горький шоколад",
+                coating: "Белое",
+                relief: "Дюна"
+            },
+            images: {
+                preview: "dom/GS4-T3-12 (Коричневый с белым напылением) - превью.png",
+                brick: "dom/GS4-T3-12 (Коричневый с белым напылением) - кирпич.png",
+                facade: "dom/GS4-T3-12 (Коричневый с белым напылением) - фасад.png",
+                basement: "dom/GS4-T3-12 (Коричневый с белым напылением) - цоколь.jpg",
+                fence: "dom/GS4-T3-12 (Коричневый с белым напылением) - забор.png"
+            }
+        },
+        {
+            id: "GS4-T5",
+            name: "GS4-T5",
+            displayName: "Коричневый",
+            characteristics: {
+                baseColor: "Горький шоколад",
+                coating: "-",
+                relief: "Каньон"
+            },
+            images: {
+                preview: "dom/GS4-T5 (Коричневый) - превью.png",
+                brick: "dom/GS4-T5 (Коричневый) - кирпич.png",
+                facade: "dom/GS4-T5 (Коричневый) - фасад.png",
+                basement: "dom/GS4-T5 (Коричневый) - цоколь.jpg",
+                fence: "dom/GS4-T5 (Коричневый) - забор.png"
+            }
+        },
+        {
+            id: "GS12-GS4",
+            name: "GS12 GS4",
+            displayName: "Бежево-коричневый микс",
+            characteristics: {
+                baseColor: "Слоновая кость\\Горький шоколад",
+                coating: "-",
+                relief: "Каньон"
+            },
+            images: {
+                preview: "dom/GS12 GS4 - T5 (Бежево-коричневый микс) - превью.png",
+                brick: "dom/GS12 GS4 - T5 (Бежево-коричневый микс) - кирпич.png",
+                facade: "dom/GS12 GS4 - T5 (Бежево-коричневый микс) - фасад.png",
+                basement: "dom/GS12 GS4 - T5 (Бежево-коричневый микс) - цоколь.jpg",
+                fence: "dom/GS12 GS4 - T5 (Бежево-коричневый микс) - забор.png"
+            }
+        },
+        {
+            id: "GS12-T4-GS12-T5",
+            name: "GS12-T4 GS12-T5",
+            displayName: "Слоновая кость",
+            characteristics: {
+                baseColor: "Слоновая кость",
+                coating: "-",
+                relief: "Каньон\\Лава"
+            },
+            images: {
+                preview: "dom/GS12-T4 GS12-T5 (Слоновая кость) - превью.png",
+                brick: "dom/GS12-T4 GS12-T5 (Слоновая кость) - кирпич.png",
+                facade: "dom/GS12-T4 GS12-T5 (Слоновая кость) - фасад.png",
+                basement: "dom/GS12-T4 GS12-T5 (Слоновая кость) - цоколь.jpg",
+                fence: "dom/GS12-T4 GS12-T5 (Слоновая кость) - забор.png"
+            }
+        },
+        {
+            id: "GS14-GS1",
+            name: "GS14 GS1",
+            displayName: "Красно-бежевый микс",
+            characteristics: {
+                baseColor: "Песок\\Красный",
+                coating: "-",
+                relief: "Равнина"
+            },
+            images: {
+                preview: "dom/GS14 GS1 (Красно-бежевый микс) - превью.png",
+                brick: "dom/GS14 GS1 (Красно-бежевый микс) - кирпич.png",
+                facade: "dom/GS14 GS1 (Красно-бежевый микс) - фасад.png",
+                basement: "dom/GS14 GS1 (Красно-бежевый микс) - цоколь.jpg",
+                fence: "dom/GS14 GS1 (Красно-бежевый микс) - забор.png"
+            }
+        },
+        {
+            id: "GS14",
+            name: "GS14",
+            displayName: "Белый песок",
+            characteristics: {
+                baseColor: "Песок",
+                coating: "-",
+                relief: "Равнина"
+            },
+            images: {
+                preview: "dom/GS14 (Белый песок) - превью.png",
+                brick: "dom/GS14 (Белый песок) - кирпич.png",
+                facade: "dom/GS14 (Белый песок) - фасад.png",
+                basement: "dom/GS14 (Белый песок) - цоколь.jpg",
+                fence: "dom/GS14 (Белый песок) - забор.png"
+            }
+        },
+        {
+            id: "GS14-T1-2",
+            name: "GS14-T1-2",
+            displayName: "Бежевый с серым напылением",
+            characteristics: {
+                baseColor: "Песок",
+                coating: "Черное",
+                relief: "Земля"
+            },
+            images: {
+                preview: "dom/GS14-T1-2 (Бежевый с серым напылением) - превью.png",
+                brick: "dom/GS14-T1-2 (Бежевый с серым напылением) - кирпич.png",
+                facade: "dom/GS14-T1-2 (Бежевый с серым напылением) - фасад.png",
+                basement: "dom/GS14-T1-2 (Бежевый с серым напылением) - цоколь.jpg",
+                fence: "dom/GS14-T1-2 (Бежевый с серым напылением) - забор.png"
+            }
+        },
+        {
+            id: "GS19-T1",
+            name: "GS19-T1",
+            displayName: "Охра",
+            characteristics: {
+                baseColor: "Охра",
+                coating: "-",
+                relief: "Земля"
+            },
+            images: {
+                preview: "dom/GS19-T1 (Охра) - превью.png",
+                brick: "dom/GS19-T1 (Охра) - кирпич.png",
+                facade: "dom/GS19-T1 (Охра) - фасад.png",
+                basement: "dom/GS19-T1 (Охра) - цоколь.jpg",
+                fence: "dom/GS19-T1 (Охра) - забор.png"
+            }
+        },
+        {
+            id: "GS19-T1-4",
+            name: "GS19-T1-4",
+            displayName: "Охра с напылением",
+            characteristics: {
+                baseColor: "Охра",
+                coating: "Коричневое",
+                relief: "Земля"
+            },
+            images: {
+                preview: "dom/GS19-T1-4 (Охра с напылением) - превью.png",
+                brick: "dom/GS19-T1-4 (Охра с напылением) - кирпич.png",
+                facade: "dom/GS19-T1-4 (Охра с напылением) - фасад.png",
+                basement: "dom/GS19-T1-4 (Охра с напылением) - цоколь.jpg",
+                fence: "dom/GS19-T1-4 (Охра с напылением) - забор.png"
+            }
+        },
+        {
+            id: "GS41-GS42-GS3.3",
+            name: "GS41 GS42 GS3.3",
+            displayName: "Сине-зелено-оранжевый",
+            characteristics: {
+                baseColor: "Синий\\ Зеленый \\ Охра",
+                coating: "-",
+                relief: "Равнина\\Лава"
+            },
+            images: {
+                preview: "dom/GS41 GS42 GS3.3 (Сине-зелено-оранжевый) - превью.png",
+                brick: "dom/GS41 GS42 GS3.3 (Сине-зелено-оранжевый) - кирпич.png",
+                facade: "dom/GS41 GS42 GS3.3 (Сине-зелено-оранжевый) - фасад.png",
+                basement: "dom/GS41 GS42 GS3.3 (Сине-зелено-оранжевый) - цоколь.jpg",
+                fence: "dom/GS41 GS42 GS3.3 (Сине-зелено-оранжевый) - забор.png"
+            }
+        },
+        {
+            id: "GS42-T5-2",
+            name: "GS42-T5-2",
+            displayName: "Зеленый с напылением",
+            characteristics: {
+                baseColor: "Зеленый",
+                coating: "Черное",
+                relief: "Каньон"
+            },
+            images: {
+                preview: "dom/GS42-T5-2 (Зеленый с напылением) - превью.png",
+                brick: "dom/GS42-T5-2 (Зеленый с напылением) - кирпич.png",
+                facade: "dom/GS42-T5-2 (Зеленый с напылением) - фасад.png",
+                basement: "dom/GS42-T5-2 (Зеленый с напылением) - цоколь.jpg",
+                fence: "dom/GS42-T5-2 (Зеленый с напылением) - забор.png"
+            }
+        },
+        {
+            id: "GS41-T5-2",
+            name: "GS41-T5-2",
+            displayName: "Синий с напылением",
+            characteristics: {
+                baseColor: "Синий",
+                coating: "Черное",
+                relief: "Каньон"
+            },
+            images: {
+                preview: "dom/GS41-T5-2 (Синий с напылением) - превью.png",
+                brick: "dom/GS41-T5-2 (Синий с напылением) - кирпич.png",
+                facade: "dom/GS41-T5-2 (Синий с напылением) - фасад.png",
+                basement: "dom/GS41-T5-2 (Синий с напылением) - цоколь.jpg",
+                fence: "dom/GS41-T5-2 (Синий с напылением) - забор.png"
+            }
+        }
+    ];
+
+    // Состояние приложения
+    const appState = {
+        activeTab: "facade",
+        selectedBricks: {
+            facade: "GS1-T1-2",
+            basement: "GS1-T1-2",
+            fence: "GS1-T1-2"
+        }
+    };
+
+    // Коэффициент масштабирования (уменьшаем в 2 раза)
+    const SCALE = 0.5;
+
+    // Кэш загруженных изображений
+    const imageCache = new Map();
+    let isLoading = false;
+
+    // DOM элементы
+    let canvas, ctx, previewImage, brickName, baseColor, coating, relief, brickGallery;
+
+    // Инициализация приложения
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeElements();
+        preloadImages();
+        renderBrickGallery();
+        setupEventListeners();
+        updatePreview();
+        updateHouseComposition();
+    });
+
+    function initializeElements() {
+        canvas = document.getElementById('houseCanvas');
+        ctx = canvas.getContext('2d');
+        previewImage = document.getElementById('previewImage');
+        brickName = document.getElementById('brickName');
+        baseColor = document.getElementById('baseColor');
+        coating = document.getElementById('coating');
+        relief = document.getElementById('relief');
+        brickGallery = document.getElementById('brickGallery');
+    }
+
+    // Предзагрузка изображений
+    async function preloadImages() {
+        const loadPromises = [];
+
+        bricks.forEach(brick => {
+            Object.values(brick.images).forEach(imagePath => {
+                if (!imageCache.has(imagePath)) {
+                    const promise = loadImage(imagePath);
+                    loadPromises.push(promise);
+                }
+            });
+        });
+
+        try {
+            await Promise.all(loadPromises);
+            console.log('Все изображения предзагружены');
+        } catch (error) {
+            console.error('Ошибка при предзагрузке изображений:', error);
+        }
+    }
+
+    function loadImage(src) {
+        return new Promise((resolve, reject) => {
+            if (imageCache.has(src)) {
+                resolve(imageCache.get(src));
+                return;
+            }
+
+            const img = new Image();
+            img.onload = () => {
+                imageCache.set(src, img);
+                resolve(img);
+            };
+            img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
+            img.src = src;
+        });
+    }
+
+    // Отрисовка галереи кирпичей
+    function renderBrickGallery() {
+        brickGallery.innerHTML = '';
+
+        bricks.forEach(brick => {
+            const brickItem = document.createElement('div');
+            brickItem.className = 'brick-item';
+            brickItem.dataset.brickId = brick.id;
+
+            const img = document.createElement('img');
+            img.src = brick.images.brick;
+            img.alt = brick.displayName;
+            img.onload = () => {
+                img.style.opacity = '1';
+            };
+
+            brickItem.appendChild(img);
+            brickGallery.appendChild(brickItem);
+        });
+
+        updateGallerySelection();
+    }
+
+    // Настройка обработчиков событий
+    function setupEventListeners() {
+        // Обработчики табов
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                const tabName = e.target.dataset.tab;
+                switchTab(tabName);
+            });
+        });
+
+        // Обработчики галереи кирпичей
+        brickGallery.addEventListener('click', (e) => {
+            const brickItem = e.target.closest('.brick-item');
+            if (brickItem) {
+                const brickId = brickItem.dataset.brickId;
+                selectBrick(brickId);
+            }
+        });
+    }
+
+    // Переключение активного таба
+    function switchTab(tabName) {
+        appState.activeTab = tabName;
+        updateTabsUI();
+        updatePreview();
+        updateGallerySelection();
+    }
+
+    function updateTabsUI() {
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.dataset.tab === appState.activeTab) {
+                tab.classList.add('active');
+            }
+        });
+    }
+
+    // Выбор кирпича для активной зоны
+    function selectBrick(brickId) {
+        appState.selectedBricks[appState.activeTab] = brickId;
+        updateHouseComposition();
+        updatePreview();
+        updateGallerySelection();
+    }
+
+    function updateGallerySelection() {
+        const selectedBrickId = appState.selectedBricks[appState.activeTab];
+
+        document.querySelectorAll('.brick-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.dataset.brickId === selectedBrickId) {
+                item.classList.add('active');
+            }
+        });
+    }
+
+    // Обновление превью и характеристик
+    function updatePreview() {
+        const selectedBrickId = appState.selectedBricks[appState.activeTab];
+        const brick = bricks.find(b => b.id === selectedBrickId);
+
+        if (brick) {
+            // Показать индикатор загрузки
+            document.getElementById('previewLoading').style.display = 'block';
+            previewImage.style.opacity = '0';
+
+            // Обновить превью изображения
+            loadImage(brick.images.preview).then(img => {
+                previewImage.src = brick.images.preview;
+                previewImage.style.opacity = '1';
+                document.getElementById('previewLoading').style.display = 'none';
+            }).catch(error => {
+                console.error('Ошибка загрузки превью:', error);
+                document.getElementById('previewLoading').style.display = 'none';
+            });
+
+            // Обновить характеристики
+            brickName.textContent = brick.name;
+            baseColor.textContent = brick.characteristics.baseColor;
+            coating.textContent = brick.characteristics.coating;
+            relief.textContent = brick.characteristics.relief;
+        }
+    }
+
+    // Обновление композитного изображения дома
+    async function updateHouseComposition() {
+        if (isLoading) return;
+        isLoading = true;
+
+        document.getElementById('canvasLoading').style.display = 'block';
+
+        try {
+            // Очистка канваса
+            ctx.clearRect(0, 0, 672, 864);
+
+            // Наложение слоев в правильном порядке (снизу вверх) с масштабированием:
+            await drawLayer('fence', 0, Math.floor(1378 * SCALE)); // Забор (нижний слой)
+            await drawLayer('basement', 0, Math.floor(1164 * SCALE)); // Цоколь (средний слой)
+            await drawLayer('facade', 0, 0); // Фасад (верхний слой)
+
+            document.getElementById('canvasLoading').style.display = 'none';
+        } catch (error) {
+            console.error('Ошибка при обновлении композиции дома:', error);
+            document.getElementById('canvasLoading').style.display = 'none';
+        }
+
+        isLoading = false;
+    }
+
+    async function drawLayer(layerType, x, y) {
+        const selectedBrickId = appState.selectedBricks[layerType];
+        const brick = bricks.find(b => b.id === selectedBrickId);
+
+        if (brick) {
+            try {
+                const img = await loadImage(brick.images[layerType]);
+                // Рисуем изображение с масштабированием
+                ctx.drawImage(img, x, y, img.width * SCALE, img.height * SCALE);
+            } catch (error) {
+                console.error(`Ошибка при отрисовке слоя ${layerType}:`, error);
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
