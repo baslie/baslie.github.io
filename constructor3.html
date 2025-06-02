@@ -278,11 +278,51 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
+    }
+
+    .uc-brick-item img.uc-loaded {
+        opacity: 1;
+    }
+
+    .uc-brick-item img.uc-loading {
+        opacity: 0.5;
     }
 
     .uc-brick-item:hover img {
         transform: scale(1.05);
+    }
+
+    /* Плейсхолдер для незагруженных изображений */
+    .uc-brick-item::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        border: 2px solid #ddd;
+        border-top: 2px solid #555555;
+        border-radius: 50%;
+        animation: uc-spin 1s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .uc-brick-item.uc-lazy-loading::before {
+        opacity: 1;
+    }
+
+    @keyframes uc-spin {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
     }
 
     .uc-loading {
@@ -488,7 +528,7 @@
         }
 
         /**
-         * Предзагрузка изображений с прогрессом
+         * Предзагрузка изображений с прогрессом (исключаем кирпичи)
          */
         async preloadImagesWithProgress() {
             const imagePaths = this.collectImagePaths();
@@ -518,12 +558,15 @@
         }
 
         /**
-         * Сбор всех путей к изображениям
+         * Сбор путей изображений для предзагрузки (исключаем кирпичи из галереи)
          */
         collectImagePaths() {
             const imagePaths = [];
             this.bricks.forEach(brick => {
-                Object.values(brick.images).forEach(imagePath => {
+                // Предзагружаем только preview, facade, basement, fence
+                // Кирпичи загружаем lazy
+                ['preview', 'facade', 'basement', 'fence'].forEach(imageType => {
+                    const imagePath = brick.images[imageType];
                     if (!this.imageCache.has(imagePath)) {
                         imagePaths.push(imagePath);
                     }
@@ -582,26 +625,105 @@
         }
 
         /**
-         * Отрисовка галереи кирпичей
+         * Отрисовка галереи кирпичей с lazy loading
          */
         renderBrickGallery() {
             this.elements.brickGallery.innerHTML = '';
 
             this.bricks.forEach(brick => {
                 const brickItem = document.createElement('div');
-                brickItem.className = 'uc-brick-item';
+                brickItem.className = 'uc-brick-item uc-lazy-loading';
                 brickItem.dataset.brickId = brick.id;
 
                 const img = document.createElement('img');
-                img.src = brick.images.brick;
+                // Используем data-src для lazy loading вместо src
+                img.dataset.src = brick.images.brick;
                 img.alt = brick.displayName;
-                img.onload = () => img.style.opacity = '1';
+                img.className = 'uc-lazy-image';
+
+                // Добавляем пустой src (прозрачный пиксель)
+                img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmOGY4ZjgiLz48L3N2Zz4=';
 
                 brickItem.appendChild(img);
                 this.elements.brickGallery.appendChild(brickItem);
             });
 
+            // Инициализируем lazy loading для галереи
+            this.initializeBrickGalleryLazyLoading();
             this.updateGallerySelection();
+        }
+
+        /**
+         * Инициализация lazy loading для галереи кирпичей
+         */
+        initializeBrickGalleryLazyLoading() {
+            // Проверяем поддержку Intersection Observer
+            if (!('IntersectionObserver' in window)) {
+                // Fallback для старых браузеров - загружаем все изображения сразу
+                const lazyImages = this.elements.brickGallery.querySelectorAll('.uc-lazy-image');
+                lazyImages.forEach(img => {
+                    const brickItem = img.closest('.uc-brick-item');
+                    this.loadBrickImage(img, brickItem);
+                });
+                return;
+            }
+
+            // Создаем Intersection Observer для галереи кирпичей
+            const galleryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const brickItem = img.closest('.uc-brick-item');
+
+                        this.loadBrickImage(img, brickItem);
+                        galleryObserver.unobserve(img);
+                    }
+                });
+            }, {
+                root: this.elements.brickGallery, // Наблюдаем относительно галереи
+                rootMargin: '50px', // Загружаем за 50px до появления
+                threshold: 0.1
+            });
+
+            // Начинаем наблюдение за всеми lazy изображениями в галерее
+            const lazyImages = this.elements.brickGallery.querySelectorAll('.uc-lazy-image');
+            lazyImages.forEach(img => galleryObserver.observe(img));
+        }
+
+        /**
+         * Загрузка изображения кирпича с анимацией
+         */
+        async loadBrickImage(img, brickItem) {
+            const imageSrc = img.dataset.src;
+
+            if (!imageSrc) return;
+
+            try {
+                // Загружаем изображение через существующий метод с кэшированием
+                await this.loadImage(imageSrc);
+
+                // Устанавливаем изображение
+                img.src = imageSrc;
+                img.classList.add('uc-loading');
+
+                // Обработчик успешной загрузки
+                img.onload = () => {
+                    img.classList.remove('uc-loading');
+                    img.classList.add('uc-loaded');
+                    brickItem.classList.remove('uc-lazy-loading');
+                };
+
+                // Обработчик ошибки загрузки
+                img.onerror = () => {
+                    img.classList.remove('uc-loading');
+                    brickItem.classList.remove('uc-lazy-loading');
+                    console.error(`Ошибка загрузки изображения кирпича: ${imageSrc}`);
+                };
+
+            } catch (error) {
+                brickItem.classList.remove('uc-lazy-loading');
+                console.error('Ошибка при загрузке изображения кирпича:', error);
+            }
         }
 
         /**
