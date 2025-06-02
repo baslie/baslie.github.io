@@ -23,14 +23,10 @@
 
     /* Constructor styles - скрыт во время загрузки */
     .uc-constructor {
-        display: none;
+        display: block;
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
-    }
-
-    .uc-constructor.uc-loaded {
-        display: block;
     }
 
     .uc-top-section {
@@ -440,24 +436,6 @@
             };
 
             this.elements.ctx = this.elements.canvas.getContext('2d');
-        }
-
-        /**
-         * Сбор путей изображений для предзагрузки (исключаем кирпичи из галереи)
-         */
-        collectImagePaths() {
-            const imagePaths = [];
-            this.bricks.forEach(brick => {
-                // Предзагружаем только preview, facade, basement, fence
-                // Кирпичи загружаем lazy
-                ['preview', 'facade', 'basement', 'fence'].forEach(imageType => {
-                    const imagePath = brick.images[imageType];
-                    if (!this.imageCache.has(imagePath)) {
-                        imagePaths.push(imagePath);
-                    }
-                });
-            });
-            return imagePaths;
         }
 
         /**
