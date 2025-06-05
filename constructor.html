@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор облицовочных материалов</title>
+    <!-- Подключение CSS библиотеки SimpleLightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css" integrity="sha512-FaAQujRxLMvw+BkmGN3w7u9EdQQr1t0vQoY8KDh09+6SFaWSTe+KrT8oCWg25X91hytm5c5BTmiSGQejkraaZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    /* CSS-переменные */
+    :root {
+        /* Основные цвета интерфейса */
+        --uc-primary-color: #555555;
+        --uc-text-color: #333;
+        --uc-text-secondary: #666;
+        --uc-text-light: #555;
+        --uc-background-white: white;
+        --uc-background-light: #f8f8f8;
+        --uc-background-gray: #f9f9f9;
+        --uc-background-tabs: #f0f0f0;
+        --uc-border-color: #eee;
+        --uc-border-light: #ddd;
+        --uc-active-background: rgba(0, 123, 255, 0.1);
+
+        /* Размеры и отступы */
+        --uc-container-max-width: 1200px;
+        --uc-container-padding: 20px;
+        --uc-section-gap: 20px;
+        --uc-column-width: 350px;
+        --uc-column-padding: 25px;
+        --uc-info-padding: 20px;
+        --uc-tab-padding-vertical: 15px;
+        --uc-tab-padding-horizontal: 20px;
+        --uc-gallery-gap: 15px;
+        --uc-gallery-padding: 10px;
+
+        /* Высоты элементов */
+        --uc-preview-height: 180px;
+        --uc-canvas-max-height: 400px;
+        --uc-brick-item-width: 70px;
+        --uc-brick-item-height: 50px;
+
+        /* Радиусы скругления */
+        --uc-border-radius-large: 12px;
+        --uc-border-radius-medium: 8px;
+        --uc-border-radius-small: 6px;
+        --uc-border-radius-round: 50%;
+        --uc-border-radius-tabs: 8px;
+        --uc-border-radius-lightbox: 20px;
+
+        /* Тени и эффекты */
+        --uc-shadow-main: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --uc-shadow-canvas: 0 2px 10px rgba(0, 0, 0, 0.1);
+        --uc-shadow-tab: 0 2px 8px rgba(100, 100, 100, 0.3);
+        --uc-shadow-hover: 0 6px 20px rgba(100, 100, 100, 0.3);
+        --uc-shadow-active: 0 4px 15px rgba(100, 100, 100, 0.3);
+        --uc-shadow-lightbox: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+        /* Переходы и анимации */
+        --uc-transition-fast: 0.2s ease;
+        --uc-transition-normal: 0.3s ease;
+        --uc-animation-spin: 1s linear infinite;
+        --uc-lightbox-animation: 0.3s ease;
+        --uc-lightbox-speed: 250ms;
+
+        /* Размеры шрифтов */
+        --uc-font-size-base: 14px;
+        --uc-font-size-small: 12px;
+        --uc-font-size-tab: 16px;
+        --uc-font-size-title: 24px;
+        --uc-font-size-mobile-title: 20px;
+        --uc-font-size-mobile-tab: 14px;
+        --uc-font-size-lightbox-caption: 16px;
+        --uc-font-size-lightbox-counter: 14px;
+        --uc-font-size-lightbox-close: 32px;
+
+        /* Дополнительные переменные для главных табов */
+        --uc-main-tab-font-size: 18px;
+        --uc-main-tab-padding: 20px 30px;
+        --uc-main-tab-margin: 0 0 30px 0;
+
+        /* Веса шрифтов */
+        --uc-font-weight-normal: 500;
+        --uc-font-weight-medium: 600;
+        --uc-font-weight-bold: 700;
+        --uc-font-weight-light: 300;
+
+        /* Границы и обводки */
+        --uc-border-width-thin: 1px;
+        --uc-border-width-medium: 2px;
+        --uc-border-width-thick: 3px;
+        --uc-border-style: solid;
+
+        /* Прозрачность и overlays */
+        --uc-overlay-opacity: 0.9;
+        --uc-overlay-blur: 3px;
+        --uc-loading-background: rgba(255, 255, 255, 0.9);
+        --uc-lightbox-overlay: rgba(0, 0, 0, 0.9);
+        --uc-lightbox-button-bg: rgba(0, 0, 0, 0.3);
+        --uc-lightbox-button-bg-hover: rgba(0, 0, 0, 0.6);
+        --uc-lightbox-caption-bg: rgba(0, 0, 0, 0.6);
+        --uc-lightbox-counter-bg: rgba(0, 0, 0, 0.4);
+        --uc-lightbox-button-border: rgba(255, 255, 255, 0.2);
+        --uc-lightbox-button-border-hover: rgba(255, 255, 255, 0.4);
+
+        /* Интерактивные элементы */
+        --uc-loader-size: 24px;
+        --uc-lightbox-button-size: 44px;
+        --uc-hover-scale: 1.02;
+        --uc-hover-scale-small: 1.05;
+        --uc-hover-scale-large: 1.1;
+        --uc-active-scale: 0.95;
+        --uc-hover-transform: translateY(-3px);
+
+        /* Z-индексы для слоев */
+        --uc-z-index-loading: 10;
+        --uc-z-index-lightbox: 1000;
+
+        /* Брейкпоинты для адаптивности */
+        --uc-breakpoint-tablet: 1024px;
+        --uc-breakpoint-mobile: 768px;
+        --uc-breakpoint-small: 480px;
+    }
+
+    /* Базовые стили */
+    .uc-constructor,
+    .uc-constructor * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .uc-constructor {
+        font-family: 'Arial', sans-serif;
+        color: var(--uc-text-color);
+        display: block;
+        max-width: var(--uc-container-max-width);
+        margin: 0 auto;
+        padding: var(--uc-container-padding);
+    }
+
+    /* НОВЫЙ СТИЛЬ: Главные табы переключения режимов */
+    .uc-main-tabs {
+        display: flex;
+        gap: 0;
+        margin: var(--uc-main-tab-margin);
+        background: var(--uc-background-tabs);
+        border-radius: var(--uc-border-radius-tabs);
+        padding: 4px;
+        box-shadow: var(--uc-shadow-main);
+    }
+
+    .uc-main-tab {
+        flex: 1;
+        padding: var(--uc-main-tab-padding);
+        background: transparent;
+        border: none;
+        border-radius: var(--uc-border-radius-small);
+        font-size: var(--uc-main-tab-font-size);
+        font-weight: var(--uc-font-weight-bold);
+        color: var(--uc-text-secondary);
+        cursor: pointer;
+        transition: all var(--uc-transition-normal);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .uc-main-tab:hover {
+        background: rgba(100, 100, 100, 0.1);
+        color: var(--uc-primary-color);
+    }
+
+    .uc-main-tab.uc-active {
+        background: var(--uc-primary-color);
+        color: var(--uc-background-white);
+        box-shadow: var(--uc-shadow-tab);
+    }
+
+    /* НОВЫЙ СТИЛЬ: Контейнеры для каждого конструктора */
+    .uc-mode-container {
+        display: none;
+    }
+
+    .uc-mode-container.uc-active {
+        display: block;
+    }
+
+    .uc-top-section {
+        display: flex;
+        gap: var(--uc-section-gap);
+        margin-bottom: var(--uc-section-gap);
+    }
+
+    .uc-left-column {
+        flex: 0 0 var(--uc-column-width);
+        background: var(--uc-background-white);
+        border-radius: var(--uc-border-radius-large);
+        padding: var(--uc-column-padding);
+        box-shadow: var(--uc-shadow-main);
+    }
+
+    .uc-brick-preview {
+        position: relative;
+        width: 100%;
+        height: var(--uc-preview-height);
+        border-radius: var(--uc-border-radius-medium);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--uc-column-padding);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform var(--uc-transition-fast);
+    }
+
+    .uc-brick-preview:hover {
+        transform: scale(var(--uc-hover-scale));
+    }
+
+    .uc-brick-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: var(--uc-border-radius-medium);
+        transition: opacity var(--uc-transition-normal);
+    }
+
+    .uc-brick-info {
+        background: var(--uc-background-gray);
+        padding: var(--uc-info-padding);
+        border-radius: var(--uc-border-radius-medium);
+    }
+
+    .uc-brick-info p {
+        margin-bottom: var(--uc-gallery-padding);
+        font-size: var(--uc-font-size-base);
+        line-height: 1.5;
+    }
+
+    .uc-brick-info strong {
+        color: var(--uc-text-light);
+        font-weight: var(--uc-font-weight-medium);
+    }
+
+    .uc-brick-info span {
+        font-weight: var(--uc-font-weight-normal);
+    }
+
+    .uc-right-column {
+        flex: 1;
+        background: var(--uc-background-white);
+        border-radius: var(--uc-border-radius-large);
+        padding: var(--uc-column-padding);
+        box-shadow: var(--uc-shadow-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .uc-house-canvas,
+    .uc-interior-canvas {
+        max-width: 100%;
+        max-height: var(--uc-canvas-max-height);
+        object-fit: contain;
+        border: var(--uc-border-width-thin) var(--uc-border-style) var(--uc-border-color);
+        border-radius: var(--uc-border-radius-medium);
+        box-shadow: var(--uc-shadow-canvas);
+        cursor: pointer;
+        transition: transform var(--uc-transition-fast);
+    }
+
+    .uc-house-canvas:hover,
+    .uc-interior-canvas:hover {
+        transform: scale(var(--uc-hover-scale));
+    }
+
+    .uc-bottom-section {
+        background: var(--uc-background-white);
+        border-radius: var(--uc-border-radius-large);
+        padding: calc(var(--uc-column-padding) + 5px);
+        box-shadow: var(--uc-shadow-main);
+    }
+
+    .uc-tabs {
+        display: flex;
+        gap: 0;
+        margin-bottom: calc(var(--uc-column-padding) + 5px);
+        background: var(--uc-background-tabs);
+        border-radius: var(--uc-border-radius-tabs);
+        padding: 4px;
+    }
+
+    .uc-tab {
+        flex: 1;
+        padding: var(--uc-tab-padding-vertical) var(--uc-tab-padding-horizontal);
+        background: transparent;
+        border: none;
+        border-radius: var(--uc-border-radius-small);
+        font-size: var(--uc-font-size-tab);
+        font-weight: var(--uc-font-weight-medium);
+        color: var(--uc-text-secondary);
+        cursor: pointer;
+        transition: all var(--uc-transition-normal);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .uc-tab:hover {
+        background: rgba(100, 100, 100, 0.1);
+        color: var(--uc-primary-color);
+    }
+
+    .uc-tab.uc-active {
+        background: var(--uc-primary-color);
+        color: var(--uc-background-white);
+        box-shadow: var(--uc-shadow-tab);
+    }
+
+    .uc-section-title {
+        text-align: center;
+        font-size: var(--uc-font-size-title);
+        color: var(--uc-text-color);
+        margin-bottom: calc(var(--uc-column-padding) + 5px);
+        font-weight: var(--uc-font-weight-bold);
+        letter-spacing: 1px;
+    }
+
+    .uc-brick-gallery {
+        display: flex;
+        justify-content: center;
+        gap: var(--uc-gallery-gap);
+        overflow-x: auto;
+        padding: var(--uc-gallery-padding) 0;
+        scrollbar-width: thin;
+        scrollbar-color: var(--uc-primary-color) var(--uc-background-tabs);
+    }
+
+    .uc-brick-gallery::-webkit-scrollbar {
+        height: var(--uc-border-radius-medium);
+    }
+
+    .uc-brick-gallery::-webkit-scrollbar-track {
+        background: var(--uc-background-tabs);
+        border-radius: 4px;
+    }
+
+    .uc-brick-gallery::-webkit-scrollbar-thumb {
+        background: var(--uc-primary-color);
+        border-radius: 4px;
+    }
+
+    .uc-brick-item {
+        flex: 0 0 var(--uc-brick-item-width);
+        height: var(--uc-brick-item-height);
+        border: var(--uc-border-width-thick) var(--uc-border-style) transparent;
+        border-radius: var(--uc-border-radius-medium);
+        cursor: pointer;
+        transition: all var(--uc-transition-normal);
+        background: var(--uc-background-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .uc-brick-item:hover {
+        border-color: var(--uc-primary-color);
+        transform: var(--uc-hover-transform);
+        box-shadow: var(--uc-shadow-hover);
+    }
+
+    .uc-brick-item.uc-active {
+        border-color: var(--uc-primary-color);
+        background: var(--uc-active-background);
+        box-shadow: var(--uc-shadow-active);
+    }
+
+    .uc-brick-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--uc-transition-normal), opacity var(--uc-transition-normal);
+        opacity: 0;
+    }
+
+    .uc-brick-item img.uc-loaded {
+        opacity: 1;
+    }
+
+    .uc-brick-item img.uc-loading {
+        opacity: 0.5;
+    }
+
+    .uc-brick-item:hover img {
+        transform: scale(var(--uc-hover-scale-small));
+    }
+
+    .uc-brick-item::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: var(--uc-loader-size);
+        height: var(--uc-loader-size);
+        border: var(--uc-border-width-medium) var(--uc-border-style) var(--uc-border-light);
+        border-top: var(--uc-border-width-medium) var(--uc-border-style) var(--uc-primary-color);
+        border-radius: var(--uc-border-radius-round);
+        animation: uc-spin var(--uc-animation-spin);
+        opacity: 0;
+        transition: opacity var(--uc-transition-normal);
+    }
+
+    .uc-brick-item.uc-lazy-loading::before {
+        opacity: 1;
+    }
+
+    @keyframes uc-spin {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+    @keyframes slFadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .uc-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--uc-text-secondary);
+        font-size: var(--uc-font-size-base);
+        background: var(--uc-loading-background);
+        padding: var(--uc-gallery-padding) var(--uc-gallery-gap);
+        border-radius: 4px;
+        z-index: var(--uc-z-index-loading);
+    }
+
+    /* Стили для SimpleLightbox */
+    .sl-overlay {
+        background: var(--uc-lightbox-overlay) !important;
+        backdrop-filter: blur(var(--uc-overlay-blur));
+    }
+
+    .sl-close {
+        color: var(--uc-background-white) !important;
+        font-size: var(--uc-font-size-lightbox-close) !important;
+        font-weight: var(--uc-font-weight-light) !important;
+        line-height: 1 !important;
+        text-shadow: 0 var(--uc-border-width-medium) 4px rgba(0, 0, 0, 0.5) !important;
+        background: var(--uc-lightbox-button-bg) !important;
+        border-radius: var(--uc-border-radius-round) !important;
+        width: var(--uc-lightbox-button-size) !important;
+        height: var(--uc-lightbox-button-size) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: all var(--uc-transition-normal) !important;
+        border: var(--uc-border-width-medium) var(--uc-border-style) var(--uc-lightbox-button-border) !important;
+    }
+
+    .sl-close:hover {
+        background: var(--uc-lightbox-button-bg-hover) !important;
+        border-color: var(--uc-lightbox-button-border-hover) !important;
+        transform: scale(var(--uc-hover-scale-large)) !important;
+        color: var(--uc-background-white) !important;
+    }
+
+    .sl-prev,
+    .sl-next {
+        color: var(--uc-background-white) !important;
+        background: var(--uc-lightbox-button-bg) !important;
+        border-radius: var(--uc-border-radius-round) !important;
+        transition: all var(--uc-transition-normal) !important;
+        border: var(--uc-border-width-medium) var(--uc-border-style) var(--uc-lightbox-button-border) !important;
+    }
+
+    .sl-prev:hover,
+    .sl-next:hover {
+        background: var(--uc-lightbox-button-bg-hover) !important;
+        border-color: var(--uc-lightbox-button-border-hover) !important;
+        color: var(--uc-background-white) !important;
+    }
+
+    .sl-counter {
+        color: var(--uc-background-white) !important;
+        background: var(--uc-lightbox-counter-bg) !important;
+        padding: var(--uc-border-radius-medium) calc(var(--uc-gallery-gap) + 1px) !important;
+        border-radius: var(--uc-border-radius-lightbox) !important;
+        font-size: var(--uc-font-size-lightbox-counter) !important;
+    }
+
+    .sl-caption {
+        color: var(--uc-background-white) !important;
+        background: var(--uc-lightbox-caption-bg) !important;
+        padding: var(--uc-tab-padding-vertical) var(--uc-tab-padding-horizontal) !important;
+        border-radius: var(--uc-border-radius-medium) !important;
+        font-size: var(--uc-font-size-lightbox-caption) !important;
+        text-shadow: 0 var(--uc-border-width-thin) var(--uc-border-width-medium) rgba(0, 0, 0, 0.8) !important;
+        max-width: 80% !important;
+        text-align: center !important;
+    }
+
+    .sl-wrapper {
+        animation: slFadeIn var(--uc-lightbox-animation) !important;
+    }
+
+    .sl-image {
+        border-radius: var(--uc-border-radius-medium) !important;
+        box-shadow: var(--uc-shadow-lightbox) !important;
+    }
+
+    /* Адаптивные стили */
+    @media (max-width: 1024px) {
+        .uc-top-section {
+            flex-direction: column;
+        }
+
+        .uc-left-column {
+            flex: none;
+            max-width: none;
+        }
+
+        .uc-house-canvas,
+        .uc-interior-canvas {
+            max-height: var(--uc-canvas-max-height);
+        }
+    }
+
+    @media (max-width: 768px) {
+        :root {
+            --uc-container-padding: 10px;
+            --uc-column-padding: 20px;
+            --uc-font-size-title: var(--uc-font-size-mobile-title);
+            --uc-font-size-tab: var(--uc-font-size-mobile-tab);
+            --uc-main-tab-font-size: 16px;
+            --uc-main-tab-padding: 15px 20px;
+            --uc-canvas-max-height: 300px;
+            --uc-brick-item-width: 80px;
+            --uc-brick-item-height: 80px;
+        }
+
+        .uc-constructor {
+            padding: var(--uc-container-padding);
+        }
+
+        .uc-left-column,
+        .uc-right-column,
+        .uc-bottom-section {
+            padding: var(--uc-column-padding);
+        }
+
+        .uc-main-tabs {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .uc-tabs {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .uc-tab {
+            padding: 12px;
+            font-size: var(--uc-font-size-tab);
+        }
+
+        .uc-section-title {
+            font-size: var(--uc-font-size-title);
+        }
+
+        .uc-brick-item {
+            flex: 0 0 var(--uc-brick-item-width);
+            height: var(--uc-brick-item-height);
+        }
+
+        .uc-house-canvas,
+        .uc-interior-canvas {
+            max-height: var(--uc-canvas-max-height);
+        }
+    }
+
+    @media (max-width: 480px) {
+        :root {
+            --uc-gallery-gap: 10px;
+            --uc-font-size-base: var(--uc-font-size-small);
+        }
+
+        .uc-brick-gallery {
+            gap: var(--uc-gallery-gap);
+        }
+
+        .uc-brick-item {
+            flex: 0 0 var(--uc-brick-item-width);
+            height: var(--uc-brick-item-height);
+        }
+
+        .uc-brick-info p {
+            font-size: var(--uc-font-size-base);
+        }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        .uc-brick-item:hover {
+            transform: none;
+        }
+
+        .uc-brick-item:active {
+            transform: scale(var(--uc-active-scale));
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Основной компонент объединенного конструктора -->
+    <div class="uc-constructor">
+        <!-- Главные табы для переключения режимов -->
+        <div class="uc-main-tabs">
+            <button class="uc-main-tab uc-active" data-mode="house">ДОМ</button>
+            <button class="uc-main-tab" data-mode="interior">ИНТЕРЬЕР</button>
+        </div>
+        <!-- Контейнер для конструктора дома -->
+        <div class="uc-mode-container uc-active" id="uc-house-mode">
+            <div class="uc-top-section">
+                <div class="uc-left-column">
+                    <div class="uc-brick-preview" id="uc-house-brick-preview-container">
+                        <img id="uc-house-preview-image" src="" alt="Превью кирпича">
+                        <div class="uc-loading" id="uc-house-preview-loading">Загрузка...</div>
+                    </div>
+                    <div class="uc-brick-info">
+                        <p><strong>Название:</strong> <span id="uc-house-brick-name"></span></p>
+                        <p><strong>Базовый цвет:</strong> <span id="uc-house-base-color"></span></p>
+                        <p><strong>Напыление:</strong> <span id="uc-house-coating"></span></p>
+                        <p><strong>Рельеф:</strong> <span id="uc-house-relief"></span></p>
+                    </div>
+                </div>
+                <div class="uc-right-column">
+                    <canvas id="uc-house-canvas" class="uc-house-canvas" width="672" height="864"></canvas>
+                    <div class="uc-loading" id="uc-house-canvas-loading">Загрузка...</div>
+                </div>
+            </div>
+            <div class="uc-bottom-section">
+                <div class="uc-tabs">
+                    <button class="uc-tab uc-active" data-tab="facade">ФАСАД</button>
+                    <button class="uc-tab" data-tab="basement">ЦОКОЛЬ</button>
+                    <button class="uc-tab" data-tab="fence">ЗАБОР</button>
+                </div>
+                <h2 class="uc-section-title">ВЫБЕРИ СВОЕ СОЧЕТАНИЕ</h2>
+                <div class="uc-brick-gallery" id="uc-house-brick-gallery">
+                    <!-- Миниатюры кирпичей будут добавлены динамически -->
+                </div>
+            </div>
+        </div>
+        <!-- Контейнер для конструктора интерьера -->
+        <div class="uc-mode-container" id="uc-interior-mode">
+            <div class="uc-top-section">
+                <div class="uc-left-column">
+                    <div class="uc-brick-preview" id="uc-interior-brick-preview-container">
+                        <img id="uc-interior-preview-image" src="" alt="Превью кирпича">
+                        <div class="uc-loading" id="uc-interior-preview-loading">Загрузка...</div>
+                    </div>
+                    <div class="uc-brick-info">
+                        <p><strong>Название:</strong> <span id="uc-interior-brick-name"></span></p>
+                        <p><strong>Базовый цвет:</strong> <span id="uc-interior-base-color"></span></p>
+                        <p><strong>Напыление:</strong> <span id="uc-interior-coating"></span></p>
+                        <p><strong>Рельеф:</strong> <span id="uc-interior-relief"></span></p>
+                    </div>
+                </div>
+                <div class="uc-right-column">
+                    <canvas id="uc-interior-canvas" class="uc-interior-canvas" width="576" height="864"></canvas>
+                    <div class="uc-loading" id="uc-interior-canvas-loading">Загрузка...</div>
+                </div>
+            </div>
+            <div class="uc-bottom-section">
+                <h2 class="uc-section-title">ВЫБЕРИ КИРПИЧ ДЛЯ ИНТЕРЬЕРА</h2>
+                <div class="uc-brick-gallery" id="uc-interior-brick-gallery">
+                    <!-- Миниатюры кирпичей будут добавлены динамически -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Подключение JavaScript библиотеки SimpleLightbox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js" integrity="sha512-/4kQE5RJQYHRhUiK+CZS8UhaJTnLmQkDuf8lOhiP2xLdjthA/rm0VqqWjcyelIx+NDyNHFmtqvuIgOFQnI34WA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    /**
+     * Главный класс объединенного конструктора
+     * Управляет переключением между режимами «Дом» и «Интерьер»
+     */
+    class UnifiedConstructor {
+        constructor() {
+            this.currentMode = 'house';
+            this.houseConstructor = null;
+            this.interiorConstructor = null;
+
+            this.init();
+        }
+
+        init() {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.setupMainTabs();
+                this.initializeConstructors();
+            });
+        }
+
+        setupMainTabs() {
+            const mainTabs = document.querySelectorAll('.uc-main-tab');
+
+            mainTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    const mode = e.target.dataset.mode;
+                    this.switchMode(mode);
+                });
+            });
+        }
+
+        switchMode(mode) {
+            if (this.currentMode === mode) return;
+
+            // Обновление активного таба
+            document.querySelectorAll('.uc-main-tab').forEach(tab => {
+                tab.classList.remove('uc-active');
+                if (tab.dataset.mode === mode) {
+                    tab.classList.add('uc-active');
+                }
+            });
+
+            // Переключение контейнеров
+            document.querySelectorAll('.uc-mode-container').forEach(container => {
+                container.classList.remove('uc-active');
+            });
+
+            const targetContainer = document.getElementById(`uc-${mode}-mode`);
+            if (targetContainer) {
+                targetContainer.classList.add('uc-active');
+            }
+
+            this.currentMode = mode;
+        }
+
+        initializeConstructors() {
+            // Инициализация конструктора дома
+            this.houseConstructor = new UcHouseConstructor();
+
+            // Инициализация конструктора интерьера  
+            this.interiorConstructor = new UcInteriorConstructor();
+        }
+    }
+
+    /**
+     * Модифицированный класс конструктора дома для работы в составе объединенного
+     */
+    class UcHouseConstructor {
+        constructor() {
+            // Коэффициент масштабирования для изображений слоев дома
+            this.SCALE = 0.5;
+
+            // Основное состояние приложения
+            this.appState = {
+                activeTab: "facade", // Текущая активная зона (фасад, цоколь, забор)
+                selectedBricks: { // Выбранные кирпичи для каждой зоны
+                    facade: "GS1-T1-2",
+                    basement: "GS1-T1-2",
+                    fence: "GS1-T1-2"
+                }
+            };
+
+            // Кэш загруженных изображений для оптимизации производительности
+            this.imageCache = new Map();
+            // Флаг процесса загрузки для предотвращения множественных запросов
+            this.isLoading = false;
+
+            // Текущий экземпляр lightbox для управления модальными окнами
+            this.currentLightbox = null;
+
+            // Ссылки на DOM элементы
+            this.elements = {};
+
+            // Массив данных всех доступных кирпичей
+            this.bricks = this.getBricksData();
+
+            // Ждем загрузки DOM, затем инициализируем с задержкой для корректной работы
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(() => this.init(), 100);
+                });
+            } else {
+                setTimeout(() => this.init(), 100);
+            }
+        }
+
+        /**
+         * Инициализация всех компонентов приложения
+         * Запускается после загрузки DOM
+         */
+        init() {
+            this.initializeElements(); // Получение ссылок на DOM элементы
+            this.renderBrickGallery(); // Создание галереи миниатюр кирпичей
+            this.setupEventListeners(); // Настройка обработчиков событий
+            this.initializeLightbox(); // Инициализация функциональности зума
+            this.updatePreview(); // Обновление превью выбранного кирпича
+            this.updateHouseComposition(); // Отрисовка композиции дома
+        }
+
+        /**
+         * Получение ссылок на основные DOM элементы интерфейса
+         */
+        initializeElements() {
+            this.elements = {
+                canvas: document.getElementById('uc-house-canvas'),
+                previewImage: document.getElementById('uc-house-preview-image'),
+                previewContainer: document.getElementById('uc-house-brick-preview-container'),
+                brickName: document.getElementById('uc-house-brick-name'),
+                baseColor: document.getElementById('uc-house-base-color'),
+                coating: document.getElementById('uc-house-coating'),
+                relief: document.getElementById('uc-house-relief'),
+                brickGallery: document.getElementById('uc-house-brick-gallery')
+            };
+
+            // Получение контекста для рисования на канвасе
+            if (this.elements.canvas) {
+                this.elements.ctx = this.elements.canvas.getContext('2d');
+            }
+        }
+
+        /**
+         * Настройка SimpleLightbox для функциональности увеличения изображений
+         * Добавляет возможность клика на превью кирпича и канвас дома для увеличения
+         */
+        initializeLightbox() {
+            if (!this.elements.previewContainer) return;
+
+            // Обработчик клика на превью изображение кирпича
+            this.elements.previewContainer.addEventListener('click', () => {
+                const selectedBrickId = this.appState.selectedBricks[this.appState.activeTab];
+                const brick = this.bricks.find(b => b.id === selectedBrickId);
+
+                if (brick && this.elements.previewImage.src) {
+                    this.openImageLightbox(brick.images.preview, `${brick.name} - ${brick.displayName}`);
+                }
+            });
+
+            // Обработчик клика на канвас с композицией дома
+            if (this.elements.canvas) {
+                this.elements.canvas.addEventListener('click', () => {
+                    try {
+                        // Конвертация содержимого канваса в изображение для lightbox
+                        this.elements.canvas.toBlob((blob) => {
+                            if (blob) {
+                                const blobUrl = URL.createObjectURL(blob);
+                                this.openImageLightbox(blobUrl, 'Конструктор дома - текущая композиция', true);
+                            }
+                        }, 'image/png', 1.0);
+                    } catch (error) {
+                        console.warn('Не удалось экспортировать canvas:', error);
+                    }
+                });
+            }
+        }
+
+        /**
+         * Открытие изображения в модальном окне lightbox
+         */
+        openImageLightbox(imageSrc, caption, isBlobUrl = false) {
+            // Создание или получение контейнера для lightbox
+            if (!document.getElementById('uc-house-lightbox-container')) {
+                const lightboxContainer = document.createElement('div');
+                lightboxContainer.id = 'uc-house-lightbox-container';
+                lightboxContainer.style.display = 'none';
+                document.body.appendChild(lightboxContainer);
+            }
+
+            // Подготовка HTML структуры для lightbox
+            const container = document.getElementById('uc-house-lightbox-container');
+            container.innerHTML = `<a href="${imageSrc}" data-caption="${caption}"><img src="${imageSrc}" alt="${caption}"></a>`;
+
+            // Уничтожение предыдущего экземпляра lightbox если существует
+            if (this.currentLightbox) {
+                this.currentLightbox.destroy();
+            }
+
+            // Инициализация нового экземпляра SimpleLightbox с настройками
+            this.currentLightbox = new SimpleLightbox('#uc-house-lightbox-container a', {
+                captionAttribute: 'data-caption',
+                showCounter: false,
+                enableKeyboard: true,
+                disableRightClick: false,
+                disableScroll: true,
+                alertError: false,
+                overlayOpacity: 0.8,
+                animationSlide: true,
+                animationSpeed: 250,
+                preloading: true,
+                lazyLoading: true,
+                onClosed: () => {
+                    // Освобождение blob URL для предотвращения утечек памяти
+                    if (isBlobUrl) {
+                        URL.revokeObjectURL(imageSrc);
+                    }
+                }
+            });
+
+            // Программное открытие lightbox
+            const link = container.querySelector('a');
+            this.currentLightbox.open(link);
+        }
+
+        /**
+         * Загрузка изображения с кэшированием и поддержкой CORS
+         * */
+        loadImage(src) {
+            return new Promise((resolve, reject) => {
+                // Проверка наличия изображения в кэше
+                if (this.imageCache.has(src)) {
+                    resolve(this.imageCache.get(src));
+                    return;
+                }
+
+                const img = new Image();
+                // Настройка CORS для предотвращения проблем с canvas
+                img.crossOrigin = "anonymous";
+
+                img.onload = () => {
+                    // Сохранение загруженного изображения в кэш
+                    this.imageCache.set(src, img);
+                    resolve(img);
+                };
+                img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
+                img.src = src;
+            });
+        }
+
+        /**
+         * Создание галереи миниатюр кирпичей с lazy loading
+         * Динамически создает DOM элементы для каждого кирпича
+         */
+        renderBrickGallery() {
+            if (!this.elements.brickGallery) return;
+
+            this.elements.brickGallery.innerHTML = '';
+
+            this.bricks.forEach(brick => {
+                // Создание контейнера для миниатюры кирпича
+                const brickItem = document.createElement('div');
+                brickItem.className = 'uc-brick-item uc-lazy-loading';
+                brickItem.dataset.brickId = brick.id;
+
+                // Создание изображения с lazy loading
+                const img = document.createElement('img');
+                img.dataset.src = brick.images.brick;
+                img.alt = brick.displayName;
+                img.className = 'uc-lazy-image';
+                // Установка прозрачного плейсхолдера до загрузки реального изображения
+                img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmOGY4ZjgiLz48L3N2Zz4=';
+
+                brickItem.appendChild(img);
+                this.elements.brickGallery.appendChild(brickItem);
+            });
+
+            // Запуск lazy loading и обновление выделения
+            this.initializeBrickGalleryLazyLoading();
+            this.updateGallerySelection();
+        }
+
+        /**
+         * Инициализация ленивой загрузки изображений в галерее кирпичей
+         * Использует Intersection Observer API для оптимизации производительности
+         */
+        initializeBrickGalleryLazyLoading() {
+            if (!this.elements.brickGallery) return;
+
+            // Fallback для браузеров без поддержки Intersection Observer
+            if (!('IntersectionObserver' in window)) {
+                const lazyImages = this.elements.brickGallery.querySelectorAll('.uc-lazy-image');
+                lazyImages.forEach(img => {
+                    const brickItem = img.closest('.uc-brick-item');
+                    this.loadBrickImage(img, brickItem);
+                });
+                return;
+            }
+
+            // Создание наблюдателя для отслеживания видимости изображений
+            const galleryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const brickItem = img.closest('.uc-brick-item');
+                        this.loadBrickImage(img, brickItem);
+                        galleryObserver.unobserve(img); // Прекращение наблюдения после загрузки
+                    }
+                });
+            }, {
+                root: this.elements.brickGallery, // Наблюдение относительно галереи
+                rootMargin: '50px', // Загрузка за 50px до появления в зоне видимости
+                threshold: 0.1
+            });
+
+            // Начало наблюдения за всеми lazy изображениями
+            const lazyImages = this.elements.brickGallery.querySelectorAll('.uc-lazy-image');
+            lazyImages.forEach(img => galleryObserver.observe(img));
+        }
+
+        /**
+         * Загрузка изображения кирпича с анимацией состояний
+         */
+        async loadBrickImage(img, brickItem) {
+            const imageSrc = img.dataset.src;
+            if (!imageSrc) return;
+
+            try {
+                // Предзагрузка изображения через кэш
+                await this.loadImage(imageSrc);
+                img.src = imageSrc;
+                img.classList.add('uc-loading');
+
+                // Обработчик успешной загрузки
+                img.onload = () => {
+                    img.classList.remove('uc-loading');
+                    img.classList.add('uc-loaded');
+                    brickItem.classList.remove('uc-lazy-loading');
+                };
+
+                // Обработчик ошибки загрузки
+                img.onerror = () => {
+                    img.classList.remove('uc-loading');
+                    brickItem.classList.remove('uc-lazy-loading');
+                };
+            } catch (error) {
+                brickItem.classList.remove('uc-lazy-loading');
+            }
+        }
+
+        /**
+         * Настройка всех обработчиков событий интерфейса
+         */
+        setupEventListeners() {
+            // Обработчики переключения табов (фасад, цоколь, забор) только для дома
+            const houseTabs = document.querySelectorAll('#uc-house-mode .uc-tab');
+            houseTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    const tabName = e.target.dataset.tab;
+                    this.switchTab(tabName);
+                });
+            });
+
+            // Обработчик выбора кирпича в галерее
+            if (this.elements.brickGallery) {
+                this.elements.brickGallery.addEventListener('click', (e) => {
+                    const brickItem = e.target.closest('.uc-brick-item');
+                    if (brickItem) {
+                        const brickId = brickItem.dataset.brickId;
+                        this.selectBrick(brickId);
+                    }
+                });
+            }
+        }
+
+        /**
+         * Переключение активного таба (зоны применения кирпича)
+         */
+        switchTab(tabName) {
+            this.appState.activeTab = tabName;
+            this.updateTabsUI(); // Обновление визуального состояния табов
+            this.updatePreview(); // Обновление превью для новой зоны
+            this.updateGallerySelection(); // Обновление выделения в галерее
+        }
+
+        /**
+         * Обновление визуального состояния табов
+         */
+        updateTabsUI() {
+            const houseTabs = document.querySelectorAll('#uc-house-mode .uc-tab');
+            houseTabs.forEach(tab => {
+                tab.classList.remove('uc-active');
+                if (tab.dataset.tab === this.appState.activeTab) {
+                    tab.classList.add('uc-active');
+                }
+            });
+        }
+
+        /**
+         * Выбор кирпича для текущей активной зоны
+         */
+        selectBrick(brickId) {
+            this.appState.selectedBricks[this.appState.activeTab] = brickId;
+            this.updateHouseComposition(); // Перерисовка композиции дома
+            this.updatePreview(); // Обновление превью
+            this.updateGallerySelection(); // Обновление выделения в галерее
+        }
+
+        /**
+         * Обновление визуального выделения выбранного кирпича в галерее
+         */
+        updateGallerySelection() {
+            if (!this.elements.brickGallery) return;
+
+            const selectedBrickId = this.appState.selectedBricks[this.appState.activeTab];
+
+            const brickItems = this.elements.brickGallery.querySelectorAll('.uc-brick-item');
+            brickItems.forEach(item => {
+                item.classList.remove('uc-active');
+                if (item.dataset.brickId === selectedBrickId) {
+                    item.classList.add('uc-active');
+                }
+            });
+        }
+
+        /**
+         * Обновление превью выбранного кирпича и его характеристик
+         */
+        updatePreview() {
+            const selectedBrickId = this.appState.selectedBricks[this.appState.activeTab];
+            const brick = this.bricks.find(b => b.id === selectedBrickId);
+
+            if (brick && this.elements.previewImage) {
+                // Показ индикатора загрузки
+                const loadingElement = document.getElementById('uc-house-preview-loading');
+                if (loadingElement) loadingElement.style.display = 'block';
+                this.elements.previewImage.style.opacity = '0';
+
+                // Загрузка и отображение превью изображения
+                this.loadImage(brick.images.preview).then(() => {
+                    this.elements.previewImage.src = brick.images.preview;
+                    this.elements.previewImage.style.opacity = '1';
+                    if (loadingElement) loadingElement.style.display = 'none';
+                }).catch(error => {
+                    if (loadingElement) loadingElement.style.display = 'none';
+                });
+
+                // Обновление текстовой информации о кирпиче
+                if (this.elements.brickName) this.elements.brickName.textContent = brick.name;
+                if (this.elements.baseColor) this.elements.baseColor.textContent = brick.characteristics.baseColor;
+                if (this.elements.coating) this.elements.coating.textContent = brick.characteristics.coating;
+                if (this.elements.relief) this.elements.relief.textContent = brick.characteristics.relief;
+            }
+        }
+
+        /**
+         * Обновление композитного изображения дома на канвасе
+         * Последовательно накладывает слои кирпичей для каждой зоны
+         */
+        async updateHouseComposition() {
+            if (this.isLoading || !this.elements.ctx) return; // Предотвращение множественных одновременных обновлений
+            this.isLoading = true;
+
+            const loadingElement = document.getElementById('uc-house-canvas-loading');
+            if (loadingElement) loadingElement.style.display = 'block';
+
+            try {
+                // Очистка канваса перед новой отрисовкой
+                this.elements.ctx.clearRect(0, 0, 672, 864);
+
+                // Наложение слоев в правильном порядке (сзади наперед)
+                await this.drawLayer('fence', 0, Math.floor(1377 * this.SCALE)); // Слой забора
+                await this.drawLayer('basement', 0, Math.floor(1164 * this.SCALE)); // Слой цоколя
+                await this.drawLayer('facade', 0, 0); // Слой фасада
+
+                if (loadingElement) loadingElement.style.display = 'none';
+            } catch (error) {
+                if (loadingElement) loadingElement.style.display = 'none';
+            }
+
+            this.isLoading = false;
+        }
+
+        /**
+         * Отрисовка отдельного слоя композиции на канвасе
+         */
+        async drawLayer(layerType, x, y) {
+            const selectedBrickId = this.appState.selectedBricks[layerType];
+            const brick = this.bricks.find(b => b.id === selectedBrickId);
+
+            if (brick) {
+                try {
+                    const img = await this.loadImage(brick.images[layerType]);
+                    // Отрисовка изображения с применением масштабирования
+                    this.elements.ctx.drawImage(img, x, y, img.width * this.SCALE, img.height * this.SCALE);
+                } catch (error) {
+                    // Тихо игнорируем ошибки отрисовки
+                }
+            }
+        }
+
+        /**
+         * Получение данных всех доступных кирпичей
+         * Содержит информацию о характеристиках и URL изображений для каждого кирпича
+         */
+        getBricksData() {
+            return [{
+                    id: "GS1-T1-2",
+                    name: "GS1-T1-2",
+                    displayName: "Красный с косым напылением",
+                    characteristics: {
+                        baseColor: "Красный",
+                        coating: "Черное по диагонали",
+                        relief: "Земля"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3030-6636-4066-b666-333634343266/GS1-T1-2_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3637-6562-4735-b637-396261643261/GS1-T1-2_____-_.png",
+                        facade: "https://static.tildacdn.com/tild3462-3263-4233-b938-356437643637/GS1-T1-2_____-_.png",
+                        basement: "https://static.tildacdn.com/tild3631-6162-4732-b034-366133326638/GS1-T1-2_____-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3536-3164-4062-b864-303531663064/GS1-T1-2_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS1-T5-2",
+                    name: "GS1-T5-2",
+                    displayName: "Красный",
+                    characteristics: {
+                        baseColor: "Красный",
+                        coating: "Черное",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6536-3835-4432-b831-383832646331/GS1-T5-2__-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3331-3630-4139-b139-333934656566/GS1-T5-2__-_.png",
+                        facade: "https://static.tildacdn.com/tild3231-3037-4332-a432-313134383232/GS1-T5-2__-_.png",
+                        basement: "https://static.tildacdn.com/tild3435-6435-4161-b031-633736623733/GS1-T5-2__-_.jpg",
+                        fence: "https://static.tildacdn.com/tild6536-6134-4662-a232-613635346136/GS1-T5-2__-_.jpg"
+                    }
+                },
+                {
+                    id: "GS2",
+                    name: "GS2",
+                    displayName: "Графит",
+                    characteristics: {
+                        baseColor: "Графит",
+                        coating: "-",
+                        relief: "Равнина"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3131-3437-4239-b166-373339323034/GS2__-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3634-3837-4165-a436-353638343465/GS2__-_.png",
+                        facade: "https://static.tildacdn.com/tild3361-3564-4137-a266-326532366134/GS2__-_.png",
+                        basement: "https://static.tildacdn.com/tild3837-6439-4730-b236-376637366462/GS2__-_.jpg",
+                        fence: "https://static.tildacdn.com/tild6462-6431-4639-b962-393461653862/GS2__-_.jpg"
+                    }
+                },
+                {
+                    id: "GS2-GS3.3-T4-2.0",
+                    name: "GS2 GS3.3-T4-2.0",
+                    displayName: "Черный с вулканическими вставками",
+                    characteristics: {
+                        baseColor: "Графит \\ Охра",
+                        coating: "Черное",
+                        relief: "Равнина \\ Лава"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6433-6533-4161-b765-336263383935/GS2_GS33-T4-20_____-.jpg",
+                        brick: "https://static.tildacdn.com/tild3132-3362-4564-b465-396137353564/GS2_GS33-T4-20_____-.png",
+                        facade: "https://static.tildacdn.com/tild6530-3333-4333-a630-383937353961/GS2_GS33-T4-20_____-.png",
+                        basement: "https://static.tildacdn.com/tild6232-3136-4461-b462-623465373664/GS2_GS33-T4-20_____-.jpg",
+                        fence: "https://static.tildacdn.com/tild3532-3136-4536-a264-393163353262/GS2_GS33-T4-20_____-.jpg"
+                    }
+                },
+                {
+                    id: "GS3.1-T3-GS3.3-T3-GS12-T3",
+                    name: "GS3.1-T3 GS3.3-T3 GS12-T3",
+                    displayName: "Солнечный микс",
+                    characteristics: {
+                        baseColor: "Охра \\ Слоновая кость",
+                        coating: "-",
+                        relief: "Дюна"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6665-3930-4630-a634-396537643035/GS31-T3_GS33-T3_GS12.jpg",
+                        brick: "https://static.tildacdn.com/tild6330-3063-4634-b765-653161303231/GS31-T3_GS33-T3_GS12.png",
+                        facade: "https://static.tildacdn.com/tild3764-3933-4134-a165-366436663331/GS31-T3_GS33-T3_GS12.png",
+                        basement: "https://static.tildacdn.com/tild6266-3764-4637-b665-653630656564/GS31-T3_GS33-T3_GS12.jpg",
+                        fence: "https://static.tildacdn.com/tild6662-3937-4232-b238-333133656430/GS31-T3_GS33-T3_GS12.jpg"
+                    }
+                },
+                {
+                    id: "GS4-T3-12",
+                    name: "GS4-T3-12",
+                    displayName: "Коричневый с белым напылением",
+                    characteristics: {
+                        baseColor: "Горький шоколад",
+                        coating: "Белое",
+                        relief: "Дюна"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3661-6263-4530-b738-376137303830/GS4-T3-12_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3364-6161-4664-b732-376366616536/GS4-T3-12_____-_.png",
+                        facade: "https://static.tildacdn.com/tild3264-3133-4734-b630-643530383137/GS4-T3-12_____-_.png",
+                        basement: "https://static.tildacdn.com/tild3966-3338-4730-a435-336531353264/GS4-T3-12_____-_.jpg",
+                        fence: "https://static.tildacdn.com/tild6466-6666-4561-b761-633330303539/GS4-T3-12_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS4-T5",
+                    name: "GS4-T5",
+                    displayName: "Коричневый",
+                    characteristics: {
+                        baseColor: "Горький шоколад",
+                        coating: "-",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3566-6130-4062-a362-306462336165/GS4-T5__-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6339-6261-4235-a439-383734656337/GS4-T5__-_.png",
+                        facade: "https://static.tildacdn.com/tild3561-3030-4238-b238-323637623538/GS4-T5__-_.png",
+                        basement: "https://static.tildacdn.com/tild3562-3931-4365-b063-336164643535/GS4-T5__-_.jpg",
+                        fence: "https://static.tildacdn.com/tild6137-3861-4331-b962-623232363364/GS4-T5__-_.jpg"
+                    }
+                },
+                {
+                    id: "GS12-GS4",
+                    name: "GS12 GS4",
+                    displayName: "Бежево-коричневый микс",
+                    characteristics: {
+                        baseColor: "Слоновая кость \\ Горький шоколад",
+                        coating: "-",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3034-6333-4666-b837-636235383137/GS12_GS4_-_T5_-__-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3963-3865-4536-b735-363262303965/GS12_GS4_-_T5_-__-_.png",
+                        facade: "https://static.tildacdn.com/tild6536-3065-4934-b765-383933663533/GS12_GS4_-_T5_-__-_.png",
+                        basement: "https://static.tildacdn.com/tild6635-3538-4035-b265-373838303833/GS12_GS4_-_T5_-__-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3436-6361-4363-b739-323130303330/GS12_GS4_-_T5_-__-_.jpg"
+                    }
+                },
+                {
+                    id: "GS12-T4-GS12-T5",
+                    name: "GS12-T4 GS12-T5",
+                    displayName: "Слоновая кость",
+                    characteristics: {
+                        baseColor: "Слоновая кость",
+                        coating: "-",
+                        relief: "Каньон \\ Лава"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3639-3034-4130-b364-383237336134/GS12-T4_GS12-T5___-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6235-6361-4434-b938-393962333631/GS12-T4_GS12-T5___-_.png",
+                        facade: "https://static.tildacdn.com/tild6661-3638-4335-b435-396262383261/GS12-T4_GS12-T5___-_.png",
+                        basement: "https://static.tildacdn.com/tild6566-6131-4163-b864-343730336364/GS12-T4_GS12-T5___-_.jpg",
+                        fence: "https://static.tildacdn.com/tild6664-3131-4361-b136-623539663565/GS12-T4_GS12-T5___-_.jpg"
+                    }
+                },
+                {
+                    id: "GS14",
+                    name: "GS14",
+                    displayName: "Белый песок",
+                    characteristics: {
+                        baseColor: "Песок",
+                        coating: "-",
+                        relief: "Равнина"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6365-3630-4932-a364-343263623238/GS14___-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3565-3463-4734-b835-363036663935/GS14___-_.png",
+                        facade: "https://static.tildacdn.com/tild6263-6366-4562-b866-353139633533/GS14___-_.png",
+                        basement: "https://static.tildacdn.com/tild3931-3431-4662-b537-653334626131/GS14___-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3732-3539-4066-a364-333735656434/GS14___-_.jpg"
+                    }
+                },
+                {
+                    id: "GS14-GS1",
+                    name: "GS14 GS1",
+                    displayName: "Красно-бежевый микс",
+                    characteristics: {
+                        baseColor: "Песок \\ Красный",
+                        coating: "-",
+                        relief: "Равнина"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3465-3936-4431-a364-336631336437/GS14_GS1_-__-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3939-3830-4634-a336-306236316235/GS14_GS1_-__-_.png",
+                        facade: "https://static.tildacdn.com/tild6633-3237-4461-a362-663338643166/GS14_GS1_-__-_.png",
+                        basement: "https://static.tildacdn.com/tild3564-3861-4535-a538-303863396539/GS14_GS1_-__-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3865-6233-4865-b334-326539323637/GS14_GS1_-__-_.jpg"
+                    }
+                },
+                {
+                    id: "GS14-T1-2",
+                    name: "GS14-T1-2",
+                    displayName: "Бежевый с серым напылением",
+                    characteristics: {
+                        baseColor: "Песок",
+                        coating: "Черное",
+                        relief: "Земля"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6664-3862-4733-b464-363934313663/GS14-T1-2_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3032-6535-4434-b836-643361326637/GS14-T1-2_____-_.png",
+                        facade: "https://static.tildacdn.com/tild3632-3133-4532-b337-316438306163/GS14-T1-2_____-_.png",
+                        basement: "https://static.tildacdn.com/tild3937-3862-4433-b561-316533323431/GS14-T1-2_____-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3236-6234-4132-a630-303463316466/GS14-T1-2_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS19-T1",
+                    name: "GS19-T1",
+                    displayName: "Охра",
+                    characteristics: {
+                        baseColor: "Охра",
+                        coating: "-",
+                        relief: "Земля"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3038-3066-4330-a131-333935363762/GS19-T1__-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6661-6231-4439-b133-356530626662/GS19-T1__-_.png",
+                        facade: "https://static.tildacdn.com/tild3765-3839-4662-a631-373237663932/GS19-T1__-_.png",
+                        basement: "https://static.tildacdn.com/tild6337-3232-4331-b366-666635616335/GS19-T1__-_.jpg",
+                        fence: "https://static.tildacdn.com/tild6361-3434-4436-a163-303830663963/GS19-T1__-_.jpg"
+                    }
+                },
+                {
+                    id: "GS19-T1-4",
+                    name: "GS19-T1-4",
+                    displayName: "Охра с напылением",
+                    characteristics: {
+                        baseColor: "Охра",
+                        coating: "Коричневое",
+                        relief: "Земля"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3737-6431-4165-a439-306437666561/GS19-T1-4____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6265-6664-4737-b933-656530313465/GS19-T1-4____-_.png",
+                        facade: "https://static.tildacdn.com/tild3730-3234-4232-b563-333730376236/GS19-T1-4____-_.png",
+                        basement: "https://static.tildacdn.com/tild3764-6564-4534-b933-363434623862/GS19-T1-4____-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3839-6432-4365-a436-646339316461/GS19-T1-4____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS41-GS42-GS3.3",
+                    name: "GS41 GS42 GS3.3",
+                    displayName: "Сине-зелено-оранжевый",
+                    characteristics: {
+                        baseColor: "Синий \\ Зеленый \\ Охра",
+                        coating: "-",
+                        relief: "Равнина \\ Лава"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3961-3832-4630-b562-303332373161/GS41_GS42_GS33_--_-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3631-3062-4137-a230-643266343337/GS41_GS42_GS33_--_-_.png",
+                        facade: "https://static.tildacdn.com/tild3765-3731-4233-b639-323536323839/GS41_GS42_GS33_--_-_.png",
+                        basement: "https://static.tildacdn.com/tild6534-6137-4165-b737-636435343932/GS41_GS42_GS33_--_-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3964-6536-4433-b438-326432376362/GS41_GS42_GS33_--_-_.jpg"
+                    }
+                },
+                {
+                    id: "GS41-T5-2",
+                    name: "GS41-T5-2",
+                    displayName: "Синий с напылением",
+                    characteristics: {
+                        baseColor: "Синий",
+                        coating: "Черное",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3137-3230-4163-a534-363534623531/GS41-T5-2____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3338-3336-4935-b934-306366306664/GS41-T5-2____-_.png",
+                        facade: "https://static.tildacdn.com/tild3564-3161-4634-b761-383438666335/GS41-T5-2____-_.png",
+                        basement: "https://static.tildacdn.com/tild3861-3637-4436-b239-313833343135/GS41-T5-2____-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3133-3534-4065-b939-646633313132/GS41-T5-2____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS42-T5-2",
+                    name: "GS42-T5-2",
+                    displayName: "Зеленый с напылением",
+                    characteristics: {
+                        baseColor: "Зеленый",
+                        coating: "Черное",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6635-6139-4562-b735-643133336663/GS42-T5-2____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6666-6265-4165-a361-623961376565/GS42-T5-2____-_.png",
+                        facade: "https://static.tildacdn.com/tild3238-3961-4039-b264-363639643835/GS42-T5-2____-_.png",
+                        basement: "https://static.tildacdn.com/tild6235-3235-4262-a531-323066616163/GS42-T5-2____-_.jpg",
+                        fence: "https://static.tildacdn.com/tild3130-6638-4234-b135-653934366461/GS42-T5-2____-_.jpg"
+                    }
+                }
+            ];
+        }
+    }
+
+    /**
+     * Модифицированный класс конструктора интерьера для работы в составе объединенного
+     */
+    class UcInteriorConstructor {
+        constructor() {
+            // Основное состояние приложения
+            this.appState = {
+                selectedBrick: "GS1-T3-2.0" // Выбранный кирпич по умолчанию
+            };
+
+            // Кэш загруженных изображений для оптимизации производительности
+            this.imageCache = new Map();
+            // Флаг процесса загрузки для предотвращения множественных запросов
+            this.isLoading = false;
+
+            // Текущий экземпляр lightbox для управления модальными окнами
+            this.currentLightbox = null;
+
+            // Ссылки на DOM элементы
+            this.elements = {};
+
+            // Массив данных всех доступных кирпичей для интерьера
+            this.bricks = this.getInteriorsData();
+
+            // Ждем загрузки DOM, затем инициализируем с задержкой для корректной работы
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(() => this.init(), 100);
+                });
+            } else {
+                setTimeout(() => this.init(), 100);
+            }
+        }
+
+        /**
+         * Инициализация всех компонентов приложения
+         * Запускается после загрузки DOM
+         */
+        init() {
+            this.initializeElements(); // Получение ссылок на DOM элементы
+            this.renderBrickGallery(); // Создание галереи миниатюр кирпичей
+            this.setupEventListeners(); // Настройка обработчиков событий
+            this.initializeLightbox(); // Инициализация функциональности зума
+            this.updatePreview(); // Обновление превью выбранного кирпича
+            this.updateInteriorImage(); // Отображение интерьерного изображения
+        }
+
+        /**
+         * Получение ссылок на основные DOM элементы интерфейса
+         */
+        initializeElements() {
+            this.elements = {
+                canvas: document.getElementById('uc-interior-canvas'),
+                previewImage: document.getElementById('uc-interior-preview-image'),
+                previewContainer: document.getElementById('uc-interior-brick-preview-container'),
+                brickName: document.getElementById('uc-interior-brick-name'),
+                baseColor: document.getElementById('uc-interior-base-color'),
+                coating: document.getElementById('uc-interior-coating'),
+                relief: document.getElementById('uc-interior-relief'),
+                brickGallery: document.getElementById('uc-interior-brick-gallery')
+            };
+
+            // Получение контекста для рисования на канвасе
+            if (this.elements.canvas) {
+                this.elements.ctx = this.elements.canvas.getContext('2d');
+            }
+        }
+
+        /**
+         * Настройка SimpleLightbox для функциональности увеличения изображений
+         * Добавляет возможность клика на превью кирпича и канвас интерьера для увеличения
+         */
+        initializeLightbox() {
+            if (!this.elements.previewContainer) return;
+
+            // Обработчик клика на превью изображение кирпича
+            this.elements.previewContainer.addEventListener('click', () => {
+                const selectedBrickId = this.appState.selectedBrick;
+                const brick = this.bricks.find(b => b.id === selectedBrickId);
+
+                if (brick && this.elements.previewImage.src) {
+                    this.openImageLightbox(brick.images.preview, `${brick.name} - ${brick.displayName}`);
+                }
+            });
+
+            // Обработчик клика на канвас с интерьерным изображением
+            if (this.elements.canvas) {
+                this.elements.canvas.addEventListener('click', () => {
+                    try {
+                        // Конвертация содержимого канваса в изображение для lightbox
+                        this.elements.canvas.toBlob((blob) => {
+                            if (blob) {
+                                const blobUrl = URL.createObjectURL(blob);
+                                this.openImageLightbox(blobUrl, 'Конструктор интерьера - текущее изображение', true);
+                            }
+                        }, 'image/png', 1.0);
+                    } catch (error) {
+                        console.warn('Не удалось экспортировать canvas:', error);
+                    }
+                });
+            }
+        }
+
+        /**
+         * Открытие изображения в модальном окне lightbox
+         */
+        openImageLightbox(imageSrc, caption, isBlobUrl = false) {
+            // Создание или получение контейнера для lightbox
+            if (!document.getElementById('uc-interior-lightbox-container')) {
+                const lightboxContainer = document.createElement('div');
+                lightboxContainer.id = 'uc-interior-lightbox-container';
+                lightboxContainer.style.display = 'none';
+                document.body.appendChild(lightboxContainer);
+            }
+
+            // Подготовка HTML структуры для lightbox
+            const container = document.getElementById('uc-interior-lightbox-container');
+            container.innerHTML = `<a href="${imageSrc}" data-caption="${caption}"><img src="${imageSrc}" alt="${caption}"></a>`;
+
+            // Уничтожение предыдущего экземпляра lightbox если существует
+            if (this.currentLightbox) {
+                this.currentLightbox.destroy();
+            }
+
+            // Инициализация нового экземпляра SimpleLightbox с настройками
+            this.currentLightbox = new SimpleLightbox('#uc-interior-lightbox-container a', {
+                captionAttribute: 'data-caption',
+                showCounter: false,
+                enableKeyboard: true,
+                disableRightClick: false,
+                disableScroll: true,
+                alertError: false,
+                overlayOpacity: 0.8,
+                animationSlide: true,
+                animationSpeed: 250,
+                preloading: true,
+                lazyLoading: true,
+                onClosed: () => {
+                    // Освобождение blob URL для предотвращения утечек памяти
+                    if (isBlobUrl) {
+                        URL.revokeObjectURL(imageSrc);
+                    }
+                }
+            });
+
+            // Программное открытие lightbox
+            const link = container.querySelector('a');
+            this.currentLightbox.open(link);
+        }
+
+        /**
+         * Загрузка изображения с кэшированием и поддержкой CORS
+         */
+        loadImage(src) {
+            return new Promise((resolve, reject) => {
+                // Проверка наличия изображения в кэше
+                if (this.imageCache.has(src)) {
+                    resolve(this.imageCache.get(src));
+                    return;
+                }
+
+                const img = new Image();
+                // Настройка CORS для предотвращения проблем с canvas
+                img.crossOrigin = "anonymous";
+
+                img.onload = () => {
+                    // Сохранение загруженного изображения в кэш
+                    this.imageCache.set(src, img);
+                    resolve(img);
+                };
+                img.onerror = () => reject(new Error(`Не удалось загрузить изображение: ${src}`));
+                img.src = src;
+            });
+        }
+
+        /**
+         * Создание галереи миниатюр кирпичей с lazy loading
+         * Динамически создает DOM элементы для каждого кирпича
+         */
+        renderBrickGallery() {
+            if (!this.elements.brickGallery) return;
+
+            this.elements.brickGallery.innerHTML = '';
+
+            this.bricks.forEach(brick => {
+                // Создание контейнера для миниатюры кирпича
+                const brickItem = document.createElement('div');
+                brickItem.className = 'uc-brick-item uc-lazy-loading';
+                brickItem.dataset.brickId = brick.id;
+
+                // Создание изображения с lazy loading
+                const img = document.createElement('img');
+                img.dataset.src = brick.images.brick;
+                img.alt = brick.displayName;
+                img.className = 'uc-lazy-image';
+                // Установка прозрачного плейсхолдера до загрузки реального изображения
+                img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmOGY4ZjgiLz48L3N2Zz4=';
+
+                brickItem.appendChild(img);
+                this.elements.brickGallery.appendChild(brickItem);
+            });
+
+            // Запуск lazy loading и обновление выделения
+            this.initializeBrickGalleryLazyLoading();
+            this.updateGallerySelection();
+        }
+
+        /**
+         * Инициализация ленивой загрузки изображений в галерее кирпичей
+         * Использует Intersection Observer API для оптимизации производительности
+         */
+        initializeBrickGalleryLazyLoading() {
+            if (!this.elements.brickGallery) return;
+
+            // Fallback для браузеров без поддержки Intersection Observer
+            if (!('IntersectionObserver' in window)) {
+                const lazyImages = this.elements.brickGallery.querySelectorAll('.uc-lazy-image');
+                lazyImages.forEach(img => {
+                    const brickItem = img.closest('.uc-brick-item');
+                    this.loadBrickImage(img, brickItem);
+                });
+                return;
+            }
+
+            // Создание наблюдателя для отслеживания видимости изображений
+            const galleryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const brickItem = img.closest('.uc-brick-item');
+                        this.loadBrickImage(img, brickItem);
+                        galleryObserver.unobserve(img); // Прекращение наблюдения после загрузки
+                    }
+                });
+            }, {
+                root: this.elements.brickGallery, // Наблюдение относительно галереи
+                rootMargin: '50px', // Загрузка за 50px до появления в зоне видимости
+                threshold: 0.1
+            });
+
+            // Начало наблюдения за всеми lazy изображениями
+            const lazyImages = this.elements.brickGallery.querySelectorAll('.uc-lazy-image');
+            lazyImages.forEach(img => galleryObserver.observe(img));
+        }
+
+        /**
+         * Загрузка изображения кирпича с анимацией состояний
+         */
+        async loadBrickImage(img, brickItem) {
+            const imageSrc = img.dataset.src;
+            if (!imageSrc) return;
+
+            try {
+                // Предзагрузка изображения через кэш
+                await this.loadImage(imageSrc);
+                img.src = imageSrc;
+                img.classList.add('uc-loading');
+
+                // Обработчик успешной загрузки
+                img.onload = () => {
+                    img.classList.remove('uc-loading');
+                    img.classList.add('uc-loaded');
+                    brickItem.classList.remove('uc-lazy-loading');
+                };
+
+                // Обработчик ошибки загрузки
+                img.onerror = () => {
+                    img.classList.remove('uc-loading');
+                    brickItem.classList.remove('uc-lazy-loading');
+                };
+            } catch (error) {
+                brickItem.classList.remove('uc-lazy-loading');
+            }
+        }
+
+        /**
+         * Настройка всех обработчиков событий интерфейса
+         */
+        setupEventListeners() {
+            // Обработчик выбора кирпича в галерее
+            if (this.elements.brickGallery) {
+                this.elements.brickGallery.addEventListener('click', (e) => {
+                    const brickItem = e.target.closest('.uc-brick-item');
+                    if (brickItem) {
+                        const brickId = brickItem.dataset.brickId;
+                        this.selectBrick(brickId);
+                    }
+                });
+            }
+        }
+
+        /**
+         * Выбор кирпича и обновление интерьера
+         */
+        selectBrick(brickId) {
+            this.appState.selectedBrick = brickId;
+            this.updateInteriorImage(); // Обновление интерьерного изображения
+            this.updatePreview(); // Обновление превью
+            this.updateGallerySelection(); // Обновление выделения в галерее
+        }
+
+        /**
+         * Обновление визуального выделения выбранного кирпича в галерее
+         */
+        updateGallerySelection() {
+            if (!this.elements.brickGallery) return;
+
+            const selectedBrickId = this.appState.selectedBrick;
+
+            const brickItems = this.elements.brickGallery.querySelectorAll('.uc-brick-item');
+            brickItems.forEach(item => {
+                item.classList.remove('uc-active');
+                if (item.dataset.brickId === selectedBrickId) {
+                    item.classList.add('uc-active');
+                }
+            });
+        }
+
+        /**
+         * Обновление превью выбранного кирпича и его характеристик
+         */
+        updatePreview() {
+            const selectedBrickId = this.appState.selectedBrick;
+            const brick = this.bricks.find(b => b.id === selectedBrickId);
+
+            if (brick && this.elements.previewImage) {
+                // Показ индикатора загрузки
+                const loadingElement = document.getElementById('uc-interior-preview-loading');
+                if (loadingElement) loadingElement.style.display = 'block';
+                this.elements.previewImage.style.opacity = '0';
+
+                // Загрузка и отображение превью изображения
+                this.loadImage(brick.images.preview).then(() => {
+                    this.elements.previewImage.src = brick.images.preview;
+                    this.elements.previewImage.style.opacity = '1';
+                    if (loadingElement) loadingElement.style.display = 'none';
+                }).catch(error => {
+                    if (loadingElement) loadingElement.style.display = 'none';
+                });
+
+                // Обновление текстовой информации о кирпиче
+                if (this.elements.brickName) this.elements.brickName.textContent = brick.name;
+                if (this.elements.baseColor) this.elements.baseColor.textContent = brick.characteristics.baseColor;
+                if (this.elements.coating) this.elements.coating.textContent = brick.characteristics.coating;
+                if (this.elements.relief) this.elements.relief.textContent = brick.characteristics.relief;
+            }
+        }
+
+        /**
+         * Обновление интерьерного изображения на канвасе
+         * Отображает выбранное интерьерное изображение с адаптацией под размеры канваса
+         */
+        async updateInteriorImage() {
+            if (this.isLoading || !this.elements.ctx) return; // Предотвращение множественных одновременных обновлений
+            this.isLoading = true;
+
+            const loadingElement = document.getElementById('uc-interior-canvas-loading');
+            if (loadingElement) loadingElement.style.display = 'block';
+
+            try {
+                const selectedBrickId = this.appState.selectedBrick;
+                const brick = this.bricks.find(b => b.id === selectedBrickId);
+
+                if (brick) {
+                    // Очистка канваса перед новой отрисовкой
+                    this.elements.ctx.clearRect(0, 0, 576, 864);
+
+                    // Загрузка и отрисовка интерьерного изображения
+                    const img = await this.loadImage(brick.images.interior);
+
+                    // Расчет размеров для адаптивного отображения изображения
+                    const canvasWidth = 576;
+                    const canvasHeight = 864;
+                    const imgAspectRatio = img.width / img.height;
+                    const canvasAspectRatio = canvasWidth / canvasHeight;
+
+                    let drawWidth, drawHeight, drawX, drawY;
+
+                    if (imgAspectRatio > canvasAspectRatio) {
+                        // Изображение шире канваса относительно пропорций
+                        drawWidth = canvasWidth;
+                        drawHeight = canvasWidth / imgAspectRatio;
+                        drawX = 0;
+                        drawY = (canvasHeight - drawHeight) / 2;
+                    } else {
+                        // Изображение выше канваса относительно пропорций
+                        drawHeight = canvasHeight;
+                        drawWidth = canvasHeight * imgAspectRatio;
+                        drawX = (canvasWidth - drawWidth) / 2;
+                        drawY = 0;
+                    }
+
+                    // Отрисовка изображения с центрированием
+                    this.elements.ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+                }
+
+                if (loadingElement) loadingElement.style.display = 'none';
+            } catch (error) {
+                if (loadingElement) loadingElement.style.display = 'none';
+            }
+
+            this.isLoading = false;
+        }
+
+        /**
+         * Получение данных всех доступных кирпичей для интерьера
+         * Содержит информацию о характеристиках и URL изображений для каждого кирпича
+         */
+        getInteriorsData() {
+            return [{
+                    id: "GS1-T3-2.0",
+                    name: "GS1-T3-2.0",
+                    displayName: "Красный с черным покрытием",
+                    characteristics: {
+                        baseColor: "Темно Красный",
+                        coating: "Черное",
+                        relief: "Дюна"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3565-6634-4734-a330-326336396634/GS1-T3-20_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6264-3266-4531-b539-363135393332/GS1-T3-20_____-_.png",
+                        interior: "https://static.tildacdn.com/tild6266-3466-4065-a531-653438373064/GS1-T3-20_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS12-T4-2.0",
+                    name: "GS12-T4-2.0",
+                    displayName: "Слоновая кость с черным покрытием",
+                    characteristics: {
+                        baseColor: "Слоновая кость",
+                        coating: "Черное",
+                        relief: "Лава"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6539-3736-4737-b934-646131613637/GS12-T4-20______-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3730-3338-4130-a162-623432386630/GS12-T4-20______-_.png",
+                        interior: "https://static.tildacdn.com/tild3065-3661-4737-a435-643937656264/GS12-T4-20______-_.jpg"
+                    }
+                },
+                {
+                    id: "GS14-T5",
+                    name: "GS14-T5",
+                    displayName: "Слоновая кость натуральная",
+                    characteristics: {
+                        baseColor: "Слоновая кость",
+                        coating: "-",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3036-3533-4234-b735-353638366532/GS14-T5_-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3735-6230-4336-a266-393531306430/GS14-T5_-_.png",
+                        interior: "https://static.tildacdn.com/tild6439-6632-4135-b866-653136393565/GS14-T5_-_.jpg"
+                    }
+                },
+                {
+                    id: "GS2-GS3.3-T4-2.0",
+                    name: "GS2 GS3.3-T4-2.0",
+                    displayName: "Черный с вулканическими вставками",
+                    characteristics: {
+                        baseColor: "Графит\\Охра",
+                        coating: "Черное",
+                        relief: "Равнина\\ Лава"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3235-6461-4863-a465-393639623335/GS2_GS33-T4-20_____-.jpg",
+                        brick: "https://static.tildacdn.com/tild3333-3132-4335-b263-373938313031/GS2_GS33-T4-20_____-.png",
+                        interior: "https://static.tildacdn.com/tild3962-6633-4036-b165-663965323862/GS2_GS33-T4-20_____-.jpg"
+                    }
+                },
+                {
+                    id: "GS3.2-T5-2.0",
+                    name: "GS3.2-T5-2.0",
+                    displayName: "Охра с черным покрытием",
+                    characteristics: {
+                        baseColor: "Охра",
+                        coating: "Черное",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3836-3535-4137-b265-643439386639/GS32-T5-20_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3739-3666-4137-b565-303937323866/GS32-T5-20_____-_.png",
+                        interior: "https://static.tildacdn.com/tild3039-6462-4636-b235-613961616430/GS32-T5-20_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS4-T3-12.0",
+                    name: "GS4-T3-12.0 Ко",
+                    displayName: "Коричневый с белой вуалью",
+                    characteristics: {
+                        baseColor: "Горький шоколад",
+                        coating: "Белое (песок)",
+                        relief: "Дюна"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild6231-3839-4466-b762-333766363739/GS4-T3-120_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6566-3139-4934-b531-313938316133/GS4-T3-120_____-_.png",
+                        interior: "https://static.tildacdn.com/tild3966-6563-4932-b366-316262383134/GS4-T3-120_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS4-T5-2.0",
+                    name: "GS4-T5-2.0",
+                    displayName: "Горький шоколад с черным покрытием",
+                    characteristics: {
+                        baseColor: "Горький шоколад",
+                        coating: "Черное",
+                        relief: "Каньон"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3634-3964-4539-a139-353938363831/GS4-T5-20_-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6639-6362-4663-b266-373731626430/GS4-T5-20_-_.png",
+                        interior: "https://static.tildacdn.com/tild6133-6435-4266-b431-383932303934/GS4-T5-20_-_.jpg"
+                    }
+                },
+                {
+                    id: "GS41-T4-2.0",
+                    name: "GS41-T4-2.0",
+                    displayName: "Синий с черным покрытием",
+                    characteristics: {
+                        baseColor: "Синий",
+                        coating: "Черное",
+                        relief: "Лава"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3563-3835-4662-b032-333464306237/GS41-T4-20_____-_.jpg",
+                        brick: "https://static.tildacdn.com/tild3463-6264-4938-b163-376335356236/GS41-T4-20_____-_.png",
+                        interior: "https://static.tildacdn.com/tild3035-3035-4365-b161-366535326135/GS41-T4-20_____-_.jpg"
+                    }
+                },
+                {
+                    id: "GS42-T3-2.0",
+                    name: "GS42-T3-2.0",
+                    displayName: "Зеленый с черным покрытием",
+                    characteristics: {
+                        baseColor: "Зеленый",
+                        coating: "Черное",
+                        relief: "Дюна"
+                    },
+                    images: {
+                        preview: "https://static.tildacdn.com/tild3336-6166-4735-b635-353763636535/GS42-3-20_-_.jpg",
+                        brick: "https://static.tildacdn.com/tild6663-3061-4462-b831-666432623432/GS42-3-20_-_.png",
+                        interior: "https://static.tildacdn.com/tild3638-3438-4663-b536-303934376131/GS42-3-20_-_.jpg"
+                    }
+                }
+            ];
+        }
+    }
+
+    // Создание единственного экземпляра объединенного конструктора
+    new UnifiedConstructor();
+    </script>
+</body>
+
+</html>
