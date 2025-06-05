@@ -140,6 +140,7 @@
         padding: var(--uc-container-padding);
     }
 
+    /* НОВЫЙ СТИЛЬ: Главные табы переключения режимов */
     .uc-main-tabs {
         display: flex;
         gap: 0;
@@ -152,9 +153,6 @@
 
     .uc-main-tab {
         flex: 1;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
         padding: var(--uc-main-tab-padding);
         background: transparent;
         border: none;
@@ -179,29 +177,7 @@
         box-shadow: var(--uc-shadow-tab);
     }
 
-    .uc-tab-icon {
-        width: 20px;
-        height: 20px;
-        transition: all var(--uc-transition-normal);
-        flex-shrink: 0;
-    }
-
-    .uc-tab-icon img {
-        filter: brightness(0) saturate(100%) invert(42%) sepia(0%) saturate(0%) hue-rotate(165deg) brightness(95%) contrast(89%);
-    }
-
-    .uc-main-tab.uc-active .uc-tab-icon img {
-        filter: brightness(0) saturate(100%) invert(100%);
-    }
-
-    .uc-main-tab:hover .uc-tab-icon {
-        transform: scale(1.05);
-    }
-
-    .uc-main-tab.uc-active .uc-tab-icon svg {
-        stroke-width: 2.5;
-    }
-
+    /* НОВЫЙ СТИЛЬ: Контейнеры для каждого конструктора */
     .uc-mode-container {
         display: none;
     }
@@ -596,15 +572,6 @@
             gap: 5px;
         }
 
-        .uc-tab-icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        .uc-main-tab {
-            gap: 6px;
-        }
-
         .uc-tabs {
             flex-direction: column;
             gap: 5px;
@@ -667,14 +634,8 @@
     <div class="uc-constructor">
         <!-- Главные табы для переключения режимов -->
         <div class="uc-main-tabs">
-            <button class="uc-main-tab uc-active" data-mode="house">
-                <img class="uc-tab-icon" src="https://unpkg.com/@tabler/icons@latest/icons/outline/home.svg" alt="Дом">
-                <span>ДОМ</span>
-            </button>
-            <button class="uc-main-tab" data-mode="interior">
-                <img class="uc-tab-icon" src="https://unpkg.com/@tabler/icons@latest/icons/outline/sofa.svg" alt="Интерьер">
-                <span>ИНТЕРЬЕР</span>
-            </button>
+            <button class="uc-main-tab uc-active" data-mode="house">ДОМ</button>
+            <button class="uc-main-tab" data-mode="interior">ИНТЕРЬЕР</button>
         </div>
         <!-- Контейнер для конструктора дома -->
         <div class="uc-mode-container uc-active" id="uc-house-mode">
