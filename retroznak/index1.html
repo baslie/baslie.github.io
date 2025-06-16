@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РетроЗнак - Домовые знаки в стиле СССР</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Base */
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f6f0 0%, #fff 100%);
+            padding: 80px 0;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .hero__container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero__content {
+            max-width: 500px;
+        }
+
+        .hero__title {
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero__subtitle {
+            font-size: 1.4rem;
+            color: #5a5a5a;
+            margin-bottom: 40px;
+        }
+
+        .hero__image {
+            text-align: center;
+            background: #8b4513;
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .hero__features {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .hero__feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .hero__feature-icon {
+            color: #d4af37;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .hero__button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero__button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Constructor Section */
+        .constructor {
+            padding: 80px 0;
+            background: #f9f7f1;
+        }
+
+        .constructor__container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .constructor__form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+
+        .constructor__title {
+            font-size: 2.5rem;
+            color: #8b4513;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .constructor__step {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #fafafa;
+            border-radius: 15px;
+            border-left: 5px solid #d4af37;
+        }
+
+        .constructor__step--active {
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .constructor__step-title {
+            font-size: 1.4rem;
+            color: #8b4513;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .constructor__input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .constructor__input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .constructor__radio-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .constructor__radio-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .constructor__radio-option--selected {
+            border-color: #d4af37;
+            background: #fef9e7;
+        }
+
+        .constructor__radio {
+            margin-right: 10px;
+        }
+
+        .constructor__preview {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .constructor__preview-title {
+            font-size: 1.8rem;
+            color: #8b4513;
+            margin-bottom: 30px;
+        }
+
+        .constructor__sign-preview {
+            background: #8b4513;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .constructor__sign-roof {
+            background: #654321;
+            height: 20px;
+            margin: -40px -40px 20px -40px;
+            position: relative;
+        }
+
+        .constructor__sign-roof::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 10px solid #654321;
+        }
+
+        .constructor__sign-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .constructor__sign-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .constructor__price {
+            background: #d4af37;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .constructor__delivery {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .trust__container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .trust__quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #5a5a5a;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .trust__author {
+            font-size: 1.1rem;
+            color: #8b4513;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .trust__process {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .trust__process-item {
+            background: #f9f7f1;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .trust__process-title {
+            font-size: 1.2rem;
+            color: #8b4513;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .trust__process-text {
+            color: #666;
+        }
+
+        /* Guarantees Section */
+        .guarantees {
+            padding: 80px 0;
+            background: #f9f7f1;
+        }
+
+        .guarantees__title {
+            font-size: 2.5rem;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .guarantees__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .guarantees__item {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .guarantees__icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .guarantees__item-title {
+            font-size: 1.4rem;
+            color: #8b4513;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .guarantees__item-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Order Section */
+        .order {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .order__container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .order__title {
+            font-size: 2.5rem;
+            color: #8b4513;
+            margin-bottom: 40px;
+        }
+
+        .order__summary {
+            background: #f9f7f1;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .order__preview-small {
+            background: #8b4513;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .order__price-large {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .order__delivery-info {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .order__button {
+            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .order__button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+        }
+
+        .order__payment-methods {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 80px 0;
+            background: #f9f7f1;
+        }
+
+        .process__title {
+            font-size: 2.5rem;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .process__steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .process__step {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .process__step::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #d4af37;
+        }
+
+        .process__step:last-child::after {
+            display: none;
+        }
+
+        .process__step-number {
+            background: #d4af37;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+
+        .process__step-text {
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: #8b4513;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer__title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .footer__contacts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer__contact {
+            font-size: 1.1rem;
+        }
+
+        .footer__contact-icon {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero__container,
+            .constructor__container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .guarantees__grid,
+            .process__steps {
+                grid-template-columns: 1fr;
+            }
+
+            .trust__process {
+                grid-template-columns: 1fr;
+            }
+
+            .footer__contacts {
+                grid-template-columns: 1fr;
+            }
+
+            .hero__title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero__container">
+            <div class="hero__content">
+                <h1 class="hero__title">Создайте домовой знак в стиле ретро за 1 минуту</h1>
+                <p class="hero__subtitle">Популярные адресные указатели 40-50-х годов с подсветкой. Доставка по всей России</p>
+                <div class="hero__features">
+                    <div class="hero__feature">
+                        <span class="hero__feature-icon">✓</span>
+                        Материалы как в СССР: металл, стекло, эмаль
+                    </div>
+                    <div class="hero__feature">
+                        <span class="hero__feature-icon">✓</span>
+                        Изготовление 1-2 рабочих дня
+                    </div>
+                    <div class="hero__feature">
+                        <span class="hero__feature-icon">✓</span>
+                        Оплата при получении
+                    </div>
+                </div>
+                <button class="hero__button" onclick="scrollToConstructor()">Создать свой знак</button>
+            </div>
+            <div class="hero__image">
+                <div style="font-size: 1.5rem; margin-bottom: 20px;">🏠</div>
+                <div>Фото готового знака<br>на красивом доме</div>
+            </div>
+        </div>
+    </section>
+    <!-- Constructor Section -->
+    <section class="constructor" id="constructor">
+        <div class="container constructor__container">
+            <div class="constructor__form">
+                <h2 class="constructor__title">Конструктор знака</h2>
+                <!-- Step 1: Address -->
+                <div class="constructor__step constructor__step--active" id="step1">
+                    <h3 class="constructor__step-title">Шаг 1: Адрес</h3>
+                    <input type="text" class="constructor__input" id="street" placeholder="Название улицы" oninput="updatePreview()">
+                    <input type="text" class="constructor__input" id="houseNumber" placeholder="Номер дома" oninput="updatePreview()">
+                </div>
+                <!-- Step 2: Design -->
+                <div class="constructor__step" id="step2">
+                    <h3 class="constructor__step-title">Шаг 2: Дизайн</h3>
+                    <p>Цвет «крыши»:</p>
+                    <div class="constructor__radio-group">
+                        <label class="constructor__radio-option constructor__radio-option--selected" onclick="selectRoofColor('brown')">
+                            <input type="radio" name="roofColor" value="brown" class="constructor__radio" checked>
+                            Коричневый (шоколад)
+                        </label>
+                        <label class="constructor__radio-option" onclick="selectRoofColor('other')">
+                            <input type="radio" name="roofColor" value="other" class="constructor__radio">
+                            Другой цвет
+                        </label>
+                    </div>
+                    <p>Цвет «тарелки»:</p>
+                    <div class="constructor__radio-group">
+                        <label class="constructor__radio-option constructor__radio-option--selected" onclick="selectPlateColor('white')">
+                            <input type="radio" name="plateColor" value="white" class="constructor__radio" checked>
+                            Тепло-белый (классика)
+                        </label>
+                        <label class="constructor__radio-option" onclick="selectPlateColor('other')">
+                            <input type="radio" name="plateColor" value="other" class="constructor__radio">
+                            Другой цвет
+                        </label>
+                    </div>
+                </div>
+                <!-- Step 3: Options -->
+                <div class="constructor__step" id="step3">
+                    <h3 class="constructor__step-title">Шаг 3: Опции</h3>
+                    <p>Подсветка:</p>
+                    <div class="constructor__radio-group">
+                        <label class="constructor__radio-option constructor__radio-option--selected" onclick="selectBacklight(true)">
+                            <input type="radio" name="backlight" value="yes" class="constructor__radio" checked>
+                            Да
+                        </label>
+                        <label class="constructor__radio-option" onclick="selectBacklight(false)">
+                            <input type="radio" name="backlight" value="no" class="constructor__radio">
+                            Нет
+                        </label>
+                    </div>
+                    <p>Персонализация:</p>
+                    <div class="constructor__radio-group">
+                        <label class="constructor__radio-option constructor__radio-option--selected" onclick="selectPersonalization('standard')">
+                            <input type="radio" name="personalization" value="standard" class="constructor__radio" checked>
+                            Стандарт
+                        </label>
+                        <label class="constructor__radio-option" onclick="selectPersonalization('special')">
+                            <input type="radio" name="personalization" value="special" class="constructor__radio">
+                            Особые пожелания
+                        </label>
+                    </div>
+                </div>
+                <!-- Step 4: Contacts -->
+                <div class="constructor__step" id="step4">
+                    <h3 class="constructor__step-title">Шаг 4: Контакты</h3>
+                    <input type="text" class="constructor__input" placeholder="Ваше имя">
+                    <input type="tel" class="constructor__input" placeholder="Телефон">
+                    <input type="email" class="constructor__input" placeholder="Email">
+                    <input type="text" class="constructor__input" placeholder="Город доставки">
+                </div>
+            </div>
+            <div class="constructor__preview">
+                <h3 class="constructor__preview-title">Превью вашего знака</h3>
+                <div class="constructor__sign-preview">
+                    <div class="constructor__sign-roof"></div>
+                    <div class="constructor__sign-text" id="previewStreet">Название улицы</div>
+                    <div class="constructor__sign-number" id="previewNumber">№</div>
+                </div>
+                <div class="constructor__price" id="totalPrice">
+                    Стоимость: 4 500 ₽
+                </div>
+                <div class="constructor__delivery">
+                    + доставка ~500 ₽
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container trust__container">
+            <blockquote class="trust__quote">
+                «Я изучаю историю домовых знаков советского периода и занимаюсь их производством. В то время знали толк в качестве и функциональности простых вещей. Я постарался это сохранить.»
+            </blockquote>
+            <div class="trust__author">— Александр Поликарпов, основатель «Ретрознак»</div>
+            <div class="trust__process">
+                <div class="trust__process-item">
+                    <h4 class="trust__process-title">Раскрой</h4>
+                    <p class="trust__process-text">Сталь 0,7 мм на специализированном оборудовании</p>
+                </div>
+                <div class="trust__process-item">
+                    <h4 class="trust__process-title">Формовка</h4>
+                    <p class="trust__process-text">Штамповка, гибка, фирменное клеймо «РЗ»</p>
+                </div>
+                <div class="trust__process-item">
+                    <h4 class="trust__process-title">Покраска</h4>
+                    <p class="trust__process-text">Полимерно-порошковый метод, запекание при 220°C</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Guarantees Section -->
+    <section class="guarantees">
+        <div class="container">
+            <h2 class="guarantees__title">Гарантии качества</h2>
+            <div class="guarantees__grid">
+                <div class="guarantees__item">
+                    <div class="guarantees__icon">🛡️</div>
+                    <h3 class="guarantees__item-title">15 лет гарантии</h3>
+                    <p class="guarantees__item-text">на эмалевое покрытие</p>
+                </div>
+                <div class="guarantees__item">
+                    <div class="guarantees__icon">🚚</div>
+                    <h3 class="guarantees__item-title">Доставка по России</h3>
+                    <p class="guarantees__item-text">почтой и транспортными компаниями</p>
+                </div>
+                <div class="guarantees__item">
+                    <div class="guarantees__icon">⚡</div>
+                    <h3 class="guarantees__item-title">1-2 рабочих дня</h3>
+                    <p class="guarantees__item-text">изготовление стандартных знаков</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Order Section -->
+    <section class="order">
+        <div class="container order__container">
+            <h2 class="order__title">Оформить заказ</h2>
+            <div class="order__summary">
+                <div class="order__preview-small" id="orderPreview">
+                    Ваш знак: Название улицы №
+                </div>
+                <div class="order__price-large" id="orderPrice">4 500 ₽</div>
+                <div class="order__delivery-info">+ доставка ~500 ₽</div>
+            </div>
+            <button class="order__button" onclick="placeOrder()">
+                Заказать за <span id="totalOrderPrice">5 000</span> ₽
+            </button>
+            <div class="order__payment-methods">
+                Способы оплаты: Предоплата в размере стоимости доставки • Полная предоплата • <strong>Оплата при получении</strong> (для стандартных знаков)
+            </div>
+        </div>
+    </section>
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="process__title">Как происходит заказ</h2>
+            <div class="process__steps">
+                <div class="process__step">
+                    <div class="process__step-number">1</div>
+                    <p class="process__step-text">Вы создаете дизайн → Мы делаем эскиз и считаем точную стоимость</p>
+                </div>
+                <div class="process__step">
+                    <div class="process__step-number">2</div>
+                    <p class="process__step-text">Согласовываете → Выбираете способ оплаты</p>
+                </div>
+                <div class="process__step">
+                    <div class="process__step-number">3</div>
+                    <p class="process__step-text">Изготавливаем за 1-2 дня → Отправляем с фотоотчетом</p>
+                </div>
+                <div class="process__step">
+                    <div class="process__step-number">4</div>
+                    <p class="process__step-text">Получаете готовый знак → Радуетесь результату!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3 class="footer__title">ООО "Три Кита", Томск</h3>
+            <div class="footer__contacts">
+                <div class="footer__contact">
+                    <span class="footer__contact-icon">📧</span>
+                    retroznak@mail.ru
+                </div>
+                <div class="footer__contact">
+                    <span class="footer__contact-icon">📞</span>
+                    +7 983 232-22-06
+                </div>
+                <div class="footer__contact">
+                    <span class="footer__contact-icon">💬</span>
+                    WhatsApp
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Constructor state
+    let constructorState = {
+        street: '',
+        houseNumber: '',
+        roofColor: 'brown',
+        plateColor: 'white',
+        backlight: true,
+        personalization: 'standard',
+        basePrice: 4500
+    };
+
+    // Scroll to constructor
+    function scrollToConstructor() {
+        document.getElementById('constructor').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    // Update preview
+    function updatePreview() {
+        const street = document.getElementById('street').value || 'Название улицы';
+        const houseNumber = document.getElementById('houseNumber').value || '№';
+
+        document.getElementById('previewStreet').textContent = street;
+        document.getElementById('previewNumber').textContent = houseNumber;
+        document.getElementById('orderPreview').textContent = `Ваш знак: ${street} ${houseNumber}`;
+
+        constructorState.street = street;
+        constructorState.houseNumber = houseNumber;
+
+        updatePrice();
+    }
+
+    // Select roof color
+    function selectRoofColor(color) {
+        constructorState.roofColor = color;
+        updateRadioSelection('roofColor', color);
+        updatePrice();
+    }
+
+    // Select plate color
+    function selectPlateColor(color) {
+        constructorState.plateColor = color;
+        updateRadioSelection('plateColor', color);
+        updatePrice();
+    }
+
+    // Select backlight
+    function selectBacklight(hasBacklight) {
+        constructorState.backlight = hasBacklight;
+        updateRadioSelection('backlight', hasBacklight ? 'yes' : 'no');
+        updatePrice();
+    }
+
+    // Select personalization
+    function selectPersonalization(type) {
+        constructorState.personalization = type;
+        updateRadioSelection('personalization', type);
+        updatePrice();
+    }
+
+    // Update radio selection styling
+    function updateRadioSelection(name, value) {
+        const options = document.querySelectorAll(`input[name="${name}"]`);
+        options.forEach(option => {
+            const label = option.closest('.constructor__radio-option');
+            if (option.value === value) {
+                label.classList.add('constructor__radio-option--selected');
+                option.checked = true;
+            } else {
+                label.classList.remove('constructor__radio-option--selected');
+                option.checked = false;
+            }
+        });
+    }
+
+    // Update price
+    function updatePrice() {
+        let price = constructorState.basePrice;
+
+        // Add extra cost for custom colors
+        if (constructorState.roofColor === 'other') price += 500;
+        if (constructorState.plateColor === 'other') price += 500;
+
+        // Add cost for backlight
+        if (constructorState.backlight) price += 1000;
+
+        // Add cost for personalization
+        if (constructorState.personalization === 'special') price += 1500;
+
+        document.getElementById('totalPrice').textContent = `Стоимость: ${price.toLocaleString()} ₽`;
+        document.getElementById('orderPrice').textContent = `${price.toLocaleString()} ₽`;
+        document.getElementById('totalOrderPrice').textContent = (price + 500).toLocaleString();
+    }
+
+    // Place order
+    function placeOrder() {
+        const orderData = {
+            ...constructorState,
+            timestamp: new Date().toISOString()
+        };
+
+        // Save to localStorage (mock CRM integration)
+        localStorage.setItem('lastOrder', JSON.stringify(orderData));
+
+        alert('Спасибо за заказ! Мы свяжемся с вами в течение часа для уточнения деталей.');
+
+        // In real implementation, this would send data to server
+        console.log('Order placed:', orderData);
+    }
+
+    // Auto-save progress
+    function autoSave() {
+        localStorage.setItem('constructorProgress', JSON.stringify(constructorState));
+    }
+
+    // Load saved progress
+    function loadProgress() {
+        const saved = localStorage.getItem('constructorProgress');
+        if (saved) {
+            constructorState = { ...constructorState, ...JSON.parse(saved) };
+
+            // Restore form values
+            if (constructorState.street) {
+                document.getElementById('street').value = constructorState.street;
+            }
+            if (constructorState.houseNumber) {
+                document.getElementById('houseNumber').value = constructorState.houseNumber;
+            }
+
+            // Restore radio selections
+            updateRadioSelection('roofColor', constructorState.roofColor);
+            updateRadioSelection('plateColor', constructorState.plateColor);
+            updateRadioSelection('backlight', constructorState.backlight ? 'yes' : 'no');
+            updateRadioSelection('personalization', constructorState.personalization);
+
+            updatePreview();
+        }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        loadProgress();
+        updatePrice();
+
+        // Auto-save on input changes
+        document.addEventListener('input', autoSave);
+        document.addEventListener('change', autoSave);
+    });
+
+    // Smooth scrolling for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
