@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РетроЗнак - Домовые знаки в стиле СССР</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.5;
+            color: #2c2c2c;
+            background: #fefefe;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section - основной экран */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f6f0 0%, #fff 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero__container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero__content {
+            max-width: 600px;
+        }
+
+        .hero__title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #2c2c2c;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .hero__title--accent {
+            color: #8b4513;
+        }
+
+        .hero__features {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero__feature {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .hero__feature-icon {
+            color: #d4af37;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .hero__cta {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            font-size: 1.4rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hero__cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Конструктор - компактный */
+        .constructor {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 3px solid #d4af37;
+        }
+
+        .constructor__title {
+            font-size: 1.8rem;
+            color: #8b4513;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .constructor__field {
+            margin-bottom: 20px;
+        }
+
+        .constructor__label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+        }
+
+        .constructor__input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .constructor__input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .constructor__options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .constructor__option {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .constructor__option--selected {
+            border-color: #d4af37;
+            background: #fef9e7;
+            color: #8b4513;
+        }
+
+        .constructor__preview {
+            background: #8b4513;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .constructor__preview::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 10px solid #8b4513;
+        }
+
+        .constructor__street {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .constructor__number {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .constructor__price {
+            background: #d4af37;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .constructor__button {
+            width: 100%;
+            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .constructor__button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        }
+
+        /* Гарантии - компактно в одну строку */
+        .guarantees {
+            background: rgba(139, 69, 19, 0.05);
+            padding: 40px 0;
+        }
+
+        .guarantees__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .guarantees__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .guarantees__icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .guarantees__title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8b4513;
+            margin-bottom: 5px;
+        }
+
+        .guarantees__text {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Контакты в футере */
+        .footer {
+            background: #8b4513;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer__company {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer__contacts {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .footer__contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .footer__contact-icon {
+            font-size: 1.3rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero__container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero__title {
+                font-size: 2.8rem;
+            }
+
+            .constructor {
+                padding: 25px;
+            }
+
+            .guarantees__grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer__content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer__contacts {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Основной экран -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        Создайте <span class="hero__title--accent">домовой знак</span> в стиле ретро за 1 минуту
+                    </h1>
+                    <div class="hero__features">
+                        <div class="hero__feature">
+                            <span class="hero__feature-icon">✓</span>
+                            Материалы как в СССР: металл, стекло, эмаль
+                        </div>
+                        <div class="hero__feature">
+                            <span class="hero__feature-icon">✓</span>
+                            Изготовление 1-2 рабочих дня
+                        </div>
+                        <div class="hero__feature">
+                            <span class="hero__feature-icon">✓</span>
+                            Гарантия 15 лет
+                        </div>
+                    </div>
+                    <button class="hero__cta" onclick="document.querySelector('.constructor').scrollIntoView({behavior: 'smooth'})">
+                        Создать свой знак →
+                    </button>
+                </div>
+                <!-- Мини-конструктор -->
+                <div class="constructor">
+                    <h3 class="constructor__title">Конструктор знака</h3>
+                    <div class="constructor__field">
+                        <label class="constructor__label">Улица:</label>
+                        <input type="text" class="constructor__input" id="street" placeholder="Название улицы" oninput="updatePreview()">
+                    </div>
+                    <div class="constructor__field">
+                        <label class="constructor__label">Номер дома:</label>
+                        <input type="text" class="constructor__input" id="houseNumber" placeholder="№" oninput="updatePreview()">
+                    </div>
+                    <div class="constructor__field">
+                        <label class="constructor__label">Цвет крыши:</label>
+                        <div class="constructor__options">
+                            <div class="constructor__option constructor__option--selected" onclick="selectOption(this)">
+                                Коричневый
+                            </div>
+                            <div class="constructor__option" onclick="selectOption(this)">
+                                Другой
+                            </div>
+                        </div>
+                    </div>
+                    <div class="constructor__field">
+                        <label class="constructor__label">Подсветка:</label>
+                        <div class="constructor__options">
+                            <div class="constructor__option constructor__option--selected" onclick="selectOption(this)">
+                                Да (+1000₽)
+                            </div>
+                            <div class="constructor__option" onclick="selectOption(this)">
+                                Нет
+                            </div>
+                        </div>
+                    </div>
+                    <div class="constructor__preview">
+                        <div class="constructor__street" id="previewStreet">Название улицы</div>
+                        <div class="constructor__number" id="previewNumber">№</div>
+                    </div>
+                    <div class="constructor__price" id="totalPrice">
+                        Стоимость: 4 500 ₽
+                    </div>
+                    <button class="constructor__button" onclick="orderSign()">
+                        Заказать за 4 500 ₽
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Гарантии - компактно -->
+    <section class="guarantees">
+        <div class="container">
+            <div class="guarantees__grid">
+                <div class="guarantees__item">
+                    <div class="guarantees__icon">🛡️</div>
+                    <div class="guarantees__title">15 лет гарантии</div>
+                    <div class="guarantees__text">на покрытие</div>
+                </div>
+                <div class="guarantees__item">
+                    <div class="guarantees__icon">⚡</div>
+                    <div class="guarantees__title">1-2 дня</div>
+                    <div class="guarantees__text">изготовление</div>
+                </div>
+                <div class="guarantees__item">
+                    <div class="guarantees__icon">🚚</div>
+                    <div class="guarantees__title">По всей России</div>
+                    <div class="guarantees__text">доставка</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Контакты -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__company">ООО "Три Кита", Томск</div>
+                <div class="footer__contacts">
+                    <div class="footer__contact">
+                        <span class="footer__contact-icon">📞</span>
+                        +7 983 232-22-06
+                    </div>
+                    <div class="footer__contact">
+                        <span class="footer__contact-icon">📧</span>
+                        retroznak@mail.ru
+                    </div>
+                    <div class="footer__contact">
+                        <span class="footer__contact-icon">💬</span>
+                        WhatsApp
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    let currentPrice = 4500;
+
+    function updatePreview() {
+        const street = document.getElementById('street').value || 'Название улицы';
+        const houseNumber = document.getElementById('houseNumber').value || '№';
+
+        document.getElementById('previewStreet').textContent = street;
+        document.getElementById('previewNumber').textContent = houseNumber;
+    }
+
+    function selectOption(element) {
+        // Снимаем выделение с других опций в той же группе
+        const siblings = element.parentElement.children;
+        for (let sibling of siblings) {
+            sibling.classList.remove('constructor__option--selected');
+        }
+
+        // Выделяем выбранную опцию
+        element.classList.add('constructor__option--selected');
+
+        // Обновляем цену
+        updatePrice();
+    }
+
+    function updatePrice() {
+        let price = 4500;
+
+        // Проверяем подсветку
+        const backlightOptions = document.querySelectorAll('.constructor__options')[1].children;
+        if (backlightOptions[0].classList.contains('constructor__option--selected')) {
+            price += 1000;
+        }
+
+        currentPrice = price;
+        document.getElementById('totalPrice').textContent = `Стоимость: ${price.toLocaleString()} ₽`;
+        document.querySelector('.constructor__button').textContent = `Заказать за ${price.toLocaleString()} ₽`;
+    }
+
+    function orderSign() {
+        const street = document.getElementById('street').value;
+        const houseNumber = document.getElementById('houseNumber').value;
+
+        if (!street || !houseNumber) {
+            alert('Пожалуйста, заполните адрес');
+            return;
+        }
+
+        alert(`Спасибо! Ваш заказ на знак "${street} ${houseNumber}" на сумму ${currentPrice}₽ принят. Мы свяжемся с вами в течение часа.`);
+    }
+
+    // Инициализация
+    updatePrice();
+    </script>
+</body>
+
+</html>
