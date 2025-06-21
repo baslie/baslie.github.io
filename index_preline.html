@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-full" data-hs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Роман Пуртов">
+  <title>Роман Пуртов. Ваш маркетолог и дизайнер из тайги.</title>
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="preline-docs/assets/css/main.min.css">
+</head>
+<body class="bg-neutral-900 text-white relative min-h-full flex flex-col" id="top">
+  <!-- Фоновое видео -->
+  <video id="background-video" autoplay muted loop class="fixed inset-0 w-full h-full object-cover z-[-1]">
+    <source src="/videos/bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- Переключатели -->
+  <button id="lang-toggle" class="hs-tooltip-toggle fixed left-4 top-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-gray-800 shadow-lg">EN</button>
+  <button id="theme-toggle" class="hs-tooltip-toggle fixed right-4 top-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-gray-800 shadow-lg">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <main class="container mx-auto px-4 py-8 flex-1">
+    <!-- Hero -->
+    <section class="text-center mb-12" id="hero">
+      <img src="/images/roman.jpg" alt="Роман Пуртов" class="mx-auto mb-6 rounded-full w-32 h-32 object-cover">
+      <h1 class="text-3xl font-bold mb-4" data-i18n="name">Роман Пуртов</h1>
+      <p class="max-w-2xl mx-auto text-lg" data-i18n="mainDescription"></p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 justify-center">
+        <a href="https://experts.tilda.cc/roman-purtow" target="_blank" class="relative block rounded-xl bg-gradient-to-br from-yellow-300 to-yellow-500 p-6 shadow-lg hover:shadow-xl transition" data-i18n="portfolio_tile">
+          <i class="fas fa-briefcase text-2xl mb-2"></i>
+          <h3 class="text-xl font-semibold" data-i18n="portfolio_title">Портфолио</h3>
+          <p class="text-sm" data-i18n="portfolio_description"></p>
+        </a>
+        <a href="https://drive.google.com/file/d/1XWnLMtqvJzvzMH_dFCxV_mwS3Rf0nFqM/view" target="_blank" class="relative block rounded-xl bg-gradient-to-br from-blue-300 to-blue-500 p-6 shadow-lg hover:shadow-xl transition" data-i18n="resume_tile">
+          <i class="fas fa-file-alt text-2xl mb-2"></i>
+          <h3 class="text-xl font-semibold" data-i18n="resume_title">Моё резюме</h3>
+          <p class="text-sm" data-i18n="resume_description"></p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="mb-12" id="contacts">
+      <h2 class="text-2xl font-bold text-center mb-6" data-i18n="contacts_title">Контакты и&nbsp;ссылки</h2>
+      <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <a href="tel:+79526797776" class="block rounded-xl bg-gradient-to-br from-gray-400 to-gray-600 p-4 shadow hover:shadow-md transition phone-card" data-i18n="phone_tile">
+          <i class="fas fa-phone text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="phone_title">Телефон</h3>
+          <p class="text-sm" data-i18n="phone_description"></p>
+        </a>
+        <a href="mailto:rytrycon@gmail.com" class="block rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 p-4 shadow hover:shadow-md transition mail-card">
+          <i class="fas fa-envelope text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="email_title">Почта</h3>
+          <p class="text-sm" data-i18n="email_description"></p>
+        </a>
+        <a href="https://t.me/roman_purtow" target="_blank" class="block rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 p-4 shadow hover:shadow-md transition telegram-card">
+          <i class="fab fa-telegram text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="telegram_title">Telegram</h3>
+          <p class="text-sm" data-i18n="telegram_description"></p>
+        </a>
+        <a href="https://wa.me/79526797776" target="_blank" class="block rounded-xl bg-gradient-to-br from-green-400 to-green-600 p-4 shadow hover:shadow-md transition wa-card">
+          <i class="fab fa-whatsapp text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="whatsapp_title">WhatsApp</h3>
+          <p class="text-sm" data-i18n="whatsapp_description"></p>
+        </a>
+        <a href="https://instagram.com/roman.purtow" target="_blank" class="block rounded-xl bg-gradient-to-br from-pink-400 to-pink-600 p-4 shadow hover:shadow-md transition instagram-card">
+          <i class="fab fa-instagram text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="instagram_title">Instagram</h3>
+          <p class="text-sm" data-i18n="instagram_description"></p>
+        </a>
+        <a href="https://vk.com/roman.purtow" target="_blank" class="block rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 p-4 shadow hover:shadow-md transition vk-card">
+          <i class="fab fa-vk text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="vk_title">ВКонтакте</h3>
+          <p class="text-sm" data-i18n="vk_description"></p>
+        </a>
+        <a href="https://youtube.com/@roman-purtow" target="_blank" class="block rounded-xl bg-gradient-to-br from-red-500 to-red-700 p-4 shadow hover:shadow-md transition youtube-card">
+          <i class="fab fa-youtube text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="youtube_title">YouTube</h3>
+          <p class="text-sm" data-i18n="youtube_description"></p>
+        </a>
+        <a href="https://github.com/baslie" target="_blank" class="block rounded-xl bg-gradient-to-br from-gray-600 to-gray-800 p-4 shadow hover:shadow-md transition github-card">
+          <i class="fab fa-github text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="github_title">GitHub</h3>
+          <p class="text-sm" data-i18n="github_description"></p>
+        </a>
+        <a href="https://gist.github.com/baslie" target="_blank" class="block rounded-xl bg-gradient-to-br from-gray-600 to-gray-800 p-4 shadow hover:shadow-md transition github-gist-card">
+          <i class="fas fa-code text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="githubgist_title">GitHub Gist</h3>
+          <p class="text-sm" data-i18n="githubgist_description"></p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Блог -->
+    <section class="mb-12" id="blog">
+      <h2 class="text-2xl font-bold text-center mb-6" data-i18n="blog_title">Блог</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <a href="https://t.me/purtochka" target="_blank" class="block rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 p-4 shadow hover:shadow-md transition blog-card">
+          <i class="fas fa-blog text-xl mb-2"></i>
+          <h3 class="font-semibold" data-i18n="blog_link_title">Пурточка вещает</h3>
+          <p class="text-sm" data-i18n="blog_link_description"></p>
+        </a>
+        <a href="https://vc.ru/u/454432-roman-purtov" target="_blank" class="block rounded-xl bg-[#FFE6EB] p-4 shadow hover:shadow-md transition vc-card">
+          <svg viewBox="0 404.142 36 33.608" class="w-6 h-6 mb-2 vc-icon" xmlns="http://www.w3.org/2000/svg"><path d="M28.813 419.643c2.65 0 4.645-1.104 6.116-3.026l-1.966-1.5a5.188 5.188 0 0 1-4.15 2.052c-2.876 0-4.96-2.343-4.96-5.218s2.05-5.35 5.042-5.35c1.33 0 2.27.314 3.09.822v2.528h2.474v-3.686l-.474-.373c-1.36-1.07-3.437-1.638-5.173-1.638-4.244 0-7.696 3.452-7.696 7.696 0 4.24 3.45 7.693 7.696 7.693zm5.133 15.18-.088-3.543v-8.646h-5.16v2.475h2.554v5.866c0 2.527-1.93 4.316-3.877 4.316s-2.963-1.35-2.963-3.876v-8.782h-4.82v2.475h2.214v6.736c0 3.428 1.922 5.795 5.35 5.795 1.97 0 3.47-1.093 4.365-2.778h.04l.353 2.356h3.965v-2.386h-1.93v-.005zm-13.4-30.206h-4.3l-3.74 10.86h-.058l-3.72-10.86H4.146v2.476h2.577l4.435 12.378h2.356v-.003l4.625-12.374h2.405v-2.476zM.122 437.244H2.67v-2.547H.123v2.547zm9.84-11.74h-.028l-.16-2.87H5.226v2.256h2.42v9.934h-2.42v2.387h11.24v-2.34h-6.258v-5.995c.283-2.17 1.91-4.023 4.13-4.023h.04l-.045 2.218h2.474v-4.478h-1.956c-2.24-.006-3.902 1.206-4.89 2.912z"/></svg>
+          <h3 class="font-semibold" data-i18n="vc_title">Роман Пуртов</h3>
+          <p class="text-sm" data-i18n="vc_description">Личный блог</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Проекты -->
+    <section class="mb-12" id="projects">
+      <h2 class="text-2xl font-bold text-center mb-6" data-i18n="projects_title">Проекты, хобби</h2>
+      <p class="text-center mb-6" data-i18n="projects_description"></p>
+      <a href="https://vk.com/tomsk_progulka" target="_blank" class="block rounded-xl bg-gradient-to-br from-green-400 to-green-600 p-6 shadow hover:shadow-md transition flex items-center justify-center">
+        <img src="/images/progulka-logo.svg" alt="Томская Прогулка" class="h-8 mr-3" loading="lazy">
+        <div>
+          <h3 class="font-semibold" data-i18n="tomsk_walk_title">Томская Прогулка</h3>
+          <p class="text-sm" data-i18n="tomsk_walk_description"></p>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <script src="preline-docs/assets/vendor/preline/dist/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+  <script>
+  const classesToExclude = [];
+  function getCurrentScale() { const body = document.body; const transform = window.getComputedStyle(body).transform; if (transform && transform !== 'none') { const matrix = transform.match(/matrix\(([^)]+)\)/); if (matrix) { const values = matrix[1].split(','); return parseFloat(values[0]) || 1; } } return 1; }
+  let currentScale = getCurrentScale();
+  const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), orientation: 'vertical', smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.5, infinite: false, autoRaf: true, autoResize: true, syncTouch: false, prevent: (node) => { return classesToExclude.some(className => node.classList.contains(className) || node.closest(`.${className}`)); }, virtualScroll: (e) => { const newScale = getCurrentScale(); if (newScale !== currentScale) { currentScale = newScale; } if (currentScale !== 1) { e.deltaY = e.deltaY / currentScale; e.deltaX = e.deltaX / currentScale; } return true; } });
+  window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { currentScale = getCurrentScale(); lenis.resize(); }, 100); });
+  window.addEventListener('load', () => { classesToExclude.forEach((className) => { document.querySelectorAll(`.${className}`).forEach((element) => { element.setAttribute('data-lenis-prevent', ''); }); }); });
+  lenis.on('scroll', (e) => {});
+  </script>
+  <script>
+    function calculateDaysSince(dateString) { const startDate = new Date(dateString); const nowTomsk = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Tomsk' })); const diffInMs = nowTomsk - startDate; return Math.floor(diffInMs / (1000 * 60 * 60 * 24)); }
+    function getDayDeclensionRu(num) { const lastTwo = num % 100; if (lastTwo >= 11 && lastTwo <= 19) { return 'дней'; } const lastDigit = num % 10; if (lastDigit === 1) { return 'день'; } else if (lastDigit >= 2 && lastDigit <= 4) { return 'дня'; } else { return 'дней'; } }
+    function getDayDeclensionEn(num) { return num === 1 ? 'day' : 'days'; }
+    const daysSinceStart = calculateDaysSince('2022-01-20');
+    const dayDeclRu = getDayDeclensionRu(daysSinceStart);
+    const dayDeclEn = getDayDeclensionEn(daysSinceStart);
+    const translations = {
+      ru: {
+        title: 'Роман Пуртов. Ваш маркетолог и дизайнер из тайги.',
+        metaDescription: 'Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.',
+        name: 'Роман Пуртов',
+        mainDescription: `Маркетолог, который &laquo;живёт в&nbsp;лесу&raquo; (Россия, Томск, МСК+4). Обожаю упаковывать и&nbsp;запускать интересные проекты. Делаю <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="underline">комплексный маркетинг</a>. Последние ${daysSinceStart}&nbsp;${dayDeclRu} активно делаю сайты <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="underline">на&nbsp;Тильде</a> и <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="underline">пишу код</a> 🤗`,
+        portfolio_title: 'Портфолио',
+        portfolio_description: 'Сайты на&nbsp;«Тильде» (далеко не&nbsp;все работы)',
+        resume_title: 'Моё резюме',
+        resume_description: 'Должность «Интернет-маркетолог»',
+        contacts_title: 'Контакты и&nbsp;ссылки',
+        phone_title: 'Телефон',
+        phone_description: '+7&nbsp;952&nbsp;679‑77‑76',
+        email_title: 'Почта',
+        email_description: 'rytrycon@gmail.com',
+        telegram_title: 'Telegram',
+        telegram_description: '@roman_purtow',
+        whatsapp_title: 'WhatsApp',
+        whatsapp_description: '+7&nbsp;952&nbsp;679‑77‑76',
+        instagram_title: 'Instagram',
+        instagram_description: '@roman.purtow',
+        vk_title: 'ВКонтакте',
+        vk_description: '@roman.purtow',
+        youtube_title: 'YouTube',
+        youtube_description: '@roman-purtow',
+        github_title: 'GitHub',
+        github_description: '@baslie',
+        githubgist_title: 'GitHub Gist',
+        githubgist_description: '@baslie',
+        blog_title: 'Блог',
+        blog_link_title: 'Пурточка вещает',
+        blog_link_description: 'Канал в&nbsp;Телеграм',
+        vc_title: 'Роман Пуртов',
+        vc_description: 'Личный блог',
+        projects_title: 'Проекты, хобби',
+        projects_description: 'Со‑организатор «Томской Прогулки». Гуляю сам, вожу людей по&nbsp;лесам и&nbsp;полям 🌲',
+        tomsk_walk_title: 'Томская Прогулка',
+        tomsk_walk_description: 'Ходите, гуляйте, чтобы природа зря не&nbsp;простаивала&nbsp;☝'
+      },
+      en: {
+        title: 'Roman Purtov. Your marketer and designer from the taiga.',
+        metaDescription: 'Advertising professional, UX & UI designer, and a bit of a programmer. Tilda websites, interesting projects. I take on everything I commit to.',
+        name: 'Roman Purtov',
+        mainDescription: `Marketer who &laquo;lives in&nbsp;the forest&raquo; (Russia, Tomsk, GMT+7). I love packaging and launching interesting projects. I do <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="underline">comprehensive marketing</a>. For the last ${daysSinceStart}&nbsp;${dayDeclEn}, I have been actively building websites <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="underline">on&nbsp;Tilda</a> and <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="underline">writing code</a> 🤗`,
+        portfolio_title: 'Portfolio',
+        portfolio_description: 'Websites built on&nbsp;Tilda (not all works)',
+        resume_title: 'My Resume',
+        resume_description: 'Position: Internet Marketer',
+        contacts_title: 'Contacts & Links',
+        phone_title: 'Phone',
+        phone_description: '+7&nbsp;952&nbsp;679‑77‑76',
+        email_title: 'Email',
+        email_description: 'rytrycon@gmail.com',
+        telegram_title: 'Telegram',
+        telegram_description: '@roman_purtow',
+        whatsapp_title: 'WhatsApp',
+        whatsapp_description: '+7&nbsp;952&nbsp;679‑77‑76',
+        instagram_title: 'Instagram',
+        instagram_description: '@roman.purtow',
+        vk_title: 'VK',
+        vk_description: '@roman.purtow',
+        youtube_title: 'YouTube',
+        youtube_description: '@roman-purtow',
+        github_title: 'GitHub',
+        github_description: '@baslie',
+        githubgist_title: 'GitHub Gist',
+        githubgist_description: '@baslie',
+        blog_title: 'Blog',
+        blog_link_title: 'Purtochka speaks',
+        blog_link_description: 'Telegram channel',
+        vc_title: 'Roman Purtov',
+        vc_description: 'Personal blog',
+        projects_title: 'Projects & Hobbies',
+        projects_description: 'Co-organizer of "Tomsk Walk". I hike and guide people through forests and fields 🌲',
+        tomsk_walk_title: 'Tomsk Walk',
+        tomsk_walk_description: 'Walk around so nature won\'t stay idle ☝'
+      }
+    };
+
+    function updateLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.title = translations[lang].title;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) { metaDesc.setAttribute('content', translations[lang].metaDescription); }
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => { const key = el.getAttribute('data-i18n'); if (translations[lang][key]) { el.innerHTML = translations[lang][key]; }});
+    }
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en');
+    updateLanguage(currentLang);
+
+    const langToggle = document.getElementById('lang-toggle');
+    const themeToggle = document.getElementById('theme-toggle');
+    function updateLangToggleText() { langToggle.innerText = currentLang === 'ru' ? 'EN' : 'RU'; }
+    updateLangToggleText();
+
+    langToggle.addEventListener('click', function() {
+      currentLang = currentLang === 'ru' ? 'en' : 'ru';
+      localStorage.setItem('lang', currentLang);
+      updateLanguage(currentLang);
+      updateLangToggleText();
+    });
+
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.setAttribute('data-hs-theme', 'light');
+      themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-hs-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.setAttribute('data-hs-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+      } else {
+        document.documentElement.setAttribute('data-hs-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('background-video');
+      video.play().catch(() => {});
+      document.addEventListener('click', function() { if (video.paused) { video.play().catch(() => {}); } }, { once: true });
+    });
+
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+    ym(99831486,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+  </script>
+</body>
+</html>
