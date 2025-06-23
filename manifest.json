@@ -1,7 +1,7 @@
 {
   "name": "Роман Пуртов",
-  "short_name": "Пуртов",
-  "start_url": "/index2.html",
+  "short_name": "Роман_Пуртов",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#222222",
   "theme_color": "#222222",
