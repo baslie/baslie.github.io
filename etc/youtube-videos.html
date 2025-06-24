@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>YouTube auto-pause demo</title>
+    <style>
+    /* Основные стили для страницы */
+    body {
+        font-family: system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        margin: 0;
+    }
+
+    /* Контейнер для видео в ряд («для красоты»)*/
+    .uc-video-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    /* Стили для каждого видео («для красоты») */
+    .uc-video-wrapper {
+        flex: 1;
+        max-width: 560px;
+    }
+
+    iframe («для красоты») {
+        width: 100%;
+        height: 315px;
+        border: none;
+    }
+
+    /* Стили для мобильных устройств */
+    @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .uc-video-container {
+            flex-direction: column;
+            /* Видео друг под другом на мобильных */
+            gap: 15px;
+        }
+
+        .uc-video-wrapper {
+            max-width: 100%;
+        }
+
+        iframe {
+            height: 200px;
+            /* Уменьшаем высоту для мобильных */
+        }
+    }
+
+    /* Дополнительные стили для очень маленьких экранов */
+    @media (max-width: 480px) {
+        body {
+            padding: 0.5rem;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        iframe {
+            height: 180px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Автоматическая пауза других YouTube видео</h1>
+    <!-- Контейнер для размещения видео в ряд -->
+    <div class="uc-video-container">
+        <!-- Видео #1 -->
+        <div class="uc-video-wrapper">
+            <iframe class="uc-yt-player" id="player1" src="https://www.youtube.com/embed/9bZkp7q19f0?enablejsapi=1&rel=0&modestbranding=1&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        </div>
+        <!-- Видео #2 -->
+        <div class="uc-video-wrapper">
+            <iframe class="uc-yt-player" id="player2" src="https://www.youtube.com/embed/G7g8kNazmkI?enablejsapi=1&rel=0&modestbranding=1&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    <!-- 1. Загружаем IFrame API от YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+    /* 2. Создаем массив для хранения всех плееров */
+    let players = [];
+
+    /* Функция вызывается автоматически после загрузки YouTube API */
+    function onYouTubeIframeAPIReady() {
+        // Находим все элементы с классом .uc-yt-player и создаем для них плееры
+        document.querySelectorAll('.uc-yt-player').forEach((el, i) => {
+            players[i] = new YT.Player(el, {
+                events: {
+                    onStateChange: onPlayerStateChange // Подписываемся на изменения состояния
+                }
+            });
+        });
+    }
+
+    /* 3. Функция для обработки изменений состояния плеера */
+    function onPlayerStateChange(event) {
+        // Если текущее видео начало воспроизводиться
+        if (event.data === YT.PlayerState.PLAYING) {
+            // Проходимся по всем плеерам
+            players.forEach(p => {
+                // Если это не текущий плеер и он воспроизводится
+                if (p !== event.target &&
+                    p.getPlayerState &&
+                    p.getPlayerState() === YT.PlayerState.PLAYING) {
+                    // Моментально ставим на паузу
+                    p.pauseVideo();
+                }
+            });
+        }
+    }
+    </script>
+</body>
+
+</html>
