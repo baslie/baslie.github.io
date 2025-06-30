@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient)" stroke="#fff" stroke-width="16"/>
+  
+  <!-- QR Code representation -->
+  <g transform="translate(156, 156)">
+    <!-- Corner squares -->
+    <rect x="0" y="0" width="60" height="60" fill="#fff" rx="8"/>
+    <rect x="8" y="8" width="44" height="44" fill="url(#gradient)" rx="4"/>
+    <rect x="16" y="16" width="28" height="28" fill="#fff" rx="2"/>
+    
+    <rect x="140" y="0" width="60" height="60" fill="#fff" rx="8"/>
+    <rect x="148" y="8" width="44" height="44" fill="url(#gradient)" rx="4"/>
+    <rect x="156" y="16" width="28" height="28" fill="#fff" rx="2"/>
+    
+    <rect x="0" y="140" width="60" height="60" fill="#fff" rx="8"/>
+    <rect x="8" y="148" width="44" height="44" fill="url(#gradient)" rx="4"/>
+    <rect x="16" y="156" width="28" height="28" fill="#fff" rx="2"/>
+    
+    <!-- Central pattern -->
+    <rect x="90" y="90" width="20" height="20" fill="#fff" rx="2"/>
+    <rect x="94" y="94" width="12" height="12" fill="url(#gradient)" rx="1"/>
+    
+    <!-- Data dots -->
+    <circle cx="80" cy="30" r="8" fill="#fff"/>
+    <circle cx="110" cy="30" r="8" fill="#fff"/>
+    <circle cx="140" cy="30" r="8" fill="#fff"/>
+    <circle cx="170" cy="30" r="8" fill="#fff"/>
+    
+    <circle cx="30" cy="80" r="8" fill="#fff"/>
+    <circle cx="30" cy="110" r="8" fill="#fff"/>
+    <circle cx="30" cy="140" r="8" fill="#fff"/>
+    <circle cx="30" cy="170" r="8" fill="#fff"/>
+    
+    <circle cx="170" cy="80" r="8" fill="#fff"/>
+    <circle cx="170" cy="110" r="8" fill="#fff"/>
+    <circle cx="170" cy="140" r="8" fill="#fff"/>
+    <circle cx="170" cy="170" r="8" fill="#fff"/>
+    
+    <circle cx="80" cy="170" r="8" fill="#fff"/>
+    <circle cx="110" cy="170" r="8" fill="#fff"/>
+    <circle cx="140" cy="170" r="8" fill="#fff"/>
+  </g>
+  
+  <!-- Scan line animation effect -->
+  <line x1="100" y1="256" x2="412" y2="256" stroke="#10b981" stroke-width="3" opacity="0.8">
+    <animate attributeName="x1" values="100;412;100" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="x2" values="412;100;412" dur="2s" repeatCount="indefinite"/>
+  </line>
+</svg>

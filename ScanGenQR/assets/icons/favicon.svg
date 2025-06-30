@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" fill="url(#gradient)" rx="6"/>
+  
+  <!-- QR Code pattern -->
+  <g transform="translate(6, 6)">
+    <!-- Corner squares -->
+    <rect x="0" y="0" width="6" height="6" fill="#fff" rx="1"/>
+    <rect x="1" y="1" width="4" height="4" fill="url(#gradient)" rx="0.5"/>
+    <rect x="2" y="2" width="2" height="2" fill="#fff"/>
+    
+    <rect x="14" y="0" width="6" height="6" fill="#fff" rx="1"/>
+    <rect x="15" y="1" width="4" height="4" fill="url(#gradient)" rx="0.5"/>
+    <rect x="16" y="2" width="2" height="2" fill="#fff"/>
+    
+    <rect x="0" y="14" width="6" height="6" fill="#fff" rx="1"/>
+    <rect x="1" y="15" width="4" height="4" fill="url(#gradient)" rx="0.5"/>
+    <rect x="2" y="16" width="2" height="2" fill="#fff"/>
+    
+    <!-- Data dots -->
+    <circle cx="10" cy="3" r="1" fill="#fff"/>
+    <circle cx="3" cy="10" r="1" fill="#fff"/>
+    <circle cx="17" cy="10" r="1" fill="#fff"/>
+    <circle cx="10" cy="17" r="1" fill="#fff"/>
+    
+    <!-- Center -->
+    <rect x="9" y="9" width="2" height="2" fill="#fff" rx="0.5"/>
+  </g>
+</svg>

@@ -1,0 +1,334 @@
+<!-- QR Code Generator Page Content -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="text-center mb-8">
+        <div class="flex items-center justify-center mb-4">
+            <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Генератор QR-кодов</h1>
+        </div>
+        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Создавайте QR-коды для различных типов данных с настраиваемыми параметрами. 
+            Поддерживается текст, URL, Wi-Fi, email, телефон, SMS и геолокация.
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Input Section -->
+        <div class="space-y-6">
+            <!-- QR Type Tabs -->
+            <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Тип QR-кода</h2>
+                
+                <!-- Tab Navigation -->
+                <div class="flex flex-wrap gap-2 mb-6" role="tablist">
+                    <button id="tab-text" class="qr-tab active px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="true" data-type="text">
+                        Текст
+                    </button>
+                    <button id="tab-url" class="qr-tab px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="false" data-type="url">
+                        URL
+                    </button>
+                    <button id="tab-wifi" class="qr-tab px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="false" data-type="wifi">
+                        Wi-Fi
+                    </button>
+                    <button id="tab-email" class="qr-tab px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="false" data-type="email">
+                        Email
+                    </button>
+                    <button id="tab-phone" class="qr-tab px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="false" data-type="phone">
+                        Телефон
+                    </button>
+                    <button id="tab-sms" class="qr-tab px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="false" data-type="sms">
+                        SMS
+                    </button>
+                    <button id="tab-geo" class="qr-tab px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" 
+                            role="tab" aria-selected="false" data-type="geo">
+                        Геолокация
+                    </button>
+                </div>
+
+                <!-- Input Forms -->
+                <div id="input-forms">
+                    <!-- Text Input -->
+                    <div id="form-text" class="qr-form active">
+                        <label for="text-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Введите текст
+                        </label>
+                        <textarea id="text-input" rows="4" 
+                                  class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white resize-none"
+                                  placeholder="Введите любой текст..."></textarea>
+                    </div>
+
+                    <!-- URL Input -->
+                    <div id="form-url" class="qr-form hidden">
+                        <label for="url-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            URL адрес
+                        </label>
+                        <input type="url" id="url-input" 
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                               placeholder="https://example.com">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Введите полный URL с протоколом (http:// или https://)
+                        </p>
+                    </div>
+
+                    <!-- Wi-Fi Input -->
+                    <div id="form-wifi" class="qr-form hidden space-y-4">
+                        <div>
+                            <label for="wifi-ssid" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Название сети (SSID)
+                            </label>
+                            <input type="text" id="wifi-ssid" 
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                   placeholder="Название Wi-Fi сети">
+                        </div>
+                        <div>
+                            <label for="wifi-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Пароль
+                            </label>
+                            <input type="password" id="wifi-password" 
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                   placeholder="Пароль Wi-Fi">
+                        </div>
+                        <div>
+                            <label for="wifi-encryption" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Тип шифрования
+                            </label>
+                            <select id="wifi-encryption" 
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
+                                <option value="WPA">WPA/WPA2</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">Без пароля</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="wifi-hidden" class="custom-checkbox mr-2">
+                            <label for="wifi-hidden" class="text-sm text-gray-700 dark:text-gray-300">
+                                Скрытая сеть
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div id="form-email" class="qr-form hidden space-y-4">
+                        <div>
+                            <label for="email-to" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Email адрес
+                            </label>
+                            <input type="email" id="email-to" 
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                   placeholder="email@example.com">
+                        </div>
+                        <div>
+                            <label for="email-subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Тема письма (необязательно)
+                            </label>
+                            <input type="text" id="email-subject" 
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                   placeholder="Тема письма">
+                        </div>
+                        <div>
+                            <label for="email-body" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Текст письма (необязательно)
+                            </label>
+                            <textarea id="email-body" rows="3" 
+                                      class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white resize-none"
+                                      placeholder="Текст письма"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Phone Input -->
+                    <div id="form-phone" class="qr-form hidden">
+                        <label for="phone-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Номер телефона
+                        </label>
+                        <input type="tel" id="phone-input" 
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                               placeholder="+7 (999) 123-45-67">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Введите номер в международном формате
+                        </p>
+                    </div>
+
+                    <!-- SMS Input -->
+                    <div id="form-sms" class="qr-form hidden space-y-4">
+                        <div>
+                            <label for="sms-phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Номер телефона
+                            </label>
+                            <input type="tel" id="sms-phone" 
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                   placeholder="+7 (999) 123-45-67">
+                        </div>
+                        <div>
+                            <label for="sms-message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Текст сообщения (необязательно)
+                            </label>
+                            <textarea id="sms-message" rows="3" 
+                                      class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white resize-none"
+                                      placeholder="Текст SMS сообщения"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Geo Input -->
+                    <div id="form-geo" class="qr-form hidden space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="geo-lat" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Широта
+                                </label>
+                                <input type="number" id="geo-lat" step="any" 
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                       placeholder="55.7558">
+                            </div>
+                            <div>
+                                <label for="geo-lng" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Долгота
+                                </label>
+                                <input type="number" id="geo-lng" step="any" 
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                                       placeholder="37.6173">
+                            </div>
+                        </div>
+                        <button type="button" id="get-location" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            📍 Получить текущее местоположение
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Settings -->
+            <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Настройки QR-кода</h2>
+                
+                <div class="space-y-4">
+                    <!-- Size -->
+                    <div>
+                        <label for="qr-size" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Размер: <span id="size-value">256</span>px
+                        </label>
+                        <input type="range" id="qr-size" min="128" max="512" value="256" step="64"
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                    </div>
+
+                    <!-- Error Correction -->
+                    <div>
+                        <label for="error-correction" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Уровень коррекции ошибок
+                        </label>
+                        <select id="error-correction" 
+                                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white">
+                            <option value="L">Низкий (~7%)</option>
+                            <option value="M" selected>Средний (~15%)</option>
+                            <option value="Q">Высокий (~25%)</option>
+                            <option value="H">Максимальный (~30%)</option>
+                        </select>
+                    </div>
+
+                    <!-- Colors -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="color-dark" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Цвет кода
+                            </label>
+                            <input type="color" id="color-dark" value="#000000" 
+                                   class="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <label for="color-light" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Цвет фона
+                            </label>
+                            <input type="color" id="color-light" value="#FFFFFF" 
+                                   class="w-full h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generate-btn" 
+                        class="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 btn-hover-lift">
+                    Сгенерировать QR-код
+                </button>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="space-y-6">
+            <!-- QR Preview -->
+            <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Предварительный просмотр</h2>
+                
+                <div id="qr-preview" class="flex items-center justify-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 min-h-[300px]">
+                    <div class="text-center text-gray-500 dark:text-gray-400">
+                        <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 16h4.01M12 8h.01M12 16h.01m-7 0h.01M8 12h.01M8 8h.01M8 16h.01"></path>
+                        </svg>
+                        <p>QR-код появится здесь</p>
+                        <p class="text-sm mt-1">Заполните форму и нажмите "Сгенерировать"</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div id="qr-actions" class="hidden mt-4 flex flex-wrap gap-2">
+                    <button id="download-png" 
+                            class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 btn-hover-scale">
+                        📥 Скачать PNG
+                    </button>
+                    <button id="download-svg" 
+                            class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 btn-hover-scale">
+                        📄 Скачать SVG
+                    </button>
+                    <button id="copy-qr" 
+                            class="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 btn-hover-scale">
+                        📋 Копировать
+                    </button>
+                </div>
+
+                <!-- QR Info -->
+                <div id="qr-info" class="hidden mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <h3 class="font-medium text-gray-900 dark:text-white mb-2">Информация о QR-коде</h3>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                        <div>Тип: <span id="info-type"></span></div>
+                        <div>Размер: <span id="info-size"></span></div>
+                        <div>Уровень коррекции: <span id="info-correction"></span></div>
+                        <div>Длина данных: <span id="info-length"></span> символов</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">История генерации</h2>
+                    <button id="clear-history" 
+                            class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium focus:outline-none">
+                        Очистить
+                    </button>
+                </div>
+                
+                <div id="history-list" class="space-y-3">
+                    <div class="text-center text-gray-500 dark:text-gray-400 py-8">
+                        <svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p>История пуста</p>
+                        <p class="text-sm mt-1">Сгенерированные QR-коды появятся здесь</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- QR Code Generation Library -->
+<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="../assets/js/generator.js"></script>
