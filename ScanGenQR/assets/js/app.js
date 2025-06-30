@@ -721,7 +721,8 @@ function initializeRouter() {
     
     window.router.addRoute('./generator/', async () => {
         try {
-            const content = await loadPageContent('generator/index.html');
+            console.log('Загружаем генератор');
+            const content = await loadPageContent('./generator/index.html');
             document.querySelector('main').innerHTML = content;
             
             // Загрузка необходимых библиотек и скриптов
@@ -733,13 +734,15 @@ function initializeRouter() {
                 await initializeGenerator();
             }
         } catch (error) {
+            console.error('Ошибка генератора:', error);
             showToast('Ошибка загрузки генератора', 'error');
         }
     });
     
     window.router.addRoute('./scanner/', async () => {
         try {
-            const content = await loadPageContent('scanner/index.html');
+            console.log('Загружаем сканер');
+            const content = await loadPageContent('./scanner/index.html');
             document.querySelector('main').innerHTML = content;
             
             // Загрузка необходимых библиотек и скриптов
@@ -751,6 +754,7 @@ function initializeRouter() {
                 await initializeScanner();
             }
         } catch (error) {
+            console.error('Ошибка сканера:', error);
             showToast('Ошибка загрузки сканера', 'error');
         }
     });
