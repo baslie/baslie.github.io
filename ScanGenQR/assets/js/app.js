@@ -407,8 +407,19 @@ class Router {
      * Навигация к маршруту
      */
     navigateTo(path) {
-        if (this.currentRoute !== path) {
-            history.pushState(null, '', path);
+        const basePath = this.getBasePath();
+        let fullPath = path;
+        
+        // Если путь относительный, добавляем базовый путь
+        if (path.startsWith('./')) {
+            const relativePath = path.substring(2);
+            fullPath = basePath + '/' + relativePath;
+        } else if (path === '/') {
+            fullPath = basePath || '/';
+        }
+        
+        if (this.currentRoute !== fullPath) {
+            history.pushState(null, '', fullPath);
             this.handleRoute();
         }
     }
@@ -420,12 +431,19 @@ class Router {
         const path = window.location.pathname;
         this.currentRoute = path;
         
-        // Обновление навигации
-        this.updateNavigation(path);
+        // Определяем базовый путь для GitHub Pages
+        const basePath = this.getBasePath();
+        const relativePath = this.getRelativePath(path, basePath);
         
-        if (this.routes.has(path)) {
+        // Обновление навигации
+        this.updateNavigation(relativePath);
+        
+        // Проверяем маршруты с учетом базового пути
+        const routeKey = this.findMatchingRoute(relativePath);
+        
+        if (routeKey && this.routes.has(routeKey)) {
             try {
-                await this.routes.get(path)();
+                await this.routes.get(routeKey)();
             } catch (error) {
                 console.error('Ошибка маршрута:', error);
                 this.showError('Ошибка загрузки страницы');
@@ -433,6 +451,45 @@ class Router {
         } else {
             this.show404();
         }
+    }
+    
+    /**
+     * Получить базовый путь приложения
+     */
+    getBasePath() {
+        const pathParts = window.location.pathname.split('/');
+        // Если мы в подпапке (например, /ScanGenQR/), базовый путь будет /ScanGenQR
+        if (pathParts.length > 2 && pathParts[1]) {
+            return '/' + pathParts[1];
+        }
+        return '';
+    }
+    
+    /**
+     * Получить относительный путь от базового
+     */
+    getRelativePath(fullPath, basePath) {
+        if (basePath && fullPath.startsWith(basePath)) {
+            return fullPath.substring(basePath.length) || '/';
+        }
+        return fullPath;
+    }
+    
+    /**
+     * Найти подходящий маршрут
+     */
+    findMatchingRoute(relativePath) {
+        // Нормализуем путь
+        if (relativePath === '/' || relativePath === '') {
+            return '/';
+        }
+        if (relativePath.includes('/generator')) {
+            return './generator/';
+        }
+        if (relativePath.includes('/scanner')) {
+            return './scanner/';
+        }
+        return null;
     }
     
     /**
@@ -549,6 +606,8 @@ class Router {
  */
 async function loadPageContent(url) {
     try {
+        // Если URL относительный, используем его как есть
+        // Браузер автоматически разрешит его относительно текущего URL
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

@@ -6,21 +6,33 @@
 const CACHE_NAME = 'scangenqr-v1.0.0';
 const CACHE_STRATEGY_VERSION = '1.0.0';
 
+// Определяем базовый путь приложения
+const getBasePath = () => {
+    const location = self.location || { pathname: '/' };
+    const pathParts = location.pathname.split('/').filter(part => part);
+    if (pathParts.length > 1) {
+        return '/' + pathParts.slice(0, -1).join('/') + '/';
+    }
+    return '/';
+};
+
+const BASE_PATH = getBasePath();
+
 // Ресурсы для кэширования (Cache First стратегия)
 const STATIC_CACHE_RESOURCES = [
-    './',
-    './index.html',
-    './generator/',
-    './generator/index.html',
-    './scanner/',
-    './scanner/index.html',
-    './manifest.json',
-    './assets/css/styles.css',
-    './assets/js/app.js',
-    './assets/js/generator.js',
-    './assets/js/scanner.js',
+    BASE_PATH,
+    BASE_PATH + 'index.html',
+    BASE_PATH + 'generator/',
+    BASE_PATH + 'generator/index.html',
+    BASE_PATH + 'scanner/',
+    BASE_PATH + 'scanner/index.html',
+    BASE_PATH + 'manifest.json',
+    BASE_PATH + 'assets/css/styles.css',
+    BASE_PATH + 'assets/js/app.js',
+    BASE_PATH + 'assets/js/generator.js',
+    BASE_PATH + 'assets/js/scanner.js',
     // CDN ресурсы для офлайн работы
-    'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
+    'https://cdn.tailwindcss.com',
     'https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js',
     'https://unpkg.com/qr-scanner@1.4.2/qr-scanner.min.js'
 ];
