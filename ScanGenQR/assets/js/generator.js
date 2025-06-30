@@ -21,12 +21,39 @@ async function initializeGenerator() {
     try {
         console.log('Инициализация генератора QR-кодов...');
         
-        // Проверка доступности библиотеки QRCode
-        if (typeof QRCode === 'undefined') {
-            console.warn('Библиотека QRCode не загружена');
-            showToast('QRCode библиотека недоступна', 'error');
-            return;
-        }
+        // Ждём загрузки библиотеки QRCode с повторными попытками
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        const waitForQRCode = () => {
+            if (typeof QRCode !== 'undefined') {
+                console.log('Библиотека QRCode загружена успешно');
+                initializeGeneratorUI();
+                return;
+            }
+            
+            attempts++;
+            if (attempts < maxAttempts) {
+                console.log(`Ожидание загрузки QRCode... попытка ${attempts}/${maxAttempts}`);
+                setTimeout(waitForQRCode, 200);
+            } else {
+                console.error('Библиотека QRCode не загружена после', maxAttempts, 'попыток');
+                showToast('Ошибка загрузки библиотеки QR-кодов', 'error');
+            }
+        };
+        
+        waitForQRCode();
+    } catch (error) {
+        console.error('Ошибка инициализации генератора:', error);
+        showToast('Ошибка инициализации генератора QR-кодов', 'error');
+    }
+}
+
+/**
+ * Инициализация UI генератора
+ */
+function initializeGeneratorUI() {
+    try {
         
         // Инициализация обработчиков событий
         initializeEventHandlers();

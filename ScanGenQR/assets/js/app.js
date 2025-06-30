@@ -7,6 +7,27 @@
 let deferredPrompt = null;
 let isOnline = navigator.onLine;
 
+// ===== УТИЛИТЫ ПУТЕЙ =====
+
+/**
+ * Получить базовый путь для GitHub Pages
+ */
+function getBasePath() {
+    const path = window.location.pathname;
+    if (path.includes('/ScanGenQR/')) {
+        return '/ScanGenQR';
+    }
+    return '';
+}
+
+/**
+ * Функция для корректного построения путей
+ */
+function buildPath(relativePath) {
+    const basePath = getBasePath();
+    return basePath + relativePath;
+}
+
 // ===== PWA ФУНКЦИОНАЛЬНОСТЬ =====
 
 /**
@@ -15,7 +36,10 @@ let isOnline = navigator.onLine;
 async function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         try {
-            const registration = await navigator.serviceWorker.register('./assets/js/sw.js');
+            // Определяем корректный путь к Service Worker
+            const basePath = getBasePath();
+            const swPath = basePath ? `${basePath}/assets/js/sw.js` : './assets/js/sw.js';
+            const registration = await navigator.serviceWorker.register(swPath);
             console.log('ServiceWorker зарегистрирован:', registration);
             
             // Проверка обновлений

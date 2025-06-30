@@ -19,11 +19,39 @@ async function initializeScanner() {
     try {
         console.log('Инициализация сканера QR-кодов...');
 
-        // Проверка доступности библиотеки QrScanner
-        if (typeof QrScanner === 'undefined') {
-            throw new Error('Библиотека QrScanner не загружена');
-        }
+        // Ждём загрузки библиотеки QrScanner с повторными попытками
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        const waitForQrScanner = () => {
+            if (typeof QrScanner !== 'undefined') {
+                console.log('Библиотека QrScanner загружена успешно');
+                initializeScannerUI();
+                return;
+            }
+            
+            attempts++;
+            if (attempts < maxAttempts) {
+                console.log(`Ожидание загрузки QrScanner... попытка ${attempts}/${maxAttempts}`);
+                setTimeout(waitForQrScanner, 200);
+            } else {
+                console.error('Библиотека QrScanner не загружена после', maxAttempts, 'попыток');
+                showToast('Ошибка загрузки библиотеки сканера', 'error');
+            }
+        };
+        
+        waitForQrScanner();
+    } catch (error) {
+        console.error('Ошибка инициализации сканера:', error);
+        showToast('Ошибка инициализации сканера QR-кодов', 'error');
+    }
+}
 
+/**
+ * Инициализация UI сканера
+ */
+function initializeScannerUI() {
+    try {
         // Инициализация камеры
         initializeCameraScanner();
 
@@ -35,8 +63,8 @@ async function initializeScanner() {
 
         console.log('Сканер QR-кодов инициализирован успешно');
     } catch (error) {
-        console.error('Ошибка инициализации сканера:', error);
-        showToast('Ошибка инициализации сканера QR-кодов', 'error');
+        console.error('Ошибка инициализации UI сканера:', error);
+        showToast('Ошибка инициализации UI сканера', 'error');
     }
 }
 
