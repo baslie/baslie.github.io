@@ -483,10 +483,10 @@ class Router {
         if (relativePath === '/' || relativePath === '') {
             return '/';
         }
-        if (relativePath.includes('/generator')) {
+        if (relativePath.includes('generator')) {
             return './generator/';
         }
-        if (relativePath.includes('/scanner')) {
+        if (relativePath.includes('scanner')) {
             return './scanner/';
         }
         return null;
@@ -620,6 +620,36 @@ async function loadPageContent(url) {
 }
 
 /**
+ * Динамическая загрузка JavaScript файла
+ */
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        // Проверяем, не загружен ли уже скрипт
+        const existingScript = document.querySelector(`script[src="${src}"]`);
+        if (existingScript) {
+            resolve();
+            return;
+        }
+        
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        
+        script.onload = () => {
+            console.log(`Скрипт загружен: ${src}`);
+            resolve();
+        };
+        
+        script.onerror = (error) => {
+            console.error(`Ошибка загрузки скрипта: ${src}`, error);
+            reject(new Error(`Не удалось загрузить скрипт: ${src}`));
+        };
+        
+        document.head.appendChild(script);
+    });
+}
+
+/**
  * Показать индикатор загрузки
  */
 function showLoading(container) {
@@ -694,6 +724,10 @@ function initializeRouter() {
             const content = await loadPageContent('generator/index.html');
             document.querySelector('main').innerHTML = content;
             
+            // Загрузка необходимых библиотек и скриптов
+            await loadScript('https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js');
+            await loadScript('./assets/js/generator.js');
+            
             // Инициализация генератора
             if (typeof initializeGenerator === 'function') {
                 await initializeGenerator();
@@ -707,6 +741,10 @@ function initializeRouter() {
         try {
             const content = await loadPageContent('scanner/index.html');
             document.querySelector('main').innerHTML = content;
+            
+            // Загрузка необходимых библиотек и скриптов
+            await loadScript('https://unpkg.com/qr-scanner@1.4.2/qr-scanner.min.js');
+            await loadScript('./assets/js/scanner.js');
             
             // Инициализация сканера
             if (typeof initializeScanner === 'function') {
