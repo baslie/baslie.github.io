@@ -746,11 +746,25 @@ function initializeRouter() {
     window.router.addRoute('./generator/', async () => {
         try {
             console.log('Загружаем генератор');
-            const content = await loadPageContent('./generator/index.html');
+            
+            // Определяем правильный путь для загрузки
+            let contentPath = './generator/index.html';
+            
+            // Если мы на GitHub Pages, корректируем путь
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('/ScanGenQR/')) {
+                contentPath = '/ScanGenQR/generator/index.html';
+            }
+            
+            const content = await loadPageContent(contentPath);
             document.querySelector('main').innerHTML = content;
             
             // Загрузка необходимых библиотек и скриптов
-            await loadScript('https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js');
+            await loadScript('https://unpkg.com/qrcode/build/qrcode.min.js');
+            
+            // Добавляем небольшую задержку чтобы убедиться что QRCode загружен
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
             await loadScript('./assets/js/generator.js');
             
             // Инициализация генератора
@@ -766,7 +780,17 @@ function initializeRouter() {
     window.router.addRoute('./scanner/', async () => {
         try {
             console.log('Загружаем сканер');
-            const content = await loadPageContent('./scanner/index.html');
+            
+            // Определяем правильный путь для загрузки
+            let contentPath = './scanner/index.html';
+            
+            // Если мы на GitHub Pages, корректируем путь
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('/ScanGenQR/')) {
+                contentPath = '/ScanGenQR/scanner/index.html';
+            }
+            
+            const content = await loadPageContent(contentPath);
             document.querySelector('main').innerHTML = content;
             
             // Загрузка необходимых библиотек и скриптов

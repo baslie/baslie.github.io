@@ -12,6 +12,38 @@ let generationHistory = [];
 const MAX_HISTORY_ITEMS = 10;
 const QR_SIZE_LIMITS = { min: 128, max: 512 };
 
+// ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ЗАГРУЗКИ =====
+
+/**
+ * Альтернативная функция загрузки скрипта
+ */
+function loadScriptAlternative(src) {
+    return new Promise((resolve, reject) => {
+        // Проверяем, не загружен ли уже скрипт
+        const existingScript = document.querySelector(`script[src="${src}"]`);
+        if (existingScript) {
+            resolve();
+            return;
+        }
+        
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        
+        script.onload = () => {
+            console.log(`Скрипт загружен (alternative): ${src}`);
+            resolve();
+        };
+        
+        script.onerror = (error) => {
+            console.error(`Ошибка загрузки скрипта (alternative): ${src}`, error);
+            reject(new Error(`Не удалось загрузить скрипт: ${src}`));
+        };
+        
+        document.head.appendChild(script);
+    });
+}
+
 // ===== ИНИЦИАЛИЗАЦИЯ ГЕНЕРАТОРА =====
 
 /**
@@ -21,27 +53,48 @@ async function initializeGenerator() {
     try {
         console.log('Инициализация генератора QR-кодов...');
         
-        // Ждём загрузки библиотеки QRCode с повторными попытками
+        // Простая проверка с фиксированным количеством попыток
+        const maxAttempts = 50;
         let attempts = 0;
-        const maxAttempts = 10;
         
         const waitForQRCode = () => {
+            attempts++;
+            
             if (typeof QRCode !== 'undefined') {
-                console.log('Библиотека QRCode загружена успешно');
+                console.log(`Библиотека QRCode найдена на попытке ${attempts}`);
                 initializeGeneratorUI();
                 return;
             }
             
-            attempts++;
             if (attempts < maxAttempts) {
                 console.log(`Ожидание загрузки QRCode... попытка ${attempts}/${maxAttempts}`);
-                setTimeout(waitForQRCode, 200);
+                setTimeout(waitForQRCode, 100);  // Уменьшаем интервал
             } else {
-                console.error('Библиотека QRCode не загружена после', maxAttempts, 'попыток');
-                showToast('Ошибка загрузки библиотеки QR-кодов', 'error');
+                console.error('QRCode не найден после', maxAttempts, 'попыток');
+                
+                // Последняя попытка - принудительная загрузка
+                console.log('Принудительная загрузка QRCode...');
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/qrcode/build/qrcode.min.js';
+                script.onload = () => {
+                    console.log('QRCode загружен принудительно');
+                    setTimeout(() => {
+                        if (typeof QRCode !== 'undefined') {
+                            initializeGeneratorUI();
+                        } else {
+                            showToast('Критическая ошибка: не удалось загрузить библиотеку QR-кодов', 'error');
+                        }
+                    }, 100);
+                };
+                script.onerror = () => {
+                    console.error('Принудительная загрузка QRCode не удалась');
+                    showToast('Ошибка загрузки библиотеки QR-кодов', 'error');
+                };
+                document.head.appendChild(script);
             }
         };
         
+        // Начинаем проверку
         waitForQRCode();
     } catch (error) {
         console.error('Ошибка инициализации генератора:', error);
