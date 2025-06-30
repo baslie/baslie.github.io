@@ -32,7 +32,7 @@ const STATIC_CACHE_RESOURCES = [
     BASE_PATH + 'assets/js/generator.js',
     BASE_PATH + 'assets/js/scanner.js',
     // CDN ресурсы для офлайн работы
-    'https://cdn.tailwindcss.com',
+    'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
     'https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js',
     'https://unpkg.com/qr-scanner@1.4.2/qr-scanner.min.js'
 ];

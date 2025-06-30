@@ -691,7 +691,7 @@ function initializeRouter() {
     
     window.router.addRoute('./generator/', async () => {
         try {
-            const content = await loadPageContent('./generator/index.html');
+            const content = await loadPageContent('generator/index.html');
             document.querySelector('main').innerHTML = content;
             
             // Инициализация генератора
@@ -705,7 +705,7 @@ function initializeRouter() {
     
     window.router.addRoute('./scanner/', async () => {
         try {
-            const content = await loadPageContent('./scanner/index.html');
+            const content = await loadPageContent('scanner/index.html');
             document.querySelector('main').innerHTML = content;
             
             // Инициализация сканера
