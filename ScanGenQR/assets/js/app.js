@@ -765,7 +765,15 @@ function initializeRouter() {
             // Добавляем небольшую задержку чтобы убедиться что QRCode загружен
             await new Promise(resolve => setTimeout(resolve, 100));
             
-            await loadScript('./assets/js/generator.js');
+            // Определяем правильный путь для generator.js
+            let generatorScriptPath = './assets/js/generator.js';
+            
+            // Если мы на GitHub Pages, корректируем путь
+            if (currentPath.includes('/ScanGenQR/')) {
+                generatorScriptPath = '/ScanGenQR/assets/js/generator.js';
+            }
+            
+            await loadScript(generatorScriptPath);
             
             // Инициализация генератора
             if (typeof initializeGenerator === 'function') {
@@ -795,7 +803,15 @@ function initializeRouter() {
             
             // Загрузка необходимых библиотек и скриптов
             await loadScript('https://unpkg.com/qr-scanner@1.4.2/qr-scanner.min.js');
-            await loadScript('./assets/js/scanner.js');
+            // Определяем правильный путь для scanner.js
+            let scannerScriptPath = './assets/js/scanner.js';
+            
+            // Если мы на GitHub Pages, корректируем путь
+            if (currentPath.includes('/ScanGenQR/')) {
+                scannerScriptPath = '/ScanGenQR/assets/js/scanner.js';
+            }
+            
+            await loadScript(scannerScriptPath);
             
             // Инициализация сканера
             if (typeof initializeScanner === 'function') {
