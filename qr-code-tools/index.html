@@ -1095,9 +1095,6 @@
                     throw new Error('QrScanner library not loaded');
                 }
 
-                // Set QrScanner worker path
-                QrScanner.WORKER_PATH = 'https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner-worker.min.js';
-
                 const hasCamera = await QrScanner.hasCamera();
                 if (!hasCamera) {
                     this.cameraBtn.classList.add('upload-section--disabled');
