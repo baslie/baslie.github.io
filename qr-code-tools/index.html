@@ -995,6 +995,8 @@
             this.currentCamera = 'environment';
             this.availableCameras = [];
             this.currentCameraIndex = 0;
+            this.lastScannedCode = null;
+            this.lastScanTime = null;
 
             this.initElements();
             this.initEventListeners();
@@ -1114,14 +1116,14 @@
             this.cameraOverlay.classList.remove('active');
             this.cameraBtn.classList.remove('camera-active');
 
-            if (this.isScanning) {
-                this.stopScanning();
-            }
-
-            // Очищаем сканер
-            this.scanner = null;
+            // Останавливаем сканирование
             this.isScanning = false;
             this.updateScanButtons();
+
+            // Очищаем ресурсы сканера
+            this.scanner = null;
+            this.scanCanvas = null;
+            this.scanContext = null;
         }
 
         async initScanner() {
@@ -1202,7 +1204,14 @@
 
                         // Если нашли валидный QR-код
                         if (code && code.data && code.data.trim() !== '') {
-                            this.handleScanResult({ data: code.data });
+                            // Проверяем, не сканировали ли мы этот же код недавно
+                            if (this.lastScannedCode !== code.data ||
+                                !this.lastScanTime ||
+                                Date.now() - this.lastScanTime > 3000) {
+                                this.lastScannedCode = code.data;
+                                this.lastScanTime = Date.now();
+                                this.handleScanResult({ data: code.data });
+                            }
                             return;
                         }
                     }
@@ -1217,9 +1226,14 @@
         }
 
         async startScanning() {
+            if (!this.video.classList.contains('active')) {
+                this.showStatus('Сначала активируйте камеру', 'warning');
+                return;
+            }
+
             this.isScanning = true;
             this.updateScanButtons();
-            this.startJsQRScanning(); // Запускаем сканирование заново
+            this.startJsQRScanning();
             this.showStatus('Сканирование активно', 'success');
         }
 
@@ -1277,7 +1291,23 @@
             this.showResult(qrData);
             this.showStatus('QR-код успешно распознан!', 'success');
 
-            this.stopScanning();
+            // Временная пауза перед автоматическим возобновлением сканирования
+            this.pauseScanningTemporarily();
+        }
+
+        pauseScanningTemporarily() {
+            this.isScanning = false;
+            this.updateScanButtons();
+
+            // Автоматически возобновляем сканирование через 2 секунды
+            setTimeout(() => {
+                if (this.video.classList.contains('active')) {
+                    this.isScanning = true;
+                    this.updateScanButtons();
+                    this.startJsQRScanning();
+                    this.showStatus('Сканирование возобновлено', 'success');
+                }
+            }, 2000);
         }
 
         async handleFileUpload(event) {
@@ -1470,6 +1500,15 @@
             this.resultContent.classList.remove('result-content--visible');
             this.resultText.textContent = 'Результат сканирования';
             this.resultData.textContent = '';
+
+            // Сбрасываем данные последнего сканирования, чтобы можно было повторно сканировать тот же код
+            this.lastScannedCode = null;
+            this.lastScanTime = null;
+
+            // Если камера активна и сканирование не идет, автоматически возобновляем
+            if (this.video.classList.contains('active') && !this.isScanning) {
+                this.startScanning();
+            }
         }
 
         showLoading() {
