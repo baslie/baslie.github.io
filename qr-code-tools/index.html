@@ -370,7 +370,7 @@
     }
 
     .upload-icon {
-        margin-right: 15px;
+        margin-right: var(--spacing-sm);
         opacity: var(--opacity-muted);
         flex-shrink: 0;
         width: 40px;
@@ -414,7 +414,6 @@
         align-items: center;
         justify-content: center;
         flex-direction: row;
-        gap: var(--spacing-sm);
     }
 
     .photo-placeholder--hidden {
@@ -718,6 +717,10 @@
             flex: none;
             width: 100%;
             order: 1;
+        }
+
+        .photo-placeholder {
+            gap: var(--spacing-sm);
         }
         
         .result-panel {
