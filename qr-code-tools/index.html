@@ -1231,12 +1231,9 @@
         }
 
         getOptimalCameraFacing() {
-            // Определяем тип устройства и возвращаем оптимальный режим камеры
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
-
-            // На мобильных используем фронтальную камеру (user), на десктопах - основную (environment)
-            return isMobile ? 'user' : 'environment';
+            // Для сканирования QR-кодов всегда используем заднюю/основную камеру
+            // 'environment' - задняя камера на мобильных, веб-камера на десктопах
+            return 'environment';
         }
 
         updateScanButtons() {
