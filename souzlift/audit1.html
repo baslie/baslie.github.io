@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудит лифтов — СОЮЗЛИФТ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#374151',
+                        secondary: '#6b7280',
+                        accent: '#2563eb'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Color variables */
+            --color-primary: #374151;
+            --color-secondary: #6b7280;
+            --color-accent: #2563eb;
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-700: #374151;
+            --color-gray-900: #111827;
+            
+            /* Border variables */
+            --border-radius-sm: 0.375rem;
+            --border-radius-md: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-width: 1px;
+            
+            /* Spacing variables */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            
+            /* Transition variables */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.2s ease;
+            --transition-slow: 0.3s ease;
+            --transition-slower: 0.4s ease;
+        }
+        
+        @media print {
+            body { margin: 0; color: var(--color-primary); background: var(--color-white); }
+            .no-print { display: none !important; }
+            .shadow-lg { box-shadow: none !important; }
+        }
+        
+        /* Category number styling */
+        .category-number {
+            min-width: 48px;
+            min-height: 48px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        
+        /* Question number styling */
+        .question-number {
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            color: var(--color-primary);
+            border: var(--border-width) solid var(--color-primary);
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        
+        /* Question level badge styling */
+        .question-level {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background-color: rgba(0, 0, 0, 0.1);
+            color: var(--color-primary);
+            font-size: 0.75rem;
+            font-weight: normal;
+            border-radius: 9999px;
+        }
+        
+        /* Component styles */
+        .question-card {
+            transition: all var(--transition-normal);
+            background-color: var(--color-gray-50);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border: var(--border-width) solid var(--color-gray-200);
+        }
+        
+        .question-card:hover {
+            transform: translateY(-1px);
+        }
+        
+        .answer-btn {
+            transition: all var(--transition-fast);
+            min-width: 48px;
+            min-height: 48px;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: var(--border-width) solid var(--color-gray-300);
+            border-radius: var(--border-radius-sm);
+            background-color: var(--color-white);
+            color: var(--color-gray-700);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .answer-btn:hover {
+            transform: scale(1.02);
+            background-color: var(--color-gray-100);
+        }
+        
+        .answer-btn.selected {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            border-color: var(--color-accent);
+        }
+        
+        .category-header {
+            transition: all var(--transition-slow);
+        }
+        
+        .category-content {
+            transition: max-height var(--transition-slow);
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            transition: width var(--transition-slower);
+        }
+        
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Sticky Progress Bar -->
+    <div class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-semibold text-primary">Прогресс заполнения</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-bold text-accent" id="progress-count">0/54</span>
+                            <span class="text-xs text-secondary">вопросов</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-accent h-2 rounded-full progress-bar" style="width: 0%" id="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="flex gap-2 sm:ml-6">
+                    <button onclick="clearAll()" class="px-4 py-2 bg-secondary text-white rounded-md hover:bg-gray-600 transition-colors text-sm font-medium">
+                        Очистить
+                    </button>
+                    <button onclick="saveAsDraft()" class="px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 transition-colors text-sm font-medium">
+                        Черновик
+                    </button>
+                    <button onclick="completeAudit()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium" id="complete-btn" disabled>
+                        Завершить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+					<img src="assets/souzlift.svg" alt="Логотип СОЮЗЛИФТ" class="h-16 w-auto max-w-xs">
+                </div>
+                <div class="flex items-center space-x-4 no-print">
+                    <button onclick="printForm()" class="text-secondary hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto lg:px-8 py-8">
+        <!-- Form Header -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-primary mb-6">Информация об аудите</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-secondary mb-2">Улица *</label>
+                    <input type="text" id="street" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="ул. Пушкина">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-secondary mb-2">Дом *</label>
+                    <input type="text" id="house" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="10">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-secondary mb-2">Подъезд *</label>
+                    <input type="text" id="entrance" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="1">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-secondary mb-2">Вес лифта *</label>
+                    <select id="weight" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                        <option value="">Выберите</option>
+                        <option value="400кг">400кг</option>
+                        <option value="600кг">600кг</option>
+                        <option value="800кг">800кг</option>
+                        <option value="1000кг">1000кг</option>
+                        <option value="другое">Другое</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-secondary mb-2">Дата *</label>
+                    <input type="date" id="audit-date" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
+                <div>
+                    <label class="block text-sm font-medium text-secondary mb-2">ФИО аудитора *</label>
+                    <input type="text" id="auditor-name" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Иванов Иван Иванович">
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div id="categories-container" class="space-y-6">
+            <!-- Categories will be generated by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+    // Data structure with all questions
+    const auditData = {
+        "Доступ к МП": [
+            { id: 1, level: "Оповещение, освобождение", question: "Свободный доступ к МП обслуживающего персонала (эл. механик, аварийка).", options: ["0", "1", "2"], explanations: ["затруднительный доступ", "доступ с незначительными ограничениями", "свободный доступ"] },
+            { id: 2, level: "Оповещение, освобождение", question: "Хорошо освещенный доступ к МП обслуживающего персонала (эл. механик, аварийка).", options: ["0", "1", "2"], explanations: ["освещение отсутствует", "недостаточное освещение", "комфортное освещение"] }
+        ],
+        "Кабина": [
+            { id: 3, level: "Безопасность", question: "Невозможность движения при открытых дверях шахты", options: ["0", "1"], explanations: ["возможность движения", "невозможность движения"] },
+            { id: 4, level: "Безопасность", question: "Все цепи безопасности рабочие, в т. ч. конечные выключатели", options: ["0", "1"], explanations: ["нет", "да"] },
+            { id: 5, level: "Безопасность", question: "Наличие вентиляции в кабине лифта", options: ["0", "1", "2"], explanations: ["вентиляция отсутствует", "недостаточная вентиляция", "комфортная вентиляция"] },
+            { id: 6, level: "Работа по назначению", question: "Работоспособность кнопок вызова", options: ["0", "1", "2"], explanations: ["кнопка не работает", "кнопка работает, но без подсветки", "кнопка и подсветка работает"] },
+            { id: 7, level: "Работа по назначению", question: "Работоспособность кнопок приказа", options: ["0", "1", "2"], explanations: ["кнопка не работает", "кнопка работает, но без подсветки", "кнопка и подсветка работает"] },
+            { id: 8, level: "Комфорт", question: "Время закрытия дверей лифта при выходе", options: ["0", "1"], explanations: ["некомфортное время: быстрое (<5 сек), долгое (>12 сек)", "комфортное время (~7-10 сек)"] },
+            { id: 9, level: "Комфорт", question: "Скорость открытия дверей лифта", options: ["0", "1"], explanations: ["некомфортная: резкое движение/очень медленное", "комфортная"] },
+            { id: 10, level: "Комфорт", question: "Скорость закрытия дверей лифта", options: ["0", "1"], explanations: ["некомфортная: резкое движение/очень медленное", "комфортная"] },
+            { id: 11, level: "Комфорт", question: "Звук во время работы дверей лифта", options: ["0", "1"], explanations: ["некомфортный", "комфортный"] },
+            { id: 12, level: "Безопасность", question: "Рабочая кнопка вызова диспетчера, сама диспетчиризация (связь)", options: ["0", "1"], explanations: ["не работает", "работает"] },
+            { id: 13, level: "Оповещение, освобождение", question: "Наличие правила пользования лифтом", options: ["0", "1", "2"], explanations: ["отсутствует", "в поврежденном состоянии", "в отличном состоянии"] },
+            { id: 14, level: "Оповещение, освобождение", question: "Наличие информации о контактах СЛМ", options: ["0", "1", "2"], explanations: ["отсутствует", "в поврежденном состоянии", "в отличном состоянии"] },
+            { id: 15, level: "Эстетика", question: "Целостность кабины, дверей шахты, порогов, обрамлений, плафонов", options: ["0", "1", "2"], explanations: ["сильные повреждения", "незначительные повреждения", "в отличном состоянии"] },
+            { id: 16, level: "Эстетика", question: "Чистота плафонов освещения", options: ["0", "1", "2"], explanations: ["сильные загрязнения", "незначительные загрязнения", "в отличном состоянии"] },
+            { id: 17, level: "Комфорт", question: "Качество освещения", options: ["0", "1", "2"], explanations: ["освещение отсутствует", "недостаточное освещение", "комфортное освещение"] },
+            { id: 18, level: "Эстетика", question: "Чистота кабины (пол, стены, потолок)", options: ["0", "1", "2"], explanations: ["сильные загрязнения", "незначительные загрязнения", "в отличном состоянии"] },
+            { id: 19, level: "Работа по назначению", question: "Соответствие точной остановки кабины лифта требованиям", options: ["0", "1", "2"], explanations: ["выходит за рамки регламента", "в рамках регламента", "точная остановка"] },
+            { id: 20, level: "Безопасность", question: "Рабочие фотореверсы (при наличии)", options: ["0", "1"], explanations: ["нерабочие", "рабочие"] },
+            { id: 21, level: "Безопасность", question: "Рабочее аварийное освещение", options: ["0", "1"], explanations: ["нерабочие", "рабочие"] },
+            { id: 22, level: "Комфорт", question: "Качество звука оповещения этажей и голоса диспетчера", options: ["0", "1"], explanations: ["некомфортный", "комфортный"] },
+            { id: 23, level: "Техническое состояние", question: "Нетипичные звуки при работе лифта", options: ["0", "1"], explanations: ["присутствуют", "отсутствуют"] },
+            { id: 24, level: "Техническое состояние", question: "Отсутствие повреждений и износа элементов дверей", options: ["0", "1"], explanations: ["присутствуют", "отсутствуют"] }
+        ],
+        "Машинное помещение": [
+            { id: 25, level: "Безопасность", question: "Целостность КВШ", options: ["0", "1"], explanations: ["отсутствует", "присутствует"] },
+            { id: 26, level: "Безопасность", question: "Надежность крепления КВШ", options: ["0", "1"], explanations: ["нет", "да"] },
+            { id: 27, level: "Безопасность", question: "Невозможность спадания канатов", options: ["0", "1"], explanations: ["есть вероятность", "невозможно"] },
+            { id: 28, level: "Безопасность", question: "Наличие ограждения КВШ", options: ["0", "1"], explanations: ["отсутствует", "присутствует"] },
+            { id: 29, level: "Работа по назначению", question: "Функционирование лифта в режиме НР", options: ["0", "1"], explanations: ["не функционирует", "функционирует"] },
+            { id: 30, level: "Работа по назначению", question: "Функционирование лифта в режиме МП", options: ["0", "1"], explanations: ["не функционирует", "функционирует"] },
+            { id: 31, level: "Работа по назначению", question: "Функционирование лифта в режиме Ревизия", options: ["0", "1"], explanations: ["не функционирует", "функционирует"] },
+            { id: 32, level: "Оповещение, освобождение", question: "Наличие схем на данный лифт", options: ["0", "1", "2"], explanations: ["отсутствует", "слабо читабельные", "в хорошем состоянии"] },
+            { id: 33, level: "Оповещение, освобождение", question: "Наличие документации на данный лифт", options: ["0", "1", "2"], explanations: ["отсутствует", "слабо читабельные", "в хорошем состоянии"] },
+            { id: 34, level: "Эстетика", question: "Чистота в машинном помещении", options: ["0", "1", "2"], explanations: ["сильные загрязнения", "незначительные загрязнения", "в отличном состоянии"] },
+            { id: 35, level: "Техническое состояние", question: "Отсутствие в МП значительной запыленности, влаги, металлической пыли", options: ["0", "1"], explanations: ["присутствуют", "отсутствуют"] },
+            { id: 36, level: "Техническое состояние", question: "Осмотр лебедки (отсутствие течи масла)", options: ["0", "1"], explanations: ["присутствует", "отсутствует"] },
+            { id: 37, level: "Техническое состояние", question: "Износ тормозных колодок", options: ["0", "1", "2"], explanations: ["сильный износ", "незначительный износ", "в хорошем состоянии"] },
+            { id: 38, level: "Техническое состояние", question: "Регулировка тормозных колодок", options: ["0", "1"], explanations: ["неотрегулировано", "отрегулировано"] },
+            { id: 39, level: "Техническое состояние", question: "Исправность электрооборудования и аппаратов управления", options: ["0", "1"], explanations: ["неисправно", "исправно"] },
+            { id: 40, level: "Техническое состояние", question: "Соответствие номиналов предохранителей документации", options: ["0", "1"], explanations: ["не соответствует", "соответствует"] },
+            { id: 41, level: "Техническое состояние", question: "Соответствие уровня масла в редукторе норме", options: ["0", "1"], explanations: ["не соответствует", "соответствует"] },
+            { id: 42, level: "Техническое состояние", question: "Отсутствие течи масла через уплотнения редуктора", options: ["0", "1"], explanations: ["присутствует", "отсутствует"] }
+        ],
+        "Шахта": [
+            { id: 43, level: "Безопасность", question: "Отсутствие повреждений перил на крыше кабины", options: ["0", "1"], explanations: ["присутствует", "отсутствует"] },
+            { id: 44, level: "Безопасность", question: "Отсутствие повреждений грузов", options: ["0", "1"], explanations: ["присутствует", "отсутствует"] },
+            { id: 45, level: "Безопасность", question: "Надежное крепление противовеса", options: ["0", "1"], explanations: ["не надежное", "надежное"] },
+            { id: 46, level: "Безопасность", question: "Отсутствие повреждений подъемного троса/ремня/цепи", options: ["0", "1"], explanations: ["присутствует", "отсутствует"] },
+            { id: 47, level: "Эстетика", question: "Чистота в приямке", options: ["0", "1", "2"], explanations: ["сильные загрязнения", "незначительные загрязнения", "в отличном состоянии"] },
+            { id: 48, level: "Техническое состояние", question: "Зазоры (кабина - направляющие)", options: ["0", "1"], explanations: ["не норма", "норма"] },
+            { id: 49, level: "Техническое состояние", question: "Наличие смазки рабочих поверхностей", options: ["0", "1"], explanations: ["отсутствует", "присутствует"] }
+        ],
+        "Надёжность": [
+            { id: 50, level: "Диагностика", question: "Возможность освобождения путем дистанционного перезапуска", options: ["0", "1"], explanations: ["нет возможности", "есть возможность"] },
+            { id: 51, level: "Диагностика", question: "Возможность своевременного определения неисправного лифта", options: ["0", "1"], explanations: ["нет возможности", "есть возможность"] },
+            { id: 52, level: "Диагностика", question: "Частота сбоев", options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], explanations: ["каждый день", "несколько раз в неделю", "раз в неделю", "несколько раз в месяц", "раз в месяц", "несколько раз в полгода", "раз в полгода", "несколько раз в год", "раз в год", "очень редко", "без остановок"], isSpecial: true },
+            { id: 53, level: "Диагностика", question: "Время простоев", options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], explanations: ["часы/сутки", "несколько часов", "около часа", "30-60 минут", "15-30 минут", "5-15 минут", "до 5 минут", "1-2 минуты", "менее минуты", "секунды", "мгновенно"], isSpecial: true },
+            { id: 54, level: "Диагностика", question: "Затраты усилий и средств на восстановление", options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], explanations: ["критические", "очень высокие", "высокие", "значительные", "умеренные", "средние", "небольшие", "минимальные", "незначительные", "очень низкие", "отсутствуют"], isSpecial: true }
+        ]
+    };
+
+    let formData = {};
+    let isDirty = false;
+
+    // Initialize form
+    document.addEventListener('DOMContentLoaded', function() {
+        generateForm();
+        setupEventListeners();
+        loadDraft();
+        updateProgress();
+        setDefaultDate();
+    });
+
+    function setDefaultDate() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('audit-date').value = today;
+    }
+
+    function generateForm() {
+        const container = document.getElementById('categories-container');
+
+        Object.keys(auditData).forEach((category, categoryIndex) => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden';
+            categoryDiv.innerHTML = `
+                    <div class="border-b border-gray-200 p-4 cursor-pointer hover:bg-gray-50 transition-colors category-header" onclick="toggleCategory(${categoryIndex})">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="category-number">
+                                    ${categoryIndex + 1}
+                                </div>
+                                <h3 class="text-lg font-semibold text-primary">${category}</h3>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-secondary" id="category-progress-${categoryIndex}">0/${auditData[category].length}</span>
+                                <svg id="chevron-${categoryIndex}" class="w-5 h-5 text-secondary transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="category-${categoryIndex}" class="category-content" style="max-height: none;">
+                        <div class="p-6 space-y-6">
+                            ${auditData[category].map(question => generateQuestionHTML(question)).join('')}
+                            <div class="border-t pt-6">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-secondary mb-2">Комментарии к категории</label>
+                                        <textarea id="comment-${category}" rows="3" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Дополнительные замечания..."></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-secondary mb-2">Загрузить фото</label>
+                                        <div class="border-2 border-dashed border-gray-300 rounded-md p-4 text-center hover:border-accent transition-colors">
+                                            <input type="file" id="photos-${category}" multiple accept="image/*" class="hidden">
+                                            <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                            </svg>
+                                            <p class="text-sm text-gray-600">Нажмите или перетащите фото</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            container.appendChild(categoryDiv);
+        });
+    }
+
+    function generateQuestionHTML(question) {
+        const optionsHTML = question.options.map((option, index) => `
+                <button type="button" 
+                        class="answer-btn"
+                        data-question="${question.id}" 
+                        data-value="${option}"
+                        onclick="selectOption(${question.id}, '${option}', this)">
+                    ${option}
+                </button>
+            `).join('');
+
+        const explanationsHTML = question.explanations.map((explanation, index) => `
+                <div class="text-xs text-gray-500 flex items-center">
+                    <span class="font-semibold text-accent mr-2">${question.options[index]}:</span>
+                    <span>${explanation}</span>
+                </div>
+            `).join('');
+
+        return `
+                <div class="question-card">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="question-number">
+                                    ${question.id}
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-base font-semibold text-primary mb-2 leading-relaxed">
+                                        ${question.question}
+                                    </h4>
+                                    <span class="question-level">
+                                        ${question.level}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-2">
+                                ${optionsHTML}
+                            </div>
+                            <div class="space-y-1">
+                                ${explanationsHTML}
+                            </div>
+                            ${question.isSpecial ? `
+                                <div>
+                                    <label class="block text-sm font-medium text-secondary mb-1">Дополнительные замечания</label>
+                                    <textarea id="special-comment-${question.id}" rows="2" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-sm" placeholder="Подробные замечания..."></textarea>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+    }
+
+    function selectOption(questionId, value, button) {
+        // Remove active class from all buttons for this question
+        const questionButtons = document.querySelectorAll(`[data-question="${questionId}"]`);
+        questionButtons.forEach(btn => {
+            btn.classList.remove('selected');
+        });
+
+        // Add active class to selected button
+        button.classList.add('selected');
+
+        // Store the answer
+        formData[`question_${questionId}`] = value;
+        isDirty = true;
+
+        // Auto-save and update progress
+        setTimeout(() => {
+            saveToLocalStorage();
+            updateProgress();
+        }, 300);
+    }
+
+    function toggleCategory(categoryIndex) {
+        const content = document.getElementById(`category-${categoryIndex}`);
+        const chevron = document.getElementById(`chevron-${categoryIndex}`);
+
+        const isExpanded = content.style.maxHeight === 'none' || (content.style.maxHeight !== '0px' && content.style.maxHeight !== '');
+        
+        if (isExpanded) {
+            content.style.maxHeight = '0px';
+            chevron.classList.remove('rotate-180');
+        } else {
+            content.style.maxHeight = 'none';
+            chevron.classList.add('rotate-180');
+        }
+    }
+
+    function updateProgress() {
+        const totalQuestions = Object.values(auditData).flat().length;
+        const answeredQuestions = Object.keys(formData).filter(key =>
+            key.startsWith('question_') && formData[key] !== ''
+        ).length;
+
+        // Required fields count
+        const requiredFields = ['street', 'house', 'entrance', 'weight', 'audit-date', 'auditor-name'];
+        const filledFields = requiredFields.filter(id => {
+            const element = document.getElementById(id);
+            return element && element.value.trim();
+        }).length;
+
+        const progress = Math.round(((answeredQuestions + filledFields) / (totalQuestions + requiredFields.length)) * 100);
+
+        document.getElementById('progress-bar').style.width = progress + '%';
+        document.getElementById('progress-count').textContent = `${answeredQuestions}/${totalQuestions}`;
+
+        // Update category progress
+        Object.keys(auditData).forEach((category, categoryIndex) => {
+            const questions = auditData[category];
+            const answeredInCategory = questions.filter(q => 
+                formData[`question_${q.id}`] !== undefined
+            ).length;
+            
+            const progressElement = document.getElementById(`category-progress-${categoryIndex}`);
+            if (progressElement) {
+                progressElement.textContent = `${answeredInCategory}/${questions.length}`;
+            }
+        });
+
+        // Enable complete button if everything is filled
+        const isComplete = progress === 100;
+        const completeBtn = document.getElementById('complete-btn');
+        completeBtn.disabled = !isComplete;
+        completeBtn.classList.toggle('opacity-50', !isComplete);
+    }
+
+    function setupEventListeners() {
+        // Form change detection
+        const formFields = ['street', 'house', 'entrance', 'weight', 'audit-date', 'auditor-name'];
+        formFields.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', function(e) {
+                    isDirty = true;
+                    formData[e.target.id] = e.target.value;
+                    setTimeout(() => {
+                        saveToLocalStorage();
+                        updateProgress();
+                    }, 500);
+                });
+            }
+        });
+
+        // Category comments
+        Object.keys(auditData).forEach(category => {
+            const commentField = document.getElementById(`comment-${category}`);
+            if (commentField) {
+                commentField.addEventListener('input', function(e) {
+                    isDirty = true;
+                    formData[`comment_${category}`] = e.target.value;
+                    setTimeout(() => saveToLocalStorage(), 500);
+                });
+            }
+        });
+
+        // Special comments
+        Object.values(auditData).flat().forEach(question => {
+            if (question.isSpecial) {
+                const specialComment = document.getElementById(`special-comment-${question.id}`);
+                if (specialComment) {
+                    specialComment.addEventListener('input', function(e) {
+                        isDirty = true;
+                        formData[`special_comment_${question.id}`] = e.target.value;
+                        setTimeout(() => saveToLocalStorage(), 500);
+                    });
+                }
+            }
+        });
+
+        // Prevent accidental exit
+        window.addEventListener('beforeunload', function(e) {
+            if (isDirty) {
+                e.preventDefault();
+                e.returnValue = 'У вас есть несохраненные изменения. Сохранить черновик?';
+                return e.returnValue;
+            }
+        });
+
+        // File upload handling
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    showNotification(`Загружено файлов: ${files.length}`, 'success');
+                }
+            });
+        });
+    }
+
+    function clearAll() {
+        if (confirm('Вы уверены, что хотите очистить все поля? Все данные будут потеряны.')) {
+            // Clear form data
+            formData = {};
+            isDirty = false;
+            
+            // Clear form fields
+            const formFields = ['street', 'house', 'entrance', 'weight', 'audit-date', 'auditor-name'];
+            formFields.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = '';
+            });
+
+            // Clear all answer buttons
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Clear comments
+            Object.keys(auditData).forEach(category => {
+                const commentField = document.getElementById(`comment-${category}`);
+                if (commentField) commentField.value = '';
+            });
+
+            // Clear special comments
+            Object.values(auditData).flat().forEach(question => {
+                if (question.isSpecial) {
+                    const specialComment = document.getElementById(`special-comment-${question.id}`);
+                    if (specialComment) specialComment.value = '';
+                }
+            });
+
+            // Clear localStorage
+            localStorage.removeItem('audit_draft');
+            
+            // Reset progress
+            updateProgress();
+            setDefaultDate();
+            
+            showNotification('Все поля очищены', 'success');
+        }
+    }
+
+    function saveAsDraft() {
+        saveToLocalStorage();
+        showNotification('Черновик сохранен', 'success');
+    }
+
+    function completeAudit() {
+        if (validateForm()) {
+            const auditData = {
+                ...formData,
+                timestamp: new Date().toISOString(),
+                status: 'completed'
+            };
+
+            // In a real application, this would send data to a server
+            localStorage.setItem('completed_audit', JSON.stringify(auditData));
+            showNotification('Аудит успешно завершен!', 'success');
+
+            // Print form
+            setTimeout(() => {
+                if (confirm('Аудит завершен. Распечатать отчет?')) {
+                    printForm();
+                }
+            }, 1000);
+        }
+    }
+
+    function validateForm() {
+        const required = ['street', 'house', 'entrance', 'weight', 'audit-date', 'auditor-name'];
+        const missingFields = [];
+
+        required.forEach(field => {
+            const element = document.getElementById(field);
+            if (!element || !element.value.trim()) {
+                missingFields.push(field);
+                if (element) element.classList.add('border-red-500');
+            } else {
+                if (element) element.classList.remove('border-red-500');
+            }
+        });
+
+        // Check if all questions are answered
+        const totalQuestions = Object.values(auditData).flat().length;
+        const answeredQuestions = Object.keys(formData).filter(key =>
+            key.startsWith('question_') && formData[key] !== ''
+        ).length;
+
+        if (answeredQuestions < totalQuestions) {
+            showNotification('Пожалуйста, ответьте на все вопросы', 'warning');
+            return false;
+        }
+
+        if (missingFields.length > 0) {
+            showNotification('Заполните все обязательные поля', 'warning');
+            return false;
+        }
+
+        return true;
+    }
+
+    function saveToLocalStorage() {
+        const draftData = {
+            ...formData,
+            timestamp: new Date().toISOString(),
+            status: 'draft'
+        };
+        localStorage.setItem('audit_draft', JSON.stringify(draftData));
+    }
+
+    function loadDraft() {
+        const draft = localStorage.getItem('audit_draft');
+        if (draft) {
+            const draftData = JSON.parse(draft);
+            Object.keys(draftData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = draftData[key];
+                    formData[key] = draftData[key];
+                }
+
+                // Restore question selections
+                if (key.startsWith('question_')) {
+                    const questionId = key.split('_')[1];
+                    const button = document.querySelector(`[data-question="${questionId}"][data-value="${draftData[key]}"]`);
+                    if (button) {
+                        selectOption(parseInt(questionId), draftData[key], button);
+                    }
+                }
+            });
+            showNotification('Черновик загружен', 'success');
+        }
+    }
+
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-md shadow-lg text-white transition-all duration-300 ${
+                type === 'success' ? 'bg-green-500' : 
+                type === 'warning' ? 'bg-amber-500' : 
+                type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+            }`;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    function printForm() {
+        window.print();
+    }
+    </script>
+</body>
+
+</html>
