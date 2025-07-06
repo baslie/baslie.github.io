@@ -1080,13 +1080,8 @@
             try {
                 this.showLoading();
 
-                if (!this.scanner) {
-                    await this.initScanner();
-                } else {
-                    await this.scanner.start();
-                    this.isScanning = true;
-                    this.updateScanButtons();
-                }
+                // Initialize camera stream
+                await this.initScanner();
 
                 // Show camera UI
                 this.photoPlaceholder.classList.add('photo-placeholder--hidden');
@@ -1094,7 +1089,13 @@
                 this.cameraOverlay.classList.add('active');
                 this.cameraBtn.classList.add('camera-active');
 
+                // Start scanning immediately
+                this.isScanning = true;
+                this.updateScanButtons();
+                this.startJsQRScanning();
+
                 this.hideLoading();
+                this.showStatus('Камера активирована. Сканирование активно', 'success');
             } catch (error) {
                 this.showStatus('Ошибка доступа к камере: ' + error.message, 'error');
                 this.hideLoading();
@@ -1155,11 +1156,7 @@
                     });
                 });
 
-                // Start scanning with jsQR
-                this.startJsQRScanning();
-
-                this.isScanning = true;
-                this.updateScanButtons();
+                // Camera is ready for scanning
 
             } catch (error) {
                 throw error;
@@ -1222,6 +1219,11 @@
                 return;
             }
 
+            if (!this.scanCanvas || !this.scanContext) {
+                this.showStatus('Камера еще не готова', 'warning');
+                return;
+            }
+
             this.isScanning = true;
             this.updateScanButtons();
             this.startJsQRScanning();
@@ -1262,11 +1264,8 @@
 
             // Automatically resume scanning after 2 seconds
             setTimeout(() => {
-                if (this.video.classList.contains('active')) {
-                    this.isScanning = true;
-                    this.updateScanButtons();
-                    this.startJsQRScanning();
-                    this.showStatus('Сканирование возобновлено', 'success');
+                if (this.video.classList.contains('active') && !this.isScanning) {
+                    this.startScanning();
                 }
             }, 2000);
         }
@@ -1275,15 +1274,12 @@
             const files = event.target.files;
             if (!files || files.length === 0) return;
 
-            console.log('Files selected:', files.length);
             this.showUploadLoading();
 
             for (const file of files) {
                 try {
-                    console.log('Processing file:', file.name, 'Type:', file.type);
                     await this.processFile(file);
                 } catch (error) {
-                    console.error('File processing error:', error);
                     this.showStatus(`Ошибка обработки файла ${file.name}: ${error.message}`, 'error');
                 }
             }
@@ -1312,24 +1308,18 @@
         }
 
         async processImage(file) {
-            console.log('Processing image:', file.name);
             try {
                 // First try with QrScanner
-                console.log('Trying QrScanner...');
                 const result = await QrScanner.scanImage(file);
-                console.log('QrScanner result:', result);
                 this.showResult(result);
                 this.showStatus(`QR-код найден в изображении ${file.name}`, 'success');
             } catch (error) {
-                console.log('QrScanner failed, trying jsQR fallback:', error.message);
                 // Fallback to jsQR method
                 try {
                     const result = await this.scanWithJsQR(file);
-                    console.log('jsQR result:', result);
                     this.showResult(result);
                     this.showStatus(`QR-код найден в изображении ${file.name}`, 'success');
                 } catch (fallbackError) {
-                    console.log('jsQR also failed:', fallbackError.message);
                     throw new Error(`QR-код не найден в изображении ${file.name}`);
                 }
             }
