@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <!-- SEO Meta Tags -->
-    <title>QR Code Tools - Онлайн сканер и генератор QR-кодов</title>
+    <title>
+        QR Code Tools - Онлайн сканер и генератор QR-кодов
+    </title>
     <meta name="description" content="Бесплатный онлайн сканер QR-кодов. Сканируйте QR-коды с камеры, загружайте изображения или PDF файлы. Быстро, безопасно и удобно.">
     <meta name="keywords" content="QR код, сканер, генератор, онлайн, бесплатно, камера, PDF, изображения">
     <meta name="author" content="QR Code Tools">
     <meta name="robots" content="index, follow">
     <!-- <link rel="canonical" href="https://our-qr-code-tools-domain.com/"> -->
-    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <!-- <meta property="og:url" content="https://our-qr-code-tools-domain.com/"> -->
@@ -24,7 +24,6 @@
     <meta property="og:image:alt" content="QR Code Tools">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="QR Code Tools">
-    
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <!-- <meta property="twitter:url" content="https://our-qr-code-tools-domain.com/"> -->
@@ -32,7 +31,6 @@
     <meta property="twitter:description" content="Бесплатный онлайн сканер QR-кодов. Сканируйте QR-коды с камеры, загружайте изображения или PDF файлы.">
     <meta property="twitter:image" content="assets/images/twitter-image.jpg">
     <meta property="twitter:image:alt" content="QR Code Tools">
-    
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -40,7 +38,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#222222">
-    
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
@@ -77,17 +74,15 @@
         /*"screenshot": "https://our-qr-code-tools-domain.com/assets/images/screenshot.jpg"*/
     }
     </script>
-    
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
     <!-- Fonts with display=swap for performance -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
     <style>
-    /* ======================================================================
+        /* ======================================================================
      Design Tokens (CSS Custom Properties)
      ====================================================================== */
     :root {
@@ -120,8 +115,21 @@
         --transition: .3s var(--easing);
 
         /* Breakpoints */
-        --bp-sm: 768px;
-        --bp-md: 1024px;
+        --bp-sm: 480px;
+        --bp-md: 768px;
+        --bp-lg: 1024px;
+    }
+
+    /* Dark theme */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --color-text: #e5e5e5;
+            --color-bg: #121212;
+            --color-muted: #1e1e1e;
+            --color-accent: #ffffff;
+            --color-border: rgba(255, 255, 255, .15);
+            --color-border-light: rgba(255, 255, 255, .4);
+        }
     }
 
     /* Reduced-motion */
@@ -666,30 +674,40 @@
     /* ======================================================================
      Responsive Helpers
      ====================================================================== */
-    /* Tablets and below */
+    /* Mobile optimizations */
     @media (max-width: var(--bp-md)) {
+        body {
+            padding: 15px;
+        }
+
         .header {
             flex-direction: column;
+            margin-bottom: 15px;
+            gap: 15px;
         }
 
         .main-layout {
             flex-direction: column;
+            gap: 15px;
         }
 
         .control-panel {
             flex: none;
             height: auto;
+            order: 1;
         }
         
         .result-panel {
-            flex: 1;
+            flex: none;
             height: auto;
+            order: 2;
         }
 
         .upload-sections {
             flex-direction: column;
             flex: none;
             height: auto;
+            gap: 15px;
         }
 
         .upload-section {
@@ -701,19 +719,30 @@
             text-align: center;
             padding: var(--spacing);
             height: auto;
-            min-height: var(--upload-height-mobile);
+            min-height: 100px;
         }
 
-        /* Квадратная область для "Сделать фото" в мобильной версии */
+        /* Квадратная область для камеры в мобильной версии */
         .upload-section--photo {
             aspect-ratio: 1;
             height: auto;
             min-height: auto;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
+
+        /* Прямоугольная область для загрузки файлов */
+        .upload-section--upload {
+            aspect-ratio: unset;
+            min-height: 80px;
+            height: auto;
         }
 
         .result-section {
             height: auto;
-            min-height: 300px;
+            min-height: 200px;
+            flex: none;
         }
 
         .upload-icon {
@@ -724,7 +753,7 @@
         }
 
         .upload-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             white-space: normal;
             max-width: 100%;
             line-height: 1.3;
@@ -737,15 +766,10 @@
         }
 
         .result-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             white-space: normal;
             max-width: 100%;
             line-height: 1.3;
-        }
-
-        .result-section {
-            min-height: auto;
-            padding: var(--spacing);
         }
 
         .camera-controls,
@@ -770,14 +794,57 @@
         .status-message--visible {
             transform: translateY(0);
         }
+
+        /* Оптимизация камеры для мобильных */
+        #qr-video {
+            border-radius: var(--radius-lg);
+        }
+        
+        .camera-overlay {
+            bottom: 15px;
+        }
+        
+        /* Улучшение читаемости результата */
+        .result-data {
+            font-size: 0.8rem;
+            max-height: 150px;
+        }
+    }
+    
+    /* Дополнительные оптимизации для маленьких экранов */
+    @media (max-width: var(--bp-sm)) {
+        body {
+            padding: 10px;
+        }
+        
+        .upload-sections {
+            gap: 10px;
+        }
+        
+        .main-layout {
+            gap: 10px;
+        }
+        
+        .header {
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .upload-section {
+            padding: 15px;
+        }
+        
+        .result-section {
+            padding: 15px;
+            min-height: 180px;
+        }
     }
     </style>
 </head>
 
-    <body>
+<body>
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-to-main" aria-label="Перейти к основному содержимому">Перейти к содержимому</a>
-    
     <div class="app-container">
         <!-- Header -->
         <header class="header" role="banner">
@@ -794,7 +861,6 @@
                 <div id="generator-description" class="sr-only">Создание QR-кодов из текста или ссылок</div>
             </nav>
         </header>
-
         <!-- Main Content -->
         <main class="main-content" id="main-content" role="main">
             <h1 class="sr-only">QR Code Scanner - Сканер QR-кодов</h1>
@@ -837,14 +903,12 @@
                         </label>
                     </div>
                 </section>
-
                 <!-- Result Panel (Right side) -->
                 <section class="result-panel" aria-labelledby="result-heading">
                     <h2 id="result-heading" class="sr-only">Результат сканирования</h2>
                     <div class="result-section" id="result-section" role="region" aria-live="polite" aria-labelledby="result-text">
                         <img src="assets/images/qr-result.svg" alt="" class="result-icon" id="result-icon" width="40" height="40" aria-hidden="true" loading="lazy">
                         <span class="result-text" id="result-text">Результат сканирования</span>
-                        
                         <div class="result-content" id="result-content">
                             <div class="result-data" id="result-data" role="textbox" aria-readonly="true" aria-label="Содержимое QR-кода"></div>
                             <div class="result-actions" role="group" aria-label="Действия с результатом">
@@ -861,15 +925,12 @@
             </div>
         </main>
     </div>
-
     <!-- Hidden canvas for PDF rendering -->
     <canvas id="pdf-canvas" class="pdf-canvas"></canvas>
-
     <!-- CDN Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
-
     <script>
     // ======================================================================
     // QR Code Scanner Application
@@ -882,7 +943,7 @@
             this.currentCamera = 'environment';
             this.availableCameras = [];
             this.currentCameraIndex = 0;
-            
+
             this.initElements();
             this.initEventListeners();
             this.checkCameraSupport();
@@ -898,14 +959,14 @@
             this.photoPlaceholder = document.getElementById('photo-placeholder');
             this.cameraOverlay = document.getElementById('camera-overlay');
             this.video = document.getElementById('qr-video');
-            
+
             // Camera controls
             this.startScanBtn = document.getElementById('start-scan-btn');
             this.stopScanBtn = document.getElementById('stop-scan-btn');
             this.switchCameraBtn = document.getElementById('switch-camera-btn');
             this.cameraLoading = document.getElementById('camera-loading');
             this.uploadLoading = document.getElementById('upload-loading');
-            
+
             // Result elements
             this.resultSection = document.getElementById('result-section');
             this.resultIcon = document.getElementById('result-icon');
@@ -915,7 +976,7 @@
             this.copyBtn = document.getElementById('copy-btn');
             this.openLinkBtn = document.getElementById('open-link-btn');
             this.clearBtn = document.getElementById('clear-btn');
-            
+
             // PDF Canvas
             this.pdfCanvas = document.getElementById('pdf-canvas');
         }
@@ -923,15 +984,15 @@
         initEventListeners() {
             // Camera button
             this.cameraBtn.addEventListener('click', () => this.toggleCamera());
-            
+
             // File upload
             this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
-            
+
             // Camera controls
             this.startScanBtn.addEventListener('click', () => this.startScanning());
             this.stopScanBtn.addEventListener('click', () => this.stopScanning());
             this.switchCameraBtn.addEventListener('click', () => this.switchCamera());
-            
+
             // Result actions
             this.copyBtn.addEventListener('click', () => this.copyResult());
             this.openLinkBtn.addEventListener('click', () => this.openLink());
@@ -964,7 +1025,7 @@
         async showCamera() {
             try {
                 this.showLoading();
-                
+
                 if (!this.scanner) {
                     await this.initScanner();
                 } else {
@@ -972,13 +1033,13 @@
                     this.isScanning = true;
                     this.updateScanButtons();
                 }
-                
+
                 // Show camera UI
                 this.photoPlaceholder.classList.add('photo-placeholder--hidden');
                 this.video.classList.add('active');
                 this.cameraOverlay.classList.add('active');
                 this.cameraBtn.classList.add('camera-active');
-                
+
                 this.hideLoading();
             } catch (error) {
                 this.showStatus('Ошибка доступа к камере: ' + error.message, 'error');
@@ -994,29 +1055,29 @@
                 tracks.forEach(track => track.stop());
                 this.video.srcObject = null;
             }
-            
+
             // Hide camera UI
             this.photoPlaceholder.classList.remove('photo-placeholder--hidden');
             this.video.classList.remove('active');
             this.cameraOverlay.classList.remove('active');
             this.cameraBtn.classList.remove('camera-active');
-            
+
             if (this.isScanning) {
                 this.stopScanning();
             }
-            
+
             // Очищаем сканер
             this.scanner = null;
             this.isScanning = false;
             this.updateScanButtons();
         }
 
-        async initScanner() {     
+        async initScanner() {
             // Проверяем, что jsQR загружен
             if (typeof jsQR === 'undefined') {
                 throw new Error('jsQR library not loaded');
             }
-            
+
             try {
                 // Получаем поток камеры напрямую
                 const stream = await navigator.mediaDevices.getUserMedia({
@@ -1024,25 +1085,25 @@
                         facingMode: this.currentCamera
                     }
                 });
-                
+
                 // Привязываем поток к видео элементу
                 this.video.srcObject = stream;
                 this.video.play();
-                
+
                 // Создаем canvas для сканирования с jsQR
                 this.scanCanvas = document.createElement('canvas');
                 this.scanContext = this.scanCanvas.getContext('2d', { willReadFrequently: true });
-                
+
                 // Ждем, пока видео будет готово
                 await new Promise((resolve) => {
                     this.video.addEventListener('loadedmetadata', () => {
                         resolve();
                     });
                 });
-                
+
                 // Начинаем сканирование с помощью jsQR
                 this.startJsQRScanning();
-                
+
                 // Получаем список камер напрямую
                 try {
                     const devices = await navigator.mediaDevices.enumerateDevices();
@@ -1051,42 +1112,42 @@
                 } catch (error) {
                     console.error('Error listing cameras:', error);
                 }
-                
+
                 this.isScanning = true;
                 this.updateScanButtons();
-                
+
             } catch (error) {
                 throw error;
             }
         }
 
-        startJsQRScanning() {  
+        startJsQRScanning() {
             const scanFrame = () => {
                 if (this.isScanning && this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
                     this.scanCanvas.height = this.video.videoHeight;
                     this.scanCanvas.width = this.video.videoWidth;
-                    
+
                     if (this.scanCanvas.width > 0 && this.scanCanvas.height > 0) {
                         this.scanContext.drawImage(this.video, 0, 0, this.scanCanvas.width, this.scanCanvas.height);
-                        
+
                         // Сначала пробуем полное изображение
                         let imageData = this.scanContext.getImageData(0, 0, this.scanCanvas.width, this.scanCanvas.height);
                         let code = jsQR(imageData.data, imageData.width, imageData.height, {
                             inversionAttempts: "tryBoth"
                         });
-                        
+
                         // Если не нашли, пробуем центральную область
                         if (!code || !code.data || code.data.trim() === '') {
                             const centerSize = Math.min(this.scanCanvas.width, this.scanCanvas.height) * 0.7;
                             const centerX = (this.scanCanvas.width - centerSize) / 2;
                             const centerY = (this.scanCanvas.height - centerSize) / 2;
-                            
+
                             imageData = this.scanContext.getImageData(centerX, centerY, centerSize, centerSize);
                             code = jsQR(imageData.data, imageData.width, imageData.height, {
                                 inversionAttempts: "tryBoth"
                             });
                         }
-                        
+
                         // Если нашли валидный QR-код
                         if (code && code.data && code.data.trim() !== '') {
                             this.handleScanResult({ data: code.data });
@@ -1094,12 +1155,12 @@
                         }
                     }
                 }
-                
+
                 if (this.isScanning) {
                     requestAnimationFrame(scanFrame);
                 }
             };
-            
+
             requestAnimationFrame(scanFrame);
         }
 
@@ -1130,21 +1191,21 @@
                     const tracks = this.video.srcObject.getTracks();
                     tracks.forEach(track => track.stop());
                 }
-                
+
                 // Переключаем на следующую камеру
                 this.currentCameraIndex = (this.currentCameraIndex + 1) % this.availableCameras.length;
                 const selectedCamera = this.availableCameras[this.currentCameraIndex];
-                
+
                 // Получаем новый поток
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: { deviceId: selectedCamera.deviceId }
                 });
-                
+
                 this.video.srcObject = stream;
                 this.video.play();
-                
+
                 this.showStatus(`Переключено на: ${selectedCamera.label || 'Камера ' + (this.currentCameraIndex + 1)}`, 'success');
-                
+
             } catch (error) {
                 this.showStatus('Ошибка переключения камеры', 'error');
             }
@@ -1163,7 +1224,7 @@
             const qrData = result.data || result;
             this.showResult(qrData);
             this.showStatus('QR-код успешно распознан!', 'success');
-            
+
             this.stopScanning();
         }
 
@@ -1228,14 +1289,14 @@
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
-                    
+
                     canvas.width = img.width;
                     canvas.height = img.height;
                     ctx.drawImage(img, 0, 0);
-                    
+
                     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     const code = jsQR(imageData.data, imageData.width, imageData.height);
-                    
+
                     if (code) {
                         resolve(code.data);
                     } else {
@@ -1254,15 +1315,15 @@
 
                 const arrayBuffer = await file.arrayBuffer();
                 const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-                
+
                 let qrFound = false;
-                
+
                 // Scan each page of the PDF
                 for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                     try {
                         const page = await pdf.getPage(pageNum);
                         const canvas = await this.renderPDFPage(page);
-                        
+
                         // Try to scan QR code from the rendered canvas
                         try {
                             const result = await QrScanner.scanImage(canvas, { returnDetailedScanResult: true });
@@ -1275,7 +1336,7 @@
                             const ctx = canvas.getContext('2d');
                             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                             const code = jsQR(imageData.data, imageData.width, imageData.height);
-                            
+
                             if (code) {
                                 this.showResult(code.data);
                                 this.showStatus(`QR-код найден на странице ${pageNum} в PDF ${file.name}`, 'success');
@@ -1288,7 +1349,7 @@
                         console.log(`No QR code found on page ${pageNum}`);
                     }
                 }
-                
+
                 if (!qrFound) {
                     throw new Error(`QR-код не найден в PDF ${file.name}`);
                 }
@@ -1300,18 +1361,18 @@
         async renderPDFPage(page) {
             const scale = 2.0; // Higher scale for better QR detection
             const viewport = page.getViewport({ scale });
-            
+
             const canvas = this.pdfCanvas;
             const context = canvas.getContext('2d');
-            
+
             canvas.width = viewport.width;
             canvas.height = viewport.height;
-            
+
             const renderContext = {
                 canvasContext: context,
                 viewport: viewport
             };
-            
+
             await page.render(renderContext).promise;
             return canvas;
         }
@@ -1320,7 +1381,7 @@
             this.resultData.textContent = data;
             this.resultText.textContent = 'QR-код распознан:';
             this.resultContent.classList.add('result-content--visible');
-            
+
             // Check if data is a URL
             this.updateOpenLinkButton(data);
         }
@@ -1366,7 +1427,7 @@
         hideLoading() {
             this.cameraLoading.classList.remove('loading--visible');
         }
-        
+
         showUploadLoading() {
             this.uploadLoading.classList.add('loading--visible');
         }
@@ -1383,14 +1444,14 @@
             const statusDiv = document.createElement('div');
             statusDiv.className = `status-message status-message--${type}`;
             statusDiv.textContent = message;
-            
+
             document.body.appendChild(statusDiv);
-            
+
             // Trigger animation
             setTimeout(() => {
                 statusDiv.classList.add('status-message--visible');
             }, 10);
-            
+
             // Auto remove after 3 seconds
             setTimeout(() => {
                 statusDiv.classList.remove('status-message--visible');
@@ -1417,7 +1478,7 @@
                 buttons.forEach(b => b.classList.remove(activeClass));
                 btn.classList.add(activeClass);
                 moveSlider(btn);
-                
+
                 // For now, only scanner is implemented
                 if (btn.dataset.tab === 'generator') {
                     this.showStatus('Генератор QR-кодов будет добавлен в следующем обновлении', 'warning');
@@ -1452,7 +1513,7 @@
         try {
             await waitForLibraries();
             const qrApp = new QRCodeScanner();
-            
+
             // Cleanup on page unload
             window.addEventListener('beforeunload', () => {
                 qrApp.destroy();
