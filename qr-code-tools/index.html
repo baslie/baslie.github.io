@@ -1567,7 +1567,11 @@
             if (!location || !this.qrFrame) return;
 
             try {
-                // Calculate relative position within the video container
+                // Get video element dimensions and position
+                const videoRect = this.video.getBoundingClientRect();
+                const containerRect = this.video.parentElement.getBoundingClientRect();
+
+                // Calculate scale factors
                 const scaleX = this.video.offsetWidth / this.video.videoWidth;
                 const scaleY = this.video.offsetHeight / this.video.videoHeight;
 
@@ -1590,28 +1594,28 @@
                 // Fallback: use a default centered frame
                 else {
                     console.warn('Unknown location format:', location);
-                    const centerX = this.video.offsetWidth / 2;
-                    const centerY = this.video.offsetHeight / 2;
-                    const frameSize = Math.min(this.video.offsetWidth, this.video.offsetHeight) * 0.3;
-
-                    minX = centerX - frameSize / 2;
-                    maxX = centerX + frameSize / 2;
-                    minY = centerY - frameSize / 2;
-                    maxY = centerY + frameSize / 2;
+                    return; // Skip showing frame for unknown formats
                 }
 
-                const width = maxX - minX;
-                const height = maxY - minY;
+                // Calculate frame dimensions
+                const width = Math.abs(maxX - minX);
+                const height = Math.abs(maxY - minY);
 
-                this.qrFrame.style.left = `${minX}px`;
-                this.qrFrame.style.top = `${minY}px`;
+                // Position frame relative to video element
+                const left = Math.min(minX, maxX);
+                const top = Math.min(minY, maxY);
+
+                // Apply position and size
+                this.qrFrame.style.left = `${left}px`;
+                this.qrFrame.style.top = `${top}px`;
                 this.qrFrame.style.width = `${width}px`;
                 this.qrFrame.style.height = `${height}px`;
                 this.qrFrame.classList.add('detected');
 
+                console.log('QR Frame positioned:', { left, top, width, height, scaleX, scaleY });
+
             } catch (error) {
                 console.error('Error showing QR frame:', error, location);
-                // Just hide the frame if there's an error
                 this.hideQRFrame();
             }
         }
@@ -1647,21 +1651,22 @@
 
         // Slider functionality (keeping the original design)
         initSlider() {
-                const buttons = document.querySelectorAll('.switcher-btn');
-                const slider = document.querySelector('.switcher-slider');
-                const activeClass = 'switcher-btn--active';
+            const buttons = document.querySelectorAll('.switcher-btn');
+            const slider = document.querySelector('.switcher-slider');
+            const activeClass = 'switcher-btn--active';
 
-                function moveSlider(btn) {
-                    slider.style.width = `${btn.offsetWidth}px`;
-                    slider.style.transform = `translateX(${btn.offsetLeft}px)`;
-                }
+            function moveSlider(btn) {
+                slider.style.width = `${btn.offsetWidth}px`;
+                slider.style.transform = `translateX(${btn.offsetLeft}px)`;
+            }
 
-                // Position the slider under the active button on load
-                moveSlider(document.querySelector(`.${activeClass}`));
+            // Position the slider under the active button on load
+            moveSlider(document.querySelector(`.${activeClass}`));
 
-                // Handle clicks
-                buttons.forEach(btn => btn.addEventListener('click', () => {
-                                buttons.forEach(b => b.classList.remove(activeClass));        btn.classList.add(activeClass);
+            // Handle clicks
+            buttons.forEach(btn => btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove(activeClass));
+                btn.classList.add(activeClass);
                 moveSlider(btn);
 
                 // For now, only scanner is implemented
