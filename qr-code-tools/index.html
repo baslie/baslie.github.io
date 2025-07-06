@@ -4,18 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Meta Tags -->
-    <title>
-        QR Code Tools - Онлайн сканер и генератор QR-кодов
-    </title>
+    <title>QR Code Tools - Онлайн сканер и генератор QR-кодов</title>
     <meta name="description" content="Бесплатный онлайн сканер QR-кодов. Сканируйте QR-коды с камеры, загружайте изображения или PDF файлы. Быстро, безопасно и удобно.">
     <meta name="keywords" content="QR код, сканер, генератор, онлайн, бесплатно, камера, PDF, изображения">
     <meta name="author" content="QR Code Tools">
     <meta name="robots" content="index, follow">
-    <!-- <link rel="canonical" href="https://our-qr-code-tools-domain.com/"> -->
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <!-- <meta property="og:url" content="https://our-qr-code-tools-domain.com/"> -->
     <meta property="og:title" content="QR Code Tools - Онлайн сканер и генератор QR-кодов">
     <meta property="og:description" content="Бесплатный онлайн сканер QR-кодов. Сканируйте QR-коды с камеры, загружайте изображения или PDF файлы.">
     <meta property="og:image" content="assets/images/og-image.jpg">
@@ -24,32 +18,28 @@
     <meta property="og:image:alt" content="QR Code Tools">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="QR Code Tools">
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <!-- <meta property="twitter:url" content="https://our-qr-code-tools-domain.com/"> -->
     <meta property="twitter:title" content="QR Code Tools">
     <meta property="twitter:description" content="Бесплатный онлайн сканер QR-кодов. Сканируйте QR-коды с камеры, загружайте изображения или PDF файлы.">
     <meta property="twitter:image" content="assets/images/twitter-image.jpg">
     <meta property="twitter:image:alt" content="QR Code Tools">
-    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <!-- <link rel="manifest" href="/site.webmanifest"> -->
     <meta name="theme-color" content="#222222">
-    <!-- Performance optimizations -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <!-- Schema.org JSON-LD -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    <meta http-equiv="Expires" content="31536000">
+    <meta http-equiv="Pragma" content="cache">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "QR Code Tools",
         "description": "Бесплатный онлайн сканер и генератор QR-кодов. Сканируйте QR-коды с камеры, загружайте изображения или PDF файлы.",
-        /*"url": "https://our-qr-code-tools-domain.com/",*/
         "applicationCategory": "Utility",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -74,11 +64,9 @@
             "Мгновенное распознавание",
             "Копирование результата",
             "Открытие ссылок"
-        ],
-        /*"screenshot": "https://our-qr-code-tools-domain.com/assets/images/screenshot.jpg"*/
+        ]
     }
     </script>
-    <!-- DNS prefetch and preconnect for performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
@@ -87,29 +75,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <!-- Fonts with display=swap for performance -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <style>
-        /* ======================================================================
-     Design Tokens (CSS Custom Properties)
-     ====================================================================== */
     :root {
-        /* Fonts */
         --font-base: 'Fira Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         --font-size-base: 16px;
-
-        /* Colors (light theme) */
-        --color-text: #222222;
-        --color-bg: #ffffff;
+        --color-text: #222;
+        --color-bg: #fff;
         --color-muted: #f1f1f1;
-        --color-accent: #222222;
+        --color-accent: #222;
         --color-border: rgba(0, 0, 0, .15);
         --color-border-light: rgba(0, 0, 0, .4);
         --color-success: #28a745;
         --color-error: #dc3545;
         --color-warning: #ffc107;
-
-        /* Spacing and sizes */
         --spacing: 15px;
         --spacing-sm: 10px;
         --spacing-xs: 6px;
@@ -120,58 +100,47 @@
         --header-height: 28px;
         --upload-height-desktop: 80px;
         --upload-height-mobile: 120px;
-        
-        /* Typography */
         --font-size-sm: 0.9rem;
         --font-size-xs: 0.85rem;
         --line-height-normal: 1.3;
         --line-height-relaxed: 1.4;
-        
-        /* Opacity values */
         --opacity-muted: 0.8;
         --opacity-disabled: 0.5;
-
-        /* Motion */
         --easing: cubic-bezier(.4, 0, .2, 1);
-        --transition: .3s var(--easing);
+        --transition: .3s var(--easing)
     }
 
-    /* Dark theme */
-    @media (prefers-color-scheme: dark) {
+    @media(prefers-color-scheme:dark) {
         :root {
             --color-text: #e5e5e5;
             --color-bg: #121212;
             --color-muted: #1e1e1e;
-            --color-accent: #ffffff;
+            --color-accent: #fff;
             --color-border: rgba(255, 255, 255, .15);
-            --color-border-light: rgba(255, 255, 255, .4);
+            --color-border-light: rgba(255, 255, 255, .4)
         }
     }
 
-    /* Reduced-motion */
-    @media (prefers-reduced-motion: reduce) {
+    @media(prefers-reduced-motion:reduce) {
         * {
             transition: none !important;
-            animation: none !important;
+            animation: none !important
         }
     }
 
-    /* ======================================================================
-     CSS Reset (minimal required)
-     ====================================================================== */
     *,
     *::before,
     *::after {
         box-sizing: border-box;
         margin: 0;
-        padding: 0;
+        padding: 0
     }
 
     html {
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
         -webkit-tap-highlight-color: transparent;
-        scroll-behavior: smooth;
+        scroll-behavior: smooth
     }
 
     body,
@@ -182,24 +151,24 @@
     aside,
     footer,
     nav {
-        display: block;
+        display: block
     }
 
     img,
     svg {
         max-width: 100%;
         height: auto;
-        vertical-align: middle;
+        vertical-align: middle
     }
 
     ul,
     ol {
-        list-style: none;
+        list-style: none
     }
 
     table {
         border-collapse: collapse;
-        border-spacing: 0;
+        border-spacing: 0
     }
 
     input,
@@ -209,17 +178,14 @@
         font: inherit;
         color: inherit;
         background: none;
-        border: 0;
+        border: 0
     }
 
     button {
         cursor: pointer;
-        outline: none;
+        outline: none
     }
 
-    /* ======================================================================
-     Base Styles
-     ====================================================================== */
     body {
         font-family: var(--font-base);
         font-size: var(--font-size-base);
@@ -232,36 +198,33 @@
         flex-direction: column;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        box-sizing: border-box;
+        box-sizing: border-box
     }
 
     .app-container {
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: 100%;
+        height: 100%
     }
 
     .main-content {
         flex: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: column
     }
 
-    /* ======================================================================
-     Header
-     ====================================================================== */
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: var(--spacing);
-        gap: var(--spacing);
+        gap: var(--spacing)
     }
 
     .logo img {
         height: var(--header-height);
-        width: auto;
+        width: auto
     }
 
     .switcher-background {
@@ -270,7 +233,7 @@
         background: var(--color-muted);
         border-radius: var(--radius-pill);
         padding: var(--spacing-xs);
-        position: relative;
+        position: relative
     }
 
     .switcher-slider {
@@ -281,7 +244,7 @@
         background: var(--color-accent);
         border-radius: var(--radius-pill);
         transition: transform var(--transition), width var(--transition);
-        z-index: 10;
+        z-index: 10
     }
 
     .switcher-btn {
@@ -298,42 +261,31 @@
         position: relative;
         z-index: 20;
         transition: color var(--transition);
-        line-height: 1;
+        line-height: 1
     }
 
     .switcher-btn--active {
-        color: var(--color-bg);
+        color: var(--color-bg)
     }
 
-    /* ======================================================================
-     Main Layout
-     ====================================================================== */
     .main-layout {
         display: flex;
         gap: var(--spacing);
-        flex: 1;
+        flex: 1
     }
 
-    .control-panel {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
+    .control-panel,
     .result-panel {
         flex: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: column
     }
 
-    /* ======================================================================
-     Upload Sections
-     ====================================================================== */
     .upload-sections {
         display: flex;
         flex-direction: column;
         gap: var(--spacing);
-        flex: 1;
+        flex: 1
     }
 
     .upload-section {
@@ -349,83 +301,93 @@
         transition: transform var(--transition), background var(--transition);
         background: var(--color-bg);
         position: relative;
-        overflow: hidden;
+        overflow: hidden
     }
 
-    .upload-section--photo {
-        padding: 0;
-        position: relative;
+    .result-section {
+        width: 100%;
+        flex: 1;
+        background: var(--color-muted);
+        border-radius: var(--radius-md);
+        padding: var(--spacing);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center
     }
 
-    .upload-section--photo.camera-active {
-        border: 2px solid var(--color-accent);
-    }
-
-    @media (hover: hover) {
-        .upload-section:hover {
-            background: var(--color-muted);
-        }
-    }
-
-    .upload-section:active {
-        transform: scale(.98);
-    }
-
-    .upload-section--disabled {
-        opacity: var(--opacity-disabled);
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    .upload-icon {
-        margin-right: var(--spacing-sm);
-        opacity: var(--opacity-muted);
-        flex-shrink: 0;
-        width: 40px;
-        height: 30px;
-    }
-
-    .upload-text {
+    .result-text {
+        color: var(--color-text);
+        opacity: 0.8;
         white-space: nowrap;
-        text-align: center;
-        flex-shrink: 0;
+        margin-bottom: var(--spacing-sm);
     }
 
-    /* Hidden file input */
     .file-input {
         position: absolute;
         opacity: 0;
         width: 100%;
         height: 100%;
-        cursor: pointer;
+        cursor: pointer
     }
 
-    /* ======================================================================
-     Camera Section
-     ====================================================================== */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0
+    }
+
+    @media screen and (max-width:768px) {
+        body {
+            padding: 10px;
+            height: auto;
+            min-height: 100vh
+        }
+
+        .main-layout {
+            flex-direction: column;
+            gap: 15px
+        }
+    }
+
+    .upload-icon {
+        margin-right: var(--spacing-sm);
+        width: 40px;
+        height: 30px;
+        opacity: var(--opacity-muted);
+        flex-shrink: 0
+    }
+
+    .upload-text {
+        text-align: center
+    }
+
     .photo-content {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
         position: relative;
-    }
-
-    .photo-content--camera {
-        padding: 0;
+        flex-direction: row
     }
 
     .photo-placeholder {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: row;
+        flex-direction: row
     }
 
     .photo-placeholder--hidden {
-        display: none;
+        display: none
     }
 
     #qr-video {
@@ -438,15 +400,11 @@
         border-radius: var(--radius-md);
         background: var(--color-text);
         z-index: 1;
-        display: none;
+        display: none
     }
 
     #qr-video.active {
-        display: block !important;
-        opacity: 1 !important;
-        width: 100% !important;
-        height: 100% !important;
-        transform: none !important;
+        display: block !important
     }
 
     .camera-overlay {
@@ -456,14 +414,12 @@
         transform: translateX(-50%);
         display: none;
         gap: 10px;
-        z-index: 100;
+        z-index: 100
     }
 
     .camera-overlay.active {
-        display: flex;
+        display: flex
     }
-    
-    
 
     .camera-btn {
         padding: 8px 16px;
@@ -473,55 +429,16 @@
         border: none;
         cursor: pointer;
         transition: opacity var(--transition);
-        font-size: var(--font-size-sm);
-    }
-
-    .camera-btn:hover {
-        opacity: var(--opacity-muted);
-    }
-
-    .camera-btn:disabled {
-        opacity: var(--opacity-disabled);
-        cursor: not-allowed;
-    }
-
-    /* ======================================================================
-     Result Section
-     ====================================================================== */
-    .result-section {
-        width: 100%;
-        flex: 1;
-        background: var(--color-muted);
-        border-radius: var(--radius-md);
-        padding: var(--spacing);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .result-icon {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 15px;
-        opacity: var(--opacity-muted);
-        flex-shrink: 0;
-    }
-
-    .result-text {
-        color: var(--color-border-light);
-        white-space: nowrap;
-        margin-bottom: 15px;
+        font-size: var(--font-size-sm)
     }
 
     .result-content {
-        display: none;
+        display: none
     }
 
     .result-content--visible {
         display: block;
-        width: 100%;
+        width: 100%
     }
 
     .result-data {
@@ -535,14 +452,14 @@
         overflow-y: auto;
         font-family: monospace;
         font-size: 0.9rem;
-        line-height: 1.4;
+        line-height: 1.4
     }
 
     .result-actions {
         display: flex;
         gap: 10px;
         justify-content: center;
-        flex-wrap: wrap;
+        flex-wrap: wrap
     }
 
     .result-btn {
@@ -553,20 +470,21 @@
         border: none;
         cursor: pointer;
         transition: opacity var(--transition);
-        font-size: 0.9rem;
+        font-size: 0.9rem
     }
 
     .result-btn:hover {
-        opacity: 0.8;
+        opacity: 0.8
     }
 
     .result-btn--success {
-        background: var(--color-success);
+        background: var(--color-success)
     }
 
-    /* ======================================================================
-     Status Messages
-     ====================================================================== */
+    .result-icon {
+        margin-bottom: var(--spacing-sm);
+    }
+
     .status-message {
         position: fixed;
         top: var(--spacing);
@@ -579,36 +497,33 @@
         transform: translateX(100%);
         transition: transform var(--transition);
         max-width: 300px;
-        word-wrap: break-word;
+        word-wrap: break-word
     }
 
     .status-message--visible {
-        transform: translateX(0);
+        transform: translateX(0)
     }
 
     .status-message--success {
-        background: var(--color-success);
+        background: var(--color-success)
     }
 
     .status-message--error {
-        background: var(--color-error);
+        background: var(--color-error)
     }
 
     .status-message--warning {
         background: var(--color-warning);
-        color: var(--color-text);
+        color: var(--color-text)
     }
 
-    /* ======================================================================
-     Loading Indicator
-     ====================================================================== */
     .loading {
         display: none;
-        margin-top: 10px;
+        margin-top: 10px
     }
 
     .loading--visible {
-        display: block;
+        display: block
     }
 
     .loading-spinner {
@@ -618,17 +533,19 @@
         border-top: 2px solid var(--color-accent);
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        margin: 0 auto;
+        margin: 0 auto
     }
 
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg)
+        }
+
+        100% {
+            transform: rotate(360deg)
+        }
     }
 
-    /* ======================================================================
-     Accessibility
-     ====================================================================== */
     .skip-to-main {
         position: absolute;
         top: -40px;
@@ -640,280 +557,31 @@
         z-index: 9998;
         border-radius: var(--radius-sm);
         font-size: 14px;
-        transition: top var(--transition);
+        transition: top var(--transition)
     }
 
     .skip-to-main:focus {
-        top: 6px;
+        top: 6px
     }
 
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-
-    /* Focus styles for better accessibility */
     button:focus,
     input:focus {
         outline: 2px solid var(--color-accent);
-        outline-offset: 2px;
+        outline-offset: 2px
     }
 
-    /* High contrast mode support */
-    @media (prefers-contrast: high) {
-        :root {
-            --color-border: rgba(0, 0, 0, 0.8);
-            --color-border-light: rgba(0, 0, 0, 0.9);
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-border: rgba(255, 255, 255, 0.8);
-                --color-border-light: rgba(255, 255, 255, 0.9);
-            }
-        }
-    }
-
-    /* ======================================================================
-     Canvas for PDF rendering
-     ====================================================================== */
     .pdf-canvas {
-        display: none;
-    }
-
-    /* ======================================================================
-     Responsive Helpers
-     ====================================================================== */
-    @media screen and (max-width: 768px) {
-        body {
-            padding: 10px;
-            height: auto;
-            min-height: 100vh;
-        }
-
-        .app-container {
-            height: auto;
-            min-height: calc(100vh - 20px);
-        }
-
-        .main-content {
-            flex: 1;
-            height: auto;
-        }
-
-        .header {
-            flex-direction: column;
-            margin-bottom: 15px;
-            gap: 10px;
-        }
-
-        /* Полностью вертикальная структура для мобильных */
-        .main-layout {
-            flex-direction: column;
-            gap: 15px;
-            height: auto;
-        }
-
-        .control-panel {
-            flex: none;
-            width: 100%;
-            order: 1;
-        }
-
-        .photo-placeholder {
-            gap: var(--spacing-sm);
-        }
-        
-        .result-panel {
-            flex: none;
-            width: 100%;
-            order: 2;
-        }
-
-        .upload-sections {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-
-        .upload-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            border: 2px dashed var(--color-border);
-            border-radius: var(--radius-md);
-            background: var(--color-bg);
-            cursor: pointer;
-        }
-
-        /* 1. КВАДРАТНАЯ область для камеры (сверху) */
-        .upload-section--photo {
-            aspect-ratio: 1 / 1;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Принудительное квадратное соотношение для старых браузеров */
-        .upload-section--photo::before {
-            content: "";
-            display: block;
-            padding-top: 100%; /* 1:1 Aspect Ratio */
-        }
-        
-        .upload-section--photo .photo-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* 2. ПРЯМОУГОЛЬНАЯ область для загрузки файлов */
-        .upload-section--upload {
-            aspect-ratio: unset;
-            width: 100%;
-            height: 100px;
-            min-height: 100px;
-            max-height: 120px;
-        }
-
-        /* 3. Область результата (снизу) */
-        .result-section {
-            width: 100%;
-            height: auto;
-            min-height: 200px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        /* Оптимизация иконок и текста */
-        .upload-icon {
-            width: 32px;
-            height: 24px;
-            margin-right: 0;
-            margin-bottom: 8px;
-        }
-
-        .upload-text {
-            font-size: 0.9rem;
-            line-height: 1.3;
-            white-space: normal;
-        }
-
-        .result-icon {
-            width: 36px;
-            height: 36px;
-            margin-bottom: 12px;
-        }
-
-        .result-text {
-            font-size: 0.9rem;
-            line-height: 1.3;
-            margin-bottom: 15px;
-        }
-
-        /* Кнопки */
-        .camera-btn,
-        .result-btn {
-            padding: 10px 16px;
-            font-size: 0.9rem;
-            border-radius: var(--radius-pill);
-        }
-
-        .result-actions {
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* Камера */
-        #qr-video {
-            border-radius: var(--radius-md);
-        }
-        
-        .camera-overlay {
-            bottom: var(--spacing);
-            gap: 12px;
-        }
-        
-        /* Результат */
-        .result-data {
-            font-size: 0.85rem;
-            max-height: 120px;
-            line-height: 1.4;
-        }
-
-        /* Статусные сообщения */
-        .status-message {
-            top: 10px;
-            right: 10px;
-            left: 10px;
-            max-width: none;
-            transform: translateY(-100%);
-        }
-
-        .status-message--visible {
-            transform: translateY(0);
-        }
-    }
-    
-    /* Дополнительные оптимизации для маленьких экранов */
-    @media screen and (max-width: 480px) {
-        body {
-            padding: 10px;
-        }
-        
-        .upload-sections {
-            gap: 10px;
-        }
-        
-        .main-layout {
-            gap: 10px;
-        }
-        
-        .header {
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .upload-section {
-            padding: 15px;
-        }
-        
-        .result-section {
-            padding: 15px;
-            min-height: 180px;
-        }
+        display: none
     }
     </style>
 </head>
 
 <body>
-    <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-to-main" aria-label="Перейти к основному содержимому">Перейти к содержимому</a>
     <div class="app-container">
-        <!-- Header -->
         <header class="header" role="banner">
             <div class="logo">
-                <img src="assets/images/qr-code-tools-logo.svg" alt="QR Code Tools - логотип приложения" width="192" height="28" loading="eager">
+                <img src="assets/images/qr-code-tools-logo.svg" alt="QR Code Tools - логотип приложения" width="192" height="28" loading="eager" fetchpriority="high">
             </div>
             <nav class="switcher" role="navigation" aria-label="Переключение между функциями">
                 <div class="switcher-background">
@@ -925,14 +593,11 @@
                 <div id="generator-description" class="sr-only">Создание QR-кодов из текста или ссылок</div>
             </nav>
         </header>
-        <!-- Main Content -->
         <main class="main-content" id="main-content" role="main">
             <h1 class="sr-only">QR Code Scanner - Сканер QR-кодов</h1>
             <div class="main-layout">
-                <!-- Control Panel (Left side) -->
                 <section class="control-panel" aria-labelledby="control-heading">
                     <h2 id="control-heading" class="sr-only">Способы сканирования QR-кода</h2>
-                    <!-- Upload Sections -->
                     <div class="upload-sections">
                         <div class="upload-section upload-section--photo" id="camera-btn" role="button" tabindex="0" aria-label="Использовать камеру для сканирования QR-кода">
                             <div class="photo-content" id="photo-content">
@@ -963,7 +628,6 @@
                         </label>
                     </div>
                 </section>
-                <!-- Result Panel (Right side) -->
                 <section class="result-panel" aria-labelledby="result-heading">
                     <h2 id="result-heading" class="sr-only">Результат сканирования</h2>
                     <div class="result-section" id="result-section" role="region" aria-live="polite" aria-labelledby="result-text">
@@ -985,688 +649,451 @@
             </div>
         </main>
     </div>
-    <!-- Hidden canvas for PDF rendering -->
     <canvas id="pdf-canvas" class="pdf-canvas"></canvas>
-    <!-- Scripts will be loaded dynamically when needed -->
     <script>
-    // ======================================================================
-    // QR Code Scanner Application
-    // ======================================================================
-
-    // Dynamic library loader
-    class LibraryLoader {
+    class L {
         constructor() {
-            this.loadedLibraries = new Set();
-            this.loadingPromises = new Map();
+            this.loaded = new Set();
+            this.loading = new Map()
         }
-        
-        async loadScript(url, libraryName) {
-            if (this.loadedLibraries.has(libraryName)) {
-                return Promise.resolve();
-            }
-            
-            if (this.loadingPromises.has(libraryName)) {
-                return this.loadingPromises.get(libraryName);
-            }
-            
-            const promise = new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = url;
-                script.onload = () => {
-                    this.loadedLibraries.add(libraryName);
-                    resolve();
+        async loadScript(u, n) {
+            if (this.loaded.has(n)) return;
+            if (this.loading.has(n)) return this.loading.get(n);
+            const p = new Promise((r, e) => {
+                const s = document.createElement('script');
+                s.src = u;
+                s.onload = () => {
+                    this.loaded.add(n);
+                    r()
                 };
-                script.onerror = () => reject(new Error(`Не удалось загрузить ${libraryName}`));
-                document.head.appendChild(script);
+                s.onerror = () => e(new Error(`Failed to load ${n}`));
+                document.head.appendChild(s)
             });
-            
-            this.loadingPromises.set(libraryName, promise);
-            return promise;
+            this.loading.set(n, p);
+            return p
         }
-        
         async loadJsQR() {
             await this.loadScript('https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js', 'jsQR');
-            return typeof jsQR !== 'undefined';
+            return typeof jsQR !== 'undefined'
         }
-        
         async loadPDFjs() {
             await this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 'pdfjs');
-            return typeof pdfjsLib !== 'undefined';
-        }
-        
-        async loadQrScanner() {
-            await this.loadScript('https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js', 'qrscanner');
-            return typeof QrScanner !== 'undefined';
+            return typeof pdfjsLib !== 'undefined'
         }
     }
-    
-    class QRCodeScanner {
+    class Q {
         constructor() {
             this.scanner = null;
             this.isScanning = false;
-            this.currentCamera = this.getOptimalCameraFacing();
             this.lastScannedCode = null;
             this.lastScanTime = null;
-            this.libraryLoader = new LibraryLoader();
-            
+            this.loader = new L();
             this.initElements();
             this.initEventListeners();
             this.initSlider();
-            
-            // Load only QrScanner initially for camera support check
-            this.checkCameraSupport();
+            this.checkCameraSupport()
         }
-        
-        initQrScannerWorker() {
-            // QrScanner worker path is now handled automatically
-            // No manual configuration needed in newer versions
-        }
-
         initElements() {
-            // UI Elements
             this.cameraBtn = document.getElementById('camera-btn');
-            this.fileUploadBtn = document.getElementById('file-upload-btn');
             this.fileInput = document.getElementById('file-input');
-            this.photoContent = document.getElementById('photo-content');
+            this.video = document.getElementById('qr-video');
             this.photoPlaceholder = document.getElementById('photo-placeholder');
             this.cameraOverlay = document.getElementById('camera-overlay');
-            this.video = document.getElementById('qr-video');
-
-            // Camera controls
             this.stopScanBtn = document.getElementById('stop-scan-btn');
             this.cameraLoading = document.getElementById('camera-loading');
             this.uploadLoading = document.getElementById('upload-loading');
-
-            // Result elements
-            this.resultSection = document.getElementById('result-section');
-            this.resultIcon = document.getElementById('result-icon');
-            this.resultText = document.getElementById('result-text');
             this.resultContent = document.getElementById('result-content');
             this.resultData = document.getElementById('result-data');
+            this.resultText = document.getElementById('result-text');
             this.copyBtn = document.getElementById('copy-btn');
             this.openLinkBtn = document.getElementById('open-link-btn');
             this.clearBtn = document.getElementById('clear-btn');
-
-            // PDF Canvas
-            this.pdfCanvas = document.getElementById('pdf-canvas');
+            this.pdfCanvas = document.getElementById('pdf-canvas')
         }
-
         initEventListeners() {
-            // Camera button
             this.cameraBtn.addEventListener('click', () => this.toggleCamera());
-
-            // File upload
             this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
-
-            // Camera controls
             this.stopScanBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent event bubbling to parent camera button
-                this.stopScanning();
+                e.stopPropagation();
+                this.stopScanning()
             });
-
-            // Result actions
             this.copyBtn.addEventListener('click', () => this.copyResult());
             this.openLinkBtn.addEventListener('click', () => this.openLink());
-            this.clearBtn.addEventListener('click', () => this.clearResult());
+            this.clearBtn.addEventListener('click', () => this.clearResult())
         }
-
         async checkCameraSupport() {
-            // Don't load QrScanner until camera is actually needed
-            // Just check if getUserMedia is available
             try {
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    this.cameraBtn.classList.add('upload-section--disabled');
-                    this.showStatus('Камера недоступна', 'warning');
+                    this.cameraBtn.style.opacity = '0.5';
+                    this.cameraBtn.style.cursor = 'not-allowed';
+                    this.showStatus('Камера недоступна', 'warning')
                 }
-            } catch (error) {
-                this.cameraBtn.classList.add('upload-section--disabled');
+            } catch (e) {
+                this.cameraBtn.style.opacity = '0.5'
             }
         }
-
         async toggleCamera() {
             if (!this.video.classList.contains('active')) {
-                this.showCamera();
+                this.showCamera()
             } else {
-                this.hideCamera();
+                this.hideCamera()
             }
         }
-
         async showCamera() {
             try {
                 this.showLoading();
-                
-                // Load jsQR library if not already loaded
-                if (!this.libraryLoader.loadedLibraries.has('jsQR')) {
-                    this.showStatus('Загрузка библиотеки сканирования...', 'warning');
+                if (!this.loader.loaded.has('jsQR')) {
+                    this.showStatus('Загрузка библиотеки...', 'warning')
                 }
-                await this.libraryLoader.loadJsQR();
-
-                // Initialize camera stream
+                await this.loader.loadJsQR();
                 await this.initScanner();
-
-                // Show camera UI
                 this.photoPlaceholder.classList.add('photo-placeholder--hidden');
                 this.video.classList.add('active');
                 this.cameraOverlay.classList.add('active');
-                this.cameraBtn.classList.add('camera-active');
-
-                // Start scanning immediately
                 this.isScanning = true;
-                this.startJsQRScanning();
-
+                this.startScanning();
                 this.hideLoading();
-                this.showStatus('Камера активирована. Сканирование активно', 'success');
-            } catch (error) {
-                this.showStatus('Ошибка доступа к камере: ' + error.message, 'error');
+                this.showStatus('Камера активирована', 'success')
+            } catch (e) {
+                this.showStatus('Ошибка камеры: ' + e.message, 'error');
                 this.hideLoading();
-                this.hideCamera();
+                this.hideCamera()
             }
         }
-
         hideCamera() {
-            // Stop camera stream
             if (this.video.srcObject) {
-                const tracks = this.video.srcObject.getTracks();
-                tracks.forEach(track => track.stop());
-                this.video.srcObject = null;
+                this.video.srcObject.getTracks().forEach(t => t.stop());
+                this.video.srcObject = null
             }
-
-            // Hide camera UI
             this.photoPlaceholder.classList.remove('photo-placeholder--hidden');
             this.video.classList.remove('active');
             this.cameraOverlay.classList.remove('active');
-            this.cameraBtn.classList.remove('camera-active');
-
-            // Stop scanning
             this.isScanning = false;
-            this.updateScanButtons();
-
-            // Clean up scanner resources
-            this.scanner = null;
             this.scanCanvas = null;
-            this.scanContext = null;
+            this.scanContext = null
         }
-
         async initScanner() {
-            // Check if jsQR is loaded
-            if (typeof jsQR === 'undefined') {
-                throw new Error('jsQR library not loaded');
-            }
-
             try {
-                // Get camera stream directly
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: {
-                        facingMode: this.currentCamera
+                        facingMode: 'environment'
                     }
                 });
-
-                // Bind stream to video element
                 this.video.srcObject = stream;
                 this.video.play();
-
-                // Create canvas for scanning with jsQR
                 this.scanCanvas = document.createElement('canvas');
-                this.scanContext = this.scanCanvas.getContext('2d', { willReadFrequently: true });
-
-                // Wait for video to be ready
-                await new Promise((resolve) => {
-                    this.video.addEventListener('loadedmetadata', () => {
-                        resolve();
-                    });
+                this.scanContext = this.scanCanvas.getContext('2d', {
+                    willReadFrequently: true
                 });
-
-                // Camera is ready for scanning
-
-            } catch (error) {
-                throw error;
+                await new Promise((r) => {
+                    this.video.addEventListener('loadedmetadata', () => r())
+                })
+            } catch (e) {
+                throw e
             }
         }
-
-        startJsQRScanning() {
-            let frameSkipCounter = 0;
-            const FRAME_SKIP = 3; // Skip every 3rd frame for better performance
-            
-            const scanFrame = () => {
+        startScanning() {
+            let frameSkip = 0;
+            const scan = () => {
                 if (this.isScanning && this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
-                    frameSkipCounter++;
-                    
-                    // Skip frames for better performance
-                    if (frameSkipCounter % FRAME_SKIP !== 0) {
-                        requestAnimationFrame(scanFrame);
-                        return;
+                    frameSkip++;
+                    if (frameSkip % 3 !== 0) {
+                        requestAnimationFrame(scan);
+                        return
                     }
-                    
                     this.scanCanvas.height = this.video.videoHeight;
                     this.scanCanvas.width = this.video.videoWidth;
-
                     if (this.scanCanvas.width > 0 && this.scanCanvas.height > 0) {
                         this.scanContext.drawImage(this.video, 0, 0, this.scanCanvas.width, this.scanCanvas.height);
-
-                        // Try center area first (more likely to contain QR code)
                         const centerSize = Math.min(this.scanCanvas.width, this.scanCanvas.height) * 0.7;
                         const centerX = (this.scanCanvas.width - centerSize) / 2;
                         const centerY = (this.scanCanvas.height - centerSize) / 2;
-
                         let imageData = this.scanContext.getImageData(centerX, centerY, centerSize, centerSize);
                         let code = jsQR(imageData.data, imageData.width, imageData.height, {
                             inversionAttempts: "attemptBoth"
                         });
-
-                        // If not found in center, try full image
                         if (!code || !code.data || code.data.trim() === '') {
                             imageData = this.scanContext.getImageData(0, 0, this.scanCanvas.width, this.scanCanvas.height);
                             code = jsQR(imageData.data, imageData.width, imageData.height, {
                                 inversionAttempts: "attemptBoth"
-                            });
+                            })
                         }
-
-                        // If valid QR code found
                         if (code && code.data && code.data.trim() !== '') {
-                            // Check if we haven't scanned this code recently
-                            if (this.lastScannedCode !== code.data ||
-                                !this.lastScanTime ||
-                                Date.now() - this.lastScanTime > 3000) {
+                            if (this.lastScannedCode !== code.data || !this.lastScanTime || Date.now() - this.lastScanTime > 3000) {
                                 this.lastScannedCode = code.data;
                                 this.lastScanTime = Date.now();
-                                this.handleScanResult({ data: code.data });
+                                this.handleScanResult({
+                                    data: code.data
+                                })
                             }
-                            return;
+                            return
                         }
                     }
                 }
-
                 if (this.isScanning) {
-                    requestAnimationFrame(scanFrame);
+                    requestAnimationFrame(scan)
                 }
             };
-
-            requestAnimationFrame(scanFrame);
+            requestAnimationFrame(scan)
         }
-
-
         stopScanning() {
-            // Stop scanning and hide camera completely
             this.hideCamera();
-            this.showStatus('Камера остановлена', 'warning');
+            this.showStatus('Камера остановлена', 'warning')
         }
-
-        getOptimalCameraFacing() {
-            // For QR scanning, always use rear/main camera
-            // 'environment' - rear camera on mobile, webcam on desktop
-            return 'environment';
-        }
-
-        updateScanButtons() {
-            // No need to update buttons - only stop button exists when camera is active
-        }
-
-        handleScanResult(result) {
-            const qrData = result.data || result;
-            this.showResult(qrData);
-            this.showStatus('QR-код успешно распознан!', 'success');
-
-            // Temporary pause before automatic scanning resume
-            this.pauseScanningTemporarily();
-        }
-
-        pauseScanningTemporarily() {
-            this.isScanning = false;
-            
-            // Automatically resume scanning after 2 seconds
-            setTimeout(() => {
-                if (this.video.classList.contains('active')) {
-                    this.isScanning = true;
-                    this.startJsQRScanning();
-                }
-            }, 2000);
-        }
-
-        async handleFileUpload(event) {
-            const files = event.target.files;
-            
-            if (!files || files.length === 0) {
-                return;
-            }
-
+        async handleFileUpload(e) {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
             this.showUploadLoading();
-
             for (const file of files) {
                 try {
-                    await this.processFile(file);
+                    await this.processFile(file)
                 } catch (error) {
-                    this.showStatus(`Ошибка обработки файла ${file.name}: ${error.message}`, 'error');
+                    this.showStatus(`Ошибка файла ${file.name}: ${error.message}`, 'error')
                 }
             }
-
             this.hideUploadLoading();
-            // Clear the input to allow re-uploading the same file
-            event.target.value = '';
+            e.target.value = ''
         }
-
         async processFile(file) {
             const fileType = file.type.toLowerCase();
             const fileName = file.name.toLowerCase();
-
             if (fileType === 'application/pdf' || fileName.endsWith('.pdf')) {
-                // Load PDF.js and jsQR libraries for PDF processing
-                const needsPDFLib = !this.libraryLoader.loadedLibraries.has('pdfjs');
-                const needsJsQR = !this.libraryLoader.loadedLibraries.has('jsQR');
-                
-                if (needsPDFLib || needsJsQR) {
-                    this.showStatus('Загрузка библиотек для PDF...', 'warning');
+                const needsPDF = !this.loader.loaded.has('pdfjs');
+                const needsJsQR = !this.loader.loaded.has('jsQR');
+                if (needsPDF || needsJsQR) {
+                    this.showStatus('Загрузка библиотек для PDF...', 'warning')
                 }
-                
-                await Promise.all([
-                    this.libraryLoader.loadPDFjs(),
-                    this.libraryLoader.loadJsQR()
-                ]);
-                await this.processPDF(file);
+                await Promise.all([this.loader.loadPDFjs(), this.loader.loadJsQR()]);
+                await this.processPDF(file)
             } else if (fileType.startsWith('image/') || this.isImageFile(fileName)) {
-                // Load jsQR library for image processing
-                if (!this.libraryLoader.loadedLibraries.has('jsQR')) {
-                    this.showStatus('Загрузка библиотеки сканирования...', 'warning');
+                if (!this.loader.loaded.has('jsQR')) {
+                    this.showStatus('Загрузка библиотеки...', 'warning')
                 }
-                await this.libraryLoader.loadJsQR();
-                await this.processImage(file);
+                await this.loader.loadJsQR();
+                await this.processImage(file)
             } else {
-                throw new Error('Неподдерживаемый тип файла');
+                throw new Error('Неподдерживаемый тип файла')
             }
         }
-
         isImageFile(fileName) {
-            const imageExtensions = ['.jpg', '.jpeg', '.png', '.bmp', '.webp', '.svg', '.gif'];
-            return imageExtensions.some(ext => fileName.endsWith(ext));
+            const exts = ['.jpg', '.jpeg', '.png', '.bmp', '.webp', '.svg', '.gif'];
+            return exts.some(ext => fileName.endsWith(ext))
         }
-
         async processImage(file) {
             try {
                 const result = await this.scanWithJsQR(file);
                 this.showResult(result);
-                this.showStatus(`QR-код найден в изображении ${file.name}`, 'success');
-            } catch (error) {
-                throw new Error(`QR-код не найден в изображении ${file.name}`);
+                this.showStatus(`QR-код найден в ${file.name}`, 'success')
+            } catch (e) {
+                throw new Error(`QR-код не найден в ${file.name}`)
             }
         }
-
         async scanWithJsQR(file) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
                 const objectUrl = URL.createObjectURL(file);
-
                 img.crossOrigin = 'anonymous';
                 img.onload = () => {
-                    // Clean up object URL
                     URL.revokeObjectURL(objectUrl);
-
                     try {
                         const canvas = document.createElement('canvas');
-                        const ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-                        // Use higher resolution for better detection
+                        const ctx = canvas.getContext('2d', {
+                            willReadFrequently: true
+                        });
                         const scale = Math.max(1, Math.min(3, 800 / Math.max(img.width, img.height)));
                         canvas.width = img.width * scale;
                         canvas.height = img.height * scale;
-                        
-                        // Draw with high quality
                         ctx.imageSmoothingEnabled = true;
                         ctx.imageSmoothingQuality = 'high';
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                        // Try optimized scanning approaches (ordered by success probability)
-                        let attempts = [
-                            // 1. Convert to grayscale and threshold (most effective)
-                            () => {
-                                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                                this.convertToBlackWhite(imageData.data);
-                                return jsQR(imageData.data, imageData.width, imageData.height, {
-                                    inversionAttempts: "attemptBoth"
-                                });
-                            },
-                            // 2. Full image with original scale
-                            () => {
-                                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                                return jsQR(imageData.data, imageData.width, imageData.height, {
-                                    inversionAttempts: "attemptBoth"
-                                });
-                            },
-                            // 3. High resolution scaling (computationally expensive, last resort)
-                            () => {
-                                const highResCanvas = document.createElement('canvas');
-                                const highResCtx = highResCanvas.getContext('2d', { willReadFrequently: true });
-                                const hiScale = 3; // Reduced from 4 for better performance
-                                highResCanvas.width = img.width * hiScale;
-                                highResCanvas.height = img.height * hiScale;
-                                highResCtx.imageSmoothingEnabled = false;
-                                highResCtx.drawImage(img, 0, 0, highResCanvas.width, highResCanvas.height);
-                                
-                                const imageData = highResCtx.getImageData(0, 0, highResCanvas.width, highResCanvas.height);
-                                this.convertToBlackWhite(imageData.data);
-                                return jsQR(imageData.data, imageData.width, imageData.height, {
-                                    inversionAttempts: "attemptBoth"
-                                });
-                            }
-                        ];
-
+                        const attempts = [() => {
+                            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                            this.convertToBlackWhite(imageData.data);
+                            return jsQR(imageData.data, imageData.width, imageData.height, {
+                                inversionAttempts: "attemptBoth"
+                            })
+                        }, () => {
+                            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                            return jsQR(imageData.data, imageData.width, imageData.height, {
+                                inversionAttempts: "attemptBoth"
+                            })
+                        }, () => {
+                            const hCanvas = document.createElement('canvas');
+                            const hCtx = hCanvas.getContext('2d', {
+                                willReadFrequently: true
+                            });
+                            const hScale = 3;
+                            hCanvas.width = img.width * hScale;
+                            hCanvas.height = img.height * hScale;
+                            hCtx.imageSmoothingEnabled = false;
+                            hCtx.drawImage(img, 0, 0, hCanvas.width, hCanvas.height);
+                            const imageData = hCtx.getImageData(0, 0, hCanvas.width, hCanvas.height);
+                            this.convertToBlackWhite(imageData.data);
+                            return jsQR(imageData.data, imageData.width, imageData.height, {
+                                inversionAttempts: "attemptBoth"
+                            })
+                        }];
                         for (let i = 0; i < attempts.length; i++) {
                             const code = attempts[i]();
                             if (code && code.data && code.data.trim() !== '') {
                                 resolve(code.data);
-                                return;
+                                return
                             }
                         }
-
-                        reject(new Error('No QR code found'));
-                    } catch (error) {
-                        reject(new Error('Failed to process image: ' + error.message));
+                        reject(new Error('No QR code found'))
+                    } catch (e) {
+                        reject(new Error('Failed to process: ' + e.message))
                     }
                 };
                 img.onerror = () => {
-                    // Clean up object URL on error too
                     URL.revokeObjectURL(objectUrl);
-                    reject(new Error('Failed to load image'));
+                    reject(new Error('Failed to load image'))
                 };
-                img.src = objectUrl;
-            });
+                img.src = objectUrl
+            })
         }
-        
-        enhanceContrast(data) {
-            // Simple contrast enhancement
-            const factor = 2.0;
-            const offset = 128 * (1 - factor);
-            
-            for (let i = 0; i < data.length; i += 4) {
-                // Apply contrast to RGB channels
-                data[i] = Math.max(0, Math.min(255, data[i] * factor + offset));     // R
-                data[i + 1] = Math.max(0, Math.min(255, data[i + 1] * factor + offset)); // G
-                data[i + 2] = Math.max(0, Math.min(255, data[i + 2] * factor + offset)); // B
-                // Alpha channel stays the same
-            }
-        }
-        
         convertToBlackWhite(data) {
-            // Convert to grayscale and apply threshold for better QR detection
             const threshold = 128;
-            
             for (let i = 0; i < data.length; i += 4) {
-                // Convert to grayscale using luminance formula
                 const gray = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]);
-                
-                // Apply threshold to make it pure black or white
                 const bw = gray < threshold ? 0 : 255;
-                
-                // Set RGB channels to black or white
-                data[i] = bw;     // R
-                data[i + 1] = bw; // G
-                data[i + 2] = bw; // B
-                // Alpha channel stays the same
+                data[i] = bw;
+                data[i + 1] = bw;
+                data[i + 2] = bw
             }
         }
-
         async processPDF(file) {
             try {
-                // Configure PDF.js worker
                 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
                 const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-
+                const pdf = await pdfjsLib.getDocument({
+                    data: arrayBuffer
+                }).promise;
                 let qrFound = false;
-
-                // Scan each page of the PDF
                 for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                     try {
                         const page = await pdf.getPage(pageNum);
                         const canvas = await this.renderPDFPage(page);
-
-                        // Try to scan QR code from the rendered canvas
-                        try {
-                            const result = await QrScanner.scanImage(canvas, { returnDetailedScanResult: true });
-                            this.showResult(result.data);
-                            this.showStatus(`QR-код найден на странице ${pageNum} в PDF ${file.name}`, 'success');
+                        const ctx = canvas.getContext('2d');
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                            inversionAttempts: "attemptBoth"
+                        });
+                        if (code) {
+                            this.showResult(code.data);
+                            this.showStatus(`QR-код найден на стр. ${pageNum}`, 'success');
                             qrFound = true;
-                            break; // Stop after finding the first QR code
-                        } catch (scanError) {
-                            // Try with jsQR as fallback
-                            const ctx = canvas.getContext('2d');
-                            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                            const code = jsQR(imageData.data, imageData.width, imageData.height, {
-                                inversionAttempts: "tryBoth"
-                            });
-
-                            if (code) {
-                                this.showResult(code.data);
-                                this.showStatus(`QR-код найден на странице ${pageNum} в PDF ${file.name}`, 'success');
-                                qrFound = true;
-                                break;
-                            }
+                            break
                         }
-                    } catch (pageError) {
-                        // Continue to next page if no QR code found on this page
-                    }
+                    } catch (e) {}
                 }
-
                 if (!qrFound) {
-                    throw new Error(`QR-код не найден в PDF ${file.name}`);
+                    throw new Error(`QR-код не найден в PDF ${file.name}`)
                 }
-            } catch (error) {
-                throw new Error(`Ошибка обработки PDF: ${error.message}`);
+            } catch (e) {
+                throw new Error(`Ошибка PDF: ${e.message}`)
             }
         }
-
         async renderPDFPage(page) {
-            const scale = 2.0; // Higher scale for better QR detection
-            const viewport = page.getViewport({ scale });
-
+            const scale = 2.0;
+            const viewport = page.getViewport({
+                scale
+            });
             const canvas = this.pdfCanvas;
             const context = canvas.getContext('2d');
-
             canvas.width = viewport.width;
             canvas.height = viewport.height;
-
             const renderContext = {
                 canvasContext: context,
                 viewport: viewport
             };
-
             await page.render(renderContext).promise;
-            return canvas;
+            return canvas
         }
-
         showResult(data) {
             this.resultData.textContent = data;
             this.resultText.textContent = 'QR-код распознан:';
             this.resultContent.classList.add('result-content--visible');
-
-            // Check if data is a URL
-            this.updateOpenLinkButton(data);
+            this.updateOpenLinkButton(data)
         }
-
         updateOpenLinkButton(data) {
             const urlPattern = /^(https?:\/\/|www\.)/i;
             if (urlPattern.test(data)) {
                 this.openLinkBtn.style.display = 'block';
                 this.openLinkBtn.onclick = () => {
                     const url = data.startsWith('http') ? data : 'https://' + data;
-                    window.open(url, '_blank');
-                };
+                    window.open(url, '_blank')
+                }
             } else {
-                this.openLinkBtn.style.display = 'none';
+                this.openLinkBtn.style.display = 'none'
             }
         }
-
         async copyResult() {
             try {
                 await navigator.clipboard.writeText(this.resultData.textContent);
-                this.showStatus('Результат скопирован в буфер обмена', 'success');
-            } catch (error) {
-                this.showStatus('Ошибка копирования в буфер обмена', 'error');
+                this.showStatus('Скопировано', 'success')
+            } catch (e) {
+                this.showStatus('Ошибка копирования', 'error')
             }
         }
-
         openLink() {
             const data = this.resultData.textContent;
             const url = data.startsWith('http') ? data : 'https://' + data;
-            window.open(url, '_blank');
+            window.open(url, '_blank')
         }
-
         clearResult() {
             this.resultContent.classList.remove('result-content--visible');
             this.resultText.textContent = 'Результат сканирования';
             this.resultData.textContent = '';
-
-            // Reset last scan data to allow rescanning the same code
             this.lastScannedCode = null;
             this.lastScanTime = null;
-
-            // If camera is active and not scanning, automatically resume
             if (this.video.classList.contains('active') && !this.isScanning) {
                 this.isScanning = true;
-                this.startJsQRScanning();
+                this.startScanning()
             }
         }
-
+        handleScanResult(result) {
+            const qrData = result.data || result;
+            this.showResult(qrData);
+            this.showStatus('QR-код распознан!', 'success');
+            this.pauseScanningTemporarily()
+        }
+        pauseScanningTemporarily() {
+            this.isScanning = false;
+            setTimeout(() => {
+                if (this.video.classList.contains('active')) {
+                    this.isScanning = true;
+                    this.startScanning()
+                }
+            }, 2000)
+        }
         showLoading() {
-            this.cameraLoading.classList.add('loading--visible');
+            this.cameraLoading.classList.add('loading--visible')
         }
-
         hideLoading() {
-            this.cameraLoading.classList.remove('loading--visible');
+            this.cameraLoading.classList.remove('loading--visible')
         }
-
         showUploadLoading() {
-            this.uploadLoading.classList.add('loading--visible');
+            this.uploadLoading.classList.add('loading--visible')
         }
-
         hideUploadLoading() {
-            this.uploadLoading.classList.remove('loading--visible');
+            this.uploadLoading.classList.remove('loading--visible')
         }
-
-
         showStatus(message, type = 'success') {
-            // Remove existing status messages
-            const existingMessages = document.querySelectorAll('.status-message');
-            existingMessages.forEach(msg => msg.remove());
-
+            const existing = document.querySelectorAll('.status-message');
+            existing.forEach(msg => msg.remove());
             const statusDiv = document.createElement('div');
             statusDiv.className = `status-message status-message--${type}`;
             statusDiv.textContent = message;
-
             document.body.appendChild(statusDiv);
-
-            // Trigger animation
             setTimeout(() => {
-                statusDiv.classList.add('status-message--visible');
+                statusDiv.classList.add('status-message--visible')
             }, 10);
-
-            // Auto remove after 3 seconds
             setTimeout(() => {
                 statusDiv.classList.remove('status-message--visible');
-                setTimeout(() => statusDiv.remove(), 300);
-            }, 3000);
+                setTimeout(() => statusDiv.remove(), 300)
+            }, 3000)
         }
-
-        // Slider functionality (keeping the original design)
         initSlider() {
             const buttons = document.querySelectorAll('.switcher-btn');
             const slider = document.querySelector('.switcher-slider');
@@ -1674,44 +1101,33 @@
 
             function moveSlider(btn) {
                 slider.style.width = `${btn.offsetWidth}px`;
-                slider.style.transform = `translateX(${btn.offsetLeft}px)`;
+                slider.style.transform = `translateX(${btn.offsetLeft}px)`
             }
-
-            // Position the slider under the active button on load
             moveSlider(document.querySelector(`.${activeClass}`));
-
-            // Handle clicks
             buttons.forEach(btn => btn.addEventListener('click', () => {
                 buttons.forEach(b => b.classList.remove(activeClass));
                 btn.classList.add(activeClass);
                 moveSlider(btn);
-
-                // For now, only scanner is implemented
                 if (btn.dataset.tab === 'generator') {
-                    this.showStatus('Генератор QR-кодов будет добавлен в следующем обновлении', 'warning');
+                    this.showStatus('Генератор будет добавлен позже', 'warning')
                 }
-            }));
+            }))
         }
-
         destroy() {
             if (this.scanner) {
                 this.scanner.destroy();
-                this.scanner = null;
+                this.scanner = null
             }
         }
     }
-
-    // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
         try {
-            const qrApp = new QRCodeScanner();
-
-            // Cleanup on page unload
+            const qrApp = new Q();
             window.addEventListener('beforeunload', () => {
-                qrApp.destroy();
-            });
-        } catch (error) {
-            document.body.innerHTML = '<div style="padding: 20px; text-align: center; color: red;">Ошибка загрузки приложения. Попробуйте обновить страницу.</div>';
+                qrApp.destroy()
+            })
+        } catch (e) {
+            document.body.innerHTML = '<div style="padding:20px;text-align:center;color:red;">Ошибка загрузки. Обновите страницу.</div>'
         }
     });
     </script>
