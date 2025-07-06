@@ -1039,7 +1039,10 @@
             this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
 
             // Camera controls
-            this.stopScanBtn.addEventListener('click', () => this.stopScanning());
+            this.stopScanBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling to parent camera button
+                this.stopScanning();
+            });
 
             // Result actions
             this.copyBtn.addEventListener('click', () => this.copyResult());
@@ -1236,7 +1239,7 @@
 
         pauseScanningTemporarily() {
             this.isScanning = false;
-            
+
             // Automatically resume scanning after 2 seconds
             setTimeout(() => {
                 if (this.video.classList.contains('active')) {
