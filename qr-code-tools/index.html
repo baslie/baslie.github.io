@@ -27,6 +27,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#222222">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
@@ -651,6 +652,19 @@
     </div>
     <canvas id="pdf-canvas" class="pdf-canvas"></canvas>
     <script>
+    // Регистрация Service Worker для кэширования
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('Service Worker зарегистрирован:', registration.scope);
+                })
+                .catch((error) => {
+                    console.log('Ошибка регистрации Service Worker:', error);
+                });
+        });
+    }
+    
     class L {
         constructor() {
             this.loaded = new Set();
