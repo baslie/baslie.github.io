@@ -1566,26 +1566,54 @@
         showQRFrame(location) {
             if (!location || !this.qrFrame) return;
 
-            const videoRect = this.video.getBoundingClientRect();
-            const containerRect = this.video.parentElement.getBoundingClientRect();
+            try {
+                // Calculate relative position within the video container
+                const scaleX = this.video.offsetWidth / this.video.videoWidth;
+                const scaleY = this.video.offsetHeight / this.video.videoHeight;
 
-            // Calculate relative position within the video container
-            const scaleX = this.video.offsetWidth / this.video.videoWidth;
-            const scaleY = this.video.offsetHeight / this.video.videoHeight;
+                let minX, maxX, minY, maxY;
 
-            const minX = Math.min(...location.map(p => p.x)) * scaleX;
-            const maxX = Math.max(...location.map(p => p.x)) * scaleX;
-            const minY = Math.min(...location.map(p => p.y)) * scaleY;
-            const maxY = Math.max(...location.map(p => p.y)) * scaleY;
+                // Check if location is an array of corner points (jsQR format)
+                if (Array.isArray(location) && location.length > 0 && location[0].x !== undefined) {
+                    minX = Math.min(...location.map(p => p.x)) * scaleX;
+                    maxX = Math.max(...location.map(p => p.x)) * scaleX;
+                    minY = Math.min(...location.map(p => p.y)) * scaleY;
+                    maxY = Math.max(...location.map(p => p.y)) * scaleY;
+                }
+                // Check if location has corner properties (alternative format)
+                else if (location.topLeftCorner && location.bottomRightCorner) {
+                    minX = location.topLeftCorner.x * scaleX;
+                    maxX = location.bottomRightCorner.x * scaleX;
+                    minY = location.topLeftCorner.y * scaleY;
+                    maxY = location.bottomRightCorner.y * scaleY;
+                }
+                // Fallback: use a default centered frame
+                else {
+                    console.warn('Unknown location format:', location);
+                    const centerX = this.video.offsetWidth / 2;
+                    const centerY = this.video.offsetHeight / 2;
+                    const frameSize = Math.min(this.video.offsetWidth, this.video.offsetHeight) * 0.3;
 
-            const width = maxX - minX;
-            const height = maxY - minY;
+                    minX = centerX - frameSize / 2;
+                    maxX = centerX + frameSize / 2;
+                    minY = centerY - frameSize / 2;
+                    maxY = centerY + frameSize / 2;
+                }
 
-            this.qrFrame.style.left = `${minX}px`;
-            this.qrFrame.style.top = `${minY}px`;
-            this.qrFrame.style.width = `${width}px`;
-            this.qrFrame.style.height = `${height}px`;
-            this.qrFrame.classList.add('detected');
+                const width = maxX - minX;
+                const height = maxY - minY;
+
+                this.qrFrame.style.left = `${minX}px`;
+                this.qrFrame.style.top = `${minY}px`;
+                this.qrFrame.style.width = `${width}px`;
+                this.qrFrame.style.height = `${height}px`;
+                this.qrFrame.classList.add('detected');
+
+            } catch (error) {
+                console.error('Error showing QR frame:', error, location);
+                // Just hide the frame if there's an error
+                this.hideQRFrame();
+            }
         }
 
         hideQRFrame() {
@@ -1619,22 +1647,21 @@
 
         // Slider functionality (keeping the original design)
         initSlider() {
-            const buttons = document.querySelectorAll('.switcher-btn');
-            const slider = document.querySelector('.switcher-slider');
-            const activeClass = 'switcher-btn--active';
+                const buttons = document.querySelectorAll('.switcher-btn');
+                const slider = document.querySelector('.switcher-slider');
+                const activeClass = 'switcher-btn--active';
 
-            function moveSlider(btn) {
-                slider.style.width = `${btn.offsetWidth}px`;
-                slider.style.transform = `translateX(${btn.offsetLeft}px)`;
-            }
+                function moveSlider(btn) {
+                    slider.style.width = `${btn.offsetWidth}px`;
+                    slider.style.transform = `translateX(${btn.offsetLeft}px)`;
+                }
 
-            // Position the slider under the active button on load
-            moveSlider(document.querySelector(`.${activeClass}`));
+                // Position the slider under the active button on load
+                moveSlider(document.querySelector(`.${activeClass}`));
 
-            // Handle clicks
-            buttons.forEach(btn => btn.addEventListener('click', () => {
-                buttons.forEach(b => b.classList.remove(activeClass));
-                btn.classList.add(activeClass);
+                // Handle clicks
+                buttons.forEach(btn => btn.addEventListener('click', () => {
+                                buttons.forEach(b => b.classList.remove(activeClass));        btn.classList.add(activeClass);
                 moveSlider(btn);
 
                 // For now, only scanner is implemented
