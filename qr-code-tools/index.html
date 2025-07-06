@@ -987,17 +987,59 @@
     </div>
     <!-- Hidden canvas for PDF rendering -->
     <canvas id="pdf-canvas" class="pdf-canvas"></canvas>
-    <!-- CDN Scripts with preload hints for better performance -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" as="script">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" as="script">
-    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" defer></script>
+    <!-- Scripts will be loaded dynamically when needed -->
     <script>
     // ======================================================================
     // QR Code Scanner Application
     // ======================================================================
 
+    // Dynamic library loader
+    class LibraryLoader {
+        constructor() {
+            this.loadedLibraries = new Set();
+            this.loadingPromises = new Map();
+        }
+        
+        async loadScript(url, libraryName) {
+            if (this.loadedLibraries.has(libraryName)) {
+                return Promise.resolve();
+            }
+            
+            if (this.loadingPromises.has(libraryName)) {
+                return this.loadingPromises.get(libraryName);
+            }
+            
+            const promise = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = () => {
+                    this.loadedLibraries.add(libraryName);
+                    resolve();
+                };
+                script.onerror = () => reject(new Error(`Не удалось загрузить ${libraryName}`));
+                document.head.appendChild(script);
+            });
+            
+            this.loadingPromises.set(libraryName, promise);
+            return promise;
+        }
+        
+        async loadJsQR() {
+            await this.loadScript('https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js', 'jsQR');
+            return typeof jsQR !== 'undefined';
+        }
+        
+        async loadPDFjs() {
+            await this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 'pdfjs');
+            return typeof pdfjsLib !== 'undefined';
+        }
+        
+        async loadQrScanner() {
+            await this.loadScript('https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js', 'qrscanner');
+            return typeof QrScanner !== 'undefined';
+        }
+    }
+    
     class QRCodeScanner {
         constructor() {
             this.scanner = null;
@@ -1005,16 +1047,16 @@
             this.currentCamera = this.getOptimalCameraFacing();
             this.lastScannedCode = null;
             this.lastScanTime = null;
-
-            // Set QrScanner worker path
-            this.initQrScannerWorker();
-
+            this.libraryLoader = new LibraryLoader();
+            
             this.initElements();
             this.initEventListeners();
-            this.checkCameraSupport();
             this.initSlider();
+            
+            // Load only QrScanner initially for camera support check
+            this.checkCameraSupport();
         }
-
+        
         initQrScannerWorker() {
             // QrScanner worker path is now handled automatically
             // No manual configuration needed in newer versions
@@ -1069,18 +1111,14 @@
         }
 
         async checkCameraSupport() {
+            // Don't load QrScanner until camera is actually needed
+            // Just check if getUserMedia is available
             try {
-                if (typeof QrScanner === 'undefined') {
-                    throw new Error('QrScanner library not loaded');
-                }
-
-                const hasCamera = await QrScanner.hasCamera();
-                if (!hasCamera) {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                     this.cameraBtn.classList.add('upload-section--disabled');
                     this.showStatus('Камера недоступна', 'warning');
                 }
             } catch (error) {
-                console.error('Camera support check error:', error);
                 this.cameraBtn.classList.add('upload-section--disabled');
             }
         }
@@ -1096,6 +1134,12 @@
         async showCamera() {
             try {
                 this.showLoading();
+                
+                // Load jsQR library if not already loaded
+                if (!this.libraryLoader.loadedLibraries.has('jsQR')) {
+                    this.showStatus('Загрузка библиотеки сканирования...', 'warning');
+                }
+                await this.libraryLoader.loadJsQR();
 
                 // Initialize camera stream
                 await this.initScanner();
@@ -1182,17 +1226,17 @@
         startJsQRScanning() {
             let frameSkipCounter = 0;
             const FRAME_SKIP = 3; // Skip every 3rd frame for better performance
-
+            
             const scanFrame = () => {
                 if (this.isScanning && this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
                     frameSkipCounter++;
-
+                    
                     // Skip frames for better performance
                     if (frameSkipCounter % FRAME_SKIP !== 0) {
                         requestAnimationFrame(scanFrame);
                         return;
                     }
-
+                    
                     this.scanCanvas.height = this.video.videoHeight;
                     this.scanCanvas.width = this.video.videoWidth;
 
@@ -1268,7 +1312,7 @@
 
         pauseScanningTemporarily() {
             this.isScanning = false;
-
+            
             // Automatically resume scanning after 2 seconds
             setTimeout(() => {
                 if (this.video.classList.contains('active')) {
@@ -1280,7 +1324,7 @@
 
         async handleFileUpload(event) {
             const files = event.target.files;
-
+            
             if (!files || files.length === 0) {
                 return;
             }
@@ -1305,8 +1349,25 @@
             const fileName = file.name.toLowerCase();
 
             if (fileType === 'application/pdf' || fileName.endsWith('.pdf')) {
+                // Load PDF.js and jsQR libraries for PDF processing
+                const needsPDFLib = !this.libraryLoader.loadedLibraries.has('pdfjs');
+                const needsJsQR = !this.libraryLoader.loadedLibraries.has('jsQR');
+                
+                if (needsPDFLib || needsJsQR) {
+                    this.showStatus('Загрузка библиотек для PDF...', 'warning');
+                }
+                
+                await Promise.all([
+                    this.libraryLoader.loadPDFjs(),
+                    this.libraryLoader.loadJsQR()
+                ]);
                 await this.processPDF(file);
             } else if (fileType.startsWith('image/') || this.isImageFile(fileName)) {
+                // Load jsQR library for image processing
+                if (!this.libraryLoader.loadedLibraries.has('jsQR')) {
+                    this.showStatus('Загрузка библиотеки сканирования...', 'warning');
+                }
+                await this.libraryLoader.loadJsQR();
                 await this.processImage(file);
             } else {
                 throw new Error('Неподдерживаемый тип файла');
@@ -1346,7 +1407,7 @@
                         const scale = Math.max(1, Math.min(3, 800 / Math.max(img.width, img.height)));
                         canvas.width = img.width * scale;
                         canvas.height = img.height * scale;
-
+                        
                         // Draw with high quality
                         ctx.imageSmoothingEnabled = true;
                         ctx.imageSmoothingQuality = 'high';
@@ -1378,7 +1439,7 @@
                                 highResCanvas.height = img.height * hiScale;
                                 highResCtx.imageSmoothingEnabled = false;
                                 highResCtx.drawImage(img, 0, 0, highResCanvas.width, highResCanvas.height);
-
+                                
                                 const imageData = highResCtx.getImageData(0, 0, highResCanvas.width, highResCanvas.height);
                                 this.convertToBlackWhite(imageData.data);
                                 return jsQR(imageData.data, imageData.width, imageData.height, {
@@ -1408,34 +1469,34 @@
                 img.src = objectUrl;
             });
         }
-
+        
         enhanceContrast(data) {
             // Simple contrast enhancement
             const factor = 2.0;
             const offset = 128 * (1 - factor);
-
+            
             for (let i = 0; i < data.length; i += 4) {
                 // Apply contrast to RGB channels
-                data[i] = Math.max(0, Math.min(255, data[i] * factor + offset)); // R
+                data[i] = Math.max(0, Math.min(255, data[i] * factor + offset));     // R
                 data[i + 1] = Math.max(0, Math.min(255, data[i + 1] * factor + offset)); // G
                 data[i + 2] = Math.max(0, Math.min(255, data[i + 2] * factor + offset)); // B
                 // Alpha channel stays the same
             }
         }
-
+        
         convertToBlackWhite(data) {
             // Convert to grayscale and apply threshold for better QR detection
             const threshold = 128;
-
+            
             for (let i = 0; i < data.length; i += 4) {
                 // Convert to grayscale using luminance formula
                 const gray = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]);
-
+                
                 // Apply threshold to make it pure black or white
                 const bw = gray < threshold ? 0 : 255;
-
+                
                 // Set RGB channels to black or white
-                data[i] = bw; // R
+                data[i] = bw;     // R
                 data[i + 1] = bw; // G
                 data[i + 2] = bw; // B
                 // Alpha channel stays the same
@@ -1640,24 +1701,9 @@
         }
     }
 
-    // Wait for all libraries to load
-    function waitForLibraries() {
-        return new Promise((resolve) => {
-            const checkLibraries = () => {
-                if (typeof QrScanner !== 'undefined' && typeof jsQR !== 'undefined' && typeof pdfjsLib !== 'undefined') {
-                    resolve();
-                } else {
-                    setTimeout(checkLibraries, 100);
-                }
-            };
-            checkLibraries();
-        });
-    }
-
-    // Initialize the application when DOM and libraries are loaded
-    document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize the application when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
         try {
-            await waitForLibraries();
             const qrApp = new QRCodeScanner();
 
             // Cleanup on page unload
