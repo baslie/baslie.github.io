@@ -932,11 +932,9 @@
                                 <div class="camera-overlay" id="camera-overlay" role="group" aria-label="Управление камерой">
                                     <button class="camera-btn" id="start-scan-btn" aria-describedby="start-scan-desc">Начать</button>
                                     <button class="camera-btn" id="stop-scan-btn" disabled aria-describedby="stop-scan-desc">Остановить</button>
-                                    <button class="camera-btn" id="switch-camera-btn" style="display: none;" aria-describedby="switch-camera-desc">Перекл.камеру</button>
                                 </div>
                                 <div id="start-scan-desc" class="sr-only">Запустить сканирование QR-кода с камеры</div>
                                 <div id="stop-scan-desc" class="sr-only">Остановить сканирование QR-кода</div>
-                                <div id="switch-camera-desc" class="sr-only">Переключиться на другую камеру</div>
                                 <div class="loading" id="camera-loading" aria-live="polite" aria-label="Загрузка камеры">
                                     <div class="loading-spinner" aria-hidden="true"></div>
                                     <span class="sr-only">Инициализация камеры...</span>
@@ -992,9 +990,7 @@
         constructor() {
             this.scanner = null;
             this.isScanning = false;
-            this.currentCamera = 'environment';
-            this.availableCameras = [];
-            this.currentCameraIndex = 0;
+            this.currentCamera = this.getOptimalCameraFacing();
             this.lastScannedCode = null;
             this.lastScanTime = null;
 
@@ -1017,7 +1013,6 @@
             // Camera controls
             this.startScanBtn = document.getElementById('start-scan-btn');
             this.stopScanBtn = document.getElementById('stop-scan-btn');
-            this.switchCameraBtn = document.getElementById('switch-camera-btn');
             this.cameraLoading = document.getElementById('camera-loading');
             this.uploadLoading = document.getElementById('upload-loading');
 
@@ -1045,7 +1040,6 @@
             // Camera controls
             this.startScanBtn.addEventListener('click', () => this.startScanning());
             this.stopScanBtn.addEventListener('click', () => this.stopScanning());
-            this.switchCameraBtn.addEventListener('click', () => this.switchCamera());
 
             // Result actions
             this.copyBtn.addEventListener('click', () => this.copyResult());
@@ -1158,15 +1152,6 @@
                 // Начинаем сканирование с помощью jsQR
                 this.startJsQRScanning();
 
-                // Получаем список камер напрямую
-                try {
-                    const devices = await navigator.mediaDevices.enumerateDevices();
-                    this.availableCameras = devices.filter(device => device.kind === 'videoinput');
-                    this.updateCameraButton();
-                } catch (error) {
-                    console.error('Error listing cameras:', error);
-                }
-
                 this.isScanning = true;
                 this.updateScanButtons();
 
@@ -1245,40 +1230,13 @@
             }
         }
 
-        async switchCamera() {
-            if (this.availableCameras.length <= 1) {
-                this.showStatus('Только одна камера доступна', 'warning');
-                return;
-            }
+        getOptimalCameraFacing() {
+            // Определяем тип устройства и возвращаем оптимальный режим камеры
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
 
-            try {
-                // Останавливаем текущий поток
-                if (this.video.srcObject) {
-                    const tracks = this.video.srcObject.getTracks();
-                    tracks.forEach(track => track.stop());
-                }
-
-                // Переключаем на следующую камеру
-                this.currentCameraIndex = (this.currentCameraIndex + 1) % this.availableCameras.length;
-                const selectedCamera = this.availableCameras[this.currentCameraIndex];
-
-                // Получаем новый поток
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { deviceId: selectedCamera.deviceId }
-                });
-
-                this.video.srcObject = stream;
-                this.video.play();
-
-                this.showStatus(`Переключено на: ${selectedCamera.label || 'Камера ' + (this.currentCameraIndex + 1)}`, 'success');
-
-            } catch (error) {
-                this.showStatus('Ошибка переключения камеры', 'error');
-            }
-        }
-
-        updateCameraButton() {
-            this.switchCameraBtn.style.display = this.availableCameras.length > 1 ? 'block' : 'none';
+            // На мобильных используем фронтальную камеру (user), на десктопах - основную (environment)
+            return isMobile ? 'user' : 'environment';
         }
 
         updateScanButtons() {
