@@ -456,6 +456,46 @@
         display: flex;
     }
     
+    /* QR Detection Frame Overlay */
+    .qr-frame {
+        position: absolute;
+        border: 3px solid var(--color-success);
+        border-radius: var(--radius-sm);
+        background: rgba(40, 167, 69, 0.1);
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 50;
+        pointer-events: none;
+    }
+
+    .qr-frame.detected {
+        opacity: 1;
+    }
+
+    .qr-frame::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
+        border: 2px solid rgba(40, 167, 69, 0.4);
+        border-radius: var(--radius-sm);
+        animation: qr-pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes qr-pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+    }
+    
 
     .camera-btn {
         padding: 8px 16px;
@@ -929,6 +969,7 @@
                                     <span class="upload-text">Сделать фото</span>
                                 </div>
                                 <video id="qr-video" autoplay muted playsinline aria-label="Видеопоток с камеры для сканирования QR-кода"></video>
+                                <div class="qr-frame" id="qr-frame"></div>
                                 <div class="camera-overlay" id="camera-overlay" role="group" aria-label="Управление камерой">
                                     <button class="camera-btn" id="start-scan-btn" aria-describedby="start-scan-desc">Начать</button>
                                     <button class="camera-btn" id="stop-scan-btn" disabled aria-describedby="stop-scan-desc">Остановить</button>
@@ -1015,6 +1056,7 @@
             this.stopScanBtn = document.getElementById('stop-scan-btn');
             this.cameraLoading = document.getElementById('camera-loading');
             this.uploadLoading = document.getElementById('upload-loading');
+            this.qrFrame = document.getElementById('qr-frame');
 
             // Result elements
             this.resultSection = document.getElementById('result-section');
@@ -1097,7 +1139,7 @@
         }
 
         hideCamera() {
-            // Останавливаем поток камеры
+            // Stop camera stream
             if (this.video.srcObject) {
                 const tracks = this.video.srcObject.getTracks();
                 tracks.forEach(track => track.stop());
@@ -1109,47 +1151,48 @@
             this.video.classList.remove('active');
             this.cameraOverlay.classList.remove('active');
             this.cameraBtn.classList.remove('camera-active');
+            this.hideQRFrame();
 
-            // Останавливаем сканирование
+            // Stop scanning
             this.isScanning = false;
             this.updateScanButtons();
 
-            // Очищаем ресурсы сканера
+            // Clean up scanner resources
             this.scanner = null;
             this.scanCanvas = null;
             this.scanContext = null;
         }
 
         async initScanner() {
-            // Проверяем, что jsQR загружен
+            // Check if jsQR is loaded
             if (typeof jsQR === 'undefined') {
                 throw new Error('jsQR library not loaded');
             }
 
             try {
-                // Получаем поток камеры напрямую
+                // Get camera stream directly
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: {
                         facingMode: this.currentCamera
                     }
                 });
 
-                // Привязываем поток к видео элементу
+                // Bind stream to video element
                 this.video.srcObject = stream;
                 this.video.play();
 
-                // Создаем canvas для сканирования с jsQR
+                // Create canvas for scanning with jsQR
                 this.scanCanvas = document.createElement('canvas');
                 this.scanContext = this.scanCanvas.getContext('2d', { willReadFrequently: true });
 
-                // Ждем, пока видео будет готово
+                // Wait for video to be ready
                 await new Promise((resolve) => {
                     this.video.addEventListener('loadedmetadata', () => {
                         resolve();
                     });
                 });
 
-                // Начинаем сканирование с помощью jsQR
+                // Start scanning with jsQR
                 this.startJsQRScanning();
 
                 this.isScanning = true;
@@ -1187,17 +1230,24 @@
                             });
                         }
 
-                        // Если нашли валидный QR-код
+                        // If valid QR code found
                         if (code && code.data && code.data.trim() !== '') {
-                            // Проверяем, не сканировали ли мы этот же код недавно
+                            // Check if we haven't scanned this code recently
                             if (this.lastScannedCode !== code.data ||
                                 !this.lastScanTime ||
                                 Date.now() - this.lastScanTime > 3000) {
                                 this.lastScannedCode = code.data;
                                 this.lastScanTime = Date.now();
+                                this.showQRFrame(code.location);
                                 this.handleScanResult({ data: code.data });
+                            } else {
+                                // Still show frame for detected QR even if not processing
+                                this.showQRFrame(code.location);
                             }
                             return;
+                        } else {
+                            // Hide frame if no QR detected
+                            this.hideQRFrame();
                         }
                     }
                 }
@@ -1226,13 +1276,14 @@
             if (this.isScanning) {
                 this.isScanning = false;
                 this.updateScanButtons();
+                this.hideQRFrame();
                 this.showStatus('Сканирование остановлено', 'warning');
             }
         }
 
         getOptimalCameraFacing() {
-            // Для сканирования QR-кодов всегда используем заднюю/основную камеру
-            // 'environment' - задняя камера на мобильных, веб-камера на десктопах
+            // For QR scanning, always use rear/main camera
+            // 'environment' - rear camera on mobile, webcam on desktop
             return 'environment';
         }
 
@@ -1246,15 +1297,16 @@
             this.showResult(qrData);
             this.showStatus('QR-код успешно распознан!', 'success');
 
-            // Временная пауза перед автоматическим возобновлением сканирования
+            // Temporary pause before automatic scanning resume
             this.pauseScanningTemporarily();
         }
 
         pauseScanningTemporarily() {
             this.isScanning = false;
             this.updateScanButtons();
+            this.hideQRFrame();
 
-            // Автоматически возобновляем сканирование через 2 секунды
+            // Automatically resume scanning after 2 seconds
             setTimeout(() => {
                 if (this.video.classList.contains('active')) {
                     this.isScanning = true;
@@ -1456,11 +1508,11 @@
             this.resultText.textContent = 'Результат сканирования';
             this.resultData.textContent = '';
 
-            // Сбрасываем данные последнего сканирования, чтобы можно было повторно сканировать тот же код
+            // Reset last scan data to allow rescanning the same code
             this.lastScannedCode = null;
             this.lastScanTime = null;
 
-            // Если камера активна и сканирование не идет, автоматически возобновляем
+            // If camera is active and not scanning, automatically resume
             if (this.video.classList.contains('active') && !this.isScanning) {
                 this.startScanning();
             }
@@ -1480,6 +1532,37 @@
 
         hideUploadLoading() {
             this.uploadLoading.classList.remove('loading--visible');
+        }
+
+        showQRFrame(location) {
+            if (!location || !this.qrFrame) return;
+
+            const videoRect = this.video.getBoundingClientRect();
+            const containerRect = this.video.parentElement.getBoundingClientRect();
+
+            // Calculate relative position within the video container
+            const scaleX = this.video.offsetWidth / this.video.videoWidth;
+            const scaleY = this.video.offsetHeight / this.video.videoHeight;
+
+            const minX = Math.min(...location.map(p => p.x)) * scaleX;
+            const maxX = Math.max(...location.map(p => p.x)) * scaleX;
+            const minY = Math.min(...location.map(p => p.y)) * scaleY;
+            const maxY = Math.max(...location.map(p => p.y)) * scaleY;
+
+            const width = maxX - minX;
+            const height = maxY - minY;
+
+            this.qrFrame.style.left = `${minX}px`;
+            this.qrFrame.style.top = `${minY}px`;
+            this.qrFrame.style.width = `${width}px`;
+            this.qrFrame.style.height = `${height}px`;
+            this.qrFrame.classList.add('detected');
+        }
+
+        hideQRFrame() {
+            if (this.qrFrame) {
+                this.qrFrame.classList.remove('detected');
+            }
         }
 
         showStatus(message, type = 'success') {
