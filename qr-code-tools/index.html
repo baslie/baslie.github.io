@@ -934,11 +934,9 @@
                                 </div>
                                 <video id="qr-video" autoplay muted playsinline aria-label="Видеопоток с камеры для сканирования QR-кода"></video>
                                 <div class="camera-overlay" id="camera-overlay" role="group" aria-label="Управление камерой">
-                                    <button class="camera-btn" id="start-scan-btn" aria-describedby="start-scan-desc">Начать</button>
-                                    <button class="camera-btn" id="stop-scan-btn" disabled aria-describedby="stop-scan-desc">Остановить</button>
+                                    <button class="camera-btn" id="stop-scan-btn" aria-describedby="stop-scan-desc">Остановить</button>
                                 </div>
-                                <div id="start-scan-desc" class="sr-only">Запустить сканирование QR-кода с камеры</div>
-                                <div id="stop-scan-desc" class="sr-only">Остановить сканирование QR-кода</div>
+                                <div id="stop-scan-desc" class="sr-only">Остановить сканирование и закрыть камеру</div>
                                 <div class="loading" id="camera-loading" aria-live="polite" aria-label="Загрузка камеры">
                                     <div class="loading-spinner" aria-hidden="true"></div>
                                     <span class="sr-only">Инициализация камеры...</span>
@@ -1015,7 +1013,6 @@
             this.video = document.getElementById('qr-video');
 
             // Camera controls
-            this.startScanBtn = document.getElementById('start-scan-btn');
             this.stopScanBtn = document.getElementById('stop-scan-btn');
             this.cameraLoading = document.getElementById('camera-loading');
             this.uploadLoading = document.getElementById('upload-loading');
@@ -1042,7 +1039,6 @@
             this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
 
             // Camera controls
-            this.startScanBtn.addEventListener('click', () => this.startScanning());
             this.stopScanBtn.addEventListener('click', () => this.stopScanning());
 
             // Result actions
@@ -1091,7 +1087,6 @@
 
                 // Start scanning immediately
                 this.isScanning = true;
-                this.updateScanButtons();
                 this.startJsQRScanning();
 
                 this.hideLoading();
@@ -1213,29 +1208,11 @@
             requestAnimationFrame(scanFrame);
         }
 
-        async startScanning() {
-            if (!this.video.classList.contains('active')) {
-                this.showStatus('Сначала активируйте камеру', 'warning');
-                return;
-            }
-
-            if (!this.scanCanvas || !this.scanContext) {
-                this.showStatus('Камера еще не готова', 'warning');
-                return;
-            }
-
-            this.isScanning = true;
-            this.updateScanButtons();
-            this.startJsQRScanning();
-            this.showStatus('Сканирование активно', 'success');
-        }
 
         stopScanning() {
-            if (this.isScanning) {
-                this.isScanning = false;
-                this.updateScanButtons();
-                this.showStatus('Сканирование остановлено', 'warning');
-            }
+            // Stop scanning and hide camera completely
+            this.hideCamera();
+            this.showStatus('Камера остановлена', 'warning');
         }
 
         getOptimalCameraFacing() {
@@ -1245,8 +1222,7 @@
         }
 
         updateScanButtons() {
-            this.startScanBtn.disabled = this.isScanning;
-            this.stopScanBtn.disabled = !this.isScanning;
+            // No need to update buttons - only stop button exists when camera is active
         }
 
         handleScanResult(result) {
@@ -1260,12 +1236,12 @@
 
         pauseScanningTemporarily() {
             this.isScanning = false;
-            this.updateScanButtons();
-
+            
             // Automatically resume scanning after 2 seconds
             setTimeout(() => {
-                if (this.video.classList.contains('active') && !this.isScanning) {
-                    this.startScanning();
+                if (this.video.classList.contains('active')) {
+                    this.isScanning = true;
+                    this.startJsQRScanning();
                 }
             }, 2000);
         }
@@ -1485,7 +1461,8 @@
 
             // If camera is active and not scanning, automatically resume
             if (this.video.classList.contains('active') && !this.isScanning) {
-                this.startScanning();
+                this.isScanning = true;
+                this.startJsQRScanning();
             }
         }
 
