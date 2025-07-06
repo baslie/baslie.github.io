@@ -456,45 +456,6 @@
         display: flex;
     }
     
-    /* QR Detection Frame Overlay */
-    .qr-frame {
-        position: absolute;
-        border: 3px solid var(--color-success);
-        border-radius: var(--radius-sm);
-        background: rgba(40, 167, 69, 0.1);
-        box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: 50;
-        pointer-events: none;
-    }
-
-    .qr-frame.detected {
-        opacity: 1;
-    }
-
-    .qr-frame::before {
-        content: '';
-        position: absolute;
-        top: -6px;
-        left: -6px;
-        right: -6px;
-        bottom: -6px;
-        border: 2px solid rgba(40, 167, 69, 0.4);
-        border-radius: var(--radius-sm);
-        animation: qr-pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes qr-pulse {
-        0%, 100% {
-            transform: scale(1);
-            opacity: 0.6;
-        }
-        50% {
-            transform: scale(1.05);
-            opacity: 0.8;
-        }
-    }
     
 
     .camera-btn {
@@ -969,7 +930,6 @@
                                     <span class="upload-text">Сделать фото</span>
                                 </div>
                                 <video id="qr-video" autoplay muted playsinline aria-label="Видеопоток с камеры для сканирования QR-кода"></video>
-                                <div class="qr-frame" id="qr-frame"></div>
                                 <div class="camera-overlay" id="camera-overlay" role="group" aria-label="Управление камерой">
                                     <button class="camera-btn" id="start-scan-btn" aria-describedby="start-scan-desc">Начать</button>
                                     <button class="camera-btn" id="stop-scan-btn" disabled aria-describedby="stop-scan-desc">Остановить</button>
@@ -1056,7 +1016,6 @@
             this.stopScanBtn = document.getElementById('stop-scan-btn');
             this.cameraLoading = document.getElementById('camera-loading');
             this.uploadLoading = document.getElementById('upload-loading');
-            this.qrFrame = document.getElementById('qr-frame');
 
             // Result elements
             this.resultSection = document.getElementById('result-section');
@@ -1153,7 +1112,6 @@
             this.video.classList.remove('active');
             this.cameraOverlay.classList.remove('active');
             this.cameraBtn.classList.remove('camera-active');
-            this.hideQRFrame();
 
             // Stop scanning
             this.isScanning = false;
@@ -1240,16 +1198,9 @@
                                 Date.now() - this.lastScanTime > 3000) {
                                 this.lastScannedCode = code.data;
                                 this.lastScanTime = Date.now();
-                                this.showQRFrame(code.location);
                                 this.handleScanResult({ data: code.data });
-                            } else {
-                                // Still show frame for detected QR even if not processing
-                                this.showQRFrame(code.location);
                             }
                             return;
-                        } else {
-                            // Hide frame if no QR detected
-                            this.hideQRFrame();
                         }
                     }
                 }
@@ -1278,7 +1229,6 @@
             if (this.isScanning) {
                 this.isScanning = false;
                 this.updateScanButtons();
-                this.hideQRFrame();
                 this.showStatus('Сканирование остановлено', 'warning');
             }
         }
@@ -1306,7 +1256,6 @@
         pauseScanningTemporarily() {
             this.isScanning = false;
             this.updateScanButtons();
-            this.hideQRFrame();
 
             // Automatically resume scanning after 2 seconds
             setTimeout(() => {
@@ -1563,68 +1512,6 @@
             this.uploadLoading.classList.remove('loading--visible');
         }
 
-        showQRFrame(location) {
-            if (!location || !this.qrFrame) return;
-
-            try {
-                // Get video element dimensions and position
-                const videoRect = this.video.getBoundingClientRect();
-                const containerRect = this.video.parentElement.getBoundingClientRect();
-
-                // Calculate scale factors
-                const scaleX = this.video.offsetWidth / this.video.videoWidth;
-                const scaleY = this.video.offsetHeight / this.video.videoHeight;
-
-                let minX, maxX, minY, maxY;
-
-                // Check if location is an array of corner points (jsQR format)
-                if (Array.isArray(location) && location.length > 0 && location[0].x !== undefined) {
-                    minX = Math.min(...location.map(p => p.x)) * scaleX;
-                    maxX = Math.max(...location.map(p => p.x)) * scaleX;
-                    minY = Math.min(...location.map(p => p.y)) * scaleY;
-                    maxY = Math.max(...location.map(p => p.y)) * scaleY;
-                }
-                // Check if location has corner properties (alternative format)
-                else if (location.topLeftCorner && location.bottomRightCorner) {
-                    minX = location.topLeftCorner.x * scaleX;
-                    maxX = location.bottomRightCorner.x * scaleX;
-                    minY = location.topLeftCorner.y * scaleY;
-                    maxY = location.bottomRightCorner.y * scaleY;
-                }
-                // Fallback: use a default centered frame
-                else {
-                    console.warn('Unknown location format:', location);
-                    return; // Skip showing frame for unknown formats
-                }
-
-                // Calculate frame dimensions
-                const width = Math.abs(maxX - minX);
-                const height = Math.abs(maxY - minY);
-
-                // Position frame relative to video element
-                const left = Math.min(minX, maxX);
-                const top = Math.min(minY, maxY);
-
-                // Apply position and size
-                this.qrFrame.style.left = `${left}px`;
-                this.qrFrame.style.top = `${top}px`;
-                this.qrFrame.style.width = `${width}px`;
-                this.qrFrame.style.height = `${height}px`;
-                this.qrFrame.classList.add('detected');
-
-                console.log('QR Frame positioned:', { left, top, width, height, scaleX, scaleY });
-
-            } catch (error) {
-                console.error('Error showing QR frame:', error, location);
-                this.hideQRFrame();
-            }
-        }
-
-        hideQRFrame() {
-            if (this.qrFrame) {
-                this.qrFrame.classList.remove('detected');
-            }
-        }
 
         showStatus(message, type = 'success') {
             // Remove existing status messages
