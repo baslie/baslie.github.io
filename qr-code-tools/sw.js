@@ -29,7 +29,10 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                return cache.addAll(STATIC_RESOURCES);
+                // Пытаемся прекэшировать ресурсы, игнорируя ошибки
+                return Promise.allSettled(
+                    STATIC_RESOURCES.map(resource => cache.add(resource))
+                );
             })
     );
     self.skipWaiting();
@@ -54,8 +57,14 @@ self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
     
+    // Определяем базовый путь (для подпапки)
+    const isOurDomain = url.origin === location.origin;
+    const isStaticResource = STATIC_RESOURCES.some(resource => 
+        url.pathname.endsWith(resource) || url.pathname.includes(resource)
+    );
+    
     // Кэшируем только статические ресурсы с нашего домена
-    if (STATIC_RESOURCES.some(resource => url.pathname.includes(resource))) {
+    if (isOurDomain && isStaticResource) {
         event.respondWith(
             caches.match(request)
                 .then((response) => {
@@ -81,6 +90,10 @@ self.addEventListener('fetch', (event) => {
                                     });
                             }
                             return response;
+                        })
+                        .catch(() => {
+                            // Если не удалось загрузить, возвращаем из кэша если есть
+                            return caches.match(request);
                         });
                 })
         );
