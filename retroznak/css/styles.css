@@ -62,6 +62,11 @@
     background-color: var(--card);
 }
 
+.bg-gray-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(43, 36, 34);
+}
+
 .text-card-foreground {
     color: var(--card-foreground);
 }
