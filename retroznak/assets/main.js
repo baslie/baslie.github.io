@@ -235,55 +235,73 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function initializeLightbox() {
-        document.addEventListener('click', function(e) {
-            const clickedImg = e.target.closest('img');
-            if (!clickedImg) return;
+    // Универсальная функция для обработки кликов/тапов по изображениям
+    function handleImageInteraction(e) {
+        const clickedImg = e.target.closest('img');
+        if (!clickedImg) return;
 
-            if (e.target.closest('.swiper-button-next') ||
-                e.target.closest('.swiper-button-prev') ||
-                e.target.closest('.swiper-pagination')) {
-                return;
-            }
+        // Игнорируем клики на элементах управления слайдера
+        if (e.target.closest('.swiper-button-next') ||
+            e.target.closest('.swiper-button-prev') ||
+            e.target.closest('.swiper-pagination')) {
+            return;
+        }
 
-            if (clickedImg.closest('.swiper-slide')) {
-                e.preventDefault();
-                e.stopPropagation();
+        // Предотвращаем двойное срабатывание
+        e.preventDefault();
+        e.stopPropagation();
 
-                const swiperContainer = clickedImg.closest('.swiper');
-                const swiperImages = swiperContainer.querySelectorAll('.swiper-slide img');
-                const swiperImagesArray = Array.from(swiperImages).map(img => ({
+        // Обработка изображений в слайдере
+        if (clickedImg.closest('.swiper-slide')) {
+            const swiperContainer = clickedImg.closest('.swiper');
+            const swiperImages = swiperContainer.querySelectorAll('.swiper-slide img');
+            const swiperImagesArray = Array.from(swiperImages).map(img => ({
+                src: img.src,
+                alt: img.alt || 'Изображение из слайдера'
+            }));
+
+            const index = Array.from(swiperImages).indexOf(clickedImg);
+            openLightbox(clickedImg.src, clickedImg.alt || 'Изображение из слайдера', swiperImagesArray, index);
+            return;
+        }
+
+        // Обработка других изображений
+        if (clickedImg.closest('.single-image') ||
+            clickedImg.closest('.space-y-6') ||
+            clickedImg.closest('.masonry-item')) {
+
+            clickedImg.style.cursor = 'pointer';
+
+            if (clickedImg.closest('.masonry-item')) {
+                const masonryImages = document.querySelectorAll('.masonry-item img');
+                const masonryImagesArray = Array.from(masonryImages).map(img => ({
                     src: img.src,
-                    alt: img.alt || 'Изображение из слайдера'
+                    alt: img.alt || 'Фото клиента'
                 }));
-
-                const index = Array.from(swiperImages).indexOf(clickedImg);
-                openLightbox(clickedImg.src, clickedImg.alt || 'Изображение из слайдера', swiperImagesArray, index);
-                return;
+                const index = Array.from(masonryImages).indexOf(clickedImg);
+                openLightbox(clickedImg.src, clickedImg.alt || 'Фото клиента', masonryImagesArray, index);
+            } else {
+                openLightbox(clickedImg.src, clickedImg.alt || 'Изображение');
             }
+        }
+    }
 
-            if (clickedImg.closest('.single-image') ||
-                clickedImg.closest('.space-y-6') ||
-                clickedImg.closest('.masonry-item')) {
+    function initializeLightbox() {
+        // Обработчик для десктопных устройств
+        document.addEventListener('click', handleImageInteraction);
 
-                clickedImg.style.cursor = 'pointer';
-                e.preventDefault();
-                e.stopPropagation();
-
-                if (clickedImg.closest('.masonry-item')) {
-                    const masonryImages = document.querySelectorAll('.masonry-item img');
-                    const masonryImagesArray = Array.from(masonryImages).map(img => ({
-                        src: img.src,
-                        alt: img.alt || 'Фото клиента'
-                    }));
-                    const index = Array.from(masonryImages).indexOf(clickedImg);
-                    openLightbox(clickedImg.src, clickedImg.alt || 'Фото клиента', masonryImagesArray, index);
-                } else {
-                    openLightbox(clickedImg.src, clickedImg.alt || 'Изображение');
-                }
+        // Обработчик для мобильных устройств
+        document.addEventListener('touchend', function(e) {
+            // Проверяем, что это был именно тап, а не скролл
+            if (e.changedTouches.length === 1) {
+                // Небольшая задержка для предотвращения конфликтов
+                setTimeout(() => {
+                    handleImageInteraction(e);
+                }, 10);
             }
         });
 
+        // Добавляем стили для курсора
         const style = document.createElement('style');
         style.textContent = `
             .swiper-slide img,
@@ -296,9 +314,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
 
+    // Обработчики для закрытия лайтбокса
     lightboxClose.addEventListener('click', closeLightbox);
     lightboxOverlay.addEventListener('click', closeLightbox);
 
+    // Обработчик клавиатуры
     document.addEventListener('keydown', function(e) {
         if (!lightbox.classList.contains('active')) return;
 
@@ -317,5 +337,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Инициализация лайтбокса с небольшой задержкой
     setTimeout(initializeLightbox, 100);
 });
