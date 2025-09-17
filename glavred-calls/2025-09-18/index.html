@@ -299,23 +299,34 @@
     /* ===== RESPONSIVE DESIGN ===== */
     @media (max-width: 768px) {
         .container {
-            padding: 2.5rem var(--spacing-sm);
+            padding: 1.5rem var(--spacing-sm);
         }
 
         h1 {
             font-size: 1.75rem;
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
         }
 
         .back-link {
             position: static;
-            margin-bottom: var(--spacing-lg);
+            margin: var(--spacing-sm) 0 var(--spacing-md) var(--spacing-sm);
             align-self: flex-start;
         }
 
+        .section {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .video-container {
+            margin: var(--spacing-md) 0;
+        }
+
         .video-wrapper {
-            margin: 0 calc(-1 * var(--spacing-sm));
-            border-radius: 0;
+            margin: 0 auto;
+            border-radius: var(--border-radius-sm);
+            aspect-ratio: 16/9;
+            max-height: 50vh;
+            width: 100%;
         }
 
         .presentation-links {
@@ -328,11 +339,32 @@
             max-width: 280px;
             justify-content: center;
         }
+
+        .idea-section {
+            padding: var(--spacing-sm);
+        }
     }
 
     @media (max-width: 480px) {
+        .container {
+            padding: 1rem var(--spacing-xs);
+        }
+
         h1 {
             font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .video-container {
+            margin: var(--spacing-sm) 0;
+        }
+
+        .video-wrapper {
+            max-height: 45vh;
         }
 
         .btn {
@@ -353,6 +385,15 @@
         .back-link {
             font-size: 0.85rem;
             padding: 6px 12px;
+            margin: var(--spacing-xs) 0 var(--spacing-sm) var(--spacing-xs);
+        }
+
+        .idea-section {
+            padding: var(--spacing-xs);
+        }
+
+        .info-item {
+            font-size: 0.95rem;
         }
     }
     </style>
