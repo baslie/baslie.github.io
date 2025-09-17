@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://roman-purtow.ru/sitemap.xml
+
+# Block access to development and temporary files
+Disallow: /.git/
+Disallow: /.claude/
+Disallow: /instructions.md
