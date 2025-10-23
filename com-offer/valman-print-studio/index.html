@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,239 +20,242 @@
     <meta name="twitter:description" content="Next.js, Laravel, Tailwind, калькуляторы на Tilda и условия оплаты для VALMAN PRINT STUDIO.">
     <meta name="twitter:image" content="https://roman-purtow.ru/images/preview.jpg">
     <style>
-        :root {
-            --color-primary: #3B82F6;
-            --color-primary-dark: #2563EB;
-            --color-text: #1F2937;
-            --color-text-muted: #6B7280;
-            --color-bg: #FFFFFF;
-            --color-bg-light: #F9FAFB;
-            --color-border: #E5E7EB;
-            --color-accent: #EFF6FF;
+    :root {
+        --color-primary: #3B82F6;
+        --color-primary-dark: #2563EB;
+        --color-text: #1F2937;
+        --color-text-muted: #6B7280;
+        --color-bg: #FFFFFF;
+        --color-bg-light: #F9FAFB;
+        --color-border: #E5E7EB;
+        --color-accent: #EFF6FF;
 
-            --radius-sm: 10px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
+        --radius-sm: 10px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
 
-            --shadow-sm: 0 4px 10px rgba(15, 23, 42, 0.08);
-            --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.12);
+        --shadow-sm: 0 4px 10px rgba(15, 23, 42, 0.08);
+        --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.12);
 
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2.5rem;
-            --spacing-xl: 4rem;
-        }
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 2.5rem;
+        --spacing-xl: 4rem;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            line-height: 1.6;
-            font-size: 1rem;
-            color: var(--color-text);
-            background-color: var(--color-bg-light);
-        }
+    body {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+        font-size: 1rem;
+        color: var(--color-text);
+        background-color: var(--color-bg-light);
+    }
 
+    .page {
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .container {
+        width: min(960px, 100%);
+        background-color: var(--color-bg);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        padding: var(--spacing-lg);
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 2.75rem);
+        font-weight: 700;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .lead {
+        font-size: 1.125rem;
+        color: var(--color-text-muted);
+    }
+
+    .section {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .section:last-of-type {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    h3 {
+        font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+        margin: var(--spacing-md) 0 var(--spacing-xs);
+    }
+
+    p {
+        margin-bottom: var(--spacing-xs);
+    }
+
+    ul {
+        list-style: none;
+        margin: var(--spacing-xs) 0 var(--spacing-sm);
+        padding-left: 0;
+    }
+
+    ul li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    ul li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+
+    ol {
+        margin: var(--spacing-xs) 0 var(--spacing-sm) 1.5rem;
+        padding-left: 1rem;
+    }
+
+    ol li {
+        margin-bottom: 0.5rem;
+    }
+
+    strong {
+        font-weight: 600;
+    }
+
+    .card {
+        background-color: var(--color-accent);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md);
+        box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.25);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        background-color: var(--color-bg-light);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        padding: var(--spacing-sm);
+        margin: var(--spacing-md) 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+    }
+
+    th,
+    td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--color-border);
+        white-space: nowrap;
+    }
+
+    th {
+        font-weight: 600;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    .table-highlight {
+        background-color: rgba(59, 130, 246, 0.08);
+        font-weight: 600;
+    }
+
+    .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+        margin: var(--spacing-lg) 0;
+    }
+
+    .footer-note {
+        color: var(--color-text-muted);
+        font-size: 0.9375rem;
+    }
+
+    @media (max-width: 768px) {
         .page {
-            min-height: 100vh;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: var(--spacing-lg) var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-sm);
         }
 
         .container {
-            width: min(960px, 100%);
-            background-color: var(--color-bg);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            padding: var(--spacing-lg);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 2.75rem);
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .lead {
-            font-size: 1.125rem;
-            color: var(--color-text-muted);
-        }
-
-        .section {
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .section:last-of-type {
-            margin-bottom: 0;
-        }
-
-        h2 {
-            font-size: clamp(1.375rem, 3vw, 1.75rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        h3 {
-            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-            margin: var(--spacing-md) 0 var(--spacing-xs);
-        }
-
-        p {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        ul {
-            list-style: none;
-            margin: var(--spacing-xs) 0 var(--spacing-sm);
-            padding-left: 0;
-        }
-
-        ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        ul li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--color-primary);
-            font-weight: 700;
-        }
-
-        ol {
-            margin: var(--spacing-xs) 0 var(--spacing-sm) 1.5rem;
-            padding-left: 1rem;
-        }
-
-        ol li {
-            margin-bottom: 0.5rem;
-        }
-
-        strong {
-            font-weight: 600;
-        }
-
-        .card {
-            background-color: var(--color-accent);
-            border-radius: var(--radius-md);
             padding: var(--spacing-md);
-            box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.25);
-            margin-bottom: var(--spacing-sm);
+            border-radius: var(--radius-md);
         }
 
         .table-wrapper {
-            overflow-x: auto;
-            background-color: var(--color-bg-light);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-border);
-            padding: var(--spacing-sm);
-            margin: var(--spacing-md) 0;
+            margin: var(--spacing-sm) 0;
+            padding: var(--spacing-xs);
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 640px;
+            min-width: 100%;
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            font-size: 0.95rem;
         }
 
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--color-border);
-            white-space: nowrap;
+        h1 {
+            font-size: 1.85rem;
         }
 
-        th {
-            font-weight: 600;
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
+        h2 {
+            font-size: 1.35rem;
         }
 
-        tr:last-child td {
-            border-bottom: none;
+        .card {
+            padding: var(--spacing-sm);
         }
 
-        .table-highlight {
-            background-color: rgba(59, 130, 246, 0.08);
-            font-weight: 600;
+        th,
+        td {
+            padding: 0.5rem 0.75rem;
         }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--color-border), transparent);
-            margin: var(--spacing-lg) 0;
-        }
-
-        .footer-note {
-            color: var(--color-text-muted);
-            font-size: 0.9375rem;
-        }
-
-        @media (max-width: 768px) {
-            .page {
-                padding: var(--spacing-md) var(--spacing-sm);
-            }
-
-            .container {
-                padding: var(--spacing-md);
-                border-radius: var(--radius-md);
-            }
-
-            .table-wrapper {
-                margin: var(--spacing-sm) 0;
-                padding: var(--spacing-xs);
-            }
-
-            table {
-                min-width: 100%;
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 0.95rem;
-            }
-
-            h1 {
-                font-size: 1.85rem;
-            }
-
-            h2 {
-                font-size: 1.35rem;
-            }
-
-            .card {
-                padding: var(--spacing-sm);
-            }
-
-            th, td {
-                padding: 0.5rem 0.75rem;
-            }
-        }
+    }
     </style>
 </head>
+
 <body>
     <div class="page">
         <div class="container">
             <header>
                 <h1>Коммерческое предложение для VALMAN PRINT STUDIO</h1>
-                <p class="lead">Разработка сайта, калькуляторов и инфраструктуры на базе Next.js и Laravel</p>
+                <p class="lead">Разработка сайта, калькуляторов и&nbsp;инфраструктуры на&nbsp;базе Next.js и&nbsp;Laravel</p>
             </header>
             <main>
                 <section class="section" id="general-info">
@@ -259,30 +263,27 @@
                     <div class="card">
                         <ul>
                             <li><strong>Заказчик:</strong> VALMAN PRINT STUDIO</li>
-                            <li><strong>Цель:</strong> Разработка современного, чистого, мультиязычного сайта типографии (RU/EE) с удобной админкой и системой онлайн-заказа.</li>
-                            <li>Хостинг — Vercel или аналог (уточнится после утверждения архитектуры).</li>
+                            <li><strong>Цель:</strong> Разработка современного, чистого, мультиязычного сайта типографии (RU/EE) с&nbsp;удобной админкой и&nbsp;системой онлайн-заказа.</li>
+                            <li>Хостинг&nbsp;&mdash; Vercel или аналог (уточнится после утверждения архитектуры).</li>
                             <li>Контент (тексты, переводы, изображения) предоставляется заказчиком.</li>
                         </ul>
                     </div>
                 </section>
-
                 <section class="section" id="stack">
                     <h2>2. Технический стек</h2>
                     <ul>
                         <li><strong>Фронтенд:</strong> Next.js + Tailwind CSS + shadCN UI</li>
                         <li><strong>Бэкенд:</strong> Laravel API</li>
                         <li><strong>База данных:</strong> PostgreSQL</li>
-                        <li><strong>Тестирование:</strong> TDD (через Vitest / Pest / Chrome DevTools)</li>
+                        <li><strong>Тестирование:</strong> TDD (через Vitest&nbsp;/ Pest&nbsp;/ Chrome DevTools)</li>
                         <li><strong>Инфраструктура:</strong> Vercel или аналогичный VPS + CI/CD</li>
                         <li><strong>Локализация:</strong> next-i18next</li>
-                        <li><strong>Рейт:</strong> 2000 ₽/ч (25 $) для MVP и Tilda; 1500 ₽/ч (18,75 $) для полного сайта</li>
+                        <li><strong>Рейт:</strong> 2000&nbsp;₽/ч (25&nbsp;$) для MVP и&nbsp;Tilda; 1500&nbsp;₽/ч (18,75&nbsp;$) для полного сайта</li>
                     </ul>
                 </section>
-
                 <div class="divider"></div>
-
                 <section class="section" id="variant-1">
-                    <h2>3. Вариант 1 — MVP (3 страницы)</h2>
+                    <h2>3. Вариант 1&nbsp;&mdash; MVP (3&nbsp;страницы)</h2>
                     <div class="table-wrapper">
                         <table>
                             <thead>
@@ -297,68 +298,67 @@
                                 <tr>
                                     <td>Инициализация проекта (Next, Laravel, i18n, структура)</td>
                                     <td>14</td>
-                                    <td>28 000</td>
+                                    <td>28&nbsp;000</td>
                                     <td>350</td>
                                 </tr>
                                 <tr>
                                     <td>UI-система (shadCN, Tailwind, компоненты)</td>
                                     <td>8</td>
-                                    <td>16 000</td>
+                                    <td>16&nbsp;000</td>
                                     <td>200</td>
                                 </tr>
                                 <tr>
                                     <td>Главная + форма заявки</td>
                                     <td>10</td>
-                                    <td>20 000</td>
+                                    <td>20&nbsp;000</td>
                                     <td>250</td>
                                 </tr>
                                 <tr>
-                                    <td>Страница «Продукция» (листинг карточек)</td>
+                                    <td>Страница &laquo;Продукция&raquo; (листинг карточек)</td>
                                     <td>8</td>
-                                    <td>16 000</td>
+                                    <td>16&nbsp;000</td>
                                     <td>200</td>
                                 </tr>
                                 <tr>
-                                    <td>Типовая страница («О компании»)</td>
+                                    <td>Типовая страница (&laquo;О&nbsp;компании&raquo;)</td>
                                     <td>6</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
-                                    <td>QA / оптимизация / деплой</td>
+                                    <td>QA&nbsp;/ оптимизация&nbsp;/ деплой</td>
                                     <td>6</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
-                                    <td>Буфер (10 %)</td>
+                                    <td>Буфер (10&nbsp;%)</td>
                                     <td>5,2</td>
-                                    <td>10 400</td>
+                                    <td>10&nbsp;400</td>
                                     <td>130</td>
                                 </tr>
                                 <tr class="table-highlight">
                                     <td><strong>Итого:</strong></td>
-                                    <td><strong>57,2 ч</strong></td>
-                                    <td><strong>114 400 ₽</strong></td>
-                                    <td><strong>1 430 $</strong></td>
+                                    <td><strong>57,2&nbsp;ч</strong></td>
+                                    <td><strong>114&nbsp;400&nbsp;₽</strong></td>
+                                    <td><strong>1&nbsp;430&nbsp;$</strong></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Срок:</strong></td>
-                                    <td colspan="3">≈ 9–10 раб. дней</td>
+                                    <td colspan="3">&asymp; 9&ndash;10&nbsp;раб. дней</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
-
                 <section class="section" id="variant-2">
-                    <h2>4. Вариант 2 — Полный сайт (всё ТЗ)</h2>
-                    <p>(ставка 1500 ₽/ч = 18,75 $)</p>
+                    <h2>4. Вариант 2&nbsp;&mdash; Полный сайт (всё&nbsp;ТЗ)</h2>
+                    <p>(ставка 1500&nbsp;₽/ч = 18,75&nbsp;$)</p>
                     <div class="table-wrapper">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Блок / Функция</th>
+                                    <th>Блок&nbsp;/ Функция</th>
                                     <th>Время, ч</th>
                                     <th>Стоимость, ₽</th>
                                     <th>Стоимость, $</th>
@@ -366,143 +366,142 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Расширение базиса / деплой</td>
+                                    <td>Расширение базиса&nbsp;/ деплой</td>
                                     <td>6</td>
-                                    <td>9 000</td>
+                                    <td>9&nbsp;000</td>
                                     <td>112,5</td>
                                 </tr>
                                 <tr>
-                                    <td>Модели и админка</td>
+                                    <td>Модели и&nbsp;админка</td>
                                     <td>14</td>
-                                    <td>21 000</td>
+                                    <td>21&nbsp;000</td>
                                     <td>262,5</td>
                                 </tr>
                                 <tr>
                                     <td>Шаблоны разделов</td>
                                     <td>18</td>
-                                    <td>27 000</td>
+                                    <td>27&nbsp;000</td>
                                     <td>337,5</td>
                                 </tr>
                                 <tr>
                                     <td>Каталог материалов</td>
                                     <td>7</td>
-                                    <td>10 500</td>
+                                    <td>10&nbsp;500</td>
                                     <td>131,25</td>
                                 </tr>
                                 <tr>
                                     <td>Тех. требования (поп-апы)</td>
                                     <td>5</td>
-                                    <td>7 500</td>
+                                    <td>7&nbsp;500</td>
                                     <td>93,75</td>
                                 </tr>
                                 <tr>
                                     <td>Шаблоны для скачивания</td>
                                     <td>6</td>
-                                    <td>9 000</td>
+                                    <td>9&nbsp;000</td>
                                     <td>112,5</td>
                                 </tr>
                                 <tr>
-                                    <td>Раздел «О компании» (о нас, кейсы, отзывы)</td>
+                                    <td>Раздел &laquo;О&nbsp;компании&raquo; (о&nbsp;нас, кейсы, отзывы)</td>
                                     <td>12</td>
-                                    <td>18 000</td>
+                                    <td>18&nbsp;000</td>
                                     <td>225</td>
                                 </tr>
                                 <tr>
-                                    <td>Блог / новости (RSS)</td>
+                                    <td>Блог&nbsp;/ новости (RSS)</td>
                                     <td>8</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
                                     <td>Мультиязычность (hreflang, SEO)</td>
                                     <td>8</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
                                     <td>Поиск + хлебные крошки</td>
                                     <td>5</td>
-                                    <td>7 500</td>
+                                    <td>7&nbsp;500</td>
                                     <td>93,75</td>
                                 </tr>
                                 <tr>
-                                    <td>Формы / контакт</td>
+                                    <td>Формы&nbsp;/ контакт</td>
                                     <td>5</td>
-                                    <td>7 500</td>
+                                    <td>7&nbsp;500</td>
                                     <td>93,75</td>
                                 </tr>
                                 <tr>
                                     <td>Онлайн-заказ</td>
                                     <td>6</td>
-                                    <td>9 000</td>
+                                    <td>9&nbsp;000</td>
                                     <td>112,5</td>
                                 </tr>
                                 <tr>
                                     <td>Фреймворк калькуляторов</td>
                                     <td>8</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
-                                    <td>Калькуляторы (5 шт × 8 ч)</td>
+                                    <td>Калькуляторы (5&nbsp;шт &times; 8&nbsp;ч)</td>
                                     <td>40</td>
-                                    <td>60 000</td>
+                                    <td>60&nbsp;000</td>
                                     <td>750</td>
                                 </tr>
                                 <tr>
                                     <td>Полиш админки</td>
                                     <td>8</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
-                                    <td>Миграции / импорт</td>
+                                    <td>Миграции&nbsp;/ импорт</td>
                                     <td>5</td>
-                                    <td>7 500</td>
+                                    <td>7&nbsp;500</td>
                                     <td>93,75</td>
                                 </tr>
                                 <tr>
-                                    <td>Тестирование (E2E / API)</td>
+                                    <td>Тестирование (E2E&nbsp;/ API)</td>
                                     <td>8</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
-                                    <td>Оптимизация / кэширование</td>
+                                    <td>Оптимизация&nbsp;/ кэширование</td>
                                     <td>6</td>
-                                    <td>9 000</td>
+                                    <td>9&nbsp;000</td>
                                     <td>112,5</td>
                                 </tr>
                                 <tr>
-                                    <td>CI/CD и деплой</td>
+                                    <td>CI/CD и&nbsp;деплой</td>
                                     <td>6</td>
-                                    <td>9 000</td>
+                                    <td>9&nbsp;000</td>
                                     <td>112,5</td>
                                 </tr>
                                 <tr>
-                                    <td>Буфер (10 %)</td>
+                                    <td>Буфер (10&nbsp;%)</td>
                                     <td>18,1</td>
-                                    <td>27 150</td>
+                                    <td>27&nbsp;150</td>
                                     <td>339,4</td>
                                 </tr>
                                 <tr class="table-highlight">
                                     <td><strong>Итого:</strong></td>
-                                    <td><strong>199,1 ч</strong></td>
-                                    <td><strong>298 650 ₽</strong></td>
-                                    <td><strong>≈ 3 733 $</strong></td>
+                                    <td><strong>199,1&nbsp;ч</strong></td>
+                                    <td><strong>298&nbsp;650&nbsp;₽</strong></td>
+                                    <td><strong>&asymp; 3&nbsp;733&nbsp;$</strong></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Срок:</strong></td>
-                                    <td colspan="3">≈ 15–20 раб. дней</td>
+                                    <td colspan="3">&asymp; 15&ndash;20&nbsp;раб. дней</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
-
                 <section class="section" id="variant-3">
-                    <h2>5. Вариант 3 — Калькуляторы на Tilda (5 шт, типовые)</h2>
-                    <p>(ставка 2000 ₽/ч = 25 $)</p>
+                    <h2>5. Вариант 3&nbsp;&mdash; Калькуляторы на&nbsp;Tilda (5&nbsp;шт, типовые)</h2>
+                    <p>(ставка 2000&nbsp;₽/ч = 25&nbsp;$)</p>
                     <div class="table-wrapper">
                         <table>
                             <thead>
@@ -515,60 +514,59 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>JS-фреймворк (валидация, формулы, i18n, интеграция) — создаётся один раз</td>
+                                    <td>JS-фреймворк (валидация, формулы, i18n, интеграция)&nbsp;&mdash; создаётся один раз</td>
                                     <td>4</td>
-                                    <td>8 000</td>
+                                    <td>8&nbsp;000</td>
                                     <td>100</td>
                                 </tr>
                                 <tr>
                                     <td>Разработка 1-го типового калькулятора</td>
                                     <td>6</td>
-                                    <td>12 000</td>
+                                    <td>12&nbsp;000</td>
                                     <td>150</td>
                                 </tr>
                                 <tr>
-                                    <td>Повторное использование логики (4 калькулятора × 3 ч на адаптацию)</td>
+                                    <td>Повторное использование логики (4&nbsp;калькулятора &times; 3&nbsp;ч на&nbsp;адаптацию)</td>
                                     <td>12</td>
-                                    <td>24 000</td>
+                                    <td>24&nbsp;000</td>
                                     <td>300</td>
                                 </tr>
                                 <tr>
-                                    <td>Встройка и тестирование в Tilda (2 ч × 5)</td>
+                                    <td>Встройка и&nbsp;тестирование в&nbsp;Tilda (2&nbsp;ч &times; 5)</td>
                                     <td>10</td>
-                                    <td>20 000</td>
+                                    <td>20&nbsp;000</td>
                                     <td>250</td>
                                 </tr>
                                 <tr>
-                                    <td>Общий QA / визуальные проверки</td>
+                                    <td>Общий QA&nbsp;/ визуальные проверки</td>
                                     <td>2</td>
-                                    <td>4 000</td>
+                                    <td>4&nbsp;000</td>
                                     <td>50</td>
                                 </tr>
                                 <tr>
-                                    <td>Буфер (10 %)</td>
+                                    <td>Буфер (10&nbsp;%)</td>
                                     <td>3,4</td>
-                                    <td>6 800</td>
+                                    <td>6&nbsp;800</td>
                                     <td>85</td>
                                 </tr>
                                 <tr class="table-highlight">
                                     <td><strong>Итого:</strong></td>
-                                    <td><strong>37,4 ч</strong></td>
-                                    <td><strong>74 800 ₽</strong></td>
-                                    <td><strong>935 $</strong></td>
+                                    <td><strong>37,4&nbsp;ч</strong></td>
+                                    <td><strong>74&nbsp;800&nbsp;₽</strong></td>
+                                    <td><strong>935&nbsp;$</strong></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Средняя цена 1 шт (в пакете)</strong></td>
-                                    <td colspan="3">≈ 15 000 ₽ / ≈ 190 $</td>
+                                    <td><strong>Средняя цена 1&nbsp;шт (в&nbsp;пакете)</strong></td>
+                                    <td colspan="3">&asymp; 15&nbsp;000&nbsp;₽&nbsp;/ &asymp; 190&nbsp;$</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Срок:</strong></td>
-                                    <td colspan="3">≈ 6–7 рабочих дней</td>
+                                    <td colspan="3">&asymp; 6&ndash;7 рабочих дней</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
-
                 <section class="section" id="summary">
                     <h2>6. Сводная таблица</h2>
                     <div class="table-wrapper">
@@ -585,60 +583,58 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>MVP (3 стр.)</td>
+                                    <td>MVP (3&nbsp;стр.)</td>
                                     <td>57,2</td>
                                     <td>2000</td>
-                                    <td>≈ 9–10 дн</td>
-                                    <td>114 400</td>
-                                    <td>1 430 $</td>
+                                    <td>&asymp; 9&ndash;10&nbsp;дн</td>
+                                    <td>114&nbsp;400</td>
+                                    <td>1&nbsp;430&nbsp;$</td>
                                 </tr>
                                 <tr>
                                     <td>Полный сайт (RU/EE)</td>
                                     <td>199,1</td>
                                     <td>1500</td>
-                                    <td>≈ 15–20 дн</td>
-                                    <td>298 650</td>
-                                    <td>3 733 $</td>
+                                    <td>&asymp; 15&ndash;20&nbsp;дн</td>
+                                    <td>298&nbsp;650</td>
+                                    <td>3&nbsp;733&nbsp;$</td>
                                 </tr>
                                 <tr>
-                                    <td>5 типовых калькуляторов на Tilda</td>
+                                    <td>5&nbsp;типовых калькуляторов на&nbsp;Tilda</td>
                                     <td>37,4</td>
                                     <td>2000</td>
-                                    <td>≈ 6–7 дн</td>
-                                    <td>74 800</td>
-                                    <td>935 $</td>
+                                    <td>&asymp; 6&ndash;7&nbsp;дн</td>
+                                    <td>74&nbsp;800</td>
+                                    <td>935&nbsp;$</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
-
                 <section class="section" id="payment">
                     <h2>7. Условия оплаты</h2>
-                    <h3>Для малых проектов (варианты <em>MVP</em> и <em>калькуляторы на Tilda</em>):</h3>
+                    <h3>Для малых проектов (варианты <em>MVP</em> и&nbsp;<em>калькуляторы на&nbsp;Tilda</em>):</h3>
                     <ul>
-                        <li>Оплата производится в два этапа:</li>
+                        <li>Оплата производится в&nbsp;два этапа:</li>
                     </ul>
                     <ol>
-                        <li><strong>50% предоплата</strong> — после утверждения ТЗ и начала работ.</li>
-                        <li><strong>50% постоплата</strong> — после завершения разработки, тестирования и приёмки проекта заказчиком.</li>
+                        <li><strong>50% предоплата</strong>&nbsp;&mdash; после утверждения&nbsp;ТЗ и&nbsp;начала работ.</li>
+                        <li><strong>50% постоплата</strong>&nbsp;&mdash; после завершения разработки, тестирования и&nbsp;приёмки проекта заказчиком.</li>
                     </ol>
-                    <p>После поступления финального платежа заказчику передаются все исходные файлы, инструкции по эксплуатации и доступы к продакшн-среде.</p>
-
+                    <p>После поступления финального платежа заказчику передаются все исходные файлы, инструкции по&nbsp;эксплуатации и&nbsp;доступы к&nbsp;продакшн-среде.</p>
                     <h3>Для полного сайта (многостраничный RU/EE-проект):</h3>
                     <ul>
-                        <li>Оплата делится на три этапа:</li>
+                        <li>Оплата делится на&nbsp;три этапа:</li>
                     </ul>
                     <ol>
-                        <li><strong>30% предоплата</strong> — старт проекта, развёртывание окружения и базовой архитектуры.</li>
-                        <li><strong>30% промежуточный платёж</strong> — после готовности основных страниц, админ-панели и демонстрации работающего прототипа.</li>
-                        <li><strong>40% финальный платёж</strong> — после полной приёмки проекта, тестирования и запуска сайта.</li>
+                        <li><strong>30% предоплата</strong>&nbsp;&mdash; старт проекта, развёртывание окружения и&nbsp;базовой архитектуры.</li>
+                        <li><strong>30% промежуточный платёж</strong>&nbsp;&mdash; после готовности основных страниц, админ-панели и&nbsp;демонстрации работающего прототипа.</li>
+                        <li><strong>40% финальный платёж</strong>&nbsp;&mdash; после полной приёмки проекта, тестирования и&nbsp;запуска сайта.</li>
                     </ol>
-                    <p>После поступления финального платежа заказчику передаются все исходные коды (frontend и backend), документация, доступы к репозиторию, базе данных и хостингу.</p>
+                    <p>После поступления финального платежа заказчику передаются все исходные коды (frontend и&nbsp;backend), документация, доступы к&nbsp;репозиторию, базе данных и&nbsp;хостингу.</p>
                 </section>
-
             </main>
         </div>
     </div>
 </body>
+
 </html>
