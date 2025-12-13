@@ -428,7 +428,7 @@
             </section>
             <section class="section">
                 <div class="accordion" id="contentAccordion">
-                    <div class="accordion-header" onclick="toggleAccordion()">
+                    <div class="accordion-header" id="accordion-toggle">
                         <span>Краткое содержание</span>
                         <span class="accordion-arrow">▶</span>
                     </div>
@@ -472,10 +472,10 @@
         </main>
     </div>
     <script>
-    function toggleAccordion() {
+    document.getElementById('accordion-toggle').addEventListener('click', function() {
         const accordion = document.getElementById('contentAccordion');
         accordion.classList.toggle('open');
-    }
+    });
     </script>
 </body>
 
