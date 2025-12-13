@@ -50,48 +50,45 @@
         :root {
             /* Цвета */
             --color-bg: #222222;
-            --color-card: rgba(255, 255, 255, 0.7);
-            --color-card-solid: #ffffff;
-            --color-card-dark: rgba(26, 26, 26, 0.7);
-            --color-card-dark-solid: #1a1a1a;
             --color-text: #111827;
-            --color-text-light: #ffffff;
-            --color-text-muted: #374151;
+            --color-text-light: #F9FAFB;
+            --color-text-muted: #6B7280;
+            --color-text-muted-dark: #D1D5DB;
 
-            /* Градиенты карточек (полупрозрачные) */
-            --gradient-portfolio: linear-gradient(135deg, rgba(252, 211, 77, 0.7), rgba(245, 158, 11, 0.7));
-            --gradient-resume: linear-gradient(135deg, rgba(96, 165, 250, 0.7), rgba(59, 130, 246, 0.7));
-            --gradient-phone: linear-gradient(135deg, rgba(156, 163, 175, 0.7), rgba(75, 85, 99, 0.7));
-            --gradient-mail: linear-gradient(135deg, rgba(249, 115, 22, 0.7), rgba(234, 88, 12, 0.7));
-            --gradient-telegram: linear-gradient(135deg, rgba(56, 189, 248, 0.7), rgba(2, 132, 199, 0.7));
-            --gradient-whatsapp: linear-gradient(135deg, rgba(74, 222, 128, 0.7), rgba(22, 163, 74, 0.7));
-            --gradient-instagram: linear-gradient(135deg, rgba(236, 72, 153, 0.7), rgba(190, 24, 93, 0.7));
-            --gradient-vk: linear-gradient(135deg, rgba(29, 78, 216, 0.7), rgba(30, 64, 175, 0.7));
-            --gradient-youtube: linear-gradient(135deg, rgba(239, 68, 68, 0.7), rgba(220, 38, 38, 0.7));
-            --gradient-github: linear-gradient(135deg, rgba(75, 85, 99, 0.7), rgba(31, 41, 55, 0.7));
-            --gradient-blog: linear-gradient(135deg, rgba(56, 189, 248, 0.7), rgba(2, 132, 199, 0.7));
-            --gradient-vc: linear-gradient(135deg, rgba(255, 230, 235, 0.7), rgba(255, 199, 208, 0.7));
-            --gradient-walk: linear-gradient(135deg, rgba(139, 115, 85, 0.7), rgba(93, 78, 55, 0.7));
+            /* Цвета иконок - брендовые цвета */
+            --icon-portfolio: #F59E0B;
+            --icon-resume: #3B82F6;
+            --icon-phone: #6B7280;
+            --icon-mail: #EA580C;
+            --icon-telegram: #0088CC;
+            --icon-whatsapp: #25D366;
+            --icon-instagram: #E4405F;
+            --icon-vk: #0077FF;
+            --icon-youtube: #FF0000;
+            --icon-github: #333333;
+            --icon-blog: #0088CC;
+            --icon-vc: #FF5A5F;
+            --icon-walk: #8B7355;
 
-            /* Градиенты карточек (непрозрачные для hover) */
-            --gradient-portfolio-solid: linear-gradient(135deg, #FCD34D, #F59E0B);
-            --gradient-resume-solid: linear-gradient(135deg, #60A5FA, #3B82F6);
-            --gradient-phone-solid: linear-gradient(135deg, #9CA3AF, #4B5563);
-            --gradient-mail-solid: linear-gradient(135deg, #F97316, #EA580C);
-            --gradient-telegram-solid: linear-gradient(135deg, #38BDF8, #0284C7);
-            --gradient-whatsapp-solid: linear-gradient(135deg, #4ADE80, #16A34A);
-            --gradient-instagram-solid: linear-gradient(135deg, #EC4899, #BE185D);
-            --gradient-vk-solid: linear-gradient(135deg, #1D4ED8, #1E40AF);
-            --gradient-youtube-solid: linear-gradient(135deg, #EF4444, #DC2626);
-            --gradient-github-solid: linear-gradient(135deg, #4B5563, #1F2937);
-            --gradient-blog-solid: linear-gradient(135deg, #38BDF8, #0284C7);
-            --gradient-vc-solid: linear-gradient(135deg, #FFE6EB, #FFC7D0);
-            --gradient-walk-solid: linear-gradient(135deg, #8B7355, #5D4E37);
+            /* Цвета иконок для тёмной темы (ярче) */
+            --icon-portfolio-dark: #FCD34D;
+            --icon-resume-dark: #60A5FA;
+            --icon-phone-dark: #9CA3AF;
+            --icon-mail-dark: #F97316;
+            --icon-telegram-dark: #38BDF8;
+            --icon-whatsapp-dark: #4ADE80;
+            --icon-instagram-dark: #F472B6;
+            --icon-vk-dark: #60A5FA;
+            --icon-youtube-dark: #F87171;
+            --icon-github-dark: #E5E7EB;
+            --icon-blog-dark: #38BDF8;
+            --icon-vc-dark: #FB7185;
+            --icon-walk-dark: #A8977A;
 
             /* Размеры */
             --gap: 1rem;
             --radius: 1.5rem;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         /* Фоновое видео */
@@ -124,7 +121,7 @@
             background: rgba(0, 0, 0, 0.5);
         }
 
-        /* Базовые стили карточек */
+        /* Glassmorphism карточки */
         .bento-card {
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -134,115 +131,93 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            padding: 1.25rem;
+            padding: 1.5rem;
             text-decoration: none;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 1);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: none;
         }
 
         .bento-card:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 0 0 4px rgba(245, 158, 11, 0.6);
+            background: rgba(255, 255, 255, 1);
         }
 
-        /* Градиенты карточек */
-        .card-profile { background: var(--color-card-solid); }
-        .dark .card-profile { background: var(--color-card-dark-solid); }
-
-        .card-portfolio { background: var(--gradient-portfolio); }
-        .card-resume { background: var(--gradient-resume); }
-        .card-phone { background: var(--gradient-phone); }
-        .card-mail { background: var(--gradient-mail); }
-        .card-telegram { background: var(--gradient-telegram); }
-        .card-whatsapp { background: var(--gradient-whatsapp); }
-        .card-instagram { background: var(--gradient-instagram); }
-        .card-vk { background: var(--gradient-vk); }
-        .card-youtube { background: var(--gradient-youtube); }
-        .card-github { background: var(--gradient-github); }
-        .card-blog { background: var(--gradient-blog); }
-        .card-vc { background: var(--gradient-vc); }
-        .card-walk { background: var(--gradient-walk); }
-
-        /* Hover: непрозрачные градиенты */
-        .card-portfolio:hover { background: var(--gradient-portfolio-solid); }
-        .card-resume:hover { background: var(--gradient-resume-solid); }
-        .card-phone:hover { background: var(--gradient-phone-solid); }
-        .card-mail:hover { background: var(--gradient-mail-solid); }
-        .card-telegram:hover { background: var(--gradient-telegram-solid); }
-        .card-whatsapp:hover { background: var(--gradient-whatsapp-solid); }
-        .card-instagram:hover { background: var(--gradient-instagram-solid); }
-        .card-vk:hover { background: var(--gradient-vk-solid); }
-        .card-youtube:hover { background: var(--gradient-youtube-solid); }
-        .card-github:hover { background: var(--gradient-github-solid); }
-        .card-blog:hover { background: var(--gradient-blog-solid); }
-        .card-vc:hover { background: var(--gradient-vc-solid); }
-        .card-walk:hover { background: var(--gradient-walk-solid); }
-
-        /* Темная тема для градиентных карточек */
-        .dark .card-portfolio,
-        .dark .card-resume,
-        .dark .card-phone,
-        .dark .card-mail,
-        .dark .card-telegram,
-        .dark .card-whatsapp,
-        .dark .card-instagram,
-        .dark .card-vk,
-        .dark .card-youtube,
-        .dark .card-github,
-        .dark .card-blog,
-        .dark .card-vc,
-        .dark .card-walk {
-            background: var(--color-card-dark);
+        /* Dark mode карточки */
+        .dark .bento-card {
+            background: rgba(30, 30, 30, 0.75);
+            border: none;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .dark .card-portfolio:hover,
-        .dark .card-resume:hover,
-        .dark .card-phone:hover,
-        .dark .card-mail:hover,
-        .dark .card-telegram:hover,
-        .dark .card-whatsapp:hover,
-        .dark .card-instagram:hover,
-        .dark .card-vk:hover,
-        .dark .card-youtube:hover,
-        .dark .card-github:hover,
-        .dark .card-blog:hover,
-        .dark .card-vc:hover,
-        .dark .card-walk:hover {
-            background: var(--color-card-dark-solid);
+        .dark .bento-card:hover {
+            background: rgba(40, 40, 40, 0.92);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 4px rgba(245, 158, 11, 0.6);
         }
+
+        /* Профиль карточка */
+        .card-profile {
+            text-align: center;
+            align-items: center;
+        }
+
+        /* Цвета иконок */
+        .icon-portfolio { color: var(--icon-portfolio); }
+        .icon-resume { color: var(--icon-resume); }
+        .icon-phone { color: var(--icon-phone); }
+        .icon-mail { color: var(--icon-mail); }
+        .icon-telegram { color: var(--icon-telegram); }
+        .icon-whatsapp { color: var(--icon-whatsapp); }
+        .icon-instagram { color: var(--icon-instagram); }
+        .icon-vk { color: var(--icon-vk); fill: currentColor; }
+        .icon-youtube { color: var(--icon-youtube); }
+        .icon-github { color: var(--icon-github); }
+        .icon-blog { color: var(--icon-blog); }
+        .icon-vc { color: var(--icon-vc); fill: currentColor; }
+        .icon-walk { color: var(--icon-walk); }
+
+        /* Dark mode иконки (ярче) */
+        .dark .icon-portfolio { color: var(--icon-portfolio-dark); }
+        .dark .icon-resume { color: var(--icon-resume-dark); }
+        .dark .icon-phone { color: var(--icon-phone-dark); }
+        .dark .icon-mail { color: var(--icon-mail-dark); }
+        .dark .icon-telegram { color: var(--icon-telegram-dark); }
+        .dark .icon-whatsapp { color: var(--icon-whatsapp-dark); }
+        .dark .icon-instagram { color: var(--icon-instagram-dark); }
+        .dark .icon-vk { color: var(--icon-vk-dark); }
+        .dark .icon-youtube { color: var(--icon-youtube-dark); }
+        .dark .icon-github { color: var(--icon-github-dark); }
+        .dark .icon-blog { color: var(--icon-blog-dark); }
+        .dark .icon-vc { color: var(--icon-vc-dark); }
+        .dark .icon-walk { color: var(--icon-walk-dark); }
 
         /* Текст в карточках */
         .card-title {
             font-size: 1.125rem;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--color-text);
             margin-bottom: 0.25rem;
         }
 
         .card-description {
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-text-muted);
         }
 
-        .card-vc .card-title,
-        .card-vc .card-description {
-            color: #000000;
+        .dark .card-title {
+            color: var(--color-text-light);
         }
 
-        .dark .card-title,
         .dark .card-description {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .dark .card-vc .card-title,
-        .dark .card-vc .card-description {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-text-muted-dark);
         }
 
         /* Профиль */
         .profile-image {
-            width: 5rem;
-            height: 5rem;
+            width: 6rem;
+            height: 6rem;
             border-radius: 50%;
             margin-bottom: 1rem;
             transition: transform 0.3s ease;
@@ -289,8 +264,10 @@
             width: 2.75rem;
             height: 2.75rem;
             border-radius: 50%;
-            background: var(--color-card);
-            border: none;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: var(--shadow);
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -301,7 +278,8 @@
         }
 
         .dark .control-btn {
-            background: var(--color-card-dark);
+            background: rgba(30, 30, 30, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--color-text-light);
         }
 
@@ -326,11 +304,11 @@
         .progulka-logo {
             height: 1.75rem;
             margin-bottom: 0.5rem;
-            fill: #ffffff;
+            fill: var(--icon-walk);
         }
 
         .dark .progulka-logo {
-            fill: rgba(255, 255, 255, 0.9);
+            fill: var(--icon-walk-dark);
         }
 
         /* Анимация появления */
@@ -365,49 +343,36 @@
         .fade-in-delay-14 { animation-delay: 0.7s; opacity: 0; }
         .fade-in-delay-15 { animation-delay: 0.75s; opacity: 0; }
 
-        /* Непрозрачные карточки на мобильных (< 768px) */
+        /* Мобильные стили (< 768px) */
         @media (max-width: 767px) {
-            .card-portfolio { background: var(--gradient-portfolio-solid) !important; }
-            .card-resume { background: var(--gradient-resume-solid) !important; }
-            .card-phone { background: var(--gradient-phone-solid) !important; }
-            .card-mail { background: var(--gradient-mail-solid) !important; }
-            .card-telegram { background: var(--gradient-telegram-solid) !important; }
-            .card-whatsapp { background: var(--gradient-whatsapp-solid) !important; }
-            .card-instagram { background: var(--gradient-instagram-solid) !important; }
-            .card-vk { background: var(--gradient-vk-solid) !important; }
-            .card-youtube { background: var(--gradient-youtube-solid) !important; }
-            .card-github { background: var(--gradient-github-solid) !important; }
-            .card-blog { background: var(--gradient-blog-solid) !important; }
-            .card-vc { background: var(--gradient-vc-solid) !important; }
-            .card-walk { background: var(--gradient-walk-solid) !important; }
-
             .bento-card {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
+                background: rgba(255, 255, 255, 1);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
             }
 
-            .card-profile {
-                background: var(--color-card-solid) !important;
+            .dark .bento-card {
+                background: rgba(30, 30, 30, 0.92);
             }
+        }
 
-            .dark .card-portfolio,
-            .dark .card-resume,
-            .dark .card-phone,
-            .dark .card-mail,
-            .dark .card-telegram,
-            .dark .card-whatsapp,
-            .dark .card-instagram,
-            .dark .card-vk,
-            .dark .card-youtube,
-            .dark .card-github,
-            .dark .card-blog,
-            .dark .card-vc,
-            .dark .card-walk {
-                background: var(--color-card-dark-solid) !important;
+        /* Планшеты - обводка 6px */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .bento-card:hover {
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 0 0 6px rgba(245, 158, 11, 0.6);
             }
+            .dark .bento-card:hover {
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 6px rgba(245, 158, 11, 0.6);
+            }
+        }
 
-            .dark .card-profile {
-                background: var(--color-card-dark-solid) !important;
+        /* Десктопы - обводка 10px */
+        @media (min-width: 1024px) {
+            .bento-card:hover {
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 0 0 10px rgba(245, 158, 11, 0.6);
+            }
+            .dark .bento-card:hover {
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 10px rgba(245, 158, 11, 0.6);
             }
         }
     </style>
@@ -437,7 +402,8 @@
         [grid-auto-flow:dense]
         md:grid-cols-4 md:gap-4 md:p-4
         lg:grid-cols-6 lg:grid-rows-4 lg:h-screen lg:[grid-auto-flow:row]
-        xl:gap-4 xl:p-6
+        xl:gap-5 xl:px-20 xl:pt-16 xl:pb-10
+        2xl:px-32 2xl:pt-24
     ">
         <!-- Row 1-2: Profile (2x2) -->
         <div class="
@@ -453,50 +419,50 @@
         </div>
 
         <!-- Row 1: Phone -->
-        <a href="tel:+79526797776" class="bento-card card-phone lg:col-start-3 lg:row-start-1 fade-in fade-in-delay-2">
-            <i data-lucide="phone" class="w-6 h-6 text-white mb-2"></i>
+        <a href="tel:+79526797776" class="bento-card lg:col-start-3 lg:row-start-1 fade-in fade-in-delay-2">
+            <i data-lucide="phone" class="w-6 h-6 icon-phone mb-2"></i>
             <h3 id="i18n-phone_title" data-i18n="phone_title" class="card-title">Телефон</h3>
             <p id="i18n-phone_description" data-i18n="phone_description" class="card-description">+7 952 679-77-76</p>
         </a>
 
         <!-- Row 1: Mail -->
-        <a href="mailto:rytrycon@gmail.com" class="bento-card card-mail lg:col-start-4 lg:row-start-1 fade-in fade-in-delay-3">
-            <i data-lucide="mail" class="w-6 h-6 text-white mb-2"></i>
+        <a href="mailto:rytrycon@gmail.com" class="bento-card lg:col-start-4 lg:row-start-1 fade-in fade-in-delay-3">
+            <i data-lucide="mail" class="w-6 h-6 icon-mail mb-2"></i>
             <h3 id="i18n-email_title" data-i18n="email_title" class="card-title">Почта</h3>
             <p id="i18n-email_description" data-i18n="email_description" class="card-description">rytrycon@gmail.com</p>
         </a>
 
         <!-- Row 1: Telegram -->
-        <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="bento-card card-telegram lg:col-start-5 lg:row-start-1 fade-in fade-in-delay-4">
-            <i data-lucide="send" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-1 fade-in fade-in-delay-4">
+            <i data-lucide="send" class="w-6 h-6 icon-telegram mb-2"></i>
             <h3 id="i18n-telegram_title" data-i18n="telegram_title" class="card-title">Telegram</h3>
             <p id="i18n-telegram_description" data-i18n="telegram_description" class="card-description">@roman_purtow</p>
         </a>
 
         <!-- Row 1: YouTube -->
-        <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="bento-card card-youtube lg:col-start-6 lg:row-start-1 fade-in fade-in-delay-5">
-            <i data-lucide="youtube" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-1 fade-in fade-in-delay-5">
+            <i data-lucide="youtube" class="w-6 h-6 icon-youtube mb-2"></i>
             <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="card-title">YouTube</h3>
             <p id="i18n-youtube_description" data-i18n="youtube_description" class="card-description">@roman-purtow</p>
         </a>
 
         <!-- Row 2: WhatsApp -->
-        <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="bento-card card-whatsapp lg:col-start-3 lg:row-start-2 fade-in fade-in-delay-6">
-            <i data-lucide="message-circle" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-3 lg:row-start-2 fade-in fade-in-delay-6">
+            <i data-lucide="message-circle" class="w-6 h-6 icon-whatsapp mb-2"></i>
             <h3 id="i18n-whatsapp_title" data-i18n="whatsapp_title" class="card-title">WhatsApp</h3>
             <p id="i18n-whatsapp_description" data-i18n="whatsapp_description" class="card-description">+7 952 679-77-76</p>
         </a>
 
         <!-- Row 2: Instagram -->
-        <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="bento-card card-instagram lg:col-start-4 lg:row-start-2 fade-in fade-in-delay-7">
-            <i data-lucide="instagram" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-4 lg:row-start-2 fade-in fade-in-delay-7">
+            <i data-lucide="instagram" class="w-6 h-6 icon-instagram mb-2"></i>
             <h3 id="i18n-instagram_title" data-i18n="instagram_title" class="card-title">Instagram</h3>
             <p id="i18n-instagram_description" data-i18n="instagram_description" class="card-description">@roman.purtow</p>
         </a>
 
         <!-- Row 2: VK -->
-        <a href="https://vk.com/roman_purtow" target="_blank" rel="noopener noreferrer" class="bento-card card-vk lg:col-start-5 lg:row-start-2 fade-in fade-in-delay-8">
-            <svg class="w-6 h-6 text-white mb-2" viewBox="0 0 24 24" fill="currentColor">
+        <a href="https://vk.com/roman_purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-2 fade-in fade-in-delay-8">
+            <svg class="w-6 h-6 icon-vk mb-2" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.198c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.847 2.523 2.27 4.741 2.862 4.741.22 0 .322-.102.322-.66V9.793c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.27-1.422 2.18-3.608 2.18-3.608.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/>
             </svg>
             <h3 id="i18n-vk_title" data-i18n="vk_title" class="card-title">ВКонтакте</h3>
@@ -504,50 +470,50 @@
         </a>
 
         <!-- Row 2: GitHub -->
-        <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="bento-card card-github lg:col-start-6 lg:row-start-2 fade-in fade-in-delay-9">
-            <i data-lucide="github" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-2 fade-in fade-in-delay-9">
+            <i data-lucide="github" class="w-6 h-6 icon-github mb-2"></i>
             <h3 id="i18n-github_title" data-i18n="github_title" class="card-title">GitHub</h3>
             <p id="i18n-github_description" data-i18n="github_description" class="card-description">@baslie</p>
         </a>
 
         <!-- Row 3: GitHub Gist -->
-        <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="bento-card card-github lg:col-start-1 lg:row-start-3 fade-in fade-in-delay-10">
-            <i data-lucide="file-code" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-1 lg:row-start-3 fade-in fade-in-delay-10">
+            <i data-lucide="file-code" class="w-6 h-6 icon-github mb-2"></i>
             <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="card-title">GitHub Gist</h3>
             <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="card-description">@baslie</p>
         </a>
 
         <!-- Row 3: Portfolio (2 cols) -->
-        <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="bento-card card-portfolio col-span-2 lg:col-start-2 lg:col-span-2 lg:row-start-3 fade-in fade-in-delay-11">
-            <i data-lucide="briefcase" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 lg:col-start-2 lg:col-span-2 lg:row-start-3 fade-in fade-in-delay-11">
+            <i data-lucide="briefcase" class="w-6 h-6 icon-portfolio mb-2"></i>
             <h3 id="i18n-portfolio_title" data-i18n="portfolio_title" class="card-title">Портфолио</h3>
             <p id="i18n-portfolio_description" data-i18n="portfolio_description" class="card-description">Сайты на Тильде</p>
         </a>
 
         <!-- Row 3: Resume (2 cols) -->
-        <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="bento-card card-resume col-span-2 lg:col-start-4 lg:col-span-2 lg:row-start-3 fade-in fade-in-delay-12">
-            <i data-lucide="file-text" class="w-6 h-6 text-white mb-2"></i>
+        <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 lg:col-start-4 lg:col-span-2 lg:row-start-3 fade-in fade-in-delay-12">
+            <i data-lucide="file-text" class="w-6 h-6 icon-resume mb-2"></i>
             <h3 id="i18n-resume_title" data-i18n="resume_title" class="card-title">Моё резюме</h3>
             <p id="i18n-resume_description" data-i18n="resume_description" class="card-description">Интернет-маркетолог</p>
         </a>
 
         <!-- Row 3: Blog Purtochka -->
-        <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="bento-card card-blog lg:col-start-6 lg:row-start-3 fade-in fade-in-delay-13">
-            <i data-lucide="radio" class="w-5 h-5 text-white mb-1"></i>
+        <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-3 fade-in fade-in-delay-13">
+            <i data-lucide="radio" class="w-5 h-5 icon-blog mb-1"></i>
             <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="card-title text-base">Пурточка</h3>
             <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="card-description text-xs">Telegram</p>
         </a>
 
         <!-- Row 4: Tomsk Walk (full width) -->
-        <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="bento-card card-walk col-span-2 md:col-span-4 lg:col-start-1 lg:col-span-5 lg:row-start-4 fade-in fade-in-delay-14">
+        <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 md:col-span-4 lg:col-start-1 lg:col-span-5 lg:row-start-4 fade-in fade-in-delay-14">
             <img src="images/progulka-logo.svg" alt="Томская Прогулка" class="progulka-logo" loading="lazy">
             <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="card-title">Томская Прогулка</h3>
             <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="card-description">Гуляю сам, вожу людей по лесам и полям</p>
         </a>
 
         <!-- Row 4: VC.ru -->
-        <a href="https://vc.ru/u/454432-roman-purtov" target="_blank" rel="noopener noreferrer" class="bento-card card-vc col-span-2 lg:col-span-1 lg:col-start-6 lg:row-start-4 fade-in fade-in-delay-15">
-            <svg viewBox="0 404.142 36 33.608" class="w-5 h-5 mb-1 fill-black dark:fill-white">
+        <a href="https://vc.ru/u/454432-roman-purtov" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 lg:col-span-1 lg:col-start-6 lg:row-start-4 fade-in fade-in-delay-15">
+            <svg viewBox="0 404.142 36 33.608" class="w-5 h-5 mb-1 icon-vc">
                 <path d="M28.813 419.643c2.65 0 4.645-1.104 6.116-3.026l-1.966-1.5a5.188 5.188 0 0 1-4.15 2.052c-2.876 0-4.96-2.343-4.96-5.218s2.05-5.35 5.042-5.35c1.33 0 2.27.314 3.09.822v2.528h2.474v-3.686l-.474-.373c-1.36-1.07-3.437-1.638-5.173-1.638-4.244 0-7.696 3.452-7.696 7.696 0 4.24 3.45 7.693 7.696 7.693zm5.133 15.18-.088-3.543v-8.646h-5.16v2.475h2.554v5.866c0 2.527-1.93 4.316-3.877 4.316s-2.963-1.35-2.963-3.876v-8.782h-4.82v2.475h2.214v6.736c0 3.428 1.922 5.79 5.35 5.79 1.97 0 3.47-1.093 4.365-2.778h.04l.353 2.356h3.965v-2.386h-1.93v-.005zm-13.4-30.206h-4.3l-3.74 10.86h-.058l-3.72-10.86H4.146v2.476h2.577l4.435 12.378h2.356v-.003l4.625-12.374h2.405v-2.476zM.122 437.244H2.67v-2.547H.123v2.547zm9.84-11.74h-.028l-.16-2.87H5.226v2.256h2.42v9.934h-2.42v2.387h11.24v-2.34h-6.258v-5.995c.283-2.17 1.91-4.023 4.13-4.023h.04l-.045 2.218h2.474v-4.478h-1.956c-2.24-.006-3.902 1.206-4.89 2.912z"></path>
             </svg>
             <h3 data-i18n="vc_title" class="card-title text-base">VC.ru</h3>
@@ -609,7 +575,7 @@
                 title: "Роман Пуртов. Ваш маркетолог и дизайнер из тайги.",
                 metaDescription: "Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.",
                 name: "Роман Пуртов",
-                mainDescription: `Вайб-инженер и <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. ${daysSinceStart} ${dayDeclRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">сайты на Тильде</a> и <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">крутые проекты</a> 🌲`,
+                mainDescription: `Вайб-инженер и <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. ${daysSinceStart} ${dayDeclRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">сайты на Тильде</a> и <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">пишу программы</a> 🌲`,
                 portfolio_title: "Портфолио",
                 portfolio_description: "Сайты на Тильде",
                 resume_title: "Моё резюме",
@@ -643,7 +609,7 @@
                 title: "Roman Purtov. Your marketer and designer from the taiga.",
                 metaDescription: "Advertising professional, UX & UI designer, and a bit of a programmer. Tilda websites, interesting projects.",
                 name: "Roman Purtov",
-                mainDescription: `Vibe Engineer & <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="inline-link">Marketer</a> from Siberian taiga (Tomsk, UTC+7). Creating atmosphere through design, creative & code. Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">Tilda websites</a> and <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">cool projects</a> for ${daysSinceStart} ${dayDeclEn} 🌲`,
+                mainDescription: `Vibe Engineer & <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="inline-link">Marketer</a> from Siberian taiga (Tomsk, UTC+7). Creating atmosphere through design, creative & code. Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">Tilda websites</a> and <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">writing software</a> for ${daysSinceStart} ${dayDeclEn} 🌲`,
                 portfolio_title: "Portfolio",
                 portfolio_description: "Tilda websites",
                 resume_title: "My Resume",
