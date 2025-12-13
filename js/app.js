@@ -147,8 +147,8 @@ const translations = {
         blog_link_description: 'Telegram-канал',
         vc_title: 'Роман Пуртов',
         vc_description: 'Личный блог на vc.ru',
-        tomsk_walk_title: 'Прогулка',
-        tomsk_walk_description: 'Томская'
+        tomsk_walk_title: 'Томская Прогулка',
+        tomsk_walk_description: 'Гуляем с\u00A0друзьями и\u00A0не\u00A0только'
     },
     en: {
         title: 'Roman Purtov. Your marketer and designer from the\u00A0taiga.',
@@ -181,8 +181,8 @@ const translations = {
         blog_link_description: 'Telegram Channel',
         vc_title: 'Roman Purtov',
         vc_description: 'Personal blog on vc.ru',
-        tomsk_walk_title: 'Walk',
-        tomsk_walk_description: 'Tomsk'
+        tomsk_walk_title: 'Tomsk Walk',
+        tomsk_walk_description: 'Walking with friends and\u00A0more'
     }
 };
 
