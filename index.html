@@ -300,18 +300,6 @@
             scroll-behavior: auto;
         }
 
-        /* Логотип Прогулки */
-        .progulka-logo {
-            height: 1.75rem;
-            margin-bottom: 0.5rem;
-            color: var(--icon-walk);
-            fill: currentColor;
-        }
-
-        .dark .progulka-logo {
-            color: var(--icon-walk-dark);
-        }
-
         /* Анимация появления */
         @keyframes fadeIn {
             from {
@@ -397,14 +385,15 @@
     </div>
 
     <!-- Bento Grid -->
+    <div class="lg:min-h-screen lg:flex lg:items-center lg:justify-center lg:p-12 xl:p-16 2xl:p-20">
     <main class="
         grid gap-3 p-3 min-h-screen
         grid-cols-2
         [grid-auto-flow:dense]
         md:grid-cols-4 md:gap-4 md:p-4
-        lg:grid-cols-6 lg:grid-rows-4 lg:h-screen lg:[grid-auto-flow:row]
-        xl:gap-5 xl:px-20 xl:pt-16 xl:pb-10
-        2xl:px-32 2xl:pt-24
+        lg:grid-cols-6 lg:grid-rows-3 lg:[grid-auto-flow:row] lg:min-h-0 lg:p-0 lg:w-full lg:max-w-7xl
+        xl:gap-5
+        2xl:gap-6
     ">
         <!-- Row 1-2: Profile (2x2) -->
         <div class="
@@ -434,35 +423,28 @@
         </a>
 
         <!-- Row 1: Telegram -->
-        <a href="https://t.me/roman_purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-1 fade-in fade-in-delay-4">
+        <a href="https://t.me/roman_purtow" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-1 fade-in fade-in-delay-4">
             <i data-lucide="send" class="w-6 h-6 icon-telegram mb-2"></i>
             <h3 id="i18n-telegram_title" data-i18n="telegram_title" class="card-title">Telegram</h3>
             <p id="i18n-telegram_description" data-i18n="telegram_description" class="card-description">@roman_purtow</p>
         </a>
 
-        <!-- Row 1: YouTube -->
-        <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-1 fade-in fade-in-delay-5">
-            <i data-lucide="youtube" class="w-6 h-6 icon-youtube mb-2"></i>
-            <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="card-title">YouTube</h3>
-            <p id="i18n-youtube_description" data-i18n="youtube_description" class="card-description">@roman-purtow</p>
-        </a>
-
-        <!-- Row 2: WhatsApp -->
-        <a href="https://wa.me/79526797776" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-3 lg:row-start-2 fade-in fade-in-delay-6">
+        <!-- Row 1: WhatsApp -->
+        <a href="https://wa.me/79526797776" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-1 fade-in fade-in-delay-5">
             <i data-lucide="message-circle" class="w-6 h-6 icon-whatsapp mb-2"></i>
             <h3 id="i18n-whatsapp_title" data-i18n="whatsapp_title" class="card-title">WhatsApp</h3>
             <p id="i18n-whatsapp_description" data-i18n="whatsapp_description" class="card-description">+7 952 679-77-76</p>
         </a>
 
         <!-- Row 2: Instagram -->
-        <a href="https://instagram.com/roman.purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-4 lg:row-start-2 fade-in fade-in-delay-7">
+        <a href="https://instagram.com/roman.purtow" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-3 lg:row-start-2 fade-in fade-in-delay-6">
             <i data-lucide="instagram" class="w-6 h-6 icon-instagram mb-2"></i>
             <h3 id="i18n-instagram_title" data-i18n="instagram_title" class="card-title">Instagram</h3>
             <p id="i18n-instagram_description" data-i18n="instagram_description" class="card-description">@roman.purtow</p>
         </a>
 
         <!-- Row 2: VK -->
-        <a href="https://vk.com/roman_purtow" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-2 fade-in fade-in-delay-8">
+        <a href="https://vk.com/roman_purtow" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-4 lg:row-start-2 fade-in fade-in-delay-7">
             <svg class="w-6 h-6 icon-vk mb-2" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.198c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.847 2.523 2.27 4.741 2.862 4.741.22 0 .322-.102.322-.66V9.793c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.27-1.422 2.18-3.608 2.18-3.608.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/>
             </svg>
@@ -470,70 +452,65 @@
             <p id="i18n-vk_description" data-i18n="vk_description" class="card-description">@roman_purtow</p>
         </a>
 
+        <!-- Row 2: YouTube -->
+        <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-2 fade-in fade-in-delay-8">
+            <i data-lucide="youtube" class="w-6 h-6 icon-youtube mb-2"></i>
+            <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="card-title">YouTube</h3>
+            <p id="i18n-youtube_description" data-i18n="youtube_description" class="card-description">@roman-purtow</p>
+        </a>
+
         <!-- Row 2: GitHub -->
-        <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-2 fade-in fade-in-delay-9">
+        <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-2 fade-in fade-in-delay-9">
             <i data-lucide="github" class="w-6 h-6 icon-github mb-2"></i>
             <h3 id="i18n-github_title" data-i18n="github_title" class="card-title">GitHub</h3>
             <p id="i18n-github_description" data-i18n="github_description" class="card-description">@baslie</p>
         </a>
 
-        <!-- Row 3: GitHub Gist -->
-        <a href="https://gist.github.com/baslie" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-1 lg:row-start-3 fade-in fade-in-delay-10">
-            <i data-lucide="file-code" class="w-6 h-6 icon-github mb-2"></i>
-            <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="card-title">GitHub Gist</h3>
-            <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="card-description">@baslie</p>
-        </a>
-
-        <!-- Row 3: Portfolio (2 cols) -->
-        <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 lg:col-start-2 lg:col-span-2 lg:row-start-3 fade-in fade-in-delay-11">
+        <!-- Row 3: Portfolio -->
+        <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-1 lg:row-start-3 fade-in fade-in-delay-10">
             <i data-lucide="briefcase" class="w-6 h-6 icon-portfolio mb-2"></i>
             <h3 id="i18n-portfolio_title" data-i18n="portfolio_title" class="card-title">Портфолио</h3>
             <p id="i18n-portfolio_description" data-i18n="portfolio_description" class="card-description">Сайты на Тильде</p>
         </a>
 
-        <!-- Row 3: Resume (2 cols) -->
-        <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 lg:col-start-4 lg:col-span-2 lg:row-start-3 fade-in fade-in-delay-12">
+        <!-- Row 3: Resume -->
+        <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-2 lg:row-start-3 fade-in fade-in-delay-11">
             <i data-lucide="file-text" class="w-6 h-6 icon-resume mb-2"></i>
             <h3 id="i18n-resume_title" data-i18n="resume_title" class="card-title">Моё резюме</h3>
             <p id="i18n-resume_description" data-i18n="resume_description" class="card-description">Интернет-маркетолог</p>
         </a>
 
+        <!-- Row 3: GitHub Gist -->
+        <a href="https://gist.github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-3 lg:row-start-3 fade-in fade-in-delay-12">
+            <i data-lucide="file-code" class="w-6 h-6 icon-github mb-2"></i>
+            <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="card-title">GitHub Gist</h3>
+            <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="card-description">@baslie</p>
+        </a>
+
         <!-- Row 3: Blog Purtochka -->
-        <a href="https://t.me/purtochka_live" target="_blank" rel="noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-3 fade-in fade-in-delay-13">
-            <i data-lucide="radio" class="w-5 h-5 icon-blog mb-1"></i>
-            <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="card-title text-base">Пурточка</h3>
-            <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="card-description text-xs">Telegram</p>
+        <a href="https://t.me/purtochka_live" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-4 lg:row-start-3 fade-in fade-in-delay-13">
+            <i data-lucide="radio" class="w-6 h-6 icon-blog mb-2"></i>
+            <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="card-title">Пурточка</h3>
+            <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="card-description">Telegram-канал</p>
         </a>
 
-        <!-- Row 4: Tomsk Walk (full width) -->
-        <a href="https://vk.com/tomsk_progulka" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 md:col-span-4 lg:col-start-1 lg:col-span-5 lg:row-start-4 fade-in fade-in-delay-14">
-            <svg class="progulka-logo" viewBox="0 0 188 130" fill="currentColor" aria-label="Томская Прогулка">
-                <path d="M165.455 46.8591H157.337V130H165.455V46.8591Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M161.302 82.4923L188 109.215H176.594L161.302 93.9093L146.199 109.215H134.604L161.302 82.4923Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M161.302 59.8171L188 86.5396H176.594L161.302 71.2341L146.199 86.5396H134.604L161.302 59.8171Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M161.302 37.3313L188 64.0538H176.593L161.302 48.7483L146.199 64.0538H134.604L161.302 37.3313Z"/>
-                <path d="M99.1148 12.3862H88.5606V120.47H99.1148V12.3862Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M93.9057 58.7089L128.613 93.4482H113.785L93.9057 73.551L74.2721 93.4482H59.198L93.9057 58.7089Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M93.9057 29.2318L128.613 63.9711H113.785L93.9057 44.074L74.2721 63.9711H59.198L93.9057 29.2318Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M93.906 0L128.614 34.7393H113.785L93.906 14.8422L74.2723 34.7393H59.387L93.906 0Z"/>
-                <path d="M30.8516 46.8591H22.7339V130H30.8516V46.8591Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.6981 82.4923L53.3963 109.215H41.9897L26.6981 93.9093L11.5954 109.215H0L26.6981 82.4923Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.6981 59.8171L53.3963 86.5396H41.9897L26.6981 71.2341L11.5954 86.5396H0L26.6981 59.8171Z"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.6981 37.3313L53.3963 64.0538H41.9897L26.6981 48.7483L11.5954 64.0538H0L26.6981 37.3313Z"/>
-            </svg>
-            <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="card-title">Томская Прогулка</h3>
-            <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="card-description">Гуляю сам, вожу людей по лесам и полям</p>
+        <!-- Row 3: Tomsk Walk -->
+        <a href="https://vk.com/tomsk_progulka" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-5 lg:row-start-3 fade-in fade-in-delay-14">
+            <i data-lucide="map-pin" class="w-6 h-6 icon-walk mb-2"></i>
+            <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="card-title">Прогулка</h3>
+            <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="card-description">Томская</p>
         </a>
 
-        <!-- Row 4: VC.ru -->
-        <a href="https://vc.ru/u/454432-roman-purtov" target="_blank" rel="noopener noreferrer" class="bento-card col-span-2 lg:col-span-1 lg:col-start-6 lg:row-start-4 fade-in fade-in-delay-15">
-            <svg viewBox="0 404.142 36 33.608" class="w-5 h-5 mb-1 icon-vc">
+        <!-- Row 3: VC.ru -->
+        <a href="https://vc.ru/u/454432-roman-purtov" target="_blank" rel="nofollow noopener noreferrer" class="bento-card lg:col-start-6 lg:row-start-3 fade-in fade-in-delay-15">
+            <svg viewBox="0 404.142 36 33.608" class="w-6 h-6 mb-2 icon-vc">
                 <path d="M28.813 419.643c2.65 0 4.645-1.104 6.116-3.026l-1.966-1.5a5.188 5.188 0 0 1-4.15 2.052c-2.876 0-4.96-2.343-4.96-5.218s2.05-5.35 5.042-5.35c1.33 0 2.27.314 3.09.822v2.528h2.474v-3.686l-.474-.373c-1.36-1.07-3.437-1.638-5.173-1.638-4.244 0-7.696 3.452-7.696 7.696 0 4.24 3.45 7.693 7.696 7.693zm5.133 15.18-.088-3.543v-8.646h-5.16v2.475h2.554v5.866c0 2.527-1.93 4.316-3.877 4.316s-2.963-1.35-2.963-3.876v-8.782h-4.82v2.475h2.214v6.736c0 3.428 1.922 5.79 5.35 5.79 1.97 0 3.47-1.093 4.365-2.778h.04l.353 2.356h3.965v-2.386h-1.93v-.005zm-13.4-30.206h-4.3l-3.74 10.86h-.058l-3.72-10.86H4.146v2.476h2.577l4.435 12.378h2.356v-.003l4.625-12.374h2.405v-2.476zM.122 437.244H2.67v-2.547H.123v2.547zm9.84-11.74h-.028l-.16-2.87H5.226v2.256h2.42v9.934h-2.42v2.387h11.24v-2.34h-6.258v-5.995c.283-2.17 1.91-4.023 4.13-4.023h.04l-.045 2.218h2.474v-4.478h-1.956c-2.24-.006-3.902 1.206-4.89 2.912z"></path>
             </svg>
-            <h3 data-i18n="vc_title" class="card-title text-base">VC.ru</h3>
-            <p data-i18n="vc_description" class="card-description text-xs">Блог</p>
+            <h3 data-i18n="vc_title" class="card-title">VC.ru</h3>
+            <p data-i18n="vc_description" class="card-description">Блог</p>
         </a>
     </main>
+    </div>
 
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
@@ -589,7 +566,7 @@
                 title: "Роман Пуртов. Ваш маркетолог и дизайнер из тайги.",
                 metaDescription: "Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.",
                 name: "Роман Пуртов",
-                mainDescription: `Вайб-инженер и <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. ${daysSinceStart} ${dayDeclRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">сайты на Тильде</a> и <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">пишу программы</a> 🌲`,
+                mainDescription: `Вайб-инженер и <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. ${daysSinceStart} ${dayDeclRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сайты на Тильде</a> и <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">пишу программы</a> 🌲`,
                 portfolio_title: "Портфолио",
                 portfolio_description: "Сайты на Тильде",
                 resume_title: "Моё резюме",
@@ -612,18 +589,18 @@
                 github_description: "@baslie",
                 githubgist_title: "GitHub Gist",
                 githubgist_description: "@baslie",
-                blog_link_title: "Пурточка вещает",
+                blog_link_title: "Пурточка",
                 blog_link_description: "Telegram-канал",
                 vc_title: "Роман Пуртов",
                 vc_description: "Личный блог на vc.ru",
-                tomsk_walk_title: "Томская Прогулка",
-                tomsk_walk_description: "Гуляю сам, вожу людей по лесам и полям"
+                tomsk_walk_title: "Прогулка",
+                tomsk_walk_description: "Томская"
             },
             en: {
                 title: "Roman Purtov. Your marketer and designer from the taiga.",
                 metaDescription: "Advertising professional, UX & UI designer, and a bit of a programmer. Tilda websites, interesting projects.",
                 name: "Roman Purtov",
-                mainDescription: `Vibe Engineer & <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" class="inline-link">Marketer</a> from Siberian taiga (Tomsk, UTC+7). Creating atmosphere through design, creative & code. Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="noopener noreferrer" class="inline-link">Tilda websites</a> and <a href="https://github.com/baslie" target="_blank" rel="noopener noreferrer" class="inline-link">writing software</a> for ${daysSinceStart} ${dayDeclEn} 🌲`,
+                mainDescription: `Vibe Engineer & <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Marketer</a> from Siberian taiga (Tomsk, UTC+7). Creating atmosphere through design, creative & code. Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Tilda websites</a> and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">writing software</a> for ${daysSinceStart} ${dayDeclEn} 🌲`,
                 portfolio_title: "Portfolio",
                 portfolio_description: "Tilda websites",
                 resume_title: "My Resume",
@@ -646,12 +623,12 @@
                 github_description: "@baslie",
                 githubgist_title: "GitHub Gist",
                 githubgist_description: "@baslie",
-                blog_link_title: "Purtochka Broadcasts",
+                blog_link_title: "Purtochka",
                 blog_link_description: "Telegram Channel",
                 vc_title: "Roman Purtov",
                 vc_description: "Personal blog on vc.ru",
-                tomsk_walk_title: "Tomsk Walk",
-                tomsk_walk_description: "Walking alone, guiding people through forests and fields"
+                tomsk_walk_title: "Walk",
+                tomsk_walk_description: "Tomsk"
             }
         };
 
