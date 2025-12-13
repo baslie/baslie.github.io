@@ -4,25 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.">
+    <meta name="description" content="Рекламодел, UX&#160;&&#160;UI дизайнер и&#160;немного программист. Сайты на&#160;Тильде, интересные проекты. Берусь за&#160;всё, за&#160;что берусь.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Роман Пуртов">
     <meta name="yandex-verification" content="baba7a3a035222ee">
     <meta name="zen-verification" content="1VfsUNzrT2kKSoOR3uOBbHlA9rlA0pG8FPICtKqMtotDTKR0rchMKpVBsJMXVnzN" />
-    <title>Роман Пуртов. Ваш маркетолог и дизайнер из тайги.</title>
+    <title>Роман Пуртов. Ваш маркетолог и&#160;дизайнер из&#160;тайги.</title>
     <link rel="icon" href="images/favicon.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.jpg">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#222222">
     <link rel="canonical" href="https://roman-purtow.ru/">
-    <meta property="og:title" content="Роман Пуртов. Ваш маркетолог и дизайнер из тайги.">
-    <meta property="og:description" content="Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.">
+    <meta property="og:title" content="Роман Пуртов. Ваш маркетолог и&#160;дизайнер из&#160;тайги.">
+    <meta property="og:description" content="Рекламодел, UX&#160;&&#160;UI дизайнер и&#160;немного программист. Сайты на&#160;Тильде, интересные проекты. Берусь за&#160;всё, за&#160;что берусь.">
     <meta property="og:image" content="https://roman-purtow.ru/images/preview.jpg">
     <meta property="og:url" content="https://roman-purtow.ru/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Роман Пуртов. Ваш маркетолог и дизайнер из тайги.">
-    <meta name="twitter:description" content="Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.">
+    <meta name="twitter:title" content="Роман Пуртов. Ваш маркетолог и&#160;дизайнер из&#160;тайги.">
+    <meta name="twitter:description" content="Рекламодел, UX&#160;&&#160;UI дизайнер и&#160;немного программист. Сайты на&#160;Тильде, интересные проекты. Берусь за&#160;всё, за&#160;что берусь.">
     <meta name="twitter:image" content="https://roman-purtow.ru/images/preview.jpg">
 
     <!-- TailwindCSS v4 -->
@@ -163,6 +163,18 @@
             align-items: center;
         }
 
+        .card-profile:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark .card-profile:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-profile:hover .profile-image {
+            transform: scale(1.1);
+        }
+
         /* Цвета иконок */
         .icon-portfolio { color: var(--icon-portfolio); }
         .icon-resume { color: var(--icon-resume); }
@@ -223,9 +235,6 @@
             transition: transform 0.3s ease;
         }
 
-        .profile-image:hover {
-            transform: scale(1.05);
-        }
 
         .profile-title {
             font-size: 1.75rem;
@@ -535,38 +544,73 @@
 
     <!-- Main Script -->
     <script>
-        // Подсчет дней
-        function calculateDaysSince(dateString) {
+        // Подсчёт времени (годы, месяцы, дни)
+        function calculateTimeSince(dateString) {
             const startDate = new Date(dateString);
-            const nowTomsk = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tomsk" }));
-            const diffInMs = nowTomsk - startDate;
-            return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+            const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tomsk" }));
+
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            return { years, months, days };
         }
 
-        function getDayDeclensionRu(num) {
+        // Склонения для русского языка
+        function getDeclension(num, one, two, five) {
             const lastTwo = num % 100;
-            if (lastTwo >= 11 && lastTwo <= 19) return "дней";
+            if (lastTwo >= 11 && lastTwo <= 19) return five;
             const lastDigit = num % 10;
-            if (lastDigit === 1) return "день";
-            if (lastDigit >= 2 && lastDigit <= 4) return "дня";
-            return "дней";
+            if (lastDigit === 1) return one;
+            if (lastDigit >= 2 && lastDigit <= 4) return two;
+            return five;
         }
 
-        function getDayDeclensionEn(num) {
-            return num === 1 ? "day" : "days";
+        // Форматирование времени
+        const timeSince = calculateTimeSince("2022-01-20");
+
+        function formatTimeRu({ years, months, days }) {
+            const parts = [];
+            if (years > 0) parts.push(`${years}\u00A0${getDeclension(years, 'год', 'года', 'лет')}`);
+            if (months > 0) parts.push(`${months}\u00A0${getDeclension(months, 'месяц', 'месяца', 'месяцев')}`);
+            if (days > 0) parts.push(`${days}\u00A0${getDeclension(days, 'день', 'дня', 'дней')}`);
+            if (parts.length === 0) return '0\u00A0дней';
+            if (parts.length === 1) return parts[0];
+            if (parts.length === 2) return parts.join(' и\u00A0');
+            return parts.slice(0, -1).join(', ') + ' и\u00A0' + parts[parts.length - 1];
         }
 
-        const daysSinceStart = calculateDaysSince("2022-01-20");
-        const dayDeclRu = getDayDeclensionRu(daysSinceStart);
-        const dayDeclEn = getDayDeclensionEn(daysSinceStart);
+        function formatTimeEn({ years, months, days }) {
+            const parts = [];
+            if (years > 0) parts.push(`${years}\u00A0${years === 1 ? 'year' : 'years'}`);
+            if (months > 0) parts.push(`${months}\u00A0${months === 1 ? 'month' : 'months'}`);
+            if (days > 0) parts.push(`${days}\u00A0${days === 1 ? 'day' : 'days'}`);
+            if (parts.length === 0) return '0\u00A0days';
+            if (parts.length === 1) return parts[0];
+            if (parts.length === 2) return parts.join(' and\u00A0');
+            return parts.slice(0, -1).join(', ') + ', and\u00A0' + parts[parts.length - 1];
+        }
+
+        const timeStringRu = formatTimeRu(timeSince);
+        const timeStringEn = formatTimeEn(timeSince);
 
         // Переводы
         const translations = {
             ru: {
-                title: "Роман Пуртов. Ваш маркетолог и дизайнер из тайги.",
-                metaDescription: "Рекламодел, UX&UI дизайнер и немного программист. Сайты на Тильде, интересные проекты. Берусь за всё, за что берусь.",
+                title: "Роман Пуртов. Ваш маркетолог и\u00A0дизайнер из\u00A0тайги.",
+                metaDescription: "Рекламодел, UX\u00A0&\u00A0UI дизайнер и\u00A0немного программист. Сайты на\u00A0Тильде, интересные проекты. Берусь за\u00A0всё, за\u00A0что берусь.",
                 name: "Роман Пуртов",
-                mainDescription: `Вайб-инженер и <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. ${daysSinceStart} ${dayDeclRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сайты на Тильде</a> и <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">пишу программы</a> 🌲`,
+                mainDescription: `Вайб-инженер и\u00A0<a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">маркетолог</a> из\u00A0тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и\u00A0код. ${timeStringRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сайты на\u00A0Тильде</a> и\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">пишу программы</a>\u00A0🌲`,
                 portfolio_title: "Портфолио",
                 portfolio_description: "Сайты на Тильде",
                 resume_title: "Моё резюме",
@@ -597,10 +641,10 @@
                 tomsk_walk_description: "Томская"
             },
             en: {
-                title: "Roman Purtov. Your marketer and designer from the taiga.",
-                metaDescription: "Advertising professional, UX & UI designer, and a bit of a programmer. Tilda websites, interesting projects.",
+                title: "Roman Purtov. Your marketer and designer from the\u00A0taiga.",
+                metaDescription: "Advertising professional, UX\u00A0&\u00A0UI designer, and a\u00A0bit of\u00A0a\u00A0programmer. Tilda websites, interesting projects.",
                 name: "Roman Purtov",
-                mainDescription: `Vibe Engineer & <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Marketer</a> from Siberian taiga (Tomsk, UTC+7). Creating atmosphere through design, creative & code. Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Tilda websites</a> and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">writing software</a> for ${daysSinceStart} ${dayDeclEn} 🌲`,
+                mainDescription: `Vibe Engineer &\u00A0<a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Marketer</a> from Siberian taiga (Tomsk, UTC+7). Creating atmosphere through design, creative &\u00A0code. Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Tilda websites</a> and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">writing software</a> for ${timeStringEn}\u00A0🌲`,
                 portfolio_title: "Portfolio",
                 portfolio_description: "Tilda websites",
                 resume_title: "My Resume",
