@@ -1,7 +1,9 @@
-const CACHE_NAME = 'rp-cache-v2';
+const CACHE_NAME = 'rp-cache-v3';
 const urlsToCache = [
   'index.html',
+  'styles/main.css',
   'styles/all.css',
+  'js/app.js',
   'images/bg.jpg',
   'videos/bg.mp4',
   'images/roman.jpg',

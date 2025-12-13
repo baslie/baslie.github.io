@@ -1,0 +1,367 @@
+/* ========================================
+   CSS Variables
+   ======================================== */
+:root {
+    /* Цвета */
+    --color-bg: #222222;
+    --color-text: #111827;
+    --color-text-light: #F9FAFB;
+    --color-text-muted: #6B7280;
+    --color-text-muted-dark: #D1D5DB;
+
+    /* Accent цвет (золотой) */
+    --color-accent: rgba(245, 158, 11, 0.6);
+    --color-link: #3B82F6;
+
+    /* Цвета иконок - брендовые цвета */
+    --icon-portfolio: #F59E0B;
+    --icon-resume: #3B82F6;
+    --icon-phone: #6B7280;
+    --icon-mail: #EA580C;
+    --icon-telegram: #0088CC;
+    --icon-whatsapp: #25D366;
+    --icon-instagram: #E4405F;
+    --icon-vk: #0077FF;
+    --icon-youtube: #FF0000;
+    --icon-github: #333333;
+    --icon-blog: #0088CC;
+    --icon-vc: #FF5A5F;
+    --icon-walk: #8B7355;
+
+    /* Цвета иконок для тёмной темы (ярче) */
+    --icon-portfolio-dark: #FCD34D;
+    --icon-resume-dark: #60A5FA;
+    --icon-phone-dark: #9CA3AF;
+    --icon-mail-dark: #F97316;
+    --icon-telegram-dark: #38BDF8;
+    --icon-whatsapp-dark: #4ADE80;
+    --icon-instagram-dark: #F472B6;
+    --icon-vk-dark: #60A5FA;
+    --icon-youtube-dark: #F87171;
+    --icon-github-dark: #E5E7EB;
+    --icon-blog-dark: #38BDF8;
+    --icon-vc-dark: #FB7185;
+    --icon-walk-dark: #A8977A;
+
+    /* Размеры */
+    --gap: 1rem;
+    --radius: 1.5rem;
+    --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --shadow-hover-dark: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    /* Hover эффекты */
+    --hover-translate: -4px;
+    --hover-scale: 1.02;
+    --hover-border-width: 4px;
+
+    /* Анимации */
+    --animation-delay-step: 0.05s;
+    --transition-default: 0.3s ease;
+
+    /* Blur */
+    --blur-amount: 16px;
+    --blur-mobile: 12px;
+
+    /* Overlay */
+    --overlay-light: rgba(0, 0, 0, 0.3);
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+}
+
+/* Breakpoint-зависимые переменные */
+@media (min-width: 768px) {
+    :root {
+        --hover-border-width: 6px;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --hover-border-width: 10px;
+    }
+}
+
+/* ========================================
+   Background Video
+   ======================================== */
+#background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+/* ========================================
+   Overlay
+   ======================================== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--overlay-light);
+    z-index: -1;
+}
+
+.dark body::before {
+    background: var(--overlay-dark);
+}
+
+/* ========================================
+   Glassmorphism Cards
+   ======================================== */
+.bento-card {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition-default), box-shadow var(--transition-default), background var(--transition-default);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+    border: none;
+}
+
+.bento-card:hover {
+    transform: translateY(var(--hover-translate)) scale(var(--hover-scale));
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--color-accent);
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Dark mode cards */
+.dark .bento-card {
+    background: rgba(30, 30, 30, 0.75);
+    border: none;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .bento-card:hover {
+    background: rgba(40, 40, 40, 0.92);
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--color-accent);
+}
+
+/* ========================================
+   Profile Card
+   ======================================== */
+.card-profile {
+    text-align: center;
+    align-items: center;
+}
+
+.card-profile:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.dark .card-profile:hover {
+    box-shadow: var(--shadow-hover-dark);
+}
+
+.card-profile:hover .profile-image {
+    transform: scale(1.1);
+}
+
+/* ========================================
+   Icon Colors
+   ======================================== */
+.icon-portfolio { color: var(--icon-portfolio); }
+.icon-resume { color: var(--icon-resume); }
+.icon-phone { color: var(--icon-phone); }
+.icon-mail { color: var(--icon-mail); }
+.icon-telegram { color: var(--icon-telegram); }
+.icon-whatsapp { color: var(--icon-whatsapp); }
+.icon-instagram { color: var(--icon-instagram); }
+.icon-vk { color: var(--icon-vk); fill: currentColor; }
+.icon-youtube { color: var(--icon-youtube); }
+.icon-github { color: var(--icon-github); }
+.icon-blog { color: var(--icon-blog); }
+.icon-vc { color: var(--icon-vc); fill: currentColor; }
+.icon-walk { color: var(--icon-walk); }
+
+/* Dark mode icons (brighter) */
+.dark .icon-portfolio { color: var(--icon-portfolio-dark); }
+.dark .icon-resume { color: var(--icon-resume-dark); }
+.dark .icon-phone { color: var(--icon-phone-dark); }
+.dark .icon-mail { color: var(--icon-mail-dark); }
+.dark .icon-telegram { color: var(--icon-telegram-dark); }
+.dark .icon-whatsapp { color: var(--icon-whatsapp-dark); }
+.dark .icon-instagram { color: var(--icon-instagram-dark); }
+.dark .icon-vk { color: var(--icon-vk-dark); }
+.dark .icon-youtube { color: var(--icon-youtube-dark); }
+.dark .icon-github { color: var(--icon-github-dark); }
+.dark .icon-blog { color: var(--icon-blog-dark); }
+.dark .icon-vc { color: var(--icon-vc-dark); }
+.dark .icon-walk { color: var(--icon-walk-dark); }
+
+/* ========================================
+   Card Text
+   ======================================== */
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.card-description {
+    font-size: 0.875rem;
+    color: var(--color-text);
+}
+
+.dark .card-title {
+    color: var(--color-text-light);
+}
+
+.dark .card-description {
+    color: var(--color-text-light);
+}
+
+/* ========================================
+   Profile
+   ======================================== */
+.profile-image {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    transition: transform var(--transition-default);
+}
+
+.profile-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.dark .profile-title {
+    color: var(--color-text-light);
+}
+
+.profile-description {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.dark .profile-description {
+    color: var(--color-text-light);
+}
+
+.inline-link {
+    color: var(--color-link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.inline-link:hover {
+    border-bottom-color: var(--color-link);
+}
+
+/* ========================================
+   Control Buttons
+   ======================================== */
+.control-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+}
+
+.dark .control-btn {
+    background: rgba(30, 30, 30, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-light);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* ========================================
+   Lenis
+   ======================================== */
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+/* ========================================
+   Fade-in Animation
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Animation delays using CSS variable */
+.fade-in-delay-1 { animation-delay: calc(1 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-2 { animation-delay: calc(2 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-3 { animation-delay: calc(3 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-4 { animation-delay: calc(4 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-5 { animation-delay: calc(5 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-6 { animation-delay: calc(6 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-7 { animation-delay: calc(7 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-8 { animation-delay: calc(8 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-9 { animation-delay: calc(9 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-10 { animation-delay: calc(10 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-11 { animation-delay: calc(11 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-12 { animation-delay: calc(12 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-13 { animation-delay: calc(13 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-14 { animation-delay: calc(14 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-15 { animation-delay: calc(15 * var(--animation-delay-step)); opacity: 0; }
+
+/* ========================================
+   Mobile Styles
+   ======================================== */
+@media (max-width: 767px) {
+    .bento-card {
+        background: rgba(255, 255, 255, 1);
+        backdrop-filter: blur(var(--blur-mobile));
+        -webkit-backdrop-filter: blur(var(--blur-mobile));
+    }
+
+    .dark .bento-card {
+        background: rgba(30, 30, 30, 0.92);
+    }
+}
