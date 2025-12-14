@@ -26,7 +26,6 @@
     --icon-github: #333333;
     --icon-blog: #0088CC;
     --icon-vc: #FF5A5F;
-    --icon-walk: #8B7355;
 
     /* Цвета иконок для тёмной темы (ярче) */
     --icon-portfolio-dark: #FCD34D;
@@ -41,7 +40,6 @@
     --icon-github-dark: #E5E7EB;
     --icon-blog-dark: #38BDF8;
     --icon-vc-dark: #FB7185;
-    --icon-walk-dark: #A8977A;
 
     /* Размеры */
     --gap: 1rem;
@@ -66,6 +64,28 @@
     /* Overlay */
     --overlay-light: rgba(0, 0, 0, 0.3);
     --overlay-dark: rgba(0, 0, 0, 0.5);
+
+    /* Category badges - светлая тема */
+    --badge-work: rgba(245, 158, 11, 0.7);
+    --badge-work-bg: rgba(245, 158, 11, 0.12);
+    --badge-projects: rgba(139, 92, 246, 0.7);
+    --badge-projects-bg: rgba(139, 92, 246, 0.10);
+    --badge-contacts: rgba(107, 114, 128, 0.7);
+    --badge-contacts-bg: rgba(107, 114, 128, 0.10);
+    --badge-social: rgba(59, 130, 246, 0.7);
+    --badge-social-bg: rgba(59, 130, 246, 0.10);
+}
+
+/* Category badges - тёмная тема */
+.dark {
+    --badge-work: rgba(251, 191, 36, 0.8);
+    --badge-work-bg: rgba(251, 191, 36, 0.15);
+    --badge-projects: rgba(167, 139, 250, 0.8);
+    --badge-projects-bg: rgba(167, 139, 250, 0.15);
+    --badge-contacts: rgba(156, 163, 175, 0.8);
+    --badge-contacts-bg: rgba(156, 163, 175, 0.15);
+    --badge-social: rgba(96, 165, 250, 0.8);
+    --badge-social-bg: rgba(96, 165, 250, 0.15);
 }
 
 /* Breakpoint-зависимые переменные */
@@ -119,6 +139,7 @@ body::before {
    Glassmorphism Cards
    ======================================== */
 .bento-card {
+    position: relative;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: transform var(--transition-default), box-shadow var(--transition-default), background var(--transition-default);
@@ -188,7 +209,6 @@ body::before {
 .icon-github { color: var(--icon-github); }
 .icon-blog { color: var(--icon-blog); }
 .icon-vc { color: var(--icon-vc); fill: currentColor; }
-.icon-walk { color: var(--icon-walk); }
 
 /* Dark mode icons (brighter) */
 .dark .icon-portfolio { color: var(--icon-portfolio-dark); }
@@ -203,7 +223,6 @@ body::before {
 .dark .icon-github { color: var(--icon-github-dark); }
 .dark .icon-blog { color: var(--icon-blog-dark); }
 .dark .icon-vc { color: var(--icon-vc-dark); }
-.dark .icon-walk { color: var(--icon-walk-dark); }
 
 /* ========================================
    Card Text
@@ -364,4 +383,45 @@ html.lenis {
     .dark .bento-card {
         background: rgba(30, 30, 30, 0.92);
     }
+}
+
+/* ========================================
+   Category Badges
+   ======================================== */
+.category-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    opacity: 0.8;
+    transition: opacity var(--transition-default);
+}
+
+.bento-card:hover .category-badge {
+    opacity: 1;
+}
+
+.category-badge--work {
+    background: var(--badge-work-bg);
+    color: var(--badge-work);
+}
+
+.category-badge--projects {
+    background: var(--badge-projects-bg);
+    color: var(--badge-projects);
+}
+
+.category-badge--contacts {
+    background: var(--badge-contacts-bg);
+    color: var(--badge-contacts);
+}
+
+.category-badge--social {
+    background: var(--badge-social-bg);
+    color: var(--badge-social);
 }
