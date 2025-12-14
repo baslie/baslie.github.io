@@ -616,3 +616,53 @@ html.lenis {
     background: var(--card-bg-dark-hover);
     color: var(--color-text-light);
 }
+
+/* ========================================
+   Performance Optimizations
+   ======================================== */
+
+/* Отключение видео на мобильных для экономии трафика и GPU */
+@media (max-width: 768px) {
+    #background-video {
+        display: none;
+    }
+}
+
+/* Отключение blur на мобильных для производительности GPU */
+@media (max-width: 768px) {
+    .bento-card,
+    .control-btn,
+    .copy-tooltip,
+    #theme-toggle::after {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .bento-card {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .dark .bento-card {
+        background: rgba(30, 30, 30, 0.95);
+    }
+
+    .control-btn {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .dark .control-btn,
+    .dark #theme-toggle::after {
+        background: rgba(30, 30, 30, 0.95);
+    }
+}
+
+/* Отключение анимаций для пользователей с соответствующей настройкой */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
