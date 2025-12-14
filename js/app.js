@@ -320,18 +320,6 @@ function initYandexMetrika() {
 }
 
 /* ========================================
-   Service Worker
-   ======================================== */
-function initServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('service-worker.js')
-                .catch(err => console.log('Service Worker registration failed:', err));
-        });
-    }
-}
-
-/* ========================================
    Initialize Lucide Icons
    ======================================== */
 function initLucideIcons() {
@@ -349,7 +337,6 @@ function init() {
     initTheme();
     initBackgroundVideo();
     initYandexMetrika();
-    initServiceWorker();
 }
 
 // Initialize when DOM is ready
