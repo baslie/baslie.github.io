@@ -74,6 +74,24 @@
     --badge-contacts-bg: rgba(107, 114, 128, 0.10);
     --badge-social: rgba(59, 130, 246, 0.7);
     --badge-social-bg: rgba(59, 130, 246, 0.10);
+
+    /* Hover-обводки по категориям */
+    --hover-border-work: rgba(245, 158, 11, 0.7);
+    --hover-border-projects: rgba(139, 92, 246, 0.7);
+    --hover-border-contacts: rgba(107, 114, 128, 0.7);
+    --hover-border-social: rgba(59, 130, 246, 0.7);
+
+    /* Фоны карточек */
+    --card-bg: rgba(255, 255, 255, 1);
+    --card-bg-dark: rgba(30, 30, 30, 0.75);
+    --card-bg-dark-hover: rgba(40, 40, 40, 0.92);
+    --card-shadow-dark: rgba(0, 0, 0, 0.3);
+
+    /* Фоны кнопок управления */
+    --btn-bg: rgba(255, 255, 255, 0.75);
+    --btn-border: rgba(255, 255, 255, 0.3);
+    --btn-bg-dark: rgba(30, 30, 30, 0.75);
+    --btn-border-dark: rgba(255, 255, 255, 0.1);
 }
 
 /* Category badges - тёмная тема */
@@ -86,6 +104,12 @@
     --badge-contacts-bg: rgba(156, 163, 175, 0.15);
     --badge-social: rgba(96, 165, 250, 0.8);
     --badge-social-bg: rgba(96, 165, 250, 0.15);
+
+    /* Hover-обводки по категориям - тёмная тема */
+    --hover-border-work: rgba(251, 191, 36, 0.8);
+    --hover-border-projects: rgba(167, 139, 250, 0.8);
+    --hover-border-contacts: rgba(156, 163, 175, 0.8);
+    --hover-border-social: rgba(96, 165, 250, 0.8);
 }
 
 /* Breakpoint-зависимые переменные */
@@ -97,7 +121,7 @@
 
 @media (min-width: 1200px) {
     :root {
-        --hover-border-width: 10px;
+        --hover-border-width: 8px;
     }
 }
 
@@ -150,7 +174,7 @@ body::before {
     align-items: flex-start;
     padding: 1.5rem;
     text-decoration: none;
-    background: rgba(255, 255, 255, 1);
+    background: var(--card-bg);
     backdrop-filter: blur(var(--blur-amount)) saturate(180%);
     -webkit-backdrop-filter: blur(var(--blur-amount)) saturate(180%);
     border: none;
@@ -159,19 +183,53 @@ body::before {
 .bento-card:hover {
     transform: translateY(var(--hover-translate)) scale(var(--hover-scale));
     box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--color-accent);
-    background: rgba(255, 255, 255, 1);
+    background: var(--card-bg);
+}
+
+/* Цветные hover-обводки по категориям */
+.bento-card[data-category="work"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-work);
+}
+
+.bento-card[data-category="projects"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-projects);
+}
+
+.bento-card[data-category="contacts"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-contacts);
+}
+
+.bento-card[data-category="social"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-social);
 }
 
 /* Dark mode cards */
 .dark .bento-card {
-    background: rgba(30, 30, 30, 0.75);
+    background: var(--card-bg-dark);
     border: none;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px var(--card-shadow-dark);
 }
 
 .dark .bento-card:hover {
-    background: rgba(40, 40, 40, 0.92);
+    background: var(--card-bg-dark-hover);
     box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--color-accent);
+}
+
+/* Цветные hover-обводки по категориям - тёмная тема */
+.dark .bento-card[data-category="work"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-work);
+}
+
+.dark .bento-card[data-category="projects"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-projects);
+}
+
+.dark .bento-card[data-category="contacts"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-contacts);
+}
+
+.dark .bento-card[data-category="social"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-social);
 }
 
 /* ========================================
@@ -297,10 +355,10 @@ body::before {
     width: 2.75rem;
     height: 2.75rem;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.75);
+    background: var(--btn-bg);
     backdrop-filter: blur(var(--blur-amount));
     -webkit-backdrop-filter: blur(var(--blur-amount));
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--btn-border);
     box-shadow: var(--shadow);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -311,8 +369,8 @@ body::before {
 }
 
 .dark .control-btn {
-    background: rgba(30, 30, 30, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--btn-bg-dark);
+    border: 1px solid var(--btn-border-dark);
     color: var(--color-text-light);
 }
 
@@ -375,13 +433,26 @@ html.lenis {
    ======================================== */
 @media (max-width: 767px) {
     .bento-card {
-        background: rgba(255, 255, 255, 1);
+        background: var(--card-bg);
         backdrop-filter: blur(var(--blur-mobile));
         -webkit-backdrop-filter: blur(var(--blur-mobile));
     }
 
     .dark .bento-card {
-        background: rgba(30, 30, 30, 0.92);
+        background: var(--card-bg-dark-hover);
+    }
+
+    .category-badge {
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        opacity: 1;
+    }
+
+    .category-badge svg {
+        width: 14px;
+        height: 14px;
     }
 }
 
