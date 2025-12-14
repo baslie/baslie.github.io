@@ -401,6 +401,61 @@ body::before {
     transform: scale(0.95);
 }
 
+/* Language Toggle - Golden Pulse */
+#lang-toggle {
+    animation: lang-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes lang-pulse {
+    0%, 100% {
+        box-shadow: var(--shadow), 0 0 0 0 transparent;
+    }
+    50% {
+        box-shadow: var(--shadow), 0 0 12px 2px var(--color-accent);
+    }
+}
+
+/* Theme Toggle - Day/Night Gradient */
+#theme-toggle {
+    position: relative;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fcd34d, #f97316, #6366f1, #1e3a8a, #fcd34d);
+    background-size: 300% 300%;
+    animation: day-night 6s ease infinite;
+    z-index: -1;
+}
+
+#theme-toggle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--btn-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+}
+
+.dark #theme-toggle::after {
+    background: var(--btn-bg-dark);
+}
+
+#theme-toggle > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes day-night {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
 /* ========================================
    Lenis
    ======================================== */
@@ -489,7 +544,16 @@ html.lenis {
     justify-content: center;
     border-radius: 5px;
     opacity: 0.8;
-    transition: opacity var(--transition-default);
+    transition: opacity var(--transition-default), transform 0.2s ease;
+    cursor: pointer;
+}
+
+.category-badge:hover {
+    transform: scale(1.15);
+}
+
+.category-badge:active {
+    transform: scale(0.95);
 }
 
 .bento-card:hover .category-badge {
@@ -514,4 +578,41 @@ html.lenis {
 .category-badge--social {
     background: var(--badge-social-bg);
     color: var(--badge-social);
+}
+
+/* ========================================
+   Copy Tooltip
+   ======================================== */
+.copy-tooltip {
+    position: fixed;
+    z-index: 9999;
+    padding: 0.5rem 0.75rem;
+    background: var(--card-bg);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.8);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.copy-tooltip--visible {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+}
+
+.copy-tooltip--hiding {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(-5px);
+}
+
+.dark .copy-tooltip {
+    background: var(--card-bg-dark-hover);
+    color: var(--color-text-light);
 }

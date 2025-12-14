@@ -329,6 +329,91 @@ function initLucideIcons() {
 }
 
 /* ========================================
+   Copy on Badge Click
+   ======================================== */
+
+/**
+ * Extract data for copying from href
+ * @param {string} href - URL from href attribute
+ * @returns {string} - Text to copy
+ */
+function extractCopyData(href) {
+    if (href.startsWith('tel:')) return href.replace('tel:', '');
+    if (href.startsWith('mailto:')) return href.replace('mailto:', '');
+    return href;
+}
+
+/**
+ * Copy text to clipboard
+ * @param {string} text - Text to copy
+ * @returns {Promise<boolean>} - Success status
+ */
+async function copyToClipboard(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;left:-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            return true;
+        } catch {
+            document.body.removeChild(ta);
+            return false;
+        }
+    }
+}
+
+/**
+ * Show "Copied" tooltip near element
+ * @param {HTMLElement} element - Element to show tooltip near
+ * @param {string} lang - Current language ('ru' or 'en')
+ */
+function showCopyTooltip(element, lang) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'copy-tooltip';
+    tooltip.textContent = lang === 'ru' ? 'Скопировано!' : 'Copied!';
+
+    const rect = element.getBoundingClientRect();
+    tooltip.style.cssText = `position:fixed;left:${rect.left + rect.width / 2}px;top:${rect.top - 10}px;transform:translate(-50%,-100%)`;
+    document.body.appendChild(tooltip);
+
+    requestAnimationFrame(() => tooltip.classList.add('copy-tooltip--visible'));
+
+    setTimeout(() => {
+        tooltip.classList.add('copy-tooltip--hiding');
+        setTimeout(() => tooltip.remove(), 300);
+    }, 1500);
+}
+
+/**
+ * Initialize copy on badge click functionality
+ */
+function initCopyOnBadgeClick() {
+    document.querySelectorAll('.category-badge').forEach(badge => {
+        badge.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const card = badge.closest('.bento-card');
+            if (!card) return;
+
+            const href = card.getAttribute('href');
+            if (!href) return;
+
+            const success = await copyToClipboard(extractCopyData(href));
+            if (success) showCopyTooltip(badge, currentLang);
+        });
+    });
+}
+
+/* ========================================
    Main Initialization
    ======================================== */
 function init() {
@@ -337,6 +422,7 @@ function init() {
     initTheme();
     initBackgroundVideo();
     initYandexMetrika();
+    initCopyOnBadgeClick();
 }
 
 // Initialize when DOM is ready
