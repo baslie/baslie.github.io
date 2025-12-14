@@ -626,6 +626,11 @@ html.lenis {
     #background-video {
         display: none;
     }
+
+    body {
+        background: url('../images/bg.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 }
 
 /* Отключение blur на мобильных для производительности GPU */
