@@ -248,22 +248,8 @@ body::before {
     box-shadow: var(--shadow-hover-dark);
 }
 
-/* Hover-изображение для профиля */
-.card-profile::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('../images/roman-lol.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: var(--radius);
-    opacity: 0;
-    transition: opacity var(--transition-default);
-    pointer-events: none;
-}
-
-.card-profile:hover::after {
-    opacity: 1;
+.card-profile:hover .profile-image {
+    transform: scale(1.1);
 }
 
 /* ========================================
@@ -323,8 +309,8 @@ body::before {
    Profile
    ======================================== */
 .profile-image {
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     margin-bottom: 1rem;
     transition: transform var(--transition-default);
