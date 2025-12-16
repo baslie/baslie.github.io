@@ -414,6 +414,35 @@ function initCopyOnBadgeClick() {
 }
 
 /* ========================================
+   Profile Image Toggle (Mobile)
+   ======================================== */
+function initProfileImageToggle() {
+    const profileCard = document.querySelector('.card-profile');
+    if (!profileCard) return;
+
+    let isHoverImage = false;
+
+    profileCard.addEventListener('click', (e) => {
+        // Не переключаем если кликнули по ссылке
+        if (e.target.closest('a')) return;
+
+        // Проверяем, поддерживает ли устройство hover
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+        if (hasHover) return;
+
+        isHoverImage = !isHoverImage;
+
+        const defaultImg = profileCard.querySelector('.profile-image--default');
+        const hoverImg = profileCard.querySelector('.profile-image--hover');
+
+        if (defaultImg && hoverImg) {
+            defaultImg.style.opacity = isHoverImage ? '0' : '1';
+            hoverImg.style.opacity = isHoverImage ? '1' : '0';
+        }
+    });
+}
+
+/* ========================================
    Main Initialization
    ======================================== */
 function init() {
@@ -423,6 +452,7 @@ function init() {
     initBackgroundVideo();
     initYandexMetrika();
     initCopyOnBadgeClick();
+    initProfileImageToggle();
 }
 
 // Initialize when DOM is ready

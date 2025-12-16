@@ -121,7 +121,7 @@
 
 @media (min-width: 1200px) {
     :root {
-        --hover-border-width: 8px;
+        --hover-border-width: 6px;
     }
 }
 
@@ -542,7 +542,7 @@ html.lenis {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 50%;
     opacity: 0.8;
     transition: opacity var(--transition-default), transform 0.2s ease;
     cursor: pointer;
