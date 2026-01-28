@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Открытие нового промышленного парка — АИР Томской области</title>
+    <meta name="description" content="В Томской области состоялось торжественное открытие нового промышленного парка">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .burger-menu { display: none; }
+        @media (max-width: 1279px) {
+            .burger-menu { display: block; }
+            .desktop-nav { display: none; }
+        }
+        .nav-link { transition: background-color 0.2s ease; }
+        .prose p { margin-bottom: 1em; }
+        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2em; margin-bottom: 0.5em; }
+        .prose ul { list-style: disc; margin-left: 1.5em; margin-bottom: 1em; }
+        .prose li { margin-bottom: 0.25em; }
+        .prose blockquote { border-left: 4px solid #9ca3af; padding-left: 1em; font-style: italic; margin: 1em 0; }
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white w-64 h-full p-6">
+            <button onclick="toggleMobileMenu()" class="mb-6 text-2xl">&times;</button>
+            <nav class="flex flex-col gap-4">
+                <a href="region.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">О регионе</a>
+                <a href="investor.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Инвестору</a>
+                <a href="news-list.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200 bg-gray-100 font-medium">Новости</a>
+                <a href="standard.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Регинвестстандарт</a>
+                <a href="brand.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Выбирай своё</a>
+                <a href="contacts.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Контакты</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-300 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleMobileMenu()" class="burger-menu p-2 hover:bg-gray-100 rounded">
+                        <span class="text-2xl">☰</span>
+                    </button>
+                    <a href="home.html" class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gray-300 rounded flex items-center justify-center text-xs text-gray-600">LOGO</div>
+                        <span class="font-bold text-lg hidden sm:block">АИР ТО</span>
+                    </a>
+                    <div class="w-10 h-10 bg-gray-300 rounded flex items-center justify-center text-xs text-gray-600 hidden md:flex">ГЕРБ</div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="tel:+73822000000" class="hidden md:flex items-center gap-2 text-gray-700 hover:text-black">
+                        <span>☎</span>
+                        <span>+7 (3822) XX-XX-XX</span>
+                    </a>
+                    <div class="relative hidden sm:block">
+                        <input type="text" placeholder="Поиск..." class="border border-gray-300 rounded px-3 py-1 w-32 lg:w-48 text-sm">
+                        <button class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500">🔍</button>
+                    </div>
+                    <div class="flex items-center gap-1 text-sm">
+                        <button class="px-2 py-1 bg-gray-200 rounded font-medium">RU</button>
+                        <button class="px-2 py-1 hover:bg-gray-100 rounded">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- VERTICAL NAV (Desktop) -->
+        <aside class="desktop-nav w-52 min-h-screen bg-gray-100 border-r border-gray-300 flex-shrink-0 sticky top-16 self-start">
+            <nav class="py-6">
+                <a href="region.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">О регионе</a>
+                <a href="investor.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Инвестору</a>
+                <a href="news-list.html" class="nav-link block py-3 px-6 bg-gray-200 border-l-4 border-black font-medium">Новости</a>
+                <a href="standard.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Регинвестстандарт</a>
+                <a href="brand.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Выбирай своё</a>
+                <a href="contacts.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Контакты</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 min-w-0 py-6 px-4 md:px-8">
+            <!-- BREADCRUMBS -->
+            <nav class="text-sm text-gray-600 mb-4">
+                <a href="home.html" class="hover:text-black">Главная</a>
+                <span class="mx-2">/</span>
+                <a href="news-list.html" class="hover:text-black">Новости</a>
+                <span class="mx-2">/</span>
+                <span class="text-black">Открытие нового промышленного парка...</span>
+            </nav>
+
+            <!-- ARTICLE -->
+            <article class="max-w-3xl">
+                <!-- Date -->
+                <time datetime="2025-01-15" class="text-gray-500">15 января 2025</time>
+
+                <!-- Title -->
+                <h1 class="text-2xl md:text-3xl font-bold mt-2 mb-6">
+                    Открытие нового промышленного парка в Томской области
+                </h1>
+
+                <!-- Main Image -->
+                <figure class="mb-6">
+                    <div class="bg-gray-300 h-64 md:h-80 lg:h-96 rounded-lg flex items-center justify-center text-gray-600">
+                        Главное изображение новости
+                    </div>
+                    <figcaption class="text-sm text-gray-500 mt-2 text-center">
+                        Торжественная церемония открытия промышленного парка
+                    </figcaption>
+                </figure>
+
+                <!-- Content -->
+                <div class="prose text-gray-800 leading-relaxed">
+                    <p>
+                        В Томской области состоялось торжественное открытие нового промышленного парка.
+                        Мероприятие посетили представители регионального правительства, руководители
+                        предприятий и потенциальные инвесторы.
+                    </p>
+
+                    <p>
+                        Новый промышленный парк расположен на территории площадью более 50 гектаров и
+                        предоставляет резидентам полностью подготовленную инфраструктуру для размещения
+                        производственных мощностей.
+                    </p>
+
+                    <h2>Преимущества нового промышленного парка</h2>
+
+                    <p>
+                        Резидентам промышленного парка доступны следующие преимущества:
+                    </p>
+
+                    <ul>
+                        <li>Подготовленные земельные участки с полной инженерной инфраструктурой</li>
+                        <li>Налоговые льготы и преференции для резидентов</li>
+                        <li>Удобная транспортная логистика</li>
+                        <li>Доступ к квалифицированным кадрам</li>
+                        <li>Сопровождение проектов на всех этапах реализации</li>
+                    </ul>
+
+                    <!-- Inline Image -->
+                    <figure class="my-6">
+                        <div class="bg-gray-300 h-48 md:h-64 rounded-lg flex items-center justify-center text-gray-600">
+                            Изображение в тексте статьи
+                        </div>
+                        <figcaption class="text-sm text-gray-500 mt-2 text-center">
+                            Вид на территорию промышленного парка
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        На сегодняшний день уже подписаны соглашения с несколькими крупными инвесторами,
+                        которые планируют разместить свои производства на территории парка.
+                    </p>
+
+                    <blockquote>
+                        «Открытие нового промышленного парка — это важный шаг в развитии инвестиционного
+                        потенциала Томской области. Мы создаём все условия для комфортного ведения бизнеса
+                        и готовы оказать всестороннюю поддержку инвесторам», — отметил губернатор области.
+                    </blockquote>
+
+                    <p>
+                        Агентство инвестиционного развития Томской области приглашает заинтересованных
+                        инвесторов ознакомиться с возможностями нового промышленного парка и обсудить
+                        условия размещения производств.
+                    </p>
+                </div>
+            </article>
+
+            <!-- SHARE BLOCK -->
+            <div class="border-t border-gray-200 pt-6 mt-8 max-w-3xl">
+                <div class="flex flex-wrap items-center gap-4">
+                    <span class="font-medium">Поделиться:</span>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition" title="ВКонтакте">
+                            VK
+                        </button>
+                        <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition" title="Telegram">
+                            TG
+                        </button>
+                        <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition" title="Одноклассники">
+                            OK
+                        </button>
+                        <button class="h-10 px-4 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition gap-2" title="Копировать ссылку">
+                            📋 <span class="hidden sm:inline">Копировать ссылку</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAVIGATION BLOCK -->
+            <div class="border-t border-gray-200 pt-6 mt-6 max-w-3xl">
+                <div class="flex justify-between">
+                    <a href="#" class="text-gray-600 hover:text-black flex items-center gap-2">
+                        <span>←</span>
+                        <span class="hidden sm:inline">Предыдущая новость</span>
+                        <span class="sm:hidden">Назад</span>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-black flex items-center gap-2">
+                        <span class="hidden sm:inline">Следующая новость</span>
+                        <span class="sm:hidden">Вперёд</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- RELATED NEWS -->
+            <section class="mt-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-6">Другие новости</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Related Card 1 -->
+                    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                        <a href="news-detail.html">
+                            <div class="bg-gray-300 h-40 flex items-center justify-center text-gray-600 text-sm">
+                                Image Placeholder
+                            </div>
+                        </a>
+                        <div class="p-4">
+                            <time datetime="2025-01-14" class="text-sm text-gray-500">14 января 2025</time>
+                            <h3 class="font-bold mt-2">
+                                <a href="news-detail.html" class="hover:text-gray-600">
+                                    Подписано соглашение с крупным инвестором
+                                </a>
+                            </h3>
+                        </div>
+                    </article>
+
+                    <!-- Related Card 2 -->
+                    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                        <a href="news-detail.html">
+                            <div class="bg-gray-300 h-40 flex items-center justify-center text-gray-600 text-sm">
+                                Image Placeholder
+                            </div>
+                        </a>
+                        <div class="p-4">
+                            <time datetime="2025-01-13" class="text-sm text-gray-500">13 января 2025</time>
+                            <h3 class="font-bold mt-2">
+                                <a href="news-detail.html" class="hover:text-gray-600">
+                                    Итоги года: рост инвестиций в регион
+                                </a>
+                            </h3>
+                        </div>
+                    </article>
+
+                    <!-- Related Card 3 -->
+                    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                        <a href="news-detail.html">
+                            <div class="bg-gray-300 h-40 flex items-center justify-center text-gray-600 text-sm">
+                                Image Placeholder
+                            </div>
+                        </a>
+                        <div class="p-4">
+                            <time datetime="2025-01-12" class="text-sm text-gray-500">12 января 2025</time>
+                            <h3 class="font-bold mt-2">
+                                <a href="news-detail.html" class="hover:text-gray-600">
+                                    Новые меры поддержки для инвесторов
+                                </a>
+                            </h3>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- BACK LINK -->
+            <div class="mt-8 text-center">
+                <a href="news-list.html" class="inline-flex items-center gap-2 text-gray-600 hover:text-black border border-gray-300 rounded px-6 py-3 hover:bg-gray-50 transition">
+                    ← Все новости
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 border-t border-gray-300 py-8">
+        <div class="max-w-5xl mx-auto px-4 text-center md:text-left">
+            <p class="font-bold mb-4">АНО «Агентство инвестиционного развития Томской области»</p>
+            <div class="grid md:grid-cols-3 gap-4 text-gray-700 text-sm mb-6">
+                <p>📍 Адрес: г. Томск, пр. Ленина, д. XX</p>
+                <p>☎ Телефон: +7 (3822) XX-XX-XX</p>
+                <p>✉ E-mail: info@air-tomsk.ru</p>
+            </div>
+            <p class="text-gray-500 text-sm">© 2025 АИР ТО. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

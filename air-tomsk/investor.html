@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инвестору — АИР Томской области</title>
+    <meta name="description" content="Центр развития бизнеса Томской области — сопровождение инвестиционных проектов">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .burger-menu { display: none; }
+        @media (max-width: 1279px) {
+            .burger-menu { display: block; }
+            .desktop-nav { display: none; }
+        }
+        .nav-link { transition: background-color 0.2s ease; }
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white w-64 h-full p-6">
+            <button onclick="toggleMobileMenu()" class="mb-6 text-2xl">&times;</button>
+            <nav class="flex flex-col gap-4">
+                <a href="region.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">О регионе</a>
+                <a href="investor.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200 bg-gray-100 font-medium">Инвестору</a>
+                <a href="news-list.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Новости</a>
+                <a href="standard.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Регинвестстандарт</a>
+                <a href="brand.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Выбирай своё</a>
+                <a href="contacts.html" class="py-2 px-3 hover:bg-gray-100 border-b border-gray-200">Контакты</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-300 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleMobileMenu()" class="burger-menu p-2 hover:bg-gray-100 rounded">
+                        <span class="text-2xl">☰</span>
+                    </button>
+                    <a href="home.html" class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gray-300 rounded flex items-center justify-center text-xs text-gray-600">LOGO</div>
+                        <span class="font-bold text-lg hidden sm:block">АИР ТО</span>
+                    </a>
+                    <div class="w-10 h-10 bg-gray-300 rounded flex items-center justify-center text-xs text-gray-600 hidden md:flex">ГЕРБ</div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="tel:+73822000000" class="hidden md:flex items-center gap-2 text-gray-700 hover:text-black">
+                        <span>☎</span>
+                        <span>+7 (3822) XX-XX-XX</span>
+                    </a>
+                    <div class="relative hidden sm:block">
+                        <input type="text" placeholder="Поиск..." class="border border-gray-300 rounded px-3 py-1 w-32 lg:w-48 text-sm">
+                        <button class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500">🔍</button>
+                    </div>
+                    <div class="flex items-center gap-1 text-sm">
+                        <button class="px-2 py-1 bg-gray-200 rounded font-medium">RU</button>
+                        <button class="px-2 py-1 hover:bg-gray-100 rounded">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- VERTICAL NAV (Desktop) -->
+        <aside class="desktop-nav w-52 min-h-screen bg-gray-100 border-r border-gray-300 flex-shrink-0 sticky top-16 self-start">
+            <nav class="py-6">
+                <a href="region.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">О регионе</a>
+                <a href="investor.html" class="nav-link block py-3 px-6 bg-gray-200 border-l-4 border-black font-medium">Инвестору</a>
+                <a href="news-list.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Новости</a>
+                <a href="standard.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Регинвестстандарт</a>
+                <a href="brand.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Выбирай своё</a>
+                <a href="contacts.html" class="nav-link block py-3 px-6 hover:bg-gray-200 border-l-4 border-transparent hover:border-gray-400">Контакты</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 min-w-0 py-6 px-4 md:px-8">
+            <!-- BREADCRUMBS -->
+            <nav class="text-sm text-gray-600 mb-4">
+                <a href="home.html" class="hover:text-black">Главная</a>
+                <span class="mx-2">/</span>
+                <span class="text-black">Инвестору</span>
+            </nav>
+
+            <!-- PAGE TITLE -->
+            <h1 class="text-2xl md:text-3xl font-bold mb-6">Центр развития бизнеса</h1>
+
+            <!-- CONTENT WITH SIDE NAV -->
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Side Navigation -->
+                <aside class="lg:w-56 flex-shrink-0">
+                    <!-- Mobile: Accordion -->
+                    <div class="lg:hidden mb-4">
+                        <button onclick="toggleSideNav()" class="w-full flex items-center justify-between bg-gray-100 border border-gray-200 rounded px-4 py-3">
+                            <span class="font-medium">Разделы</span>
+                            <span id="side-nav-arrow">▼</span>
+                        </button>
+                        <div id="side-nav-mobile" class="hidden border border-t-0 border-gray-200 rounded-b">
+                            <a href="investor.html" class="block py-3 px-4 bg-gray-100 font-medium border-l-4 border-black">Центр развития бизнеса</a>
+                            <a href="#" class="block py-3 px-4 hover:bg-gray-50 border-l-4 border-transparent">Инфраструктура поддержки</a>
+                            <a href="#" class="block py-3 px-4 hover:bg-gray-50 border-l-4 border-transparent">Меры поддержки</a>
+                            <a href="#" class="block py-3 px-4 hover:bg-gray-50 border-l-4 border-transparent">Предложения муниципалитетов</a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop: Sticky side nav -->
+                    <nav class="hidden lg:block sticky top-24 bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
+                        <a href="investor.html" class="block py-3 px-4 bg-gray-200 font-medium border-l-4 border-black">Центр развития бизнеса</a>
+                        <a href="#" class="block py-3 px-4 hover:bg-gray-100 border-l-4 border-transparent hover:border-gray-400">Инфраструктура поддержки</a>
+                        <a href="#" class="block py-3 px-4 hover:bg-gray-100 border-l-4 border-transparent hover:border-gray-400">Меры поддержки</a>
+                        <a href="#" class="block py-3 px-4 hover:bg-gray-100 border-l-4 border-transparent hover:border-gray-400">Предложения муниципалитетов</a>
+                    </nav>
+                </aside>
+
+                <!-- Content Area -->
+                <div class="flex-1">
+                    <!-- Intro Text -->
+                    <div class="prose max-w-none text-gray-800 leading-relaxed mb-8">
+                        <p class="mb-4">
+                            Агентство инвестиционного развития Томской области оказывает бесплатную
+                            консультационную поддержку инвесторам на всех этапах реализации проектов.
+                        </p>
+                        <p class="mb-4">
+                            Мы помогаем подобрать оптимальные меры государственной поддержки,
+                            сопровождаем взаимодействие с органами власти и содействуем в решении
+                            организационных вопросов.
+                        </p>
+                    </div>
+
+                    <!-- Investor Path -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+                        <h2 class="font-bold text-lg mb-6">ПУТЬ ИНВЕСТОРА</h2>
+
+                        <!-- Path Steps -->
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-2 mb-6">
+                            <!-- Step 1 -->
+                            <div class="flex-1 text-center">
+                                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-2">
+                                    1
+                                </div>
+                                <p class="font-medium">Заявка</p>
+                                <p class="text-sm text-gray-600">Подача заявки</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="hidden md:block text-2xl text-gray-400">→</div>
+
+                            <!-- Step 2 -->
+                            <div class="flex-1 text-center">
+                                <div class="w-16 h-16 bg-gray-300 text-black rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-2">
+                                    2
+                                </div>
+                                <p class="font-medium">Консультация</p>
+                                <p class="text-sm text-gray-600">Анализ проекта</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="hidden md:block text-2xl text-gray-400">→</div>
+
+                            <!-- Step 3 -->
+                            <div class="flex-1 text-center">
+                                <div class="w-16 h-16 bg-gray-300 text-black rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-2">
+                                    3
+                                </div>
+                                <p class="font-medium">Сопровождение</p>
+                                <p class="text-sm text-gray-600">Помощь в оформлении</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="hidden md:block text-2xl text-gray-400">→</div>
+
+                            <!-- Step 4 -->
+                            <div class="flex-1 text-center">
+                                <div class="w-16 h-16 bg-gray-300 text-black rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-2">
+                                    4
+                                </div>
+                                <p class="font-medium">Реализация</p>
+                                <p class="text-sm text-gray-600">Запуск проекта</p>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="#" class="text-sm font-medium hover:text-gray-600">
+                                Подробнее о каждом этапе →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Documents Block -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                        <h2 class="font-bold text-lg mb-4">Пакет документов</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xl">📄</span>
+                                    <span>Заявка инвестора.docx</span>
+                                </div>
+                                <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition">
+                                    ⬇
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xl">📄</span>
+                                    <span>Бизнес-план (шаблон).xlsx</span>
+                                </div>
+                                <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition">
+                                    ⬇
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xl">📄</span>
+                                    <span>Перечень документов.pdf</span>
+                                </div>
+                                <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition">
+                                    ⬇
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded hover:bg-gray-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xl">📄</span>
+                                    <span>Инвестиционная декларация.pdf</span>
+                                </div>
+                                <button class="w-10 h-10 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition">
+                                    ⬇
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFRASTRUCTURE PREVIEW -->
+            <section class="mt-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-6">Инфраструктура поддержки инвесторов</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Org Card 1 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">Департамент инвестиционной политики ТО</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Координация инвестиционной политики региона
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 2 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">АИР ТО</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Сопровождение инвестиционных проектов
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 3 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">Центр «Мой бизнес»</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Поддержка малого и среднего бизнеса
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 4 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">ОЭЗ ТВТ «Томск»</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Особая экономическая зона
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 5 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">Промышленный парк «Томск»</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Производственные площадки
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 6 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">ТОР «Северск»</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Территория опережающего развития
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 7 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">Центр поддержки экспорта</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Поддержка экспортной деятельности
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 8 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">Фонд развития промышленности ТО</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Льготное финансирование промышленных проектов
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+
+                    <!-- Org Card 9 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-gray-300 rounded flex items-center justify-center text-gray-600 text-xs mb-4">
+                            LOGO
+                        </div>
+                        <h3 class="font-bold mb-2">Фонд микрофинансирования ТО</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Микрозаймы для малого бизнеса
+                        </p>
+                        <a href="#" class="text-sm font-medium hover:text-gray-600">
+                            Подробнее →
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 border-t border-gray-300 py-8">
+        <div class="max-w-5xl mx-auto px-4 text-center md:text-left">
+            <p class="font-bold mb-4">АНО «Агентство инвестиционного развития Томской области»</p>
+            <div class="grid md:grid-cols-3 gap-4 text-gray-700 text-sm mb-6">
+                <p>📍 Адрес: г. Томск, пр. Ленина, д. XX</p>
+                <p>☎ Телефон: +7 (3822) XX-XX-XX</p>
+                <p>✉ E-mail: info@air-tomsk.ru</p>
+            </div>
+            <p class="text-gray-500 text-sm">© 2025 АИР ТО. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleSideNav() {
+            const nav = document.getElementById('side-nav-mobile');
+            const arrow = document.getElementById('side-nav-arrow');
+            nav.classList.toggle('hidden');
+            arrow.textContent = nav.classList.contains('hidden') ? '▼' : '▲';
+        }
+    </script>
+</body>
+</html>
