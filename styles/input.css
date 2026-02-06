@@ -1,0 +1,850 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --breakpoint-lg: 75rem;  /* 1200px */
+    --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+/* ========================================
+   CSS Variables
+   ======================================== */
+:root {
+    /* Цвета */
+    --color-bg: #222222;
+    --color-text: #111827;
+    --color-text-light: #F9FAFB;
+    --color-text-muted: #6B7280;
+
+    /* Accent цвет (золотой) */
+    --color-accent: rgba(245, 158, 11, 0.6);
+    --color-link: #3B82F6;
+
+    /* Цвета иконок - брендовые цвета */
+    --icon-portfolio: #F59E0B;
+    --icon-resume: #08b237;
+    --icon-phone: #6B7280;
+    --icon-mail: #EA580C;
+    --icon-telegram: #0088CC;
+    --icon-max: #863DD9;
+    --icon-instagram: #E4405F;
+    --icon-vk: #0077FF;
+    --icon-youtube: #FF0000;
+    --icon-github: #333333;
+    --icon-blog: #0088CC;
+    --icon-vc: #FF5A5F;
+
+    /* Цвета иконок для тёмной темы (ярче) */
+    --icon-portfolio-dark: #FCD34D;
+    --icon-resume-dark: #34D399;
+    --icon-phone-dark: #9CA3AF;
+    --icon-mail-dark: #F97316;
+    --icon-telegram-dark: #38BDF8;
+    --icon-max-dark: #A05CED;
+    --icon-instagram-dark: #F472B6;
+    --icon-vk-dark: #60A5FA;
+    --icon-youtube-dark: #F87171;
+    --icon-github-dark: #E5E7EB;
+    --icon-blog-dark: #38BDF8;
+    --icon-vc-dark: #FB7185;
+
+    /* Размеры */
+    --radius: 1.5rem;
+    --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --shadow-hover-dark: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    /* Hover эффекты */
+    --hover-translate: -4px;
+    --hover-scale: 1.02;
+    --hover-border-width: 4px;
+
+    /* Анимации */
+    --animation-delay-step: 0.05s;
+    --transition-default: 0.3s ease;
+
+    /* Blur */
+    --blur-amount: 16px;
+    --blur-mobile: 12px;
+
+    /* Overlay */
+    --overlay-light: rgba(0, 0, 0, 0.3);
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+
+    /* Overlay для цветных карточек в тёмной теме */
+    --card-overlay-dark: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+
+    /* Category badges - светлая тема */
+    --badge-work: rgba(245, 158, 11, 0.7);
+    --badge-work-bg: rgba(245, 158, 11, 0.12);
+    --badge-projects: rgba(139, 92, 246, 0.7);
+    --badge-projects-bg: rgba(139, 92, 246, 0.10);
+    --badge-contacts: rgba(107, 114, 128, 0.7);
+    --badge-contacts-bg: rgba(107, 114, 128, 0.10);
+    --badge-social: rgba(59, 130, 246, 0.7);
+    --badge-social-bg: rgba(59, 130, 246, 0.10);
+
+    /* Hover-обводки по категориям */
+    --hover-border-work: rgba(245, 158, 11, 0.7);
+    --hover-border-projects: rgba(139, 92, 246, 0.7);
+    --hover-border-contacts: rgba(107, 114, 128, 0.7);
+    --hover-border-social: rgba(59, 130, 246, 0.7);
+
+    /* Фоны карточек */
+    --card-bg: rgba(255, 255, 255, 1);
+    --card-bg-dark: rgba(30, 30, 30, 0.75);
+    --card-bg-dark-hover: rgba(40, 40, 40, 0.92);
+    --card-shadow-dark: rgba(0, 0, 0, 0.3);
+
+    /* Фирменные фоны для цветных карточек */
+    --card-bg-portfolio: #F59E0B;
+    --card-bg-resume: #08b237;
+    --card-bg-phone: #6B7280;
+    --card-bg-mail: #EA580C;
+    --card-bg-telegram: #0088CC;
+    --card-bg-max: #863DD9;
+    --card-bg-instagram: #E4405F;
+    --card-bg-vk: #0077FF;
+    --card-bg-youtube: #FF0000;
+    --card-bg-github: #333333;
+    --card-bg-blog: #0088CC;
+    --card-bg-vc: #FF5A5F;
+    --card-bg-tomsk-walk: #0D571B;
+    --card-bg-gist: #333333;
+
+    /* Фоны кнопок управления */
+    --btn-bg: rgba(255, 255, 255, 0.75);
+    --btn-border: rgba(255, 255, 255, 0.3);
+    --btn-bg-dark: rgba(30, 30, 30, 0.75);
+    --btn-border-dark: rgba(255, 255, 255, 0.1);
+}
+
+/* Category badges - тёмная тема */
+.dark {
+    --badge-work: rgba(251, 191, 36, 0.8);
+    --badge-work-bg: rgba(251, 191, 36, 0.15);
+    --badge-projects: rgba(167, 139, 250, 0.8);
+    --badge-projects-bg: rgba(167, 139, 250, 0.15);
+    --badge-contacts: rgba(156, 163, 175, 0.8);
+    --badge-contacts-bg: rgba(156, 163, 175, 0.15);
+    --badge-social: rgba(96, 165, 250, 0.8);
+    --badge-social-bg: rgba(96, 165, 250, 0.15);
+
+    /* Hover-обводки по категориям - тёмная тема */
+    --hover-border-work: rgba(251, 191, 36, 0.8);
+    --hover-border-projects: rgba(167, 139, 250, 0.8);
+    --hover-border-contacts: rgba(156, 163, 175, 0.8);
+    --hover-border-social: rgba(96, 165, 250, 0.8);
+}
+
+/* Breakpoint-зависимые переменные */
+@media (min-width: 768px) {
+    :root {
+        --hover-border-width: 6px;
+    }
+}
+
+/* ========================================
+   Background Video
+   ======================================== */
+#background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+/* ========================================
+   Overlay
+   ======================================== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--overlay-light);
+    z-index: -1;
+}
+
+.dark body::before {
+    background: var(--overlay-dark);
+}
+
+/* ========================================
+   Glassmorphism Cards
+   ======================================== */
+.bento-card {
+    position: relative;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition-default), box-shadow var(--transition-default), background var(--transition-default);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem;
+    text-decoration: none;
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+    border: none;
+}
+
+.bento-card:hover {
+    transform: translateY(var(--hover-translate)) scale(var(--hover-scale));
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--color-accent);
+    background: var(--card-bg);
+}
+
+/* Цветные hover-обводки по категориям */
+.bento-card[data-category="work"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-work);
+}
+
+.bento-card[data-category="projects"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-projects);
+}
+
+.bento-card[data-category="contacts"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-contacts);
+}
+
+.bento-card[data-category="social"]:hover {
+    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-social);
+}
+
+/* Dark mode cards */
+.dark .bento-card {
+    background: var(--card-bg-dark);
+    border: none;
+    box-shadow: 0 4px 30px var(--card-shadow-dark);
+}
+
+.dark .bento-card:hover {
+    background: var(--card-bg-dark-hover);
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--color-accent);
+}
+
+/* Цветные hover-обводки по категориям - тёмная тема */
+.dark .bento-card[data-category="work"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-work);
+}
+
+.dark .bento-card[data-category="projects"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-projects);
+}
+
+.dark .bento-card[data-category="contacts"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-contacts);
+}
+
+.dark .bento-card[data-category="social"]:hover {
+    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-social);
+}
+
+/* ========================================
+   Profile Card
+   ======================================== */
+.card-profile {
+    text-align: center;
+    align-items: center;
+    padding-inline: 2.5rem;
+}
+
+.card-profile:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.dark .card-profile:hover {
+    box-shadow: var(--shadow-hover-dark);
+}
+
+
+/* ========================================
+   Icon Colors
+   ======================================== */
+.icon-portfolio { color: var(--icon-portfolio); }
+.icon-resume { color: var(--icon-resume); }
+.icon-phone { color: var(--icon-phone); }
+.icon-mail { color: var(--icon-mail); }
+.icon-telegram { color: var(--icon-telegram); }
+.icon-max { color: var(--icon-max); }
+.icon-instagram { color: var(--icon-instagram); }
+.icon-vk { color: var(--icon-vk); fill: currentColor; }
+.icon-youtube { color: var(--icon-youtube); }
+.icon-github { color: var(--icon-github); }
+.icon-blog { color: var(--icon-blog); }
+.icon-vc { color: var(--icon-vc); fill: currentColor; }
+
+/* Dark mode icons (brighter) */
+.dark .icon-portfolio { color: var(--icon-portfolio-dark); }
+.dark .icon-resume { color: var(--icon-resume-dark); }
+.dark .icon-phone { color: var(--icon-phone-dark); }
+.dark .icon-mail { color: var(--icon-mail-dark); }
+.dark .icon-telegram { color: var(--icon-telegram-dark); }
+.dark .icon-max { color: var(--icon-max-dark); }
+.dark .icon-instagram { color: var(--icon-instagram-dark); }
+.dark .icon-vk { color: var(--icon-vk-dark); }
+.dark .icon-youtube { color: var(--icon-youtube-dark); }
+.dark .icon-github { color: var(--icon-github-dark); }
+.dark .icon-blog { color: var(--icon-blog-dark); }
+.dark .icon-vc { color: var(--icon-vc-dark); }
+
+/* ========================================
+   Card Text
+   ======================================== */
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.card-description {
+    font-size: 0.875rem;
+    color: var(--color-text);
+}
+
+.card-meta {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--color-text);
+    opacity: 0.6;
+    margin-top: 0.15rem;
+}
+
+.dark .card-title {
+    color: var(--color-text-light);
+}
+
+.dark .card-description {
+    color: var(--color-text-light);
+}
+
+.dark .card-meta {
+    color: var(--color-text-light);
+}
+
+/* ========================================
+   Colored Cards (data-card-type)
+   ИНВЕРТИРОВАННАЯ ЛОГИКА:
+   - По умолчанию: белый фон, цветные иконки, тёмный текст
+   - При hover: цветной фон, белый текст и иконки
+   ======================================== */
+
+/* Локальные переменные для каждого типа карточки */
+.bento-card[data-card-type="portfolio"] { --_icon-color: var(--icon-portfolio); --_hover-bg: var(--card-bg-portfolio); }
+.bento-card[data-card-type="resume"]    { --_icon-color: var(--icon-resume);    --_hover-bg: var(--card-bg-resume); }
+.bento-card[data-card-type="phone"]     { --_icon-color: var(--icon-phone);     --_hover-bg: var(--card-bg-phone); }
+.bento-card[data-card-type="mail"]      { --_icon-color: var(--icon-mail);      --_hover-bg: var(--card-bg-mail); }
+.bento-card[data-card-type="telegram"]  { --_icon-color: var(--icon-telegram);  --_hover-bg: var(--card-bg-telegram); }
+.bento-card[data-card-type="max"]       { --_icon-color: var(--icon-max);       --_hover-bg: var(--card-bg-max); }
+.bento-card[data-card-type="instagram"] { --_icon-color: var(--icon-instagram); --_hover-bg: var(--card-bg-instagram); }
+.bento-card[data-card-type="vk"]        { --_icon-color: var(--icon-vk);        --_hover-bg: var(--card-bg-vk); }
+.bento-card[data-card-type="youtube"]   { --_icon-color: var(--icon-youtube);   --_hover-bg: var(--card-bg-youtube); }
+.bento-card[data-card-type="github"]    { --_icon-color: var(--icon-github);    --_hover-bg: var(--card-bg-github); }
+.bento-card[data-card-type="gist"]      { --_icon-color: var(--icon-github);    --_hover-bg: var(--card-bg-gist); }
+.bento-card[data-card-type="blog"]      { --_icon-color: var(--icon-blog);      --_hover-bg: var(--card-bg-blog); }
+.bento-card[data-card-type="vc"]        { --_icon-color: var(--icon-vc);        --_hover-bg: var(--card-bg-vc); }
+.bento-card[data-card-type="tomsk-walk"] { --_hover-bg: var(--card-bg-tomsk-walk); }
+
+/* Тёмная тема — переопределение цвета иконок для тёмных брендов */
+.dark .bento-card[data-card-type="github"] { --_icon-color: var(--icon-github-dark); }
+.dark .bento-card[data-card-type="gist"]   { --_icon-color: var(--icon-github-dark); }
+
+/* Общие стили для всех цветных карточек */
+.bento-card[data-card-type] {
+    background: var(--card-bg);
+}
+
+.bento-card[data-card-type] .card-title,
+.bento-card[data-card-type] .card-description,
+.bento-card[data-card-type] .card-meta {
+    color: var(--color-text);
+}
+
+.bento-card[data-card-type] [class*="icon-"] {
+    color: var(--_icon-color);
+}
+
+.bento-card[data-card-type]:hover {
+    background: var(--_hover-bg);
+    box-shadow: var(--shadow-hover);
+}
+
+.bento-card[data-card-type]:hover .card-title,
+.bento-card[data-card-type]:hover .card-description,
+.bento-card[data-card-type]:hover .card-meta,
+.bento-card[data-card-type]:hover [class*="icon-"] {
+    color: white;
+}
+
+/* Tomsk Walk — особая обработка для img */
+.bento-card[data-card-type="tomsk-walk"] img {
+    transition: filter var(--transition-default);
+}
+
+.bento-card[data-card-type="tomsk-walk"]:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* Category badges — при hover на карточке белые */
+.bento-card[data-card-type]:hover .category-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Dark mode для цветных карточек */
+.dark .bento-card[data-card-type] {
+    background: var(--card-bg-dark);
+}
+
+.dark .bento-card[data-card-type] .card-title,
+.dark .bento-card[data-card-type] .card-description,
+.dark .bento-card[data-card-type] .card-meta {
+    color: var(--color-text-light);
+}
+
+.dark .bento-card[data-card-type]:hover {
+    background: var(--card-overlay-dark), var(--_hover-bg);
+    box-shadow: var(--shadow-hover-dark);
+}
+
+.dark .bento-card[data-card-type]:hover .card-title,
+.dark .bento-card[data-card-type]:hover .card-description,
+.dark .bento-card[data-card-type]:hover .card-meta,
+.dark .bento-card[data-card-type]:hover [class*="icon-"] {
+    color: white;
+}
+
+.dark .bento-card[data-card-type]:hover .category-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Dark mode — Tomsk Walk img */
+.dark .bento-card[data-card-type="tomsk-walk"]:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* ========================================
+   Profile
+   ======================================== */
+.profile-image-wrapper {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 1rem;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: opacity var(--transition-default);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile-image--hover {
+    opacity: 0;
+}
+
+.card-profile:hover .profile-image--default {
+    opacity: 0;
+}
+
+.card-profile:hover .profile-image--hover {
+    opacity: 1;
+}
+
+.profile-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+}
+
+.dark .profile-title {
+    color: var(--color-text-light);
+}
+
+.profile-description {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Отступ между абзацами профиля */
+.profile-description + .profile-description {
+    margin-top: 0.6rem;
+}
+
+.dark .profile-description {
+    color: var(--color-text-light);
+}
+
+.inline-link {
+    color: var(--color-link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.inline-link:hover {
+    border-bottom-color: var(--color-link);
+}
+
+/* ========================================
+   Control Buttons
+   ======================================== */
+.control-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--btn-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid var(--btn-border);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+}
+
+.dark .control-btn {
+    background: var(--btn-bg-dark);
+    border: 1px solid var(--btn-border-dark);
+    color: var(--color-text-light);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* Language Toggle - Golden Pulse */
+#lang-toggle {
+    animation: lang-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes lang-pulse {
+    0%, 100% {
+        box-shadow: var(--shadow), 0 0 0 0 transparent;
+    }
+    50% {
+        box-shadow: var(--shadow), 0 0 12px 2px var(--color-accent);
+    }
+}
+
+/* Theme Toggle - Day/Night Gradient */
+#theme-toggle {
+    position: relative;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fcd34d, #f97316, #6366f1, #1e3a8a, #fcd34d);
+    background-size: 300% 300%;
+    animation: day-night 6s ease infinite;
+    z-index: -1;
+}
+
+#theme-toggle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--btn-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+}
+
+.dark #theme-toggle::after {
+    background: var(--btn-bg-dark);
+}
+
+#theme-toggle > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes day-night {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* ========================================
+   Lenis
+   ======================================== */
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+/* ========================================
+   Fade-in Animation
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Animation delays using CSS variable */
+.fade-in-delay-1 { animation-delay: calc(1 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-2 { animation-delay: calc(2 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-3 { animation-delay: calc(3 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-4 { animation-delay: calc(4 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-5 { animation-delay: calc(5 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-6 { animation-delay: calc(6 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-7 { animation-delay: calc(7 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-8 { animation-delay: calc(8 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-9 { animation-delay: calc(9 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-10 { animation-delay: calc(10 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-11 { animation-delay: calc(11 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-12 { animation-delay: calc(12 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-13 { animation-delay: calc(13 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-14 { animation-delay: calc(14 * var(--animation-delay-step)); opacity: 0; }
+.fade-in-delay-15 { animation-delay: calc(15 * var(--animation-delay-step)); opacity: 0; }
+
+/* ========================================
+   Mobile Styles
+   ======================================== */
+@media (max-width: 767px) {
+    .bento-card:not([data-card-type]) {
+        background: var(--card-bg);
+        backdrop-filter: blur(var(--blur-mobile));
+        -webkit-backdrop-filter: blur(var(--blur-mobile));
+    }
+
+    .dark .bento-card:not([data-card-type]) {
+        background: var(--card-bg-dark-hover);
+    }
+
+    .category-badge {
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        opacity: 1;
+    }
+
+    .category-badge svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* ========================================
+   Category Badges
+   ======================================== */
+.category-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: opacity var(--transition-default), transform 0.2s ease;
+    cursor: pointer;
+}
+
+.category-badge:hover {
+    transform: scale(1.15);
+}
+
+.category-badge:active {
+    transform: scale(0.95);
+}
+
+.bento-card:hover .category-badge {
+    opacity: 1;
+}
+
+/* Светлая тема — default: белые бейджики */
+.category-badge--work,
+.category-badge--projects,
+.category-badge--contacts,
+.category-badge--social {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--color-text-muted);
+}
+
+/* Светлая тема — hover: цветные бейджики */
+.bento-card:hover .category-badge--work {
+    background: var(--badge-work-bg);
+    color: var(--badge-work);
+}
+
+.bento-card:hover .category-badge--projects {
+    background: var(--badge-projects-bg);
+    color: var(--badge-projects);
+}
+
+.bento-card:hover .category-badge--contacts {
+    background: var(--badge-contacts-bg);
+    color: var(--badge-contacts);
+}
+
+.bento-card:hover .category-badge--social {
+    background: var(--badge-social-bg);
+    color: var(--badge-social);
+}
+
+/* Тёмная тема — default: тёмные бейджики */
+.dark .category-badge--work,
+.dark .category-badge--projects,
+.dark .category-badge--contacts,
+.dark .category-badge--social {
+    background: rgba(30, 30, 30, 0.8);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Тёмная тема — hover: приглушённые цветные бейджики */
+.dark .bento-card:hover .category-badge--work {
+    background: var(--badge-work-bg);
+    color: var(--badge-work);
+}
+
+.dark .bento-card:hover .category-badge--projects {
+    background: var(--badge-projects-bg);
+    color: var(--badge-projects);
+}
+
+.dark .bento-card:hover .category-badge--contacts {
+    background: var(--badge-contacts-bg);
+    color: var(--badge-contacts);
+}
+
+.dark .bento-card:hover .category-badge--social {
+    background: var(--badge-social-bg);
+    color: var(--badge-social);
+}
+
+/* ========================================
+   Copy Tooltip
+   ======================================== */
+.copy-tooltip {
+    position: fixed;
+    z-index: 9999;
+    padding: 0.5rem 0.75rem;
+    background: var(--card-bg);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.8);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.copy-tooltip--visible {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+}
+
+.copy-tooltip--hiding {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(-5px);
+}
+
+.dark .copy-tooltip {
+    background: var(--card-bg-dark-hover);
+    color: var(--color-text-light);
+}
+
+/* ========================================
+   Performance Optimizations (Mobile)
+   ======================================== */
+@media (max-width: 768px) {
+    /* Отключение видео для экономии трафика и GPU */
+    #background-video {
+        display: none;
+    }
+
+    body {
+        background: url('../images/bg.webp') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    /* Отключение blur для производительности GPU */
+    .bento-card,
+    .control-btn,
+    .copy-tooltip,
+    #theme-toggle::after {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .bento-card:not([data-card-type]) {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .dark .bento-card:not([data-card-type]) {
+        background: rgba(30, 30, 30, 0.95);
+    }
+
+    .control-btn {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .dark .control-btn,
+    .dark #theme-toggle::after {
+        background: rgba(30, 30, 30, 0.95);
+    }
+}
+
+/* Отключение анимаций для пользователей с соответствующей настройкой */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

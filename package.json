@@ -1,0 +1,25 @@
+{
+  "name": "baslie.github.io",
+  "version": "1.0.0",
+  "description": "<img src=\"https://baslie.github.io/images/roman.jpg\" alt=\"Роман Пуртов\" width=\"120\" height=\"120\" style=\"border-radius: 50%;\" />",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i styles/input.css -o styles/main.css",
+    "dev": "npx @tailwindcss/cli -i styles/input.css -o styles/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baslie/baslie.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baslie/baslie.github.io/issues"
+  },
+  "homepage": "https://github.com/baslie/baslie.github.io#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}

@@ -8,7 +8,15 @@
 
 ## Технологии
 
-HTML5, CSS3, JavaScript, [Tailwind CSS v4](https://tailwindcss.com/), [Lucide Icons](https://lucide.dev/), [Lenis 1.3.4](https://lenis.darkroom.engineering/)
+HTML5, CSS3, JavaScript, [Tailwind CSS v4 (CLI)](https://tailwindcss.com/), [Lenis 1.3.4](https://lenis.darkroom.engineering/)
+
+## Разработка
+
+```bash
+npm install              # установка зависимостей
+npm run build:css        # сборка CSS
+npm run dev              # watch-режим
+```
 
 ## Возможности
 

@@ -15,10 +15,6 @@
     <meta name="theme-color" content="#222222">
     <link rel="canonical" href="https://roman-purtow.ru/">
 
-    <!-- Preconnect to CDN for faster loading -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-
     <meta property="og:title" content="Роман Пуртов. Ваш маркетолог и дизайнер из тайги.">
     <meta property="og:description" content="Вайб-инженер и маркетолог из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. Делаю сайты на Тильде и пишу программы 🌲">
     <meta property="og:image" content="https://roman-purtow.ru/images/preview.jpg">
@@ -29,22 +25,8 @@
     <meta name="twitter:description" content="Вайб-инженер и маркетолог из тайги (Томск, МСК+4). Создаю атмосферу через дизайн, креатив и код. Делаю сайты на Тильде и пишу программы 🌲">
     <meta name="twitter:image" content="https://roman-purtow.ru/images/preview.jpg">
 
-    <!-- TailwindCSS v4 -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-        @import "tailwindcss";
-        @custom-variant dark (&:where(.dark, .dark *));
-        @theme {
-            --breakpoint-lg: 1200px;
-            --font-sans: system-ui, -apple-system, sans-serif;
-        }
-    </style>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Lenis Smooth Scroll -->
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.4/dist/lenis.css">
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" href="images/roman.webp" type="image/webp">
 
     <!-- Main Styles -->
     <link rel="stylesheet" href="styles/main.css">
@@ -52,9 +34,9 @@
 
 <body class="bg-[#222222] min-h-screen">
     <!-- Фоновое видео -->
-    <video id="background-video" autoplay muted loop playsinline poster="images/bg.jpg">
+    <video id="background-video" autoplay muted loop playsinline poster="images/bg.webp">
         <source src="videos/bg.mp4" type="video/mp4">
-        <img src="images/bg.jpg" alt="Background" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="images/bg.webp" alt="Background" style="width: 100%; height: 100%; object-fit: cover;">
     </video>
 
     <!-- Кнопки управления -->
@@ -63,7 +45,7 @@
             <span id="lang-toggle-text" class="text-sm font-semibold">EN</span>
         </button>
         <button id="theme-toggle" class="control-btn" aria-label="Переключить тему">
-            <i data-lucide="moon" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         </button>
     </nav>
 
@@ -86,8 +68,8 @@
             flex flex-col items-center justify-center text-center
         ">
             <div class="profile-image-wrapper">
-                <img src="images/roman.jpg" alt="Роман Пуртов" class="profile-image profile-image--default" loading="lazy" itemprop="image">
-                <img src="images/roman-lol.jpg" alt="Роман Пуртов" class="profile-image profile-image--hover" loading="lazy">
+                <img src="images/roman.webp" alt="Роман Пуртов" class="profile-image profile-image--default" width="160" height="160" fetchpriority="high" itemprop="image">
+                <img src="images/roman-lol.webp" alt="Роман Пуртов" class="profile-image profile-image--hover" width="160" height="160" loading="lazy">
             </div>
             <h1 id="i18n-name" data-i18n="name" class="profile-title">Роман Пуртов</h1>
             <p id="i18n-mainDescription1" data-i18n="mainDescription1" class="profile-description"></p>
@@ -96,16 +78,16 @@
 
         <!-- Portfolio -->
         <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" data-category="work" data-card-type="portfolio" class="bento-card lg:col-start-1 lg:row-start-3 fade-in fade-in-delay-2">
-            <span class="category-badge category-badge--work"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="briefcase" class="w-6 h-6 icon-portfolio mb-2"></i>
+            <span class="category-badge category-badge--work"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-portfolio mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
             <h3 id="i18n-portfolio_title" data-i18n="portfolio_title" class="card-title">Портфолио</h3>
             <p id="i18n-portfolio_description" data-i18n="portfolio_description" class="card-description">Сайты на Тильде</p>
         </a>
 
         <!-- Resume -->
         <a href="https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing" target="_blank" rel="nofollow noopener noreferrer" data-category="work" data-card-type="resume" class="bento-card lg:col-start-2 lg:row-start-3 fade-in fade-in-delay-3">
-            <span class="category-badge category-badge--work"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="file-text" class="w-6 h-6 icon-resume mb-2"></i>
+            <span class="category-badge category-badge--work"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-resume mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
             <h3 id="i18n-resume_title" data-i18n="resume_title" class="card-title">Моё резюме</h3>
             <p id="i18n-resume_description" data-i18n="resume_description" class="card-description">Интернет-маркетолог</p>
             <p id="i18n-resume_updated" data-i18n="resume_updated" class="card-meta"></p>
@@ -113,31 +95,31 @@
 
         <!-- Phone -->
         <a href="tel:+79526797776" data-category="contacts" data-card-type="phone" class="bento-card lg:col-start-3 lg:row-start-1 fade-in fade-in-delay-4">
-            <span class="category-badge category-badge--contacts"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="phone" class="w-6 h-6 icon-phone mb-2"></i>
+            <span class="category-badge category-badge--contacts"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-phone mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <h3 id="i18n-phone_title" data-i18n="phone_title" class="card-title">Телефон</h3>
             <p id="i18n-phone_description" data-i18n="phone_description" class="card-description">+7 952 679-77-76</p>
         </a>
 
         <!-- Mail -->
         <a href="mailto:rytrycon@gmail.com" data-category="contacts" data-card-type="mail" class="bento-card lg:col-start-4 lg:row-start-1 fade-in fade-in-delay-5">
-            <span class="category-badge category-badge--contacts"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="mail" class="w-6 h-6 icon-mail mb-2"></i>
+            <span class="category-badge category-badge--contacts"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-mail mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             <h3 id="i18n-email_title" data-i18n="email_title" class="card-title">Почта</h3>
             <p id="i18n-email_description" data-i18n="email_description" class="card-description">rytrycon@gmail.com</p>
         </a>
 
         <!-- Telegram -->
         <a href="https://t.me/roman_purtow" target="_blank" rel="nofollow noopener noreferrer" data-category="contacts" data-card-type="telegram" class="bento-card lg:col-start-5 lg:row-start-1 fade-in fade-in-delay-6">
-            <span class="category-badge category-badge--contacts"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="send" class="w-6 h-6 icon-telegram mb-2"></i>
+            <span class="category-badge category-badge--contacts"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-telegram mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
             <h3 id="i18n-telegram_title" data-i18n="telegram_title" class="card-title">Telegram</h3>
             <p id="i18n-telegram_description" data-i18n="telegram_description" class="card-description">@roman_purtow</p>
         </a>
 
         <!-- MAX -->
         <a href="https://max.ru/u/f9LHodD0cOLZogeP1J-Ng0ZKPflLiTQQTDGVkS9WbDT82Up2fxhxm9GxuQU" target="_blank" rel="nofollow noopener noreferrer" data-category="contacts" data-card-type="max" class="bento-card lg:col-start-6 lg:row-start-1 fade-in fade-in-delay-7">
-            <span class="category-badge category-badge--contacts"><i data-lucide="copy" class="w-3 h-3"></i></span>
+            <span class="category-badge category-badge--contacts"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
             <svg class="w-6 h-6 icon-max mb-2" viewBox="0 0 24 24" fill="currentColor">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.197 21.08C10.397 21.08 9.56 20.817 8.106 19.766C7.186 20.949 4.273 21.873 4.146 20.292C4.146 19.105 3.883 18.102 3.586 17.007C3.231 15.658 2.828 14.156 2.828 11.979C2.828 6.78 7.094 2.869 12.148 2.869C17.208 2.869 21.171 6.973 21.171 12.028C21.188 17.004 17.173 21.054 12.197 21.08ZM12.271 7.363C9.809 7.236 7.891 8.94 7.466 11.612C7.116 13.824 7.738 16.518 8.268 16.658C8.522 16.719 9.162 16.202 9.56 15.804C10.219 16.2594 10.9865 16.5329 11.785 16.597C14.335 16.72 16.515 14.778 16.686 12.23C16.786 9.677 14.822 7.514 12.271 7.368V7.363Z"/>
             </svg>
@@ -147,15 +129,15 @@
 
         <!-- Instagram -->
         <a href="https://instagram.com/roman.purtow" target="_blank" rel="nofollow noopener noreferrer" data-category="social" data-card-type="instagram" class="bento-card lg:col-start-3 lg:row-start-2 fade-in fade-in-delay-8">
-            <span class="category-badge category-badge--social"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="instagram" class="w-6 h-6 icon-instagram mb-2"></i>
+            <span class="category-badge category-badge--social"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-instagram mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             <h3 id="i18n-instagram_title" data-i18n="instagram_title" class="card-title">Instagram</h3>
             <p id="i18n-instagram_description" data-i18n="instagram_description" class="card-description">@roman.purtow</p>
         </a>
 
         <!-- VK -->
         <a href="https://vk.com/roman_purtow" target="_blank" rel="nofollow noopener noreferrer" data-category="social" data-card-type="vk" class="bento-card lg:col-start-4 lg:row-start-2 fade-in fade-in-delay-9">
-            <span class="category-badge category-badge--social"><i data-lucide="copy" class="w-3 h-3"></i></span>
+            <span class="category-badge category-badge--social"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
             <svg class="w-6 h-6 icon-vk mb-2" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.198c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.847 2.523 2.27 4.741 2.862 4.741.22 0 .322-.102.322-.66V9.793c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.27-1.422 2.18-3.608 2.18-3.608.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/>
             </svg>
@@ -165,39 +147,39 @@
 
         <!-- YouTube -->
         <a href="https://www.youtube.com/@roman-purtow" target="_blank" rel="nofollow noopener noreferrer" data-category="social" data-card-type="youtube" class="bento-card lg:col-start-5 lg:row-start-2 fade-in fade-in-delay-10">
-            <span class="category-badge category-badge--social"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="youtube" class="w-6 h-6 icon-youtube mb-2"></i>
+            <span class="category-badge category-badge--social"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-youtube mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
             <h3 id="i18n-youtube_title" data-i18n="youtube_title" class="card-title">YouTube</h3>
             <p id="i18n-youtube_description" data-i18n="youtube_description" class="card-description">@roman-purtow</p>
         </a>
 
         <!-- GitHub -->
         <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" data-category="social" data-card-type="github" class="bento-card lg:col-start-6 lg:row-start-2 fade-in fade-in-delay-11">
-            <span class="category-badge category-badge--social"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="github" class="w-6 h-6 icon-github mb-2"></i>
+            <span class="category-badge category-badge--social"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-github mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
             <h3 id="i18n-github_title" data-i18n="github_title" class="card-title">GitHub</h3>
             <p id="i18n-github_description" data-i18n="github_description" class="card-description">@baslie</p>
         </a>
 
         <!-- GitHub Gist -->
         <a href="https://gist.github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" data-category="projects" data-card-type="gist" class="bento-card lg:col-start-3 lg:row-start-3 fade-in fade-in-delay-12">
-            <span class="category-badge category-badge--projects"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="file-code" class="w-6 h-6 icon-github mb-2"></i>
+            <span class="category-badge category-badge--projects"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-github mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12.5 8 15l2 2.5"/><path d="m14 12.5 2 2.5-2 2.5"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/></svg>
             <h3 id="i18n-githubgist_title" data-i18n="githubgist_title" class="card-title">GitHub Gist</h3>
             <p id="i18n-githubgist_description" data-i18n="githubgist_description" class="card-description">@baslie</p>
         </a>
 
         <!-- Row 3: Blog Purtochka -->
         <a href="https://t.me/purtochka_live" target="_blank" rel="nofollow noopener noreferrer" data-category="projects" data-card-type="blog" class="bento-card lg:col-start-4 lg:row-start-3 fade-in fade-in-delay-13">
-            <span class="category-badge category-badge--projects"><i data-lucide="copy" class="w-3 h-3"></i></span>
-            <i data-lucide="radio" class="w-6 h-6 icon-blog mb-2"></i>
+            <span class="category-badge category-badge--projects"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+            <svg class="w-6 h-6 icon-blog mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.4"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.4"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
             <h3 id="i18n-blog_link_title" data-i18n="blog_link_title" class="card-title">Пурточка вещает</h3>
             <p id="i18n-blog_link_description" data-i18n="blog_link_description" class="card-description">Мой Telegram-канал</p>
         </a>
 
         <!-- Row 3: Tomsk Walk -->
         <a href="https://vk.com/tomsk_progulka" target="_blank" rel="nofollow noopener noreferrer" data-category="projects" data-card-type="tomsk-walk" class="bento-card lg:col-start-5 lg:row-start-3 fade-in fade-in-delay-14">
-            <span class="category-badge category-badge--projects"><i data-lucide="copy" class="w-3 h-3"></i></span>
+            <span class="category-badge category-badge--projects"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
             <img src="images/progulka-logo.svg" alt="Томская Прогулка" class="w-8 h-8 mb-2">
             <h3 id="i18n-tomsk_walk_title" data-i18n="tomsk_walk_title" class="card-title">Томская Прогулка</h3>
             <p id="i18n-tomsk_walk_description" data-i18n="tomsk_walk_description" class="card-description">Гуляем с друзьями и не только</p>
@@ -205,7 +187,7 @@
 
         <!-- Row 3: VC.ru -->
         <a href="https://vc.ru/u/454432-roman-purtov" target="_blank" rel="nofollow noopener noreferrer" data-category="projects" data-card-type="vc" class="bento-card lg:col-start-6 lg:row-start-3 fade-in fade-in-delay-15">
-            <span class="category-badge category-badge--projects"><i data-lucide="copy" class="w-3 h-3"></i></span>
+            <span class="category-badge category-badge--projects"><svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
             <svg viewBox="0 404.142 36 33.608" class="w-6 h-6 mb-2 icon-vc">
                 <path d="M28.813 419.643c2.65 0 4.645-1.104 6.116-3.026l-1.966-1.5a5.188 5.188 0 0 1-4.15 2.052c-2.876 0-4.96-2.343-4.96-5.218s2.05-5.35 5.042-5.35c1.33 0 2.27.314 3.09.822v2.528h2.474v-3.686l-.474-.373c-1.36-1.07-3.437-1.638-5.173-1.638-4.244 0-7.696 3.452-7.696 7.696 0 4.24 3.45 7.693 7.696 7.693zm5.133 15.18-.088-3.543v-8.646h-5.16v2.475h2.554v5.866c0 2.527-1.93 4.316-3.877 4.316s-2.963-1.35-2.963-3.876v-8.782h-4.82v2.475h2.214v6.736c0 3.428 1.922 5.79 5.35 5.79 1.97 0 3.47-1.093 4.365-2.778h.04l.353 2.356h3.965v-2.386h-1.93v-.005zm-13.4-30.206h-4.3l-3.74 10.86h-.058l-3.72-10.86H4.146v2.476h2.577l4.435 12.378h2.356v-.003l4.625-12.374h2.405v-2.476zM.122 437.244H2.67v-2.547H.123v2.547zm9.84-11.74h-.028l-.16-2.87H5.226v2.256h2.42v9.934h-2.42v2.387h11.24v-2.34h-6.258v-5.995c.283-2.17 1.91-4.023 4.13-4.023h.04l-.045 2.218h2.474v-4.478h-1.956c-2.24-.006-3.902 1.206-4.89 2.912z"></path>
             </svg>
@@ -216,10 +198,10 @@
     </div>
 
     <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js" defer></script>
 
     <!-- Main Application Script -->
-    <script src="js/app.js"></script>
+    <script src="js/app.js" defer></script>
 </body>
 
 </html>

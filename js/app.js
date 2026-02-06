@@ -238,24 +238,22 @@ function initLanguage() {
 /* ========================================
    Theme Manager
    ======================================== */
+const SVG_MOON = '<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+const SVG_SUN = '<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+
 function setTheme(isDark) {
     const themeToggle = document.getElementById('theme-toggle');
 
     if (isDark) {
         document.documentElement.classList.add('dark');
         if (themeToggle) {
-            themeToggle.innerHTML = '<i data-lucide="sun" class="w-5 h-5"></i>';
+            themeToggle.innerHTML = SVG_SUN;
         }
     } else {
         document.documentElement.classList.remove('dark');
         if (themeToggle) {
-            themeToggle.innerHTML = '<i data-lucide="moon" class="w-5 h-5"></i>';
+            themeToggle.innerHTML = SVG_MOON;
         }
-    }
-
-    // Re-initialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
     }
 }
 
@@ -323,14 +321,6 @@ function initYandexMetrika() {
     });
 }
 
-/* ========================================
-   Initialize Lucide Icons
-   ======================================== */
-function initLucideIcons() {
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-}
 
 /* ========================================
    Copy on Badge Click
@@ -450,10 +440,10 @@ function initProfileImageToggle() {
    Main Initialization
    ======================================== */
 function init() {
-    initLucideIcons();
     initLanguage();
     initTheme();
     initBackgroundVideo();
+    initLenis();
     initYandexMetrika();
     initCopyOnBadgeClick();
     initProfileImageToggle();
@@ -461,6 +451,3 @@ function init() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', init);
-
-// Initialize Lenis immediately (it needs to be ready for scroll)
-initLenis();
