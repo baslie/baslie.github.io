@@ -117,8 +117,8 @@ const timeStringEn = formatTime(timeSince, 'en');
    ======================================== */
 const translations = {
     ru: {
-        title: 'Роман Пуртов. Ваш маркетолог и\u00A0дизайнер из\u00A0тайги.',
-        metaDescription: 'Рекламодел, UX\u00A0&\u00A0UI дизайнер и\u00A0немного программист. Сайты на\u00A0Тильде, интересные проекты. Берусь за\u00A0всё, за\u00A0что берусь.',
+        title: 'Роман Пуртов. Маркетолог\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги.',
+        metaDescription: 'Маркетолог и\u00A0UX-UI дизайнер из\u00A0тайги (Томск, МСК+4). Agentic Engineer (ex\u00A0vibe-coder). Делаю сайты и\u00A0пишу к\u00A0ним код\u00A0🌲',
         name: 'Роман Пуртов',
         mainDescription1: `<a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Маркетолог</a>\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги (Томск,\u00A0МСК+4). <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a> (ex\u00A0vibe-coder).`,
         mainDescription2: `${timeStringRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сайты</a><br>и\u00A0пишу к\u00A0ним <a href="https://gist.github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">код</a>\u00A0🌲`,
@@ -153,8 +153,8 @@ const translations = {
         tomsk_walk_description: 'Гуляем с\u00A0друзьями и\u00A0не\u00A0только'
     },
     en: {
-        title: 'Roman Purtov. Your marketer and designer from the\u00A0taiga.',
-        metaDescription: 'Advertising professional, UX\u00A0&\u00A0UI designer, and a\u00A0bit of\u00A0a\u00A0programmer. Tilda websites, interesting projects.',
+        title: 'Roman Purtov. Marketer\u00A0&\u00A0UX-UI Designer from the\u00A0Taiga.',
+        metaDescription: 'Marketer\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk, UTC+7). Agentic Engineer (ex\u00A0vibe-coder). Building websites and writing code\u00A0🌲',
         name: 'Roman Purtov',
         mainDescription1: `<a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Marketer</a>\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk,\u00A0UTC+7). <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a> (ex\u00A0vibe-coder).`,
         mainDescription2: `Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">websites</a> and writing <a href="https://gist.github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">code</a> for them for ${timeStringEn}\u00A0🌲`,
@@ -198,12 +198,18 @@ let currentLang = localStorage.getItem('lang') ||
 
 function updateLanguage(lang) {
     document.documentElement.lang = lang;
-    document.title = translations[lang].title;
+    const t = translations[lang];
+    document.title = t.title;
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-        metaDesc.setAttribute('content', translations[lang].metaDescription);
+        metaDesc.setAttribute('content', t.metaDescription);
     }
+
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', t.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', t.metaDescription);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', t.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', t.metaDescription);
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
