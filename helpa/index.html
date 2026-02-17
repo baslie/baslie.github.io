@@ -50,7 +50,6 @@
       inset: 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       padding: 3rem 4rem 5rem;
       opacity: 0;
@@ -58,6 +57,7 @@
       pointer-events: none;
       transition: opacity 0.5s ease, transform 0.5s ease;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .slide.active {
       opacity: 1;
@@ -68,6 +68,8 @@
     .slide-content {
       max-width: 1100px;
       width: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
     /* Staggered children animation */
@@ -976,13 +978,16 @@
 
       // Touch swipe
       let touchStartX = 0;
+      let touchStartY = 0;
       document.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
       });
       document.addEventListener('touchend', (e) => {
-        const diff = touchStartX - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 50) {
-          diff > 0 ? goTo(current + 1) : goTo(current - 1);
+        const diffX = touchStartX - e.changedTouches[0].screenX;
+        const diffY = touchStartY - e.changedTouches[0].screenY;
+        if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+          diffX > 0 ? goTo(current + 1) : goTo(current - 1);
         }
       });
 
