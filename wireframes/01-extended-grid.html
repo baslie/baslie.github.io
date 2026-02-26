@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe: Расширенная бенто-сетка</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f5f5f5;
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 12px;
+    min-height: 100vh;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 601px) {
+    body { padding: 16px; }
+    .grid { gap: 16px; }
+  }
+
+  @media (min-width: 1024px) {
+    body { padding: 48px 80px; }
+    .grid { gap: 20px; padding: 0; }
+  }
+  .card {
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+    color: #fff;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .card-name { font-weight: 600; font-size: 0.85rem; }
+  .card-size { font-size: 0.7rem; opacity: 0.7; margin-top: 4px; }
+
+  /* Colors */
+  .cat-profile { background: #3B82F6; }
+  .cat-contacts { background: #4B5563; }
+  .cat-social { background: #2563EB; }
+  .cat-work { background: #D97706; }
+  .cat-projects { background: #7C3AED; }
+  .cat-articles { background: #059669; }
+
+  /* Divider */
+  .divider {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 16px 0;
+    color: #059669;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 4px 0;
+  }
+
+  /* Article card internals */
+  .article-card {
+    align-items: stretch;
+    text-align: left;
+    padding: 12px;
+  }
+  .article-img {
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+  }
+  .article-card.hero .article-img { height: 100px; }
+  .article-title { font-weight: 600; font-size: 0.8rem; margin-bottom: 4px; }
+  .article-desc { font-size: 0.7rem; opacity: 0.7; margin-bottom: 4px; }
+  .article-date { font-size: 0.65rem; opacity: 0.5; }
+
+  /* Legend */
+  .legend {
+    max-width: 1280px;
+    margin: 24px auto 0;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #666;
+  }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .card { min-height: 60px; }
+    .profile { grid-column: span 2; grid-row: span 1; }
+    .hero-article { grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <!-- Row 1-2 -->
+    <div class="card cat-profile profile" style="grid-column: span 2; grid-row: span 2; min-height: 160px;">
+      <div class="card-name">PROFILE</div>
+      <div class="card-size">2×2</div>
+    </div>
+    <div class="card cat-contacts"><div class="card-name">Phone</div><div class="card-size">1×1</div></div>
+    <div class="card cat-contacts"><div class="card-name">Mail</div><div class="card-size">1×1</div></div>
+    <div class="card cat-contacts"><div class="card-name">Telegram</div><div class="card-size">1×1</div></div>
+    <div class="card cat-work"><div class="card-name">MAX</div><div class="card-size">1×1</div></div>
+
+    <!-- Row 2 right side -->
+    <div class="card cat-social"><div class="card-name">Instagram</div><div class="card-size">1×1</div></div>
+    <div class="card cat-social"><div class="card-name">VK</div><div class="card-size">1×1</div></div>
+    <div class="card cat-social"><div class="card-name">YouTube</div><div class="card-size">1×1</div></div>
+    <div class="card cat-social"><div class="card-name">GitHub</div><div class="card-size">1×1</div></div>
+
+    <!-- Row 3 -->
+    <div class="card cat-work"><div class="card-name">Portfolio</div><div class="card-size">1×1</div></div>
+    <div class="card cat-work"><div class="card-name">Resume</div><div class="card-size">1×1</div></div>
+    <div class="card cat-projects"><div class="card-name">Gist</div><div class="card-size">1×1</div></div>
+    <div class="card cat-projects"><div class="card-name">Purtochka</div><div class="card-size">1×1</div></div>
+    <div class="card cat-projects"><div class="card-name">Tomsk Walk</div><div class="card-size">1×1</div></div>
+    <div class="card cat-projects"><div class="card-name">VC.ru</div><div class="card-size">1×1</div></div>
+
+    <!-- Divider -->
+    <div class="divider">── Статьи ──</div>
+
+    <!-- Row 4: Hero articles -->
+    <div class="card cat-articles article-card hero" style="grid-column: span 3; grid-row: span 2; min-height: 180px;">
+      <div class="article-img">[ Изображение ]</div>
+      <div class="article-title">Article 1 — Заголовок статьи</div>
+      <div class="article-desc">Краткое описание статьи для превью карточки</div>
+      <div class="article-date">2026-01-15</div>
+      <div class="card-size" style="margin-top: auto;">3×2 hero</div>
+    </div>
+    <div class="card cat-articles article-card hero" style="grid-column: span 3; grid-row: span 2; min-height: 180px;">
+      <div class="article-img">[ Изображение ]</div>
+      <div class="article-title">Article 2 — Заголовок статьи</div>
+      <div class="article-desc">Краткое описание статьи для превью карточки</div>
+      <div class="article-date">2026-01-10</div>
+      <div class="card-size" style="margin-top: auto;">3×2 hero</div>
+    </div>
+
+    <!-- Row 5: Compact articles -->
+    <div class="card cat-articles article-card" style="grid-column: span 1;">
+      <div class="article-title">Article 3</div>
+      <div class="article-date">2026-01-08</div>
+      <div class="card-size">1×1</div>
+    </div>
+    <div class="card cat-articles article-card" style="grid-column: span 1;">
+      <div class="article-title">Article 4</div>
+      <div class="article-date">2026-01-05</div>
+      <div class="card-size">1×1</div>
+    </div>
+    <div class="card cat-articles article-card" style="grid-column: span 1;">
+      <div class="article-title">Article 5</div>
+      <div class="article-date">2026-01-03</div>
+      <div class="card-size">1×1</div>
+    </div>
+    <div class="card cat-articles article-card" style="grid-column: span 1;">
+      <div class="article-title">Article 6</div>
+      <div class="article-date">2025-12-28</div>
+      <div class="card-size">1×1</div>
+    </div>
+    <div class="card cat-articles article-card" style="grid-column: span 1;">
+      <div class="article-title">Article 7</div>
+      <div class="article-date">2025-12-20</div>
+      <div class="card-size">1×1</div>
+    </div>
+    <div class="card cat-articles article-card" style="grid-column: span 1;">
+      <div class="article-title">Article 8</div>
+      <div class="article-date">2025-12-15</div>
+      <div class="card-size">1×1</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <span><span class="legend-dot" style="background: #3B82F6;"></span>Profile</span>
+    <span><span class="legend-dot" style="background: #4B5563;"></span>Contacts</span>
+    <span><span class="legend-dot" style="background: #2563EB;"></span>Social</span>
+    <span><span class="legend-dot" style="background: #D97706;"></span>Work</span>
+    <span><span class="legend-dot" style="background: #7C3AED;"></span>Projects</span>
+    <span><span class="legend-dot" style="background: #059669;"></span>Articles</span>
+  </div>
+</body>
+</html>
