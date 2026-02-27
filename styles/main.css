@@ -1499,6 +1499,11 @@
       grid-column: span 2 / span 2;
     }
   }
+  .lg\:col-span-3 {
+    @media (width >= 75rem) {
+      grid-column: span 3 / span 3;
+    }
+  }
   .lg\:col-start-1 {
     @media (width >= 75rem) {
       grid-column-start: 1;
@@ -2084,8 +2089,6 @@ body::before {
 .dark .bento-card[data-card-type="tomsk-walk"]:hover img {
   filter: brightness(0) invert(1);
 }
-
-/* === Card Pair (sub-grid wrapper) === */
 .card-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2093,10 +2096,9 @@ body::before {
 }
 @media (min-width: 75rem) {
   .card-pair {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
 .profile-image-wrapper {
   position: relative;
   width: 10rem;
