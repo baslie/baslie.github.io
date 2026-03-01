@@ -2249,7 +2249,7 @@ html.lenis {
   .dark .bento-card:not([data-card-type]) {
     background: var(--card-bg-dark-hover);
   }
-  .corner-badge:not(.logo-badge) {
+  .corner-badge {
     height: 2rem;
   }
   .corner-badge:not(.logo-badge) svg {

@@ -620,7 +620,7 @@ html.lenis {
         background: var(--card-bg-dark-hover);
     }
 
-    .corner-badge:not(.logo-badge) {
+    .corner-badge {
         height: 2rem;
     }
 
