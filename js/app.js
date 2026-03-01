@@ -117,10 +117,10 @@ const timeStringEn = formatTime(timeSince, 'en');
    ======================================== */
 const translations = {
     ru: {
-        title: 'Роман Пуртов. Маркетолог\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги.',
-        metaDescription: 'Маркетолог и\u00A0UX-UI дизайнер из\u00A0тайги (Томск, МСК+4). Agentic Engineer (ex\u00A0vibe-coder). Делаю сайты и\u00A0пишу к\u00A0ним код\u00A0🌲',
+        title: 'Роман Пуртов. Agentic Engineer. Маркетолог\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги.',
+        metaDescription: 'Agentic Engineer (ex\u00A0vibe-coder). Маркетолог и\u00A0UX-UI дизайнер из\u00A0тайги (Томск, МСК+4). Делаю сайты и\u00A0пишу к\u00A0ним код\u00A0🌲',
         name: 'Роман Пуртов',
-        mainDescription1: `<a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Маркетолог</a>\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги (Томск,\u00A0МСК+4). <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a> (ex\u00A0vibe-coder).`,
+        mainDescription1: `<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a> (ex\u00A0vibe-coder). <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Маркетолог</a>\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги (Томск,\u00A0МСК+4).`,
         mainDescription2: `${timeStringRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сайты</a><br>и\u00A0пишу к\u00A0ним <a href="https://github.com/baslie/code-snippets" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">код</a>\u00A0🌲`,
         portfolio_title: 'Портфолио',
         portfolio_description: 'Сайты на Тильде',
@@ -151,10 +151,10 @@ const translations = {
         tomsk_walk_description: 'Гуляем с\u00A0друзьями и\u00A0не\u00A0только'
     },
     en: {
-        title: 'Roman Purtov. Marketer\u00A0&\u00A0UX-UI Designer from the\u00A0Taiga.',
-        metaDescription: 'Marketer\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk, UTC+7). Agentic Engineer (ex\u00A0vibe-coder). Building websites and writing code\u00A0🌲',
+        title: 'Roman Purtov. Agentic Engineer. Marketer\u00A0&\u00A0UX-UI Designer from the\u00A0Taiga.',
+        metaDescription: 'Agentic Engineer (ex\u00A0vibe-coder). Marketer\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk, UTC+7). Building websites and writing code\u00A0🌲',
         name: 'Roman Purtov',
-        mainDescription1: `<a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Marketer</a>\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk,\u00A0UTC+7). <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a> (ex\u00A0vibe-coder).`,
+        mainDescription1: `<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a> (ex\u00A0vibe-coder). <a href="https://telegra.ph/Kak-zapuskalas-Berloga-i-kak-zarabatyvalis-milliony-04-12" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Marketer</a>\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk,\u00A0UTC+7).`,
         mainDescription2: `Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">websites</a> and writing <a href="https://github.com/baslie/code-snippets" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">code</a> for them for ${timeStringEn}\u00A0🌲`,
         portfolio_title: 'Portfolio',
         portfolio_description: 'Tilda websites',
@@ -441,6 +441,11 @@ function initProfileImageToggle() {
 /* ========================================
    Main Initialization
    ======================================== */
+function initYearBadge() {
+    const el = document.getElementById('year-badge');
+    if (el) el.textContent = new Date().getFullYear();
+}
+
 function init() {
     initLanguage();
     initTheme();
@@ -449,6 +454,7 @@ function init() {
     initYandexMetrika();
     initCopyOnBadgeClick();
     initProfileImageToggle();
+    initYearBadge();
 }
 
 // Initialize when DOM is ready

@@ -61,7 +61,6 @@
     --hover-border-width: 4px;
 
     /* Анимации */
-    --animation-delay-step: 0.05s;
     --transition-default: 0.3s ease;
 
     /* Blur */
@@ -386,6 +385,7 @@ body::before {
 .bento-card[data-card-type]:hover {
     background: var(--_hover-bg);
     box-shadow: var(--shadow-hover);
+    transform: none;
 }
 
 .bento-card[data-card-type]:hover .card-title,
@@ -529,93 +529,70 @@ body::before {
 }
 
 /* ========================================
-   Control Buttons
+   Corner Badges (Logo, Theme, Lang, Year)
    ======================================== */
-.control-btn {
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 50%;
-    background: var(--btn-bg);
-    backdrop-filter: blur(var(--blur-amount));
-    -webkit-backdrop-filter: blur(var(--blur-amount));
-    border: 1px solid var(--btn-border);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.corner-badge {
+    position: fixed;
+    z-index: 50;
+    height: 2.5rem;
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #ffffff;
+    border: none;
+    cursor: default;
+    box-shadow: var(--shadow);
+    transition: background 0.2s ease;
     color: var(--color-text);
 }
 
-.dark .control-btn {
-    background: var(--btn-bg-dark);
-    border: 1px solid var(--btn-border-dark);
+.dark .corner-badge {
+    background: #1e1e1e;
     color: var(--color-text-light);
 }
 
-.control-btn:hover {
-    transform: scale(1.1);
+/* Позиционирование */
+.corner-tl { top: 0; left: 0; border-bottom-right-radius: 66%; }
+.corner-tr { top: 0; right: 0; border-bottom-left-radius: 66%; }
+.corner-bl { bottom: 0; left: 0; border-top-right-radius: 66%; }
+.corner-br { bottom: 0; right: 0; border-top-left-radius: 66%; }
+
+/* Logo badge — оранжевый фон */
+.logo-badge {
+    background: #F6522E;
+    padding: 0.5rem;
+}
+.dark .logo-badge {
+    background: #F6522E;
+}
+.logo-badge svg {
+    height: 60%;
+    width: auto;
+    transform: translate(-2px, -1px);
 }
 
-.control-btn:active {
-    transform: scale(0.95);
+/* Интерактивные бейджи */
+button.corner-badge {
+    cursor: pointer;
+}
+button.corner-badge > * {
+    transition: transform 0.2s ease;
 }
 
-/* Language Toggle - Golden Pulse */
-#lang-toggle {
-    animation: lang-pulse 2.5s ease-in-out infinite;
-}
+/* Lang — золотой тинт (смешан с белым/тёмным фоном) */
+#lang-toggle:hover { background: #fef6e7; }
+.dark #lang-toggle:hover { background: #2e2714; }
+#lang-toggle:hover > span { transform: scale(1.05); }
+#lang-toggle:active { background: #fdedc4; }
+.dark #lang-toggle:active { background: #3d321a; }
 
-@keyframes lang-pulse {
-    0%, 100% {
-        box-shadow: var(--shadow), 0 0 0 0 transparent;
-    }
-    50% {
-        box-shadow: var(--shadow), 0 0 12px 2px var(--color-accent);
-    }
-}
-
-/* Theme Toggle - Day/Night Gradient */
-#theme-toggle {
-    position: relative;
-}
-
-#theme-toggle::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #fcd34d, #f97316, #6366f1, #1e3a8a, #fcd34d);
-    background-size: 300% 300%;
-    animation: day-night 6s ease infinite;
-    z-index: -1;
-}
-
-#theme-toggle::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: var(--btn-bg);
-    backdrop-filter: blur(var(--blur-amount));
-    -webkit-backdrop-filter: blur(var(--blur-amount));
-}
-
-.dark #theme-toggle::after {
-    background: var(--btn-bg-dark);
-}
-
-#theme-toggle > * {
-    position: relative;
-    z-index: 1;
-}
-
-@keyframes day-night {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-}
+/* Theme — индиго тинт (смешан с белым/тёмным фоном) */
+#theme-toggle:hover { background: #eeeffd; }
+.dark #theme-toggle:hover { background: #1e1e3a; }
+#theme-toggle:hover > svg { transform: rotate(15deg); }
+#theme-toggle:active { background: #dddcfb; }
+.dark #theme-toggle:active { background: #272747; }
 
 /* ========================================
    Lenis
@@ -628,40 +605,6 @@ html.lenis {
     scroll-behavior: auto;
 }
 
-/* ========================================
-   Fade-in Animation
-   ======================================== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* Animation delays using CSS variable */
-.fade-in-delay-1 { animation-delay: calc(1 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-2 { animation-delay: calc(2 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-3 { animation-delay: calc(3 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-4 { animation-delay: calc(4 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-5 { animation-delay: calc(5 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-6 { animation-delay: calc(6 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-7 { animation-delay: calc(7 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-8 { animation-delay: calc(8 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-9 { animation-delay: calc(9 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-10 { animation-delay: calc(10 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-11 { animation-delay: calc(11 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-12 { animation-delay: calc(12 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-13 { animation-delay: calc(13 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-14 { animation-delay: calc(14 * var(--animation-delay-step)); opacity: 0; }
-.fade-in-delay-15 { animation-delay: calc(15 * var(--animation-delay-step)); opacity: 0; }
 
 /* ========================================
    Mobile Styles
@@ -675,6 +618,10 @@ html.lenis {
 
     .dark .bento-card:not([data-card-type]) {
         background: var(--card-bg-dark-hover);
+    }
+
+    .corner-badge {
+        height: 2rem;
     }
 
     .category-badge {
@@ -834,9 +781,7 @@ html.lenis {
 
     /* Отключение blur для производительности GPU */
     .bento-card,
-    .control-btn,
-    .copy-tooltip,
-    #theme-toggle::after {
+    .copy-tooltip {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
@@ -849,14 +794,6 @@ html.lenis {
         background: rgba(30, 30, 30, 0.95);
     }
 
-    .control-btn {
-        background: rgba(255, 255, 255, 0.95);
-    }
-
-    .dark .control-btn,
-    .dark #theme-toggle::after {
-        background: rgba(30, 30, 30, 0.95);
-    }
 }
 
 /* Отключение анимаций для пользователей с соответствующей настройкой */

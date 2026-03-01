@@ -275,9 +275,6 @@
   .top-1\/2 {
     top: calc(1/2 * 100%);
   }
-  .top-4 {
-    top: calc(var(--spacing) * 4);
-  }
   .top-16 {
     top: calc(var(--spacing) * 16);
   }
@@ -289,9 +286,6 @@
   }
   .right-2 {
     right: calc(var(--spacing) * 2);
-  }
-  .right-4 {
-    right: calc(var(--spacing) * 4);
   }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
@@ -1725,7 +1719,6 @@
   --hover-translate: -4px;
   --hover-scale: 1.02;
   --hover-border-width: 4px;
-  --animation-delay-step: 0.05s;
   --transition-default: 0.3s ease;
   --blur-amount: 16px;
   --blur-mobile: 12px;
@@ -2055,6 +2048,7 @@ body::before {
 .bento-card[data-card-type]:hover {
   background: var(--_hover-bg);
   box-shadow: var(--shadow-hover);
+  transform: none;
 }
 .bento-card[data-card-type]:hover .card-title, .bento-card[data-card-type]:hover .card-description, .bento-card[data-card-type]:hover .card-meta, .bento-card[data-card-type]:hover [class*="icon-"] {
   color: white;
@@ -2153,162 +2147,98 @@ body::before {
 .inline-link:hover {
   border-bottom-color: var(--color-link);
 }
-.control-btn {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  background: var(--btn-bg);
-  backdrop-filter: blur(var(--blur-amount));
-  -webkit-backdrop-filter: blur(var(--blur-amount));
-  border: 1px solid var(--btn-border);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.corner-badge {
+  position: fixed;
+  z-index: 50;
+  height: 2.5rem;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff;
+  border: none;
+  cursor: default;
+  box-shadow: var(--shadow);
+  transition: background 0.2s ease;
   color: var(--color-text);
 }
-.dark .control-btn {
-  background: var(--btn-bg-dark);
-  border: 1px solid var(--btn-border-dark);
+.dark .corner-badge {
+  background: #1e1e1e;
   color: var(--color-text-light);
 }
-.control-btn:hover {
-  transform: scale(1.1);
+.corner-tl {
+  top: 0;
+  left: 0;
+  border-bottom-right-radius: 66%;
 }
-.control-btn:active {
-  transform: scale(0.95);
+.corner-tr {
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 66%;
 }
-#lang-toggle {
-  animation: lang-pulse 2.5s ease-in-out infinite;
+.corner-bl {
+  bottom: 0;
+  left: 0;
+  border-top-right-radius: 66%;
 }
-@keyframes lang-pulse {
-  0%, 100% {
-    box-shadow: var(--shadow), 0 0 0 0 transparent;
-  }
-  50% {
-    box-shadow: var(--shadow), 0 0 12px 2px var(--color-accent);
-  }
+.corner-br {
+  bottom: 0;
+  right: 0;
+  border-top-left-radius: 66%;
 }
-#theme-toggle {
-  position: relative;
+.logo-badge {
+  background: #F6522E;
+  padding: 0.5rem;
 }
-#theme-toggle::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #fcd34d, #f97316, #6366f1, #1e3a8a, #fcd34d);
-  background-size: 300% 300%;
-  animation: day-night 6s ease infinite;
-  z-index: -1;
+.dark .logo-badge {
+  background: #F6522E;
 }
-#theme-toggle::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--btn-bg);
-  backdrop-filter: blur(var(--blur-amount));
-  -webkit-backdrop-filter: blur(var(--blur-amount));
+.logo-badge svg {
+  height: 60%;
+  width: auto;
+  transform: translate(-2px, -1px);
 }
-.dark #theme-toggle::after {
-  background: var(--btn-bg-dark);
+button.corner-badge {
+  cursor: pointer;
 }
-#theme-toggle > * {
-  position: relative;
-  z-index: 1;
+button.corner-badge > * {
+  transition: transform 0.2s ease;
 }
-@keyframes day-night {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
+#lang-toggle:hover {
+  background: #fef6e7;
+}
+.dark #lang-toggle:hover {
+  background: #2e2714;
+}
+#lang-toggle:hover > span {
+  transform: scale(1.05);
+}
+#lang-toggle:active {
+  background: #fdedc4;
+}
+.dark #lang-toggle:active {
+  background: #3d321a;
+}
+#theme-toggle:hover {
+  background: #eeeffd;
+}
+.dark #theme-toggle:hover {
+  background: #1e1e3a;
+}
+#theme-toggle:hover > svg {
+  transform: rotate(15deg);
+}
+#theme-toggle:active {
+  background: #dddcfb;
+}
+.dark #theme-toggle:active {
+  background: #272747;
 }
 html.lenis {
   height: auto;
 }
 .lenis.lenis-smooth {
   scroll-behavior: auto;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.fade-in {
-  animation: fadeIn 0.5s ease forwards;
-}
-.fade-in-delay-1 {
-  animation-delay: calc(1 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-2 {
-  animation-delay: calc(2 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-3 {
-  animation-delay: calc(3 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-4 {
-  animation-delay: calc(4 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-5 {
-  animation-delay: calc(5 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-6 {
-  animation-delay: calc(6 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-7 {
-  animation-delay: calc(7 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-8 {
-  animation-delay: calc(8 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-9 {
-  animation-delay: calc(9 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-10 {
-  animation-delay: calc(10 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-11 {
-  animation-delay: calc(11 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-12 {
-  animation-delay: calc(12 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-13 {
-  animation-delay: calc(13 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-14 {
-  animation-delay: calc(14 * var(--animation-delay-step));
-  opacity: 0;
-}
-.fade-in-delay-15 {
-  animation-delay: calc(15 * var(--animation-delay-step));
-  opacity: 0;
 }
 @media (max-width: 767px) {
   .bento-card:not([data-card-type]) {
@@ -2318,6 +2248,9 @@ html.lenis {
   }
   .dark .bento-card:not([data-card-type]) {
     background: var(--card-bg-dark-hover);
+  }
+  .corner-badge {
+    height: 2rem;
   }
   .category-badge {
     top: 8px;
@@ -2432,7 +2365,7 @@ html.lenis {
     background: url('../images/bg.webp') no-repeat center center fixed;
     background-size: cover;
   }
-  .bento-card, .control-btn, .copy-tooltip, #theme-toggle::after {
+  .bento-card, .copy-tooltip {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -2440,12 +2373,6 @@ html.lenis {
     background: rgba(255, 255, 255, 0.95);
   }
   .dark .bento-card:not([data-card-type]) {
-    background: rgba(30, 30, 30, 0.95);
-  }
-  .control-btn {
-    background: rgba(255, 255, 255, 0.95);
-  }
-  .dark .control-btn, .dark #theme-toggle::after {
     background: rgba(30, 30, 30, 0.95);
   }
 }
