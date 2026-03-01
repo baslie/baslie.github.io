@@ -620,8 +620,17 @@ html.lenis {
         background: var(--card-bg-dark-hover);
     }
 
-    .corner-badge {
+    .corner-badge:not(.logo-badge) {
         height: 2rem;
+    }
+
+    .corner-badge:not(.logo-badge) svg {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .corner-badge:not(.logo-badge) span {
+        font-size: 0.625rem;
     }
 
     .category-badge {
