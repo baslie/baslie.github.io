@@ -1,0 +1,39 @@
+---
+import type { ArticleData } from '../data/articles';
+
+interface Props {
+  article: ArticleData;
+}
+
+const { article } = Astro.props;
+---
+
+<a
+  href={article.href}
+  class="article-card"
+  {...(article.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+>
+  <img
+    src={article.image}
+    alt={article.title}
+    class="article-card-image"
+    loading="lazy"
+  />
+  <div class="article-card-body">
+    <h3 class="article-card-title" data-i18n={`article_${article.id}_title`}>{article.title}</h3>
+    <p class="article-card-desc" data-i18n={`article_${article.id}_description`}>{article.description}</p>
+    <div class="article-card-meta">
+      <img src={article.sourceIcon} alt={article.sourceName} />
+      <span data-i18n={`article_${article.id}_date`}>{article.date}</span>
+      <span class={`article-badge ${article.badge === 'case' ? 'badge-case' : 'badge-article'}`}
+            data-i18n={article.badge === 'case' ? 'badge_case' : 'badge_article'}>
+        {article.badge === 'case' ? 'кейс' : 'статья'}
+      </span>
+    </div>
+    {article.href.startsWith('http') && (
+      <svg class="article-card-external" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+      </svg>
+    )}
+  </div>
+</a>

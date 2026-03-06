@@ -1,0 +1,36 @@
+# Роман Пуртов
+
+> Agentic Engineer, маркетолог и UX/UI-дизайнер из Томска (МСК+4). Делаю сайты и пишу к ним код.
+
+## Обо мне
+
+- Специализация: фронтенд-разработка, AI-инструменты, маркетинг, UX/UI
+- Локация: Томск, Россия (МСК+4)
+- Сайт: [roman-purtow.ru](https://roman-purtow.ru/)
+
+## Контакты
+
+- [Email](mailto:rytrycon@gmail.com)
+- [Telegram](https://t.me/roman_purtow)
+- [Max](https://max.ru/u/f9LHodD0cOLZogeP1J-Ng0ZKPflLiTQQTDGVkS9WbDT82Up2fxhxm9GxuQU)
+- [VK](https://vk.com/roman_purtow)
+- [GitHub](https://github.com/baslie)
+- [Instagram](https://instagram.com/roman.purtow)
+- [YouTube](https://www.youtube.com/@roman-purtow)
+
+## Работа
+
+- [Портфолио](https://experts.tilda.cc/roman-purtow): Tilda-эксперт
+- [Резюме](https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing)
+
+## Проекты
+
+- [Томская Прогулка](https://vk.com/tomsk_progulka): Городской проект
+- [Telegram-канал](https://t.me/purtochka_live): Блог о разработке и дизайне
+- [vc.ru](https://vc.ru/u/454432-roman-purtov): Статьи и публикации
+
+## Статьи
+
+- [Расширение для Chrome для структурирования промптов](https://vc.ru/chatgpt/1841565-rasshirenie-dlya-chrome-dlya-strukturirovaniya-promptov) (2 марта 2025, vc.ru)
+- [— Говорите, говорите, я вас внематочно слухаю!](https://vc.ru/life/1822431-govorite-govorite-ya-vas-vnematochno-sluhayu) (19 февраля 2025, vc.ru)
+- [Как запускалась «Берлога» и как зарабатывались миллионы?](https://roman-purtow.ru/articles/berloga) (12 апреля 2022, roman-purtow.ru)

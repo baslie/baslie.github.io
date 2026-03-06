@@ -1,0 +1,27 @@
+{
+  "name": "baslie.github.io",
+  "version": "1.0.0",
+  "description": "<img src=\"https://baslie.github.io/images/roman.jpg\" alt=\"Роман Пуртов\" width=\"120\" height=\"120\" style=\"border-radius: 50%;\" />",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baslie/baslie.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baslie/baslie.github.io/issues"
+  },
+  "homepage": "https://github.com/baslie/baslie.github.io#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^5.18.0",
+    "tailwindcss": "^4.2.1"
+  }
+}

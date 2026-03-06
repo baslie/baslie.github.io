@@ -1,0 +1,100 @@
+---
+import '../styles/input.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  ogType?: string;
+  canonical?: string;
+  twitterCard?: string;
+}
+
+const {
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://roman-purtow.ru/images/preview.jpg',
+  ogUrl = 'https://roman-purtow.ru/',
+  ogType = 'website',
+  canonical = 'https://roman-purtow.ru/',
+  twitterCard = 'summary_large_image',
+} = Astro.props;
+
+const finalOgTitle = ogTitle || title;
+const finalOgDescription = ogDescription || description;
+---
+
+<!DOCTYPE html>
+<html lang="ru" itemscope itemtype="https://schema.org/WebPage">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Роман Пуртов">
+    <meta name="yandex-verification" content="baba7a3a035222ee">
+    <meta name="zen-verification" content="1VfsUNzrT2kKSoOR3uOBbHlA9rlA0pG8FPICtKqMtotDTKR0rchMKpVBsJMXVnzN">
+    <title>{title}</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#222222">
+    <script is:inline>
+      if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark')}
+    </script>
+    <link rel="canonical" href={canonical}>
+
+    <meta property="og:title" content={finalOgTitle}>
+    <meta property="og:description" content={finalOgDescription}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:url" content={ogUrl}>
+    <meta property="og:type" content={ogType}>
+    <meta name="twitter:card" content={twitterCard}>
+    <meta name="twitter:title" content={finalOgTitle}>
+    <meta name="twitter:description" content={finalOgDescription}>
+
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" href="/images/roman.webp" type="image/webp">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Роман Пуртов",
+      "alternateName": "Roman Purtov",
+      "url": "https://roman-purtow.ru",
+      "image": "https://roman-purtow.ru/images/roman.jpg",
+      "jobTitle": "Agentic Engineer & маркетолог & UX-UI дизайнер",
+      "worksFor": { "@type": "Organization", "name": "Freelance" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Томск", "addressCountry": "RU" },
+      "sameAs": [
+        "https://github.com/baslie",
+        "https://t.me/roman_purtow",
+        "https://instagram.com/roman.purtow",
+        "https://vk.com/roman_purtow",
+        "https://www.youtube.com/@roman-purtow",
+        "https://vc.ru/u/454432-roman-purtov"
+      ]
+    })} />
+</head>
+
+<body class="font-sans antialiased">
+    <slot />
+
+    <!-- Lenis Smooth Scroll -->
+    <script is:inline src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js" defer></script>
+
+    <!-- Article Translations -->
+    <script is:inline src="/js/i18n-articles.js" defer></script>
+
+    <!-- Main Application Script -->
+    <script is:inline src="/js/app.js" defer></script>
+</body>
+
+</html>
