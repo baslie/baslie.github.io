@@ -946,8 +946,13 @@ html.lenis {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
     pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.article-card:hover .article-card-image-wrapper::after {
+    opacity: 0;
 }
 
 .article-card-image {
