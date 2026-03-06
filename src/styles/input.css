@@ -938,6 +938,18 @@ html.lenis {
     box-shadow: var(--shadow-hover-dark);
 }
 
+.article-card-image-wrapper {
+    position: relative;
+}
+
+.article-card-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+}
+
 .article-card-image {
     width: 100%;
     aspect-ratio: 16 / 9;

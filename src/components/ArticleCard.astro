@@ -13,12 +13,14 @@ const { article } = Astro.props;
   class="article-card"
   {...(article.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
 >
-  <img
-    src={article.image}
-    alt={article.title}
-    class="article-card-image"
-    loading="lazy"
-  />
+  <div class="article-card-image-wrapper">
+    <img
+      src={article.image}
+      alt={article.title}
+      class="article-card-image"
+      loading="lazy"
+    />
+  </div>
   <div class="article-card-body">
     <h3 class="article-card-title" data-i18n={`article_${article.id}_title`}>{article.title}</h3>
     <p class="article-card-desc" data-i18n={`article_${article.id}_description`}>{article.description}</p>
