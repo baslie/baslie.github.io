@@ -65,7 +65,7 @@ export const articles: ArticleData[] = [
     title: 'Как запускалась «Берлога» и как зарабатывались миллионы?',
     description: 'Речь пойдёт о проекте, идея которого закралась мне в голову несколько лет назад. Сейчас это уже компания с 30 людьми в штате, оборотом 7-12 млн в месяц, выстроенным клиентским сервисом и довольно неплохим ассортиментом премиальных эко-продуктов.',
     href: '/articles/berloga',
-    image: '/images/articles/berloga/berloga-store.png',
+    image: '/images/articles/berloga/cover.jpg',
     date: '12 апреля 2022',
     dateISO: '2022-04-12',
     sourceIcon: '/images/favicon.svg',
