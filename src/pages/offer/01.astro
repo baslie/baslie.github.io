@@ -18,10 +18,10 @@ import CornerNav from '../../components/CornerNav.astro';
     <section id="hero" class="offer-section min-h-screen flex items-center justify-center px-4 md:px-8">
       <div class="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div class="order-1 text-center md:text-left">
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 mb-4">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-[color:var(--offer-text-primary)] mb-4">
             Качественный лендинг за&nbsp;48&nbsp;часов&nbsp;— без&nbsp;конструкторов, без&nbsp;долгостроя
           </h1>
-          <p class="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
+          <p class="text-base sm:text-lg text-[color:var(--offer-text-muted)] mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
             Собственная методология быстрой разработки на чистом коде. Быстрее студии, качественнее Тильды.
           </p>
           <a href="#cta" class="offer-btn inline-block">
@@ -45,8 +45,8 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="pain" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-4">Знакомо?</h2>
-        <p class="text-gray-500 text-center mb-10 max-w-2xl mx-auto">Большинство предпринимателей сталкиваются с одними и теми же проблемами при создании сайта</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-4">Знакомо?</h2>
+        <p class="text-[color:var(--offer-text-muted)] text-center mb-10 max-w-2xl mx-auto">Большинство предпринимателей сталкиваются с одними и теми же проблемами при создании сайта</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div class="offer-card">
             <div class="text-3xl mb-3">💸</div>
@@ -69,7 +69,7 @@ import CornerNav from '../../components/CornerNav.astro';
             <p class="offer-card-desc">Выглядят дёшево, без структуры и без понимания вашего бизнеса.</p>
           </div>
         </div>
-        <p class="text-center text-amber-700 font-semibold mt-8 text-lg">Нужен другой подход.</p>
+        <p class="text-center text-[color:var(--offer-accent-dark)] font-semibold mt-8 text-lg">Нужен другой подход.</p>
       </div>
     </section>
 
@@ -78,7 +78,7 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="solution" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-4">Другой подход</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-4">Другой подход</h2>
         <div class="offer-card max-w-3xl mx-auto mb-10">
           <p class="offer-card-desc mb-4">Я разработал собственную методологию, которая объединяет несколько этапов классической разработки в&nbsp;один.</p>
           <p class="offer-card-desc mb-4">Метод «прогрессивного JPEG»: идея → тексты → структура → вайрфрейм → дизайн → готовый сайт. Каждый шаг — итерация с&nbsp;клиентом.</p>
@@ -118,14 +118,14 @@ import CornerNav from '../../components/CornerNav.astro';
               <tr class="offer-table-row">
                 <td class="offer-table-td font-medium">Итого этапов</td>
                 <td class="offer-table-td">4–5</td>
-                <td class="offer-table-td offer-table-td--accent font-bold text-amber-700">3</td>
+                <td class="offer-table-td offer-table-td--accent font-bold text-[color:var(--offer-accent-dark)]">3</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <p class="text-gray-600 text-center mt-8 max-w-3xl mx-auto leading-relaxed">
-          <strong class="text-gray-900">Ключевой тезис:</strong> в классическом подходе дизайн рисуется в Figma, а потом вёрстка повторяет этот дизайн в коде — два отдельных этапа. В моей методологии эти этапы объединены: то, что вы видите как дизайн, <strong class="text-amber-700">уже является рабочим сайтом</strong>.
+        <p class="text-[color:var(--offer-text-muted)] text-center mt-8 max-w-3xl mx-auto leading-relaxed">
+          <strong class="text-[color:var(--offer-text-primary)]">Ключевой тезис:</strong> в классическом подходе дизайн рисуется в Figma, а потом вёрстка повторяет этот дизайн в коде — два отдельных этапа. В моей методологии эти этапы объединены: то, что вы видите как дизайн, <strong class="text-[color:var(--offer-accent-dark)]">уже является рабочим сайтом</strong>.
         </p>
       </div>
     </section>
@@ -135,7 +135,7 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="process" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-12">Как это работает</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-12">Как это работает</h2>
         <div class="offer-timeline">
           <div class="offer-timeline-item">
             <div class="offer-timeline-number">1</div>
@@ -173,7 +173,7 @@ import CornerNav from '../../components/CornerNav.astro';
             </div>
           </div>
         </div>
-        <p class="text-gray-500 text-center mt-8">Всё прозрачно: вы видите промежуточные результаты на каждом этапе. На любом шаге мы можем скорректировать направление.</p>
+        <p class="text-[color:var(--offer-text-muted)] text-center mt-8">Всё прозрачно: вы видите промежуточные результаты на каждом этапе. На любом шаге мы можем скорректировать направление.</p>
       </div>
     </section>
 
@@ -182,7 +182,7 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="advantages" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">Почему этот подход</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-10">Почему этот подход</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <div class="offer-card">
             <div class="offer-icon mb-3">
@@ -235,13 +235,13 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="pricing" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">Тарифы</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-10">Тарифы</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Быстрый старт -->
           <div class="offer-card flex flex-col">
             <h3 class="text-xl font-bold mb-1" style="color: var(--offer-text-primary)">Быстрый старт</h3>
             <p class="offer-card-desc mb-4">Лендинг за 48 часов</p>
-            <div class="text-3xl font-bold text-amber-500 mb-6">36 000 <span class="text-base font-normal text-gray-500">руб.</span></div>
+            <div class="text-3xl font-bold text-[color:var(--offer-accent)] mb-6">36 000 <span class="text-base font-normal text-[color:var(--offer-text-muted)]">руб.</span></div>
             <ul class="offer-checklist mb-6">
               <li>10–12 блоков, адаптив, форма заявки</li>
               <li>Политика конфиденциальности, 404</li>
@@ -252,10 +252,10 @@ import CornerNav from '../../components/CornerNav.astro';
           </div>
           <!-- Под ключ -->
           <div class="offer-card offer-card--featured flex flex-col">
-            <div class="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-2">Популярный</div>
+            <div class="text-xs font-semibold text-[color:var(--offer-accent)] uppercase tracking-wider mb-2">Популярный</div>
             <h3 class="text-xl font-bold mb-1" style="color: var(--offer-text-primary)">Под ключ</h3>
             <p class="offer-card-desc mb-4">Всё из «Быстрого старта» + маркетинг</p>
-            <div class="text-3xl font-bold text-amber-500 mb-6">120 000 <span class="text-base font-normal text-gray-500">руб.</span></div>
+            <div class="text-3xl font-bold text-[color:var(--offer-accent)] mb-6">120 000 <span class="text-base font-normal text-[color:var(--offer-text-muted)]">руб.</span></div>
             <ul class="offer-checklist mb-6">
               <li>Всё из «Быстрого старта»</li>
               <li>Маркетинговое исследование конкурентов</li>
@@ -282,7 +282,7 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="portfolio" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">Портфолио</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-10">Портфолио</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <div class="offer-card-placeholder">
             <span>Скоро</span>
@@ -311,7 +311,7 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="about" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">Обо мне</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-10">Обо мне</h2>
         <div class="offer-card">
           <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center">
             <div class="flex justify-center">
@@ -342,7 +342,7 @@ import CornerNav from '../../components/CornerNav.astro';
          ========================================== -->
     <section id="faq" class="offer-section px-4 md:px-8 py-16 md:py-24">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">Частые вопросы</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[color:var(--offer-text-primary)] text-center mb-10">Частые вопросы</h2>
 
         <details class="offer-faq">
           <summary class="offer-faq-q">
@@ -425,7 +425,7 @@ import CornerNav from '../../components/CornerNav.astro';
 
     <!-- Footer -->
     <footer class="text-center py-8 px-4">
-      <p class="text-sm text-gray-500">&copy; 2025–2026 Роман Пуртов. Все права защищены.</p>
+      <p class="text-sm text-[color:var(--offer-text-muted)]">&copy; 2025–2026 Роман Пуртов. Все права защищены.</p>
     </footer>
   </main>
 </Base>
@@ -440,13 +440,36 @@ import CornerNav from '../../components/CornerNav.astro';
     --offer-text-primary: #111827;
     --offer-text-secondary: #374151;
     --offer-text-muted: #6B7280;
-    --offer-accent: #f59e0b;
-    --offer-accent-hover: #d97706;
-    --offer-accent-dark: #b45309;
+    --offer-accent: #F6522E;
+    --offer-accent-hover: #d9451f;
+    --offer-accent-dark: #b83a1a;
+    --offer-border: rgba(0, 0, 0, 0.1);
+    --offer-border-light: rgba(0, 0, 0, 0.05);
     --offer-placeholder-bg: rgba(0, 0, 0, 0.03);
     --offer-placeholder-border: rgba(0, 0, 0, 0.12);
     --offer-placeholder-text: rgba(0, 0, 0, 0.3);
     --offer-timeline-ring: #ffffff;
+    --offer-input-bg: #ffffff;
+    --offer-input-border: rgba(0, 0, 0, 0.15);
+  }
+
+  :global(.dark) {
+    --offer-bg: #1a1a1a;
+    --offer-bg-subtle: #222222;
+    --offer-text-primary: #F9FAFB;
+    --offer-text-secondary: #D1D5DB;
+    --offer-text-muted: #9CA3AF;
+    --offer-accent: #F6522E;
+    --offer-accent-hover: #f97353;
+    --offer-accent-dark: #f97353;
+    --offer-border: rgba(255, 255, 255, 0.1);
+    --offer-border-light: rgba(255, 255, 255, 0.05);
+    --offer-placeholder-bg: rgba(255, 255, 255, 0.03);
+    --offer-placeholder-border: rgba(255, 255, 255, 0.12);
+    --offer-placeholder-text: rgba(255, 255, 255, 0.3);
+    --offer-timeline-ring: #1a1a1a;
+    --offer-input-bg: #2a2a2a;
+    --offer-input-border: rgba(255, 255, 255, 0.15);
   }
 
   /* ========================================
@@ -478,7 +501,7 @@ import CornerNav from '../../components/CornerNav.astro';
   }
 
   .offer-card--featured {
-    box-shadow: var(--shadow), inset 0 0 0 2px rgba(245, 158, 11, 0.5);
+    box-shadow: var(--shadow), inset 0 0 0 2px rgba(246, 82, 46, 0.5);
   }
 
   .offer-card-title {
@@ -504,7 +527,7 @@ import CornerNav from '../../components/CornerNav.astro';
     display: inline-block;
     padding: 0.875rem 2rem;
     background: var(--offer-accent);
-    color: var(--offer-text-primary);
+    color: #ffffff;
     font-weight: 600;
     font-size: 1rem;
     border-radius: 9999px;
@@ -571,22 +594,22 @@ import CornerNav from '../../components/CornerNav.astro';
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--offer-text-muted);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--offer-border);
   }
 
   .offer-table-th--accent {
     color: var(--offer-accent-dark);
-    background: rgba(245, 158, 11, 0.05);
+    background: rgba(246, 82, 46, 0.05);
   }
 
   .offer-table-td {
     padding: 0.75rem 1rem;
     color: var(--offer-text-primary);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--offer-border-light);
   }
 
   .offer-table-td--accent {
-    background: rgba(245, 158, 11, 0.05);
+    background: rgba(246, 82, 46, 0.05);
   }
 
   .offer-table-row:last-child .offer-table-td {
@@ -606,7 +629,7 @@ import CornerNav from '../../components/CornerNav.astro';
     top: 0.5rem;
     bottom: 0.5rem;
     width: 2px;
-    background: rgba(245, 158, 11, 0.25);
+    background: rgba(246, 82, 46, 0.25);
   }
 
   .offer-timeline-item {
@@ -699,8 +722,8 @@ import CornerNav from '../../components/CornerNav.astro';
     padding: 0.75rem 1rem;
     font-size: 0.9375rem;
     border-radius: 0.75rem;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    background: #fff;
+    border: 1px solid var(--offer-input-border);
+    background: var(--offer-input-bg);
     color: var(--offer-text-primary);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     font-family: inherit;
@@ -709,7 +732,7 @@ import CornerNav from '../../components/CornerNav.astro';
   .offer-input:focus {
     outline: none;
     border-color: var(--offer-accent);
-    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    box-shadow: 0 0 0 3px rgba(246, 82, 46, 0.15);
   }
 
   .offer-input::placeholder {
