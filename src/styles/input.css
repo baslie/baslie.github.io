@@ -558,13 +558,11 @@ body::before {
    ======================================== */
 .corner-nav {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 0.5rem;
+    right: 0.5rem;
     z-index: 50;
     display: flex;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    border-bottom-left-radius: var(--radius);
+    gap: 0.5rem;
 }
 
 .corner-nav-item {
@@ -575,7 +573,8 @@ body::before {
     justify-content: center;
     background: #ffffff;
     border: none;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 22%;
+    box-shadow: var(--shadow);
     cursor: default;
     transition: background 0.2s ease;
     color: var(--color-text);
@@ -584,13 +583,6 @@ body::before {
 .dark .corner-nav-item {
     background: #1e1e1e;
     color: var(--color-text-light);
-    border-left-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Первый элемент (логотип) — скруглённый нижний-левый угол */
-.corner-nav-item:first-child {
-    border-left: none;
-    border-bottom-left-radius: var(--radius);
 }
 
 /* Logo badge — оранжевый фон */
@@ -663,10 +655,6 @@ html.lenis {
 
     .dark .bento-card:not([data-card-type]) {
         background: var(--card-bg-dark);
-    }
-
-    .corner-nav {
-        border-bottom-left-radius: var(--radius);
     }
 
     .corner-nav-item {
