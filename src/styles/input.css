@@ -63,6 +63,23 @@
     --article-spacing-xl: 1.5rem;
     --article-spacing-2xl: 2rem;
 
+    /* Corner Nav */
+    --nav-size: 2.5rem;
+    --nav-gap: 0.5rem;
+    --nav-radius: 33%;
+    --nav-bg: #ffffff;
+    --nav-bg-dark: #1e1e1e;
+    --nav-logo-bg: #F6522E;
+    --nav-logo-bg-hover: #d9451f;
+    --nav-lang-hover: #fef6e7;
+    --nav-lang-hover-dark: #2e2714;
+    --nav-lang-active: #fdedc4;
+    --nav-lang-active-dark: #3d321a;
+    --nav-theme-hover: #eeeffd;
+    --nav-theme-hover-dark: #1e1e3a;
+    --nav-theme-active: #dddcfb;
+    --nav-theme-active-dark: #272747;
+
     /* Размеры */
     --radius: 1.5rem;
     --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -558,40 +575,40 @@ body::before {
    ======================================== */
 .corner-nav {
     position: fixed;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: var(--nav-gap);
+    right: var(--nav-gap);
     z-index: 50;
     display: flex;
-    gap: 0.5rem;
+    gap: var(--nav-gap);
 }
 
 .corner-nav-item {
-    height: 2.5rem;
+    height: var(--nav-size);
     aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
+    background: var(--nav-bg);
     border: none;
-    border-radius: 22%;
+    border-radius: var(--nav-radius);
     box-shadow: var(--shadow);
     cursor: default;
-    transition: background 0.2s ease;
+    transition: background var(--transition-default);
     color: var(--color-text);
 }
 
 .dark .corner-nav-item {
-    background: #1e1e1e;
+    background: var(--nav-bg-dark);
     color: var(--color-text-light);
 }
 
 /* Logo badge — оранжевый фон */
 .corner-nav-item.logo-badge {
-    background: #F6522E;
+    background: var(--nav-logo-bg);
     padding: 0.5rem;
 }
 .dark .corner-nav-item.logo-badge {
-    background: #F6522E;
+    background: var(--nav-logo-bg);
 }
 .logo-badge svg {
     height: 60%;
@@ -604,7 +621,7 @@ a.corner-nav-item.logo-badge {
     cursor: pointer;
 }
 a.corner-nav-item.logo-badge:hover {
-    background: #d9451f;
+    background: var(--nav-logo-bg-hover);
 }
 
 /* Интерактивные элементы */
@@ -616,22 +633,22 @@ button.corner-nav-item > * {
 }
 
 /* Lang — золотой тинт */
-#lang-toggle:hover { background: #fef6e7; }
-.dark #lang-toggle:hover { background: #2e2714; }
+#lang-toggle:hover { background: var(--nav-lang-hover); }
+.dark #lang-toggle:hover { background: var(--nav-lang-hover-dark); }
 #lang-toggle:hover > span { transform: scale(1.05); }
-#lang-toggle:active { background: #fdedc4; }
-.dark #lang-toggle:active { background: #3d321a; }
+#lang-toggle:active { background: var(--nav-lang-active); }
+.dark #lang-toggle:active { background: var(--nav-lang-active-dark); }
 
 /* Theme toggle SVG — явный цвет без зависимости от каскада */
-#theme-toggle svg { color: #111827; }
-.dark #theme-toggle svg { color: #F9FAFB; }
+#theme-toggle svg { color: var(--color-text); }
+.dark #theme-toggle svg { color: var(--color-text-light); }
 
 /* Theme — индиго тинт */
-#theme-toggle:hover { background: #eeeffd; }
-.dark #theme-toggle:hover { background: #1e1e3a; }
+#theme-toggle:hover { background: var(--nav-theme-hover); }
+.dark #theme-toggle:hover { background: var(--nav-theme-hover-dark); }
 #theme-toggle:hover > svg { transform: rotate(15deg); }
-#theme-toggle:active { background: #dddcfb; }
-.dark #theme-toggle:active { background: #272747; }
+#theme-toggle:active { background: var(--nav-theme-active); }
+.dark #theme-toggle:active { background: var(--nav-theme-active-dark); }
 
 /* ========================================
    Lenis
@@ -657,8 +674,8 @@ html.lenis {
         background: var(--card-bg-dark);
     }
 
-    .corner-nav-item {
-        height: 2rem;
+    .corner-nav {
+        --nav-size: 2rem;
     }
 
     .corner-nav-item:not(.logo-badge) svg {
