@@ -12,6 +12,14 @@
 
 ## Разработка
 
+**Быстрый старт:**
+
+```bash
+npm install && npm run dev
+```
+
+**Все команды:**
+
 ```bash
 npm install              # установка зависимостей
 npm run dev              # dev-сервер с HMR
