@@ -1,4 +1,16 @@
 window.articleTranslations = {
+  'mike-vinogradov': {
+    ru: {
+      title: 'Михаил Виноградов — портфолио фотографа и\u00A0видеографа',
+      description: 'Портфолио для travel-фотографа и\u00A0видеографа. Бенто-грид с\u00A0галереями, лайтбоксом и\u00A0scroll-анимациями, двуязычный интерфейс и\u00A0деплой на\u00A0GitHub Pages.',
+      date: '7 марта 2026'
+    },
+    en: {
+      title: 'Mike Vinogradov — Photographer & Videographer Portfolio',
+      description: 'Portfolio for a\u00A0travel photographer and videographer. Bento grid with galleries, lightbox and scroll animations, bilingual interface (RU/EN), self-hosted fonts and GitHub Pages deployment.',
+      date: 'March 7, 2026'
+    }
+  },
   nutrilegal: {
     ru: {
       title: 'Нутрилигал — сайт консалтинговой компании по\u00A0регистрации продукции',

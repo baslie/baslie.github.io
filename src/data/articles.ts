@@ -13,6 +13,18 @@ export interface ArticleData {
 
 export const articles: ArticleData[] = [
   {
+    id: 'mike-vinogradov',
+    title: 'Михаил Виноградов — портфолио фотографа и\u00A0видеографа',
+    description: 'Портфолио для travel-фотографа и\u00A0видеографа. Бенто-грид с\u00A0галереями, лайтбоксом и\u00A0scroll-анимациями, двуязычный интерфейс и\u00A0деплой на\u00A0GitHub Pages.',
+    href: '/articles/mike-vinogradov',
+    image: '/images/articles/mike-vinogradov/cover.jpg',
+    date: '7 марта 2026',
+    dateISO: '2026-03-07',
+    sourceIcon: '/images/favicon.svg',
+    sourceName: 'roman-purtow.ru',
+    badge: 'case',
+  },
+  {
     id: 'nutrilegal',
     title: 'Нутрилигал — сайт консалтинговой компании по\u00A0регистрации продукции',
     description: 'Консалтинговая компания, которая помогает с\u00A0государственной регистрацией продукции: БАД, спортивное питание, получение СГР — от\u00A0рецептуры до\u00A0свидетельства.',
