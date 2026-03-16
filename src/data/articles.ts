@@ -13,6 +13,18 @@ export interface ArticleData {
 
 export const articles: ArticleData[] = [
   {
+    id: 'academy-profmasterstva-widget',
+    title: 'Виджет «Таланты и\u00A0профессии» для Академии ПрофМастерства',
+    description: 'За 9 дней разработал виджет «Таланты и\u00A0профессии» с\u00A0расчётом на\u00A0основе натальной карты.',
+    href: '/articles/academy-profmasterstva-widget',
+    image: '/images/articles/academy-profmasterstva-widget/cover.jpg',
+    date: '16 марта 2026',
+    dateISO: '2026-03-16',
+    sourceIcon: '/images/favicon.svg',
+    sourceName: 'roman-purtow.ru',
+    badge: 'case',
+  },
+  {
     id: 'mike-vinogradov',
     title: 'Михаил Виноградов — портфолио фотографа и\u00A0видеографа',
     description: 'Портфолио для travel-фотографа и\u00A0видеографа. Бенто-грид с\u00A0галереями, лайтбоксом и\u00A0scroll-анимациями, двуязычный интерфейс и\u00A0деплой на\u00A0GitHub Pages.',

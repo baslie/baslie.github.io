@@ -1,0 +1,106 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article
+  title="Виджет «Таланты и профессии» для Академии ПрофМастерства — Роман Пуртов"
+  description="За 9 дней разработал виджет «Таланты и профессии» с расчётом на основе натальной карты."
+  ogTitle="Виджет «Таланты и профессии» для Академии ПрофМастерства"
+  ogDescription="За 9 дней разработал виджет «Таланты и профессии» с расчётом на основе натальной карты."
+  ogImage="https://roman-purtow.ru/images/articles/academy-profmasterstva-widget/cover.jpg"
+  ogUrl="https://roman-purtow.ru/articles/academy-profmasterstva-widget"
+>
+    <header class="article-header">
+        <h1 class="article-title" data-i18n="article_academy-profmasterstva-widget_title">Виджет «Таланты и&nbsp;профессии» для Академии ПрофМастерства</h1>
+        <span data-i18n-content="ru"><p class="article-meta">Пуртов Роман &middot; 16 марта 2026</p></span>
+        <span data-i18n-content="en" style="display:none"><p class="article-meta">Roman Purtov &middot; March 16, 2026</p></span>
+    </header>
+
+    <div class="article-body" data-i18n-content="ru">
+        <p>Онлайн-инструмент, который определяет таланты и&nbsp;подходящие профессии по&nbsp;натальной карте. Разработан для «Академии ПрофМастерства» (Краснодар).</p>
+
+        <a class="article-site-link" href="https://rf.academy-profmasterstva.ru/test" rel="nofollow noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            rf.academy-profmasterstva.ru/test
+        </a>
+
+        <img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Виджет «Таланты и профессии»" loading="lazy">
+
+        <h2>Клиент и&nbsp;задача</h2>
+
+        <p>Наталья Березина из&nbsp;«Академии ПрофМастерства» обратилась с&nbsp;запросом: сделать онлайн-инструмент, который определяет таланты и&nbsp;подходящие профессии по&nbsp;натальной карте, а&nbsp;также встраивается на&nbsp;любой сайт.</p>
+
+        <p>У&nbsp;Натальи есть аудитория, которая интересуется профориентацией. Нужно было дать людям интерактивный квиз, собирать контакты и&nbsp;продавать видео-лекцию с&nbsp;подробной расшифровкой. Готовых решений не&nbsp;существует&nbsp;&mdash; нужен был инструмент с&nbsp;нуля: астрологический расчёт, квиз, результаты, отчёт, интеграция с&nbsp;CRM.</p>
+
+        <h2>Что было сделано</h2>
+
+        <p>Пользователь вводит дату, время и&nbsp;место рождения. Система строит натальную карту и&nbsp;на&nbsp;её основе формирует уникальный набор вопросов&nbsp;&mdash; у&nbsp;каждого пользователя свой. Вопросы уточняют склонности и&nbsp;помогают точнее подобрать профессии.</p>
+
+        <p>Перед показом результатов пользователь оставляет имя, email и&nbsp;по&nbsp;желанию&nbsp;&mdash; телефон или Telegram. На&nbsp;выходе&nbsp;&mdash; список подходящих профессий, разделённый на&nbsp;три группы: «Наиболее подходящие», «Хорошо подходят» и&nbsp;«Возможные направления». Плюс описание талантов, которые соответствуют карте и&nbsp;ответам на&nbsp;квиз.</p>
+
+        <p>После прохождения квиза автоматически генерируется PDF-отчёт с&nbsp;профессиями и&nbsp;талантами. Он&nbsp;загружается в&nbsp;облачное S3-хранилище&nbsp;&mdash; пользователь получает ссылку на&nbsp;скачивание. Результаты также приходят на&nbsp;email в&nbsp;виде HTML-письма и&nbsp;ссылкой на&nbsp;PDF.</p>
+
+        <p>Заявка мгновенно уходит на&nbsp;почту и&nbsp;в&nbsp;GetCourse: создаётся контакт, присваивается группа подписки, в&nbsp;карточку записывается ссылка на&nbsp;PDF с&nbsp;результатами.</p>
+
+        <p>Виджет встраивается на&nbsp;сайт одной строкой HTML. Работает на&nbsp;Тильде, WordPress, Wix, самописных сайтах&nbsp;&mdash; где угодно. Стили полностью изолированы и&nbsp;не&nbsp;ломают дизайн основного сайта (Shadow DOM). Можно настроить тему оформления, текст кнопки, привязать открытие к&nbsp;любому элементу на&nbsp;странице. UTM-метки подхватываются автоматически.</p>
+
+        <p>Наталья может сама редактировать вопросы квиза, описания талантов и&nbsp;профессий через админ-панель&nbsp;&mdash; без разработчика. Изменения применяются мгновенно.</p>
+
+        <h2>Результат</h2>
+
+        <p>Клиент получил готовый продукт, который:</p>
+        <ul>
+            <li>привлекает аудиторию интерактивным квизом</li>
+            <li>собирает контакты и&nbsp;передаёт их&nbsp;в&nbsp;CRM</li>
+            <li>продаёт видео-лекцию без участия человека</li>
+            <li>работает на&nbsp;любом сайте без доработок</li>
+            <li>управляется через админ-панель без разработчика</li>
+        </ul>
+
+        <p>Всё&nbsp;&mdash; от&nbsp;астрологического расчёта до&nbsp;PDF-отчёта&nbsp;&mdash; работает автоматически.</p>
+    </div>
+
+    <div class="article-body" data-i18n-content="en" style="display:none">
+        <p>An&nbsp;online tool that identifies talents and suitable careers based on&nbsp;a&nbsp;natal chart. Developed for the Academy of&nbsp;Professional Mastery (Krasnodar, Russia).</p>
+
+        <a class="article-site-link" href="https://rf.academy-profmasterstva.ru/test" rel="nofollow noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            rf.academy-profmasterstva.ru/test
+        </a>
+
+        <img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Talents & Careers widget" loading="lazy">
+
+        <h2>Client &amp; Brief</h2>
+
+        <p>Natalia Berezina from the Academy of&nbsp;Professional Mastery reached out with a&nbsp;request: build an&nbsp;online tool that identifies talents and suitable careers based on&nbsp;a&nbsp;natal chart, embeddable on&nbsp;any website.</p>
+
+        <p>Natalia has an&nbsp;audience interested in&nbsp;career guidance. The goal was to&nbsp;provide an&nbsp;interactive quiz, collect contacts, and sell a&nbsp;video lecture with a&nbsp;detailed interpretation. No&nbsp;off-the-shelf solutions existed&nbsp;&mdash; the tool had to&nbsp;be&nbsp;built from scratch: astrological calculations, quiz, results, report, CRM integration.</p>
+
+        <h2>What Was Done</h2>
+
+        <p>The user enters their date, time, and place of&nbsp;birth. The system builds a&nbsp;natal chart and generates a&nbsp;unique set of&nbsp;questions based on&nbsp;it&nbsp;&mdash; each user gets their own. The questions refine inclinations and help match careers more accurately.</p>
+
+        <p>Before seeing results, the user provides their name, email, and optionally a&nbsp;phone number or&nbsp;Telegram handle. The output is&nbsp;a&nbsp;list of&nbsp;suitable careers split into three groups: &ldquo;Best Matches,&rdquo; &ldquo;Good Matches,&rdquo; and &ldquo;Possible Directions.&rdquo; Plus a&nbsp;description of&nbsp;talents that correspond to&nbsp;the chart and quiz answers.</p>
+
+        <p>After completing the quiz, a&nbsp;PDF report with careers and talents is&nbsp;generated automatically. It&nbsp;is&nbsp;uploaded to&nbsp;an&nbsp;S3 cloud storage&nbsp;&mdash; the user receives a&nbsp;download link. Results are also sent via email as&nbsp;an&nbsp;HTML message with a&nbsp;link to&nbsp;the PDF.</p>
+
+        <p>The lead is&nbsp;instantly sent to&nbsp;email and GetCourse: a&nbsp;contact is&nbsp;created, a&nbsp;subscription group is&nbsp;assigned, and the PDF results link is&nbsp;saved to&nbsp;the contact card.</p>
+
+        <p>The widget is&nbsp;embedded on&nbsp;a&nbsp;website with a&nbsp;single line of&nbsp;HTML. It&nbsp;works on&nbsp;Tilda, WordPress, Wix, custom-built sites&nbsp;&mdash; anywhere. Styles are fully isolated and don&rsquo;t break the host site&rsquo;s design (Shadow DOM). You can customize the theme, button text, and bind the widget to&nbsp;any element on&nbsp;the page. UTM tags are captured automatically.</p>
+
+        <p>Natalia can edit quiz questions, talent descriptions, and career listings through an&nbsp;admin panel&nbsp;&mdash; no&nbsp;developer needed. Changes take effect instantly.</p>
+
+        <h2>Result</h2>
+
+        <p>The client received a&nbsp;ready-made product that:</p>
+        <ul>
+            <li>attracts an&nbsp;audience with an&nbsp;interactive quiz</li>
+            <li>collects contacts and sends them to&nbsp;the CRM</li>
+            <li>sells a&nbsp;video lecture without human involvement</li>
+            <li>works on&nbsp;any website without modifications</li>
+            <li>is&nbsp;managed via an&nbsp;admin panel without a&nbsp;developer</li>
+        </ul>
+
+        <p>Everything&nbsp;&mdash; from astrological calculations to&nbsp;PDF reports&nbsp;&mdash; runs automatically.</p>
+    </div>
+</Article>
