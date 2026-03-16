@@ -1,4 +1,16 @@
 window.articleTranslations = {
+  'academy-profmasterstva-widget': {
+    ru: {
+      title: 'Виджет «Таланты и\u00A0профессии» для Академии ПрофМастерства',
+      description: 'За 9 дней разработал виджет «Таланты и\u00A0профессии» с\u00A0расчётом на\u00A0основе натальной карты.',
+      date: '16 марта 2026'
+    },
+    en: {
+      title: 'Talents &\u00A0Careers Widget for the Academy of\u00A0Professional Mastery',
+      description: 'Built a\u00A0Talents &\u00A0Careers widget with natal chart-based calculation in\u00A09 days.',
+      date: 'March 16, 2026'
+    }
+  },
   'mike-vinogradov': {
     ru: {
       title: 'Михаил Виноградов — портфолио фотографа и\u00A0видеографа',
