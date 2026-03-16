@@ -47,6 +47,42 @@ window.articleTranslations = {
       date: 'December 30, 2025'
     }
   },
+  'korea-motors': {
+    ru: {
+      title: 'Korea Motors — лендинг по\u00A0заказу авто из\u00A0Южной Кореи',
+      description: 'Лендинг для компании, которая импортирует автомобили из\u00A0Южной Кореи в\u00A0Россию: от\u00A0подбора до\u00A0доставки за\u00A07\u00A0дней.',
+      date: '20 декабря 2025'
+    },
+    en: {
+      title: 'Korea Motors — Car Import Landing Page',
+      description: 'Landing page for a\u00A0car import company bringing vehicles from South Korea to\u00A0Russia: from selection to\u00A0delivery in\u00A07\u00A0days.',
+      date: 'December 20, 2025'
+    }
+  },
+  retroznak: {
+    ru: {
+      title: 'Ретрознак — лендинг производителя адресных табличек',
+      description: 'Лендинг с\u00A0интерактивным конструктором для компании «Ретрознак» из\u00A0Томска — дизайнерские адресные таблички с\u00A0LED-подсветкой.',
+      date: '1 ноября 2025'
+    },
+    en: {
+      title: 'Retroznak — Address Plaque Manufacturer Landing Page',
+      description: 'Landing page with an\u00A0interactive sign builder for Retroznak from Tomsk — designer address plaques with LED backlighting.',
+      date: 'November 1, 2025'
+    }
+  },
+  truedogage: {
+    ru: {
+      title: 'TrueDogAge — калькулятор возраста собаки по\u00A0научной формуле',
+      description: 'Веб-приложение, которое рассчитывает «человеческий» возраст собаки по\u00A0эпигенетической формуле учёных из\u00A0Калифорнийского университета.',
+      date: '10 января 2026'
+    },
+    en: {
+      title: 'TrueDogAge — Scientific Dog Age Calculator',
+      description: 'Web app that calculates a\u00A0dog\u2019s "human" age using the epigenetic formula from UC\u00A0San Diego researchers.',
+      date: 'January 10, 2026'
+    }
+  },
   autotagmate: {
     ru: {
       title: 'Расширение для Chrome для структурирования промптов',
