@@ -1,44 +1,24 @@
 ---
-import Article from '../../layouts/Article.astro';
+import SimpleArticle from '../../components/SimpleArticle.astro';
 ---
 
-<Article
+<SimpleArticle
   title="Ретрознак — лендинг производителя адресных табличек — Роман Пуртов"
   description="Лендинг с интерактивным конструктором для компании «Ретрознак» из Томска — дизайнерские адресные таблички с LED-подсветкой."
   ogTitle="Ретрознак — лендинг производителя адресных табличек"
   ogDescription="Лендинг с интерактивным конструктором для компании «Ретрознак» из Томска — дизайнерские адресные таблички с LED-подсветкой."
   ogImage="https://roman-purtow.ru/images/articles/retroznak/cover.jpg"
   ogUrl="https://roman-purtow.ru/articles/retroznak"
->
-    <header class="article-header">
-        <h1 class="article-title" data-i18n="article_retroznak_title">Ретрознак — лендинг производителя адресных табличек</h1>
-        <span data-i18n-content="ru"><p class="article-meta">Пуртов Роман &middot; 1 ноября 2025</p></span>
-        <span data-i18n-content="en" style="display:none"><p class="article-meta">Roman Purtov &middot; November 1, 2025</p></span>
-    </header>
-
-    <div class="article-body" data-i18n-content="ru">
-        <p>Лендинг с&nbsp;интерактивным конструктором для компании «Ретрознак» из&nbsp;Томска — дизайнерские адресные таблички в&nbsp;стиле советской эпохи с&nbsp;LED-подсветкой. Конструктор позволяет в&nbsp;реальном времени выбрать дизайн, материал, цвет и&nbsp;увидеть результат на&nbsp;Canvas-превью.</p>
-
-        <p><strong>Технологии:</strong> Astro 6, React 19, TypeScript, Tailwind CSS v4, Framer Motion, HTML5 Canvas</p>
-
-        <a class="article-site-link" href="https://roman-purtow.ru/land.retroznak.ru" rel="nofollow noopener noreferrer" target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            roman-purtow.ru/land.retroznak.ru
-        </a>
-
-        <a href="https://roman-purtow.ru/land.retroznak.ru" rel="nofollow noopener noreferrer" target="_blank"><img src="/images/articles/retroznak/screenshot.jpg" alt="Скриншот сайта Ретрознак" loading="lazy"></a>
-    </div>
-
-    <div class="article-body" data-i18n-content="en" style="display:none">
-        <p>Landing page with an&nbsp;interactive sign builder for Retroznak from Tomsk — designer address plaques with LED backlighting. The builder lets users customize design, material, and color with real-time Canvas preview.</p>
-
-        <p><strong>Technologies:</strong> Astro 6, React 19, TypeScript, Tailwind CSS v4, Framer Motion, HTML5 Canvas</p>
-
-        <a class="article-site-link" href="https://roman-purtow.ru/land.retroznak.ru" rel="nofollow noopener noreferrer" target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            roman-purtow.ru/land.retroznak.ru
-        </a>
-
-        <a href="https://roman-purtow.ru/land.retroznak.ru" rel="nofollow noopener noreferrer" target="_blank"><img src="/images/articles/retroznak/screenshot.jpg" alt="Retroznak website screenshot" loading="lazy"></a>
-    </div>
-</Article>
+  articleId="retroznak"
+  h1="Ретрознак — лендинг производителя адресных табличек"
+  metaRu="Пуртов Роман &middot; 1 ноября 2025"
+  metaEn="Roman Purtov &middot; November 1, 2025"
+  bodyRu="Лендинг с&nbsp;интерактивным конструктором для компании «Ретрознак» из&nbsp;Томска — дизайнерские адресные таблички в&nbsp;стиле советской эпохи с&nbsp;LED-подсветкой. Конструктор позволяет в&nbsp;реальном времени выбрать дизайн, материал, цвет и&nbsp;увидеть результат на&nbsp;Canvas-превью."
+  bodyEn="Landing page with an&nbsp;interactive sign builder for Retroznak from Tomsk — designer address plaques with LED backlighting. The builder lets users customize design, material, and color with real-time Canvas preview."
+  tech="Astro 6, React 19, TypeScript, Tailwind CSS v4, Framer Motion, HTML5 Canvas"
+  siteUrl="https://roman-purtow.ru/land.retroznak.ru"
+  siteDisplay="roman-purtow.ru/land.retroznak.ru"
+  screenshotUrl="/images/articles/retroznak/screenshot.jpg"
+  screenshotAltRu="Скриншот сайта Ретрознак"
+  screenshotAltEn="Retroznak website screenshot"
+/>

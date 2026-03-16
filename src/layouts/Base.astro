@@ -11,6 +11,7 @@ interface Props {
   ogType?: string;
   canonical?: string;
   twitterCard?: string;
+  noPreload?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   ogType = 'website',
   canonical = 'https://roman-purtow.ru/',
   twitterCard = 'summary_large_image',
+  noPreload = false,
 } = Astro.props;
 
 const finalOgTitle = ogTitle || title;
@@ -59,8 +61,11 @@ const finalOgDescription = ogDescription || description;
     <meta name="twitter:title" content={finalOgTitle}>
     <meta name="twitter:description" content={finalOgDescription}>
 
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" href="/images/roman.webp" type="image/webp">
+    <!-- Preload LCP image (only on main page) -->
+    {!noPreload && <link rel="preload" as="image" href="/images/roman.webp" type="image/webp">}
+
+    <!-- Additional head content from child layouts -->
+    <slot name="head" />
 
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify({

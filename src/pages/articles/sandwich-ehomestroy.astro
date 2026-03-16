@@ -1,44 +1,24 @@
 ---
-import Article from '../../layouts/Article.astro';
+import SimpleArticle from '../../components/SimpleArticle.astro';
 ---
 
-<Article
+<SimpleArticle
   title="ЭкоHomeСтрой — лендинг строительной компании — Роман Пуртов"
   description="Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из сэндвич-панелей в Москве и Московской области."
   ogTitle="ЭкоHomeСтрой — лендинг строительной компании"
   ogDescription="Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из сэндвич-панелей в Москве и Московской области."
   ogImage="https://roman-purtow.ru/images/articles/sandwich-ehomestroy/cover.jpg"
   ogUrl="https://roman-purtow.ru/articles/sandwich-ehomestroy"
->
-    <header class="article-header">
-        <h1 class="article-title" data-i18n="article_sandwich-ehomestroy_title">ЭкоHomeСтрой — лендинг строительной компании</h1>
-        <span data-i18n-content="ru"><p class="article-meta">Пуртов Роман &middot; 30 декабря 2025</p></span>
-        <span data-i18n-content="en" style="display:none"><p class="article-meta">Roman Purtov &middot; December 30, 2025</p></span>
-    </header>
-
-    <div class="article-body" data-i18n-content="ru">
-        <p>Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из&nbsp;сэндвич-панелей в&nbsp;Москве и&nbsp;Московской области.</p>
-
-        <p><strong>Технологии:</strong> Next.js 16, React 19, TypeScript, Tailwind CSS v4, GSAP, Motion, Radix UI, React Hook Form, Zod, Nodemailer</p>
-
-        <a class="article-site-link" href="https://sandwich.e-homestroy.ru" rel="nofollow noopener noreferrer" target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            sandwich.e-homestroy.ru
-        </a>
-
-        <a href="https://sandwich.e-homestroy.ru" rel="nofollow noopener noreferrer" target="_blank"><img src="/images/articles/sandwich-ehomestroy/screenshot.jpg" alt="Скриншот сайта ЭкоHomeСтрой" loading="lazy"></a>
-    </div>
-
-    <div class="article-body" data-i18n-content="en" style="display:none">
-        <p>Landing page for EcoHomeStroy — fast-build construction from sandwich panels in&nbsp;Moscow and Moscow Region.</p>
-
-        <p><strong>Technologies:</strong> Next.js 16, React 19, TypeScript, Tailwind CSS v4, GSAP, Motion, Radix UI, React Hook Form, Zod, Nodemailer</p>
-
-        <a class="article-site-link" href="https://sandwich.e-homestroy.ru" rel="nofollow noopener noreferrer" target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            sandwich.e-homestroy.ru
-        </a>
-
-        <a href="https://sandwich.e-homestroy.ru" rel="nofollow noopener noreferrer" target="_blank"><img src="/images/articles/sandwich-ehomestroy/screenshot.jpg" alt="EcoHomeStroy website screenshot" loading="lazy"></a>
-    </div>
-</Article>
+  articleId="sandwich-ehomestroy"
+  h1="ЭкоHomeСтрой — лендинг строительной компании"
+  metaRu="Пуртов Роман &middot; 30 декабря 2025"
+  metaEn="Roman Purtov &middot; December 30, 2025"
+  bodyRu="Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из&nbsp;сэндвич-панелей в&nbsp;Москве и&nbsp;Московской области."
+  bodyEn="Landing page for EcoHomeStroy — fast-build construction from sandwich panels in&nbsp;Moscow and Moscow Region."
+  tech="Next.js 16, React 19, TypeScript, Tailwind CSS v4, GSAP, Motion, Radix UI, React Hook Form, Zod, Nodemailer"
+  siteUrl="https://sandwich.e-homestroy.ru"
+  siteDisplay="sandwich.e-homestroy.ru"
+  screenshotUrl="/images/articles/sandwich-ehomestroy/screenshot.jpg"
+  screenshotAltRu="Скриншот сайта ЭкоHomeСтрой"
+  screenshotAltEn="EcoHomeStroy website screenshot"
+/>

@@ -1,44 +1,24 @@
 ---
-import Article from '../../layouts/Article.astro';
+import SimpleArticle from '../../components/SimpleArticle.astro';
 ---
 
-<Article
+<SimpleArticle
   title="TrueDogAge — калькулятор возраста собаки по научной формуле — Роман Пуртов"
   description="Веб-приложение, которое рассчитывает «человеческий» возраст собаки по эпигенетической формуле учёных из Калифорнийского университета."
   ogTitle="TrueDogAge — калькулятор возраста собаки по научной формуле"
   ogDescription="Веб-приложение, которое рассчитывает «человеческий» возраст собаки по эпигенетической формуле учёных из Калифорнийского университета."
   ogImage="https://roman-purtow.ru/images/articles/truedogage/cover.jpg"
   ogUrl="https://roman-purtow.ru/articles/truedogage"
->
-    <header class="article-header">
-        <h1 class="article-title" data-i18n="article_truedogage_title">TrueDogAge — калькулятор возраста собаки по&nbsp;научной формуле</h1>
-        <span data-i18n-content="ru"><p class="article-meta">Пуртов Роман &middot; 10 января 2026</p></span>
-        <span data-i18n-content="en" style="display:none"><p class="article-meta">Roman Purtov &middot; January 10, 2026</p></span>
-    </header>
-
-    <div class="article-body" data-i18n-content="ru">
-        <p>Веб-приложение, которое рассчитывает «человеческий» возраст собаки по&nbsp;эпигенетической формуле учёных из&nbsp;Калифорнийского университета в&nbsp;Сан-Диего. Два режима ввода: слайдеры или дата рождения. Поддержка 7&nbsp;языков, установка как PWA.</p>
-
-        <p><strong>Технологии:</strong> Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion, Radix UI, shadcn/ui, next-intl, Serwist (PWA)</p>
-
-        <a class="article-site-link" href="https://truedogage.com" rel="nofollow noopener noreferrer" target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            truedogage.com
-        </a>
-
-        <a href="https://truedogage.com" rel="nofollow noopener noreferrer" target="_blank"><img src="/images/articles/truedogage/screenshot.jpg" alt="Скриншот сайта TrueDogAge" loading="lazy"></a>
-    </div>
-
-    <div class="article-body" data-i18n-content="en" style="display:none">
-        <p>Web app that calculates a&nbsp;dog's "human" age using the epigenetic formula from UC&nbsp;San Diego researchers. Two input modes: sliders or date of&nbsp;birth. Supports 7&nbsp;languages, installable as&nbsp;PWA.</p>
-
-        <p><strong>Technologies:</strong> Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion, Radix UI, shadcn/ui, next-intl, Serwist (PWA)</p>
-
-        <a class="article-site-link" href="https://truedogage.com" rel="nofollow noopener noreferrer" target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            truedogage.com
-        </a>
-
-        <a href="https://truedogage.com" rel="nofollow noopener noreferrer" target="_blank"><img src="/images/articles/truedogage/screenshot.jpg" alt="TrueDogAge website screenshot" loading="lazy"></a>
-    </div>
-</Article>
+  articleId="truedogage"
+  h1="TrueDogAge — калькулятор возраста собаки по&nbsp;научной формуле"
+  metaRu="Пуртов Роман &middot; 10 января 2026"
+  metaEn="Roman Purtov &middot; January 10, 2026"
+  bodyRu="Веб-приложение, которое рассчитывает «человеческий» возраст собаки по&nbsp;эпигенетической формуле учёных из&nbsp;Калифорнийского университета в&nbsp;Сан-Диего. Два режима ввода: слайдеры или дата рождения. Поддержка 7&nbsp;языков, установка как PWA."
+  bodyEn="Web app that calculates a&nbsp;dog's &quot;human&quot; age using the epigenetic formula from UC&nbsp;San Diego researchers. Two input modes: sliders or date of&nbsp;birth. Supports 7&nbsp;languages, installable as&nbsp;PWA."
+  tech="Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion, Radix UI, shadcn/ui, next-intl, Serwist (PWA)"
+  siteUrl="https://truedogage.com"
+  siteDisplay="truedogage.com"
+  screenshotUrl="/images/articles/truedogage/screenshot.jpg"
+  screenshotAltRu="Скриншот сайта TrueDogAge"
+  screenshotAltEn="TrueDogAge website screenshot"
+/>

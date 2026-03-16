@@ -1,0 +1,73 @@
+---
+import Article from '../layouts/Article.astro';
+import ExternalLinkIcon from './ExternalLinkIcon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+  ogUrl: string;
+  articleId: string;
+  h1: string;
+  metaRu: string;
+  metaEn: string;
+  bodyRu: string;
+  bodyEn: string;
+  tech: string;
+  siteUrl: string;
+  siteDisplay: string;
+  screenshotUrl: string;
+  screenshotAltRu: string;
+  screenshotAltEn: string;
+}
+
+const {
+  title, description, ogTitle, ogDescription, ogImage, ogUrl,
+  articleId, h1, metaRu, metaEn,
+  bodyRu, bodyEn, tech, siteUrl, siteDisplay,
+  screenshotUrl, screenshotAltRu, screenshotAltEn,
+} = Astro.props;
+---
+
+<Article
+  title={title}
+  description={description}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  ogUrl={ogUrl}
+>
+    <header class="article-header">
+        <h1 class="article-title" data-i18n={`article_${articleId}_title`} set:html={h1} />
+        <span data-i18n-content="ru"><p class="article-meta" set:html={metaRu} /></span>
+        <span data-i18n-content="en" style="display:none"><p class="article-meta" set:html={metaEn} /></span>
+    </header>
+
+    <div class="article-body" data-i18n-content="ru">
+        <p set:html={bodyRu} />
+
+        <p><strong>Технологии:</strong> {tech}</p>
+
+        <a class="article-site-link" href={siteUrl} rel="nofollow noopener noreferrer" target="_blank">
+            <ExternalLinkIcon />
+            {siteDisplay}
+        </a>
+
+        <a href={siteUrl} rel="nofollow noopener noreferrer" target="_blank"><img src={screenshotUrl} alt={screenshotAltRu} loading="lazy"></a>
+    </div>
+
+    <div class="article-body" data-i18n-content="en" style="display:none">
+        <p set:html={bodyEn} />
+
+        <p><strong>Technologies:</strong> {tech}</p>
+
+        <a class="article-site-link" href={siteUrl} rel="nofollow noopener noreferrer" target="_blank">
+            <ExternalLinkIcon />
+            {siteDisplay}
+        </a>
+
+        <a href={siteUrl} rel="nofollow noopener noreferrer" target="_blank"><img src={screenshotUrl} alt={screenshotAltEn} loading="lazy"></a>
+    </div>
+</Article>
