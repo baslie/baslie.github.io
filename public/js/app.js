@@ -117,8 +117,8 @@ const timeStringEn = formatTime(timeSince, 'en');
    ======================================== */
 const translations = {
     ru: {
-        title: 'Роман\u00A0Пуртов. Agentic Engineer\u00A0&\u00A0маркетолог\u00A0&\u00A0дизайнер.',
-        metaDescription: 'Agentic Engineer\u00A0&\u00A0маркетолог\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги (Томск,\u00A0МСК+4). Делаю сайты на\u00A0Тильде и\u00A0пишу к\u00A0ним код\u00A0🌲',
+        title: 'Роман\u00A0Пуртов — маркетолог, дизайнер и\u00A0веб-разработчик',
+        metaDescription: 'Маркетолог, UX/UI дизайнер и веб-разработчик из Томска. Делаю лендинги и сайты на чистом коде — от дизайна до деплоя',
         name: 'Роман\u00A0Пуртов',
         mainDescription1: `<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a>\u00A0&\u00A0<a href="/articles/berloga" class="inline-link">маркетолог</a>\u00A0&\u00A0UX-UI дизайнер из\u00A0тайги (Томск,\u00A0МСК+4).`,
         mainDescription2: `${timeStringRu} делаю <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сайты на\u00A0Тильде</a> и\u00A0пишу к\u00A0ним <a href="https://github.com/baslie/code-snippets" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">код</a>\u00A0🌲`,
@@ -157,8 +157,8 @@ const translations = {
         footer_inn: 'ИНН 702406781541'
     },
     en: {
-        title: 'Roman\u00A0Purtov. Agentic Engineer\u00A0&\u00A0Marketer\u00A0&\u00A0Designer.',
-        metaDescription: 'Agentic Engineer\u00A0&\u00A0Marketer\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk,\u00A0UTC+7). Building Tilda websites and writing code\u00A0🌲',
+        title: 'Roman\u00A0Purtov — Marketer, Designer & Web Developer',
+        metaDescription: 'Marketer, UX/UI Designer and Web Developer from Tomsk. Building landing pages and websites with clean code — from design to deploy',
         name: 'Roman\u00A0Purtov',
         mainDescription1: `<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Agentic Engineer</a>\u00A0&\u00A0<a href="/articles/berloga" class="inline-link">Marketer</a>\u00A0&\u00A0UX-UI Designer from Siberian taiga (Tomsk,\u00A0UTC+7).`,
         mainDescription2: `Building <a href="https://experts.tilda.cc/roman-purtow" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">Tilda websites</a> and writing <a href="https://github.com/baslie/code-snippets" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">code</a> for them for ${timeStringEn}\u00A0🌲`,
@@ -220,17 +220,38 @@ let currentLang = localStorage.getItem('lang') ||
 function updateLanguage(lang) {
     document.documentElement.lang = lang;
     const t = translations[lang];
-    document.title = t.title;
 
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-        metaDesc.setAttribute('content', t.metaDescription);
+    // Определяем контекст страницы и подставляем правильные title/description
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    const articleMatch = path.match(/^\/articles\/(.+)/);
+
+    let pageTitle = null;
+    let pageDescription = null;
+
+    if (path === '/' || path === '/index.html') {
+        // Главная
+        pageTitle = t.title;
+        pageDescription = t.metaDescription;
+    } else if (articleMatch) {
+        // Статья — берём перевод из article translations
+        const articleId = articleMatch[1];
+        const titleKey = `article_${articleId}_title`;
+        const descKey = `article_${articleId}_description`;
+        if (t[titleKey]) pageTitle = t[titleKey];
+        if (t[descKey]) pageDescription = t[descKey];
     }
+    // Прочие страницы — не трогаем title/мета
 
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', t.title);
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', t.metaDescription);
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', t.title);
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', t.metaDescription);
+    if (pageTitle) {
+        document.title = pageTitle;
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', pageTitle);
+        document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', pageTitle);
+    }
+    if (pageDescription) {
+        document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescription);
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', pageDescription);
+        document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', pageDescription);
+    }
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
