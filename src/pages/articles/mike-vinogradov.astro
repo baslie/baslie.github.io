@@ -1,15 +1,26 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExternalLinkIcon from '../../components/ExternalLinkIcon.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Михаил Виноградов — портфолио фотографа и видеографа",
+  "description": "Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4.",
+  "image": "https://roman-purtow.ru/images/articles/mike-vinogradov/cover.jpg",
+  "url": "https://roman-purtow.ru/articles/mike-vinogradov",
+  "author": { "@type": "Person", "name": "Роман Пуртов", "url": "https://roman-purtow.ru" },
+};
 ---
 
 <Article
   title="Михаил Виноградов — портфолио фотографа и видеографа — Роман Пуртов"
-  description="Портфолио для travel-фотографа и видеографа. Бенто-грид с галереями, лайтбоксом и scroll-анимациями, двуязычный интерфейс (RU/EN), self-hosted шрифты и деплой на GitHub Pages."
+  description="Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4"
   ogTitle="Михаил Виноградов — портфолио фотографа и видеографа"
-  ogDescription="Портфолио для travel-фотографа и видеографа. Бенто-грид с галереями, лайтбоксом и scroll-анимациями, двуязычный интерфейс (RU/EN), self-hosted шрифты и деплой на GitHub Pages."
+  ogDescription="Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4."
   ogImage="https://roman-purtow.ru/images/articles/mike-vinogradov/cover.jpg"
   ogUrl="https://roman-purtow.ru/articles/mike-vinogradov"
+  jsonLd={jsonLd}
 >
     <header class="article-header">
         <h1 class="article-title" data-i18n="article_mike-vinogradov_title">Михаил Виноградов — портфолио фотографа и&nbsp;видеографа</h1>

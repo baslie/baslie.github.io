@@ -1,6 +1,16 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExternalLinkIcon from '../../components/ExternalLinkIcon.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как запускалась «Берлога» и как зарабатывались миллионы?",
+  "description": "История создания интернет-магазина премиальных эко-продуктов с оборотом 7-12 млн в месяц.",
+  "image": "https://roman-purtow.ru/images/articles/berloga/berloga-store.png",
+  "url": "https://roman-purtow.ru/articles/berloga",
+  "author": { "@type": "Person", "name": "Роман Пуртов", "url": "https://roman-purtow.ru" },
+};
 ---
 
 <Article
@@ -10,6 +20,7 @@ import ExternalLinkIcon from '../../components/ExternalLinkIcon.astro';
   ogDescription="История создания интернет-магазина премиальных эко-продуктов с оборотом 7-12 млн в месяц."
   ogImage="https://roman-purtow.ru/images/articles/berloga/berloga-store.png"
   ogUrl="https://roman-purtow.ru/articles/berloga"
+  jsonLd={jsonLd}
 >
     <header class="article-header">
         <h1 class="article-title" data-i18n="article_berloga_title">Как запускалась «Берлога» и как зарабатывались миллионы?</h1>

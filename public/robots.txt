@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /wireframes/
 Disallow: /glavred-calls/
 Disallow: /helpa-research/
+Disallow: /offer/
 
 Sitemap: https://roman-purtow.ru/sitemap.xml

@@ -29,6 +29,16 @@ const {
   bodyRu, bodyEn, tech, siteUrl, siteDisplay,
   screenshotUrl, screenshotAltRu, screenshotAltEn,
 } = Astro.props;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ogTitle || title,
+  "description": ogDescription || description,
+  "image": ogImage,
+  "url": ogUrl,
+  "author": { "@type": "Person", "name": "Роман Пуртов", "url": "https://roman-purtow.ru" },
+};
 ---
 
 <Article
@@ -38,6 +48,7 @@ const {
   ogDescription={ogDescription}
   ogImage={ogImage}
   ogUrl={ogUrl}
+  jsonLd={articleJsonLd}
 >
     <header class="article-header">
         <h1 class="article-title" data-i18n={`article_${articleId}_title`} set:html={h1} />

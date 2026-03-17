@@ -1,15 +1,26 @@
 ---
 import Article from '../../layouts/Article.astro';
 import ExternalLinkIcon from '../../components/ExternalLinkIcon.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Виджет «Таланты и профессии» для Академии ПрофМастерства",
+  "description": "Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт.",
+  "image": "https://roman-purtow.ru/images/articles/academy-profmasterstva-widget/cover.jpg",
+  "url": "https://roman-purtow.ru/articles/academy-profmasterstva-widget",
+  "author": { "@type": "Person", "name": "Роман Пуртов", "url": "https://roman-purtow.ru" },
+};
 ---
 
 <Article
   title="Виджет «Таланты и профессии» для Академии ПрофМастерства — Роман Пуртов"
-  description="За 9 дней разработал виджет «Таланты и профессии» с расчётом на основе натальной карты."
+  description="Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт"
   ogTitle="Виджет «Таланты и профессии» для Академии ПрофМастерства"
-  ogDescription="За 9 дней разработал виджет «Таланты и профессии» с расчётом на основе натальной карты."
+  ogDescription="Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт."
   ogImage="https://roman-purtow.ru/images/articles/academy-profmasterstva-widget/cover.jpg"
   ogUrl="https://roman-purtow.ru/articles/academy-profmasterstva-widget"
+  jsonLd={jsonLd}
 >
     <header class="article-header">
         <h1 class="article-title" data-i18n="article_academy-profmasterstva-widget_title">Виджет «Таланты и&nbsp;профессии» для Академии ПрофМастерства</h1>

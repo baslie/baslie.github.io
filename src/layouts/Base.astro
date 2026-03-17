@@ -12,6 +12,7 @@ interface Props {
   canonical?: string;
   twitterCard?: string;
   noPreload?: boolean;
+  jsonLd?: Record<string, unknown>;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   canonical = 'https://roman-purtow.ru/',
   twitterCard = 'summary_large_image',
   noPreload = false,
+  jsonLd,
 } = Astro.props;
 
 const finalOgTitle = ogTitle || title;
@@ -57,6 +59,7 @@ const finalOgDescription = ogDescription || description;
     <meta property="og:image" content={ogImage}>
     <meta property="og:url" content={ogUrl}>
     <meta property="og:type" content={ogType}>
+    <meta property="og:site_name" content="Роман Пуртов">
     <meta name="twitter:card" content={twitterCard}>
     <meta name="twitter:title" content={finalOgTitle}>
     <meta name="twitter:description" content={finalOgDescription}>
@@ -68,14 +71,14 @@ const finalOgDescription = ogDescription || description;
     <slot name="head" />
 
     <!-- Schema.org -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd || {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Роман Пуртов",
       "alternateName": "Roman Purtov",
       "url": "https://roman-purtow.ru",
       "image": "https://roman-purtow.ru/images/roman.jpg",
-      "jobTitle": "Agentic Engineer & маркетолог & UX-UI дизайнер",
+      "jobTitle": "Маркетолог, UX/UI дизайнер и веб-разработчик",
       "worksFor": { "@type": "Organization", "name": "Freelance" },
       "address": { "@type": "PostalAddress", "addressLocality": "Томск", "addressCountry": "RU" },
       "sameAs": [
