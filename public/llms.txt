@@ -29,6 +29,8 @@
 - [Telegram-канал](https://t.me/purtochka_live): Блог о разработке и дизайне
 - [vc.ru](https://vc.ru/u/454432-roman-purtov): Статьи и публикации
 
+- [Полная версия для LLM](https://roman-purtow.ru/llms-full.txt)
+
 ## Статьи
 
 - [Виджет «Таланты и профессии» для Академии ПрофМастерства](https://roman-purtow.ru/articles/academy-profmasterstva-widget) (16 марта 2026, roman-purtow.ru)
