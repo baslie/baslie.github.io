@@ -51,20 +51,20 @@ const hasHeadingSlot = Astro.slots.has('heading');
   /* ========================================
      Offer03 — Global Overrides
      ======================================== */
-  :global(body)::before {
+  body::before {
     display: none !important;
   }
 
   /* ========================================
      Page Background (on body, like Article.astro)
      ======================================== */
-  :global(body) {
+  body {
     background: #111113 url('/images/offer/03/offer-bg.jpg') center / cover no-repeat fixed;
     min-height: 100vh;
   }
 
   @media (max-width: 768px) {
-    :global(body) {
+    body {
       background-attachment: scroll;
     }
   }
