@@ -60,7 +60,7 @@ const hasHeadingSlot = Astro.slots.has('heading');
      ======================================== */
   .o3-page {
     min-height: 100dvh;
-    background: #111113;
+    background: #111113 url('/images/offer/03/offer-bg.jpg') center / cover no-repeat fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,12 +119,15 @@ const hasHeadingSlot = Astro.slots.has('heading');
      ======================================== */
   .o3-super {
     display: block;
-    font-size: clamp(11px, 1.2vw, 13px);
+    font-size: clamp(17px, 2.4vw, 22px);
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.35;
     color: #F6522E;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-left: 1rem;
+    border-left: 3px solid #F6522E;
   }
 
   .o3-heading {
