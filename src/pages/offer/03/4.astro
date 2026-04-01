@@ -90,4 +90,65 @@ import Offer03Card from '../../../components/offer/Offer03Card.astro';
       <p>&copy; 2025–2026 Роман Пуртов. Все права защищены.</p>
     </footer>
   </Offer03Card>
+
+  <script>
+    const BOT_TOKEN = '8298368299:AAHWzsXXSzhAdJSHboxBDs5BX4skw56_eUc';
+    const CHAT_ID = '-5212108457';
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const form = document.querySelector('.o3-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const btn = form.querySelector('.o3-cta--submit');
+        const originalText = btn.textContent;
+        btn.textContent = 'Отправка...';
+        btn.disabled = true;
+
+        const name = form.querySelector('#o3-name').value.trim();
+        const contact = form.querySelector('#o3-contact').value.trim();
+        const project = form.querySelector('#o3-project').value.trim();
+
+        let text = `📩 Новая заявка с лендинга\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}`;
+        if (project) {
+          text += `\n📝 Проект: ${project}`;
+        }
+        text += `\n\n🔗 Страница: ${window.location.pathname}`;
+
+        if (urlParams.size > 0) {
+          text += `\n🏷 Параметры:`;
+          for (const [key, value] of urlParams) {
+            text += `\n  ${key}: ${value}`;
+          }
+        }
+
+        try {
+          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text }),
+          });
+
+          if (!res.ok) throw new Error('Telegram API error');
+
+          const wrap = form.closest('.o3-form-wrap');
+          const note = wrap.querySelector('.o3-form-note');
+          form.innerHTML = '<p class="o3-success">✓ Заявка отправлена! Свяжусь с вами в течение часа.</p>';
+          if (note) note.remove();
+        } catch {
+          btn.textContent = originalText;
+          btn.disabled = false;
+
+          if (!form.querySelector('.o3-error')) {
+            const err = document.createElement('p');
+            err.className = 'o3-error';
+            err.textContent = 'Не удалось отправить. Напишите в Telegram: @roman_purtow';
+            form.appendChild(err);
+          }
+        }
+      });
+    }
+  </script>
 </Base>
