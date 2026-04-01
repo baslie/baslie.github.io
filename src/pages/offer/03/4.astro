@@ -94,6 +94,7 @@ import Offer03Card from '../../../components/offer/Offer03Card.astro';
   <script>
     const BOT_TOKEN = '8298368299:AAHWzsXXSzhAdJSHboxBDs5BX4skw56_eUc';
     const CHAT_ID = '-5212108457';
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwFWWiB9aSqEb_gi4rOnol4vQ-oiIfGt1UmiGB6hQuUw_toCu-GRFO71YHHpaGW2NwhhQ/exec';
 
     // Read UTM: prefer current URL, fall back to localStorage (saved on landing page)
     const currentQs = window.location.search;
@@ -131,22 +132,45 @@ import Offer03Card from '../../../components/offer/Offer03Card.astro';
         if (source) text += `\n📊 ${source}${medium ? ' / ' + medium : ''}`;
 
         const shown = new Set(['utm_source', 'utm_medium']);
+        const utmOtherParts = [];
         for (const [key, raw] of urlParams) {
           if (shown.has(key)) continue;
           if (!isResolved(raw)) continue;
           text += `\n🏷 ${key}: ${raw}`;
+          utmOtherParts.push(`${key}=${raw}`);
         }
 
         if (utmSearch) text += `\n\n🔗 ${utmLandingPath}${utmSearch}`;
 
-        try {
-          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' }),
-          });
+        const sheetData = {
+          name,
+          contact,
+          project,
+          page: window.location.pathname,
+          utm_source: source || '',
+          utm_medium: medium || '',
+          utm_other: utmOtherParts.join(', '),
+          landing_url: utmSearch ? `${utmLandingPath}${utmSearch}` : '',
+        };
 
-          if (!res.ok) throw new Error('Telegram API error');
+        try {
+          const [tgResult] = await Promise.allSettled([
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' }),
+            }),
+            fetch(SHEET_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(sheetData),
+            }),
+          ]);
+
+          if (tgResult.status === 'rejected' || !tgResult.value.ok) {
+            throw new Error('Telegram API error');
+          }
 
           const wrap = form.closest('.o3-form-wrap');
           const note = wrap.querySelector('.o3-form-note');
