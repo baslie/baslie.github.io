@@ -1,14 +1,15 @@
 ---
-import Base from '../../layouts/Base.astro';
+// Redirect /offer -> /offer/1
 ---
-
-<Base
-  title="Оффер — Роман Пуртов"
-  description="Коммерческое предложение"
-  ogUrl="https://roman-purtow.ru/offer"
-  canonical="https://roman-purtow.ru/offer"
->
-  <main class="min-h-screen flex items-center justify-center">
-    <h1 class="text-4xl font-bold">Offer</h1>
-  </main>
-</Base>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=/offer/1">
+  <link rel="canonical" href="https://roman-purtow.ru/offer/1">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <p>Redirecting to <a href="/offer/1">/offer/1</a>...</p>
+</body>
+</html>

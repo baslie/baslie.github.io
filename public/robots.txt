@@ -12,11 +12,13 @@ User-agent: Amazonbot
 Allow: /
 Disallow: /glavred-calls/
 Disallow: /helpa-research/
+Disallow: /archive/
 
 # === All other bots ===
 User-agent: *
 Allow: /
 Disallow: /glavred-calls/
 Disallow: /helpa-research/
+Disallow: /archive/
 
 Sitemap: https://roman-purtow.ru/sitemap.xml
