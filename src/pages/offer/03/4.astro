@@ -111,24 +111,29 @@ import Offer03Card from '../../../components/offer/Offer03Card.astro';
         const contact = form.querySelector('#o3-contact').value.trim();
         const project = form.querySelector('#o3-project').value.trim();
 
-        let text = `📩 Новая заявка с лендинга\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}`;
+        const isResolved = (v) => v && !v.includes('{') && !v.includes('}');
+        const get = (k) => { const v = urlParams.get(k); return isResolved(v) ? v : null; };
+
+        let text = `📩 <b>Новая заявка</b>\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}`;
         if (project) {
           text += `\n📝 Проект: ${project}`;
         }
-        text += `\n\n🔗 Страница: ${window.location.pathname}`;
+        text += `\n\n🔗 ${window.location.pathname}`;
 
-        if (urlParams.size > 0) {
-          text += `\n🏷 Параметры:`;
-          for (const [key, value] of urlParams) {
-            text += `\n  ${key}: ${value}`;
-          }
-        }
+        const source = get('utm_source');
+        const medium = get('utm_medium');
+        const term = get('utm_term');
+        const region = get('region_name');
+
+        if (source) text += `\n📊 ${source}${medium ? ' / ' + medium : ''}`;
+        if (term) text += `\n🔑 ${term}`;
+        if (region) text += `\n📍 ${region}`;
 
         try {
           const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: CHAT_ID, text }),
+            body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' }),
           });
 
           if (!res.ok) throw new Error('Telegram API error');
