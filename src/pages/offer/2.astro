@@ -17,22 +17,38 @@ import OfferFooter from '../../components/offer/OfferFooter.astro';
     <p>Классический процесс создания сайта устроен избыточно. Сначала рисуется макет в Figma — это дни или недели. Потом этот макет «переводится» в код — ещё столько же. Два этапа, которые по сути делают одно и то же.</p>
     <p>Я объединил их в один. Проектирую сайт сразу как готовый продукт — то, что вы видите на экране, уже является рабочим сайтом, а не картинкой в дизайн-программе.</p>
 
-    <div class="o3-process">
+    <div class="o3-process" aria-label="Сравнение подходов по времени">
+      <p class="o3-process-title">Где теряются сроки</p>
+
       <div class="o3-process-row">
-        <span class="o3-process-label">Обычный подход</span>
-        <div class="o3-process-steps">
-          <div class="o3-process-step">Дизайн в Figma</div>
-          <span class="o3-process-arrow">&rarr;</span>
-          <div class="o3-process-step">Вёрстка в код</div>
+        <div class="o3-process-head">
+          <span class="o3-process-label">Обычный подход</span>
+          <span class="o3-process-time">Обычно: недели</span>
         </div>
-        <span class="o3-process-time">Недели</span>
+        <div class="o3-process-steps">
+          <div class="o3-process-step">
+            <span class="o3-process-step-dot">1</span>
+            <span>Дизайн в Figma</span>
+          </div>
+          <span class="o3-process-arrow">+</span>
+          <div class="o3-process-step">
+            <span class="o3-process-step-dot">2</span>
+            <span>Вёрстка в код</span>
+          </div>
+        </div>
       </div>
+
       <div class="o3-process-row o3-process-row--highlight">
-        <span class="o3-process-label">Мой подход</span>
-        <div class="o3-process-steps">
-          <div class="o3-process-step o3-process-step--accent">Дизайн = готовый сайт</div>
+        <div class="o3-process-head">
+          <span class="o3-process-label">Мой подход</span>
+          <span class="o3-process-time">Обычно: дни</span>
         </div>
-        <span class="o3-process-time">Дни</span>
+        <div class="o3-process-steps">
+          <div class="o3-process-step o3-process-step--accent">
+            <span class="o3-process-step-dot o3-process-step-dot--accent">1</span>
+            <span>Сразу делаю дизайн как рабочий сайт</span>
+          </div>
+        </div>
       </div>
     </div>
 
