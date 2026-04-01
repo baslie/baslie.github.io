@@ -1,27 +1,18 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CornerNav from '../../components/CornerNav.astro';
+import OfferLayout from '../../layouts/OfferLayout.astro';
 import Offer03Card from '../../components/offer/Offer03Card.astro';
 import OfferFooter from '../../components/offer/OfferFooter.astro';
 ---
 
-<Base
-  title="Лендинг за 2 дня — 30 000 ₽ | Роман Пуртов"
-  description="Качественный лендинг на чистом коде за 2 рабочих дня. Без конструкторов, без шаблонов."
-  ogUrl="https://roman-purtow.ru/offer/4"
-  canonical="https://roman-purtow.ru/offer/4"
-  noPreload={true}
->
-  <CornerNav showLang={false} homeLink={true} />
-
+<OfferLayout pageNumber={4}>
   <Offer03Card
     photo="/images/offer/03/04.jpg"
     photoAlt="Роман Пуртов"
-    superTitle="Специальное предложение на апрель 2026"
+    superTitle="Специальное предложение"
   >
-    <Fragment slot="heading">Лендинг за 2 рабочих дня — <span class="o3-price-old">50 000 &#8381;</span> <span class="o3-price-new">30 000 &#8381;</span></Fragment>
+    <Fragment slot="heading">Лендинг за 2 рабочих дня — <span class="o3-price-old">50 000 &#8381;</span> <span class="o3-price-new">35 000 &#8381;</span></Fragment>
 
-    <p>В апреле я беру только 5 проектов. Не больше — потому что каждым занимаюсь лично, в полном фокусе, без параллельных задач на фоне.</p>
+    <p data-offer-date="monthLimit">В апреле я беру только 5 проектов. Не больше — потому что каждым занимаюсь лично, в полном фокусе, без параллельных задач на фоне.</p>
     <p>Это не урезанный продукт и не «сайт-визитка на одну страничку». Это полноценный лендинг с проработанной структурой, дизайном с нуля и всем, что нужно для запуска.</p>
 
     <div class="o3-checklist-wrap">
@@ -40,7 +31,7 @@ import OfferFooter from '../../components/offer/OfferFooter.astro';
 
     <div class="o3-details">
       <p><strong>Срок:</strong> 2 рабочих дня с момента старта</p>
-      <p><strong>Стоимость:</strong> <span class="o3-price-old">50 000 &#8381;</span> <span class="o3-price-new o3-price-new--inline">30 000 &#8381;</span></p>
+      <p><strong>Стоимость:</strong> <span class="o3-price-old">50 000 &#8381;</span> <span class="o3-price-new o3-price-new--inline">35 000 &#8381;</span></p>
       <p>Работаю официально как самозанятый. Договор, акт выполненных работ, чек — всё включено.</p>
     </div>
 
@@ -62,13 +53,14 @@ import OfferFooter from '../../components/offer/OfferFooter.astro';
       </div>
     </div>
 
-    <div class="o3-availability">
+    <div class="o3-availability" data-offer-date="availability">
       <span class="o3-dot"></span>
       Свободно: 5 из 5 мест на апрель
     </div>
 
     <div class="o3-form-wrap">
       <h3 class="o3-subheading">Оставьте заявку — обсудим ваш проект за 15 минут</h3>
+      <p class="o3-form-note">Созвонимся, обсудим задачу, я оценю объём. Без обязательств — если не подойдёт, так и скажу.</p>
       <form class="o3-form" action="#" method="POST">
         <div class="o3-field">
           <label class="o3-label" for="o3-name">Имя</label>
@@ -84,13 +76,13 @@ import OfferFooter from '../../components/offer/OfferFooter.astro';
         </div>
         <button type="submit" class="o3-cta o3-cta--submit">Забронировать место</button>
       </form>
-      <p class="o3-form-note">Созвонимся, обсудим задачу, я оценю объём. Без обязательств — если не подойдёт, так и скажу.</p>
     </div>
 
-    <OfferFooter />
+    <OfferFooter slot="footer" />
   </Offer03Card>
 
   <script>
     import '../../scripts/offer-form';
+    import '../../scripts/offer-dates';
   </script>
-</Base>
+</OfferLayout>

@@ -11,6 +11,7 @@ const BOT_TOKEN = '8298368299:AAHWzsXXSzhAdJSHboxBDs5BX4skw56_eUc';
 const CHAT_ID = '-5212108457';
 const SHEET_URL =
   'https://script.google.com/macros/s/AKfycbwFWWiB9aSqEb_gi4rOnol4vQ-oiIfGt1UmiGB6hQuUw_toCu-GRFO71YHHpaGW2NwhhQ/exec';
+const TELEGRAM_HANDLE = '@roman_purtow';
 
 // Read UTM: prefer current URL, fall back to localStorage (saved on landing page)
 const currentQs = window.location.search;
@@ -76,7 +77,7 @@ if (form) {
     };
 
     try {
-      const [tgResult] = await Promise.allSettled([
+      const [tgResult, sheetsResult] = await Promise.allSettled([
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -89,6 +90,10 @@ if (form) {
           body: JSON.stringify(sheetData),
         }),
       ]);
+
+      if (sheetsResult.status === 'rejected') {
+        console.warn('Google Sheets submission failed:', sheetsResult.reason);
+      }
 
       if (tgResult.status === 'rejected' || !(tgResult as PromiseFulfilledResult<Response>).value.ok) {
         throw new Error('Telegram API error');
@@ -106,7 +111,7 @@ if (form) {
       if (!form.querySelector('.o3-error')) {
         const err = document.createElement('p');
         err.className = 'o3-error';
-        err.textContent = 'Не удалось отправить. Напишите в Telegram: @roman_purtow';
+        err.textContent = `Не удалось отправить. Напишите в Telegram: ${TELEGRAM_HANDLE}`;
         form.appendChild(err);
       }
     }

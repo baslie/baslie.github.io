@@ -1,19 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CornerNav from '../../components/CornerNav.astro';
+import OfferLayout from '../../layouts/OfferLayout.astro';
 import Offer03Card from '../../components/offer/Offer03Card.astro';
 import OfferFooter from '../../components/offer/OfferFooter.astro';
 ---
 
-<Base
-  title="Лендинг за 2 дня — 30 000 ₽ | Роман Пуртов"
-  description="Качественный лендинг на чистом коде за 2 рабочих дня. Без конструкторов, без шаблонов."
-  ogUrl="https://roman-purtow.ru/offer/3"
-  canonical="https://roman-purtow.ru/offer/3"
-  noPreload={true}
->
-  <CornerNav showLang={false} homeLink={true} />
-
+<OfferLayout pageNumber={3}>
   <Offer03Card
     photo="/images/offer/03/03.jpg"
     photoAlt="Роман Пуртов за работой"
@@ -27,8 +18,8 @@ import OfferFooter from '../../components/offer/OfferFooter.astro';
     <p><strong>3. Визуальный вайрфрейм.</strong> Превращаю скелет в наглядную схему — уже в браузере. Можно потрогать и покрутить с телефона или компьютера.</p>
     <p><strong>4. Готовый сайт.</strong> Финальный дизайн: цвета, шрифты, изображения, анимации. Это уже рабочий сайт — адаптивный, быстрый, с формой заявки.</p>
     <p><strong>5. Запуск.</strong> Размещаю на хостинге, настраиваю формы, прописываю SEO-основу. Сайт работает и принимает заявки.</p>
-    <p>После запуска остаюсь на связи. Нужно поменять текст, заменить фото, добавить блок — напишите, сделаю.</p>
+    <p>После запуска остаюсь на связи. Если нужно поменять текст, заменить фото или подправить мелочи — сделаю бесплатно. Для более крупных доработок обсудим стоимость отдельно.</p>
 
-    <OfferFooter />
+    <OfferFooter slot="footer" />
   </Offer03Card>
-</Base>
+</OfferLayout>

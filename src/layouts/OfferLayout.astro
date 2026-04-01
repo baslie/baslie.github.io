@@ -1,0 +1,23 @@
+---
+import Base from './Base.astro';
+import CornerNav from '../components/CornerNav.astro';
+
+interface Props {
+  pageNumber: number;
+}
+
+const { pageNumber } = Astro.props;
+
+const BASE_URL = 'https://roman-purtow.ru/offer';
+---
+
+<Base
+  title="Лендинг за 2 дня — 35 000 ₽ | Роман Пуртов"
+  description="Качественный лендинг на чистом коде за 2 рабочих дня. Без конструкторов, без шаблонов."
+  ogUrl={`${BASE_URL}/${pageNumber}`}
+  canonical={`${BASE_URL}/${pageNumber}`}
+  noPreload={true}
+>
+  <CornerNav showLang={false} homeLink={true} />
+  <slot />
+</Base>
