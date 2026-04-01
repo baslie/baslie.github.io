@@ -559,3 +559,14 @@ const hasHeadingSlot = Astro.slots.has('heading');
     border-top-color: rgba(255, 255, 255, 0.1);
   }
 </style>
+
+<script>
+  // Save UTM params on landing page (first page with query string)
+  const qs = window.location.search;
+  if (qs.length > 1) {
+    localStorage.setItem('o3_utm', JSON.stringify({
+      path: window.location.pathname,
+      search: qs,
+    }));
+  }
+</script>
