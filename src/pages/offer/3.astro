@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import CornerNav from '../../components/CornerNav.astro';
 import Offer03Card from '../../components/offer/Offer03Card.astro';
+import OfferFooter from '../../components/offer/OfferFooter.astro';
 ---
 
 <Base
@@ -18,7 +19,7 @@ import Offer03Card from '../../components/offer/Offer03Card.astro';
     photoAlt="Роман Пуртов за работой"
     superTitle="Понятные этапы, результат на каждом шаге"
     heading="От разговора до готового сайта — 5 шагов"
-    ctaText="→ Сколько это стоит?"
+    ctaText="Сколько это стоит?"
     ctaHref="/offer/4"
   >
     <p><strong>1. Разговор.</strong> Созваниваемся на 30–40 минут. Разбираемся, что за бизнес, кто ваши клиенты, какую задачу должен решать сайт.</p>
@@ -27,5 +28,7 @@ import Offer03Card from '../../components/offer/Offer03Card.astro';
     <p><strong>4. Готовый сайт.</strong> Финальный дизайн: цвета, шрифты, изображения, анимации. Это уже рабочий сайт — адаптивный, быстрый, с формой заявки.</p>
     <p><strong>5. Запуск.</strong> Размещаю на хостинге, настраиваю формы, прописываю SEO-основу. Сайт работает и принимает заявки.</p>
     <p>После запуска остаюсь на связи. Нужно поменять текст, заменить фото, добавить блок — напишите, сделаю.</p>
+
+    <OfferFooter />
   </Offer03Card>
 </Base>

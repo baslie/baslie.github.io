@@ -1,3 +1,27 @@
+/*
+ * Table of Contents
+ * -----------------
+ *  1. CSS Variables .................. ~13
+ *  2. Background Video .............. ~199
+ *  3. Overlay ....................... ~215
+ *  4. Glassmorphism Cards ........... ~233
+ *  5. Profile Card .................. ~310
+ *  6. Icon Colors ................... ~328
+ *  7. Card Text ..................... ~358
+ *  8. Colored Cards (data-card-type)  ~393
+ *  9. Card Pair (sub-grid) .......... ~496
+ * 10. Profile ....................... ~511
+ * 11. Corner Nav .................... ~581
+ * 12. Lenis ......................... ~661
+ * 13. Mobile Styles ................. ~673
+ * 14. Category Badges ............... ~712
+ * 15. Copy Tooltip .................. ~802
+ * 16. Performance (Mobile) .......... ~837
+ * 17. Articles Section .............. ~854
+ * 18. Article Content ............... ~1057
+ * 19. Footer ........................ ~1281
+ */
+
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -79,6 +103,11 @@
     --nav-theme-hover-dark: #1e1e3a;
     --nav-theme-active: #dddcfb;
     --nav-theme-active-dark: #272747;
+
+    /* Offer page accent */
+    --color-offer-accent: #F6522E;
+    --color-offer-accent-hover: #d9451f;
+    --color-offer-body: #374151;
 
     /* Размеры */
     --radius: 1.5rem;
