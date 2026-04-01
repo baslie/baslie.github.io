@@ -1,0 +1,93 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CornerNav from '../../../components/CornerNav.astro';
+import Offer03Card from '../../../components/offer/Offer03Card.astro';
+---
+
+<Base
+  title="Лендинг за 2 дня — 30 000 ₽ | Роман Пуртов"
+  description="Качественный лендинг на чистом коде за 2 рабочих дня. Без конструкторов, без шаблонов."
+  ogUrl="https://roman-purtow.ru/offer/03/4"
+  canonical="https://roman-purtow.ru/offer/03/4"
+  noPreload={true}
+>
+  <CornerNav showLang={false} homeLink={true} />
+
+  <Offer03Card
+    photo="/images/offer/03/04.jpg"
+    photoAlt="Роман Пуртов"
+    superTitle="Специальное предложение на апрель 2026"
+  >
+    <Fragment slot="heading">Лендинг за 2 рабочих дня — <span class="o3-price-old">50 000 &#8381;</span> <span class="o3-price-new">30 000 &#8381;</span></Fragment>
+
+    <p>В апреле я беру только 5 проектов. Не больше — потому что каждым занимаюсь лично, в полном фокусе, без параллельных задач на фоне.</p>
+    <p>Это не урезанный продукт и не «сайт-визитка на одну страничку». Это полноценный лендинг с проработанной структурой, дизайном с нуля и всем, что нужно для запуска.</p>
+
+    <div class="o3-checklist-wrap">
+      <h3 class="o3-subheading">Что входит в стоимость</h3>
+      <ul class="o3-checklist">
+        <li>Проработка структуры и текстов вместе с вами</li>
+        <li>Дизайн с нуля — не шаблон, не конструктор</li>
+        <li>Адаптивная вёрстка: компьютер, планшет, телефон</li>
+        <li>Форма заявки с уведомлениями на почту или в Telegram</li>
+        <li>SEO-настройка: метатеги, robots.txt, sitemap.xml</li>
+        <li>Страница политики конфиденциальности</li>
+        <li>Страница 404</li>
+        <li>Размещение на вашем хостинге</li>
+      </ul>
+    </div>
+
+    <div class="o3-details">
+      <p><strong>Срок:</strong> 2 рабочих дня с момента старта</p>
+      <p><strong>Стоимость:</strong> <span class="o3-price-old">50 000 &#8381;</span> <span class="o3-price-new o3-price-new--inline">30 000 &#8381;</span></p>
+      <p>Работаю официально как самозанятый. Договор, акт выполненных работ, чек — всё включено.</p>
+    </div>
+
+    <div class="o3-portfolio">
+      <h3 class="o3-subheading">Примеры работ</h3>
+      <div class="o3-portfolio-grid">
+        <div class="o3-portfolio-card">
+          <div class="o3-portfolio-thumb"></div>
+          <span class="o3-portfolio-name">NutriLegal — консалтинговая компания</span>
+        </div>
+        <div class="o3-portfolio-card">
+          <div class="o3-portfolio-thumb"></div>
+          <span class="o3-portfolio-name">Korea Motors — заказ авто из Кореи</span>
+        </div>
+        <div class="o3-portfolio-card">
+          <div class="o3-portfolio-thumb"></div>
+          <span class="o3-portfolio-name">ЭкоHomeСтрой — строительная компания</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="o3-availability">
+      <span class="o3-dot"></span>
+      Свободно: 5 из 5 мест на апрель
+    </div>
+
+    <div class="o3-form-wrap">
+      <h3 class="o3-subheading">Оставьте заявку — обсудим ваш проект за 15 минут</h3>
+      <form class="o3-form" action="#" method="POST">
+        <div class="o3-field">
+          <label class="o3-label" for="o3-name">Имя</label>
+          <input class="o3-input" type="text" id="o3-name" name="name" required placeholder="Как вас зовут" />
+        </div>
+        <div class="o3-field">
+          <label class="o3-label" for="o3-contact">Телефон или Telegram</label>
+          <input class="o3-input" type="text" id="o3-contact" name="contact" required placeholder="+7 ... или @username" />
+        </div>
+        <div class="o3-field">
+          <label class="o3-label" for="o3-project">Коротко о проекте <span class="o3-optional">(необязательно)</span></label>
+          <textarea class="o3-input o3-textarea" id="o3-project" name="project" rows="3" placeholder="Чем занимается бизнес, какие задачи у сайта"></textarea>
+        </div>
+        <button type="submit" class="o3-cta o3-cta--submit">Забронировать место</button>
+      </form>
+      <p class="o3-form-note">Созвонимся, обсудим задачу, я оценю объём. Без обязательств — если не подойдёт, так и скажу.</p>
+    </div>
+
+    <footer class="o3-footer">
+      <p>&copy; 2025–2026 Роман Пуртов. Все права защищены.</p>
+    </footer>
+  </Offer03Card>
+</Base>
