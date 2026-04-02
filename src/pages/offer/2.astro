@@ -13,46 +13,38 @@ import OfferFooter from '../../components/offer/OfferFooter.astro';
     ctaText="Как устроен процесс?"
     ctaHref="/offer/3"
   >
-    <p>Меня зовут Роман Пуртов. Я делаю сайты с 2018 года — начинал на Тильде и конструкторах, прошёл через десятки проектов в разных нишах. Параллельно занимался маркетингом: запускал рекламу, строил воронки продаж, помогал бизнесам выходить на обороты в миллионы рублей в месяц.</p>
+    <p>Меня зовут Роман Пуртов. Я делаю сайты с 2013 года — начинал с HTML-вёрстки, продолжил на конструкторах и Тильде, прошёл через десятки проектов в разных нишах. Параллельно занимался маркетингом: запускал рекламу, строил воронки продаж, помогал бизнесам выходить на обороты в миллионы рублей в месяц.</p>
     <p>Классический процесс создания сайта устроен избыточно. Сначала рисуется макет в Figma — это дни или недели. Потом этот макет «переводится» в код — ещё столько же. Два этапа, которые по сути делают одно и то же.</p>
     <p>Я объединил их в один. Проектирую сайт сразу как готовый продукт — то, что вы видите на экране, уже является рабочим сайтом, а не картинкой в дизайн-программе.</p>
 
     <div class="o3-process" aria-label="Сравнение подходов по времени">
       <p class="o3-process-title">Где теряются сроки</p>
 
-      <div class="o3-process-row">
-        <div class="o3-process-head">
-          <span class="o3-process-label">Обычный подход</span>
-          <span class="o3-process-time">Обычно: недели</span>
-        </div>
-        <div class="o3-process-steps">
-          <div class="o3-process-step">
-            <span class="o3-process-step-dot">1</span>
-            <span>Дизайн в Figma</span>
+      <div class="o3-timeline-row">
+        <span class="o3-timeline-label">Обычный подход</span>
+        <div class="o3-timeline-track">
+          <div class="o3-timeline-bar o3-timeline-bar--default" style="width:100%">
+            <span class="o3-timeline-seg">Дизайн в Figma</span>
+            <span class="o3-timeline-sep">+</span>
+            <span class="o3-timeline-seg">Вёрстка в код</span>
           </div>
-          <span class="o3-process-arrow">+</span>
-          <div class="o3-process-step">
-            <span class="o3-process-step-dot">2</span>
-            <span>Вёрстка в код</span>
-          </div>
+          <span class="o3-timeline-time">~недели</span>
         </div>
       </div>
 
-      <div class="o3-process-row o3-process-row--highlight">
-        <div class="o3-process-head">
-          <span class="o3-process-label">Мой подход</span>
-          <span class="o3-process-time">Обычно: дни</span>
-        </div>
-        <div class="o3-process-steps">
-          <div class="o3-process-step o3-process-step--accent">
-            <span class="o3-process-step-dot o3-process-step-dot--accent">1</span>
-            <span>Сразу делаю дизайн как рабочий сайт</span>
+      <div class="o3-timeline-row">
+        <span class="o3-timeline-label o3-timeline-label--accent">Мой подход</span>
+        <div class="o3-timeline-track">
+          <div class="o3-timeline-bar o3-timeline-bar--accent" style="width:45%">
+            <span class="o3-timeline-seg">Сразу рабочий сайт</span>
           </div>
+          <span class="o3-timeline-time">~дни</span>
         </div>
       </div>
     </div>
 
-    <p>Сайт готов за дни, а не недели. Страницы грузятся за секунду. Сайт нормально находится в Яндексе и Google. И главное — он полностью принадлежит вам. Никаких ежемесячных платежей за платформу. При этом стоит это не как студийная разработка.</p>
+    <p>Сайт готов за дни, а не недели. Страницы грузятся за секунду. Сайт нормально находится в Яндексе и Google. И главное — он полностью принадлежит вам. Никаких ежемесячных платежей за платформу. При этом сто́ит это не как студийная разработка.</p>
+    <p>«А если нужно что-то поменять на сайте — текст, фото, контакты?» Мелкие правки я делаю бесплатно. Для более крупных задач стоимость обсудим отдельно — но даже несколько платных доработок в год обойдутся дешевле, чем ежемесячная подписка на конструктор.</p>
 
     <OfferFooter slot="footer" />
   </Offer03Card>
