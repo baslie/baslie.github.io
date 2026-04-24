@@ -1,0 +1,25 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+import type { Card } from '../data/cards';
+
+interface Props {
+  card: Card;
+}
+
+const { card } = Astro.props;
+---
+
+<a
+  href={card.href}
+  target={card.external ? "_blank" : undefined}
+  rel={card.external ? "nofollow noopener noreferrer" : undefined}
+  data-category={card.category}
+  data-card-type={card.type}
+  class={`bento-card ${card.gridClass || ''}`}
+>
+  <CategoryBadge category={card.category} />
+  <Fragment set:html={card.iconHtml} />
+  <h3 id={`i18n-${card.i18nTitle}`} data-i18n={card.i18nTitle} class="card-title">{card.titleRu}</h3>
+  <p id={`i18n-${card.i18nDesc}`} data-i18n={card.i18nDesc} class="card-description">{card.descRu}</p>
+  {card.i18nMeta && <p data-i18n={card.i18nMeta} class="card-meta"></p>}
+</a>
