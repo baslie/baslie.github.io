@@ -73,21 +73,20 @@ const isDouble = daysLeft <= FINAL_WEEK_THRESHOLD;
 const slots = isDouble ? SLOTS_DOUBLE : SLOTS_SINGLE;
 const taken = getSlotsTaken(SLOTS_SINGLE, year, month, day);
 const free = slots - taken;
+const periodPrep = isDouble ? `${PREP[month]}–${PREP[nextMonth]}` : PREP[month];
+const periodAcc = isDouble ? `${ACC[month]}–${ACC[nextMonth]}` : ACC[month];
 
 // monthLimit
 const limitEl = document.querySelector<HTMLElement>('[data-offer-date="monthLimit"]');
 if (limitEl) {
   const rest = '. Не больше — потому что разговор имеет смысл только тогда, когда я успеваю перед ним спокойно посмотреть на ваш бизнес, а после — честно подумать над ответом.';
-  limitEl.textContent = isDouble
-    ? `В ${PREP[month]}–${PREP[nextMonth]} я беру ${slots} таких консультаций${rest}`
-    : `В ${PREP[month]} я беру ${slots} таких консультаций${rest}`;
+  limitEl.textContent = `В ${periodPrep} я беру ${slots} таких консультаций${rest}`;
 }
 
 // availability
 const availEl = document.querySelector<HTMLElement>('[data-offer-date="availability"]');
 if (availEl) {
   const dot = availEl.querySelector('.o3-dot');
-  const monthLabel = isDouble ? `${ACC[month]}–${ACC[nextMonth]}` : ACC[month];
 
   // Build content with a span for the animated number
   const countSpan = document.createElement('span');
@@ -98,7 +97,7 @@ if (availEl) {
   textWrap.className = 'o3-avail-text';
   textWrap.appendChild(document.createTextNode('Свободно: '));
   textWrap.appendChild(countSpan);
-  textWrap.appendChild(document.createTextNode(` из ${slots} консультаций на ${monthLabel}`));
+  textWrap.appendChild(document.createTextNode(` из ${slots} консультаций на ${periodAcc}`));
 
   availEl.textContent = '';
   if (dot) availEl.appendChild(dot);
