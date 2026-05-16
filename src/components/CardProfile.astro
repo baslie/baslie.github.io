@@ -1,0 +1,25 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="
+    bento-card card-profile
+    col-span-1 md:col-span-2 md:row-span-2 lg:row-span-3
+    lg:col-start-1 lg:row-start-1
+    flex flex-col items-center justify-center text-center
+">
+    <div class="profile-image-wrapper">
+        <img src="/images/roman.webp" alt={t('profile.name')} class="profile-image profile-image--default" width="160" height="160" fetchpriority="high" itemprop="image">
+        <img src="/images/roman-lol.webp" alt={t('profile.name')} class="profile-image profile-image--hover" width="160" height="160" loading="lazy">
+    </div>
+    <h1 class="profile-title">{t('profile.name')}</h1>
+    <p class="profile-description" set:html={t('profile.mainDescription1')}></p>
+</div>

@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import HomePage from '../components/HomePage.astro';
+import { useTranslations, getCanonicalAndAlternates, SITE, absoluteUrl } from '../i18n/utils';
+import { htmlLang } from '../i18n/ui';
+
+const lang = 'ru' as const;
+const t = useTranslations(lang);
+const { canonical, alternates } = getCanonicalAndAlternates('/');
+
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      "name": t('site.title'),
+      "url": absoluteUrl('/'),
+      "inLanguage": htmlLang[lang],
+      "publisher": { "@id": `${SITE}/#person` }
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE}/#person`,
+      "name": "Роман Пуртов",
+      "alternateName": "Roman Purtov",
+      "url": SITE,
+      "image": `${SITE}/images/roman.jpg`,
+      "jobTitle": "Маркетолог, UX/UI дизайнер и веб-разработчик",
+      "worksFor": { "@type": "Organization", "name": "Freelance" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Томск", "addressCountry": "RU" },
+      "sameAs": [
+        "https://github.com/baslie",
+        "https://t.me/roman_purtow",
+        "https://instagram.com/roman.purtow",
+        "https://vk.com/roman_purtow",
+        "https://www.youtube.com/@roman-purtow",
+        "https://vc.ru/u/454432-roman-purtov"
+      ]
+    }
+  ]
+};
+---
+<Base
+  title={t('site.title')}
+  description={t('site.metaDescription')}
+  lang={lang}
+  canonical={canonical}
+  alternates={alternates}
+  ogUrl="https://roman-purtow.ru/"
+  jsonLd={homeJsonLd}
+>
+  <HomePage lang={lang} />
+</Base>

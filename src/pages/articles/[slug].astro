@@ -1,0 +1,24 @@
+---
+import SimpleArticle from '../../components/SimpleArticle.astro';
+import ComplexArticle from '../../components/ComplexArticle.astro';
+import { articles } from '../../data/articles';
+import type { Article } from '../../data/articles';
+import { getCanonicalAndAlternates } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
+}
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+const lang = 'ru' as const;
+const { canonical, alternates } = getCanonicalAndAlternates(Astro.url.pathname);
+---
+{article.isSimple ? (
+  <SimpleArticle article={article} lang={lang} canonical={canonical} alternates={alternates} />
+) : (
+  <ComplexArticle article={article} lang={lang} canonical={canonical} alternates={alternates} />
+)}

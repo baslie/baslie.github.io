@@ -1,0 +1,54 @@
+---
+import type { ArticleCardData } from '../data/articles';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  article: ArticleCardData;
+  lang: Lang;
+}
+
+const { article, lang } = Astro.props;
+const t = useTranslations(lang);
+const localized = article[lang];
+
+const href = article.isExternal
+  ? (article.externalHref as string)
+  : lang === 'en'
+    ? `/en/articles/${article.id}`
+    : `/articles/${article.id}`;
+
+const isExternal = article.isExternal;
+const badgeText = article.badge === 'case' ? t('badge.case') : t('badge.article');
+---
+
+<a
+  href={href}
+  class="article-card"
+  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+>
+  <div class="article-card-image-wrapper">
+    <img
+      src={article.image}
+      alt={localized.title}
+      class="article-card-image"
+      loading="lazy"
+    />
+  </div>
+  <div class="article-card-body">
+    <h3 class="article-card-title">{localized.title}</h3>
+    <p class="article-card-desc">{localized.description}</p>
+    <div class="article-card-meta">
+      <img src={article.sourceIcon} alt={article.sourceName} />
+      <span>{localized.dateLabel}</span>
+      <span class={`article-badge ${article.badge === 'case' ? 'badge-case' : 'badge-article'}`}>
+        {badgeText}
+      </span>
+    </div>
+    {isExternal && (
+      <svg class="article-card-external" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+      </svg>
+    )}
+  </div>
+</a>

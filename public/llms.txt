@@ -1,0 +1,52 @@
+# Роман Пуртов
+
+> Agentic Engineer, маркетолог и UX/UI-дизайнер из Томска (МСК+4). Делаю сайты и пишу к ним код.
+
+## Обо мне
+
+- Специализация: фронтенд-разработка, AI-инструменты, маркетинг, UX/UI
+- Локация: Томск, Россия (МСК+4)
+- Сайт: [roman-purtow.ru](https://roman-purtow.ru/)
+
+## Контакты
+
+- [Email](mailto:rytrycon@gmail.com)
+- [Telegram](https://t.me/roman_purtow)
+- [Max](https://max.ru/u/f9LHodD0cOLZogeP1J-Ng0ZKPflLiTQQTDGVkS9WbDT82Up2fxhxm9GxuQU)
+- [VK](https://vk.com/roman_purtow)
+- [GitHub](https://github.com/baslie)
+- [Instagram](https://instagram.com/roman.purtow)
+- [YouTube](https://www.youtube.com/@roman-purtow)
+
+## Работа
+
+- [Портфолио](https://experts.tilda.cc/roman-purtow): Tilda-эксперт
+- [Резюме](https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing)
+
+## Услуги
+
+- [Лендинг за 2 дня — 35 000 ₽](https://roman-purtow.ru/offer/1): Лендинг на чистом коде за 2 рабочих дня. Дизайн с нуля, адаптивная вёрстка, форма заявки, SEO-основа. Воронка /offer/1 → /offer/2 → /offer/3 → /offer/4 описывает проблемы выбора подрядчика, подход автора, этапы работы и стоимость.
+
+## Проекты
+
+- [Томская Прогулка](https://vk.com/tomsk_progulka): Городской проект
+- [Telegram-канал](https://t.me/purtochka_live): Блог о разработке и дизайне
+- [vc.ru](https://vc.ru/u/454432-roman-purtov): Статьи и публикации
+
+- [Полная версия для LLM](https://roman-purtow.ru/llms-full.txt)
+
+## Статьи
+
+- [TikTok Downloader — Android для скачивания тиктоков](https://roman-purtow.ru/articles/tiktok-downloader) (16 мая 2026, roman-purtow.ru)
+- [Не пиши голосовое! — мобильное приложение с локальным распознаванием речи](https://roman-purtow.ru/articles/negolosom) (22 апреля 2026, roman-purtow.ru)
+- [Виджет «Таланты и профессии» для Академии ПрофМастерства](https://roman-purtow.ru/articles/academy-profmasterstva-widget) (16 марта 2026, roman-purtow.ru)
+- [Михаил Виноградов — портфолио фотографа и видеографа](https://roman-purtow.ru/articles/mike-vinogradov) (7 марта 2026, roman-purtow.ru)
+- [Нутрилигал — сайт консалтинговой компании по регистрации продукции](https://roman-purtow.ru/articles/nutrilegal) (28 февраля 2026, roman-purtow.ru)
+- [ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании](https://roman-purtow.ru/articles/ehomestroy) (21 апреля 2026, roman-purtow.ru)
+- [ЭкоHomeСтрой — лендинг строительной компании](https://roman-purtow.ru/articles/sandwich-ehomestroy) (30 декабря 2025, roman-purtow.ru)
+- [Ретрознак — лендинг производителя адресных табличек](https://roman-purtow.ru/articles/retroznak) (1 ноября 2025, roman-purtow.ru)
+- [Korea Motors — лендинг по заказу авто из Южной Кореи](https://roman-purtow.ru/articles/korea-motors) (20 декабря 2025, roman-purtow.ru)
+- [TrueDogAge — калькулятор возраста собаки по научной формуле](https://roman-purtow.ru/articles/truedogage) (10 января 2026, roman-purtow.ru)
+- [Расширение для Chrome для структурирования промптов](https://vc.ru/chatgpt/1841565-rasshirenie-dlya-chrome-dlya-strukturirovaniya-promptov) (2 марта 2025, vc.ru)
+- [— Говорите, говорите, я вас внематочно слухаю!](https://vc.ru/life/1822431-govorite-govorite-ya-vas-vnematochno-sluhayu) (19 февраля 2025, vc.ru)
+- [Как запускалась «Берлога» и как зарабатывались миллионы?](https://roman-purtow.ru/articles/berloga) (12 апреля 2022, roman-purtow.ru)

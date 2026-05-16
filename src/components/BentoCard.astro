@@ -1,0 +1,28 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+import type { Card } from '../data/cards';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  card: Card;
+  lang: Lang;
+}
+
+const { card, lang } = Astro.props;
+const localized = card[lang];
+---
+
+<a
+  href={card.href}
+  target={card.external ? "_blank" : undefined}
+  rel={card.external ? "nofollow noopener noreferrer" : undefined}
+  data-category={card.category}
+  data-card-type={card.type}
+  class={`bento-card ${card.gridClass || ''}`}
+>
+  <CategoryBadge category={card.category} />
+  <Fragment set:html={card.iconHtml} />
+  <h3 class="card-title">{localized.title}</h3>
+  <p class="card-description">{localized.description}</p>
+  {localized.meta && <p class="card-meta">{localized.meta}</p>}
+</a>
