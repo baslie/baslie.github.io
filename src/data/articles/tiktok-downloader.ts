@@ -14,8 +14,8 @@ export const tiktokDownloader: Article = {
   siteDisplay: 'TikTok Downloader в RuStore',
   screenshotUrl: '/images/articles/tiktok-downloader/screenshot.jpg',
   ru: {
-    title: 'TikTok Downloader — Android для скачивания тиктоков — Роман Пуртов',
-    ogTitle: 'TikTok Downloader — Android для скачивания тиктоков',
+    title: 'TikTok Downloader — Android-приложение для скачивания видео из TikTok — Роман Пуртов',
+    ogTitle: 'TikTok Downloader — Android-приложение для скачивания видео из TikTok',
     description:
       'Выпустил в RuStore Android-приложение TikTok Downloader: скачивает видео без водяных знаков, до Full HD, аудио в MP3. Бесплатно, без рекламы и подписок.',
     ogDescription:
@@ -27,8 +27,8 @@ export const tiktokDownloader: Article = {
     dateLabel: '16 мая 2026',
   },
   en: {
-    title: 'TikTok Downloader — Android App for Downloading TikToks — Roman Purtov',
-    ogTitle: 'TikTok Downloader — Android App for Downloading TikToks',
+    title: 'TikTok Downloader — Android App for Downloading TikTok Videos — Roman Purtov',
+    ogTitle: 'TikTok Downloader — Android App for Downloading TikTok Videos',
     description:
       'Shipped TikTok Downloader to RuStore: an Android app that grabs TikTok videos without watermarks, up to Full HD, plus audio as MP3. Free, no ads, no subscriptions.',
     ogDescription:

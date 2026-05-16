@@ -35,7 +35,7 @@
 
 ## Статьи (полный текст)
 
-### TikTok Downloader — Android для скачивания тиктоков
+### TikTok Downloader — Android-приложение для скачивания видео из TikTok
 
 - **URL:** https://roman-purtow.ru/articles/tiktok-downloader
 - **Дата:** 16 мая 2026

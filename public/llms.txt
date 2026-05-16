@@ -37,7 +37,7 @@
 
 ## Статьи
 
-- [TikTok Downloader — Android для скачивания тиктоков](https://roman-purtow.ru/articles/tiktok-downloader) (16 мая 2026, roman-purtow.ru)
+- [TikTok Downloader — Android-приложение для скачивания видео из TikTok](https://roman-purtow.ru/articles/tiktok-downloader) (16 мая 2026, roman-purtow.ru)
 - [Не пиши голосовое! — мобильное приложение с локальным распознаванием речи](https://roman-purtow.ru/articles/negolosom) (22 апреля 2026, roman-purtow.ru)
 - [Виджет «Таланты и профессии» для Академии ПрофМастерства](https://roman-purtow.ru/articles/academy-profmasterstva-widget) (16 марта 2026, roman-purtow.ru)
 - [Михаил Виноградов — портфолио фотографа и видеографа](https://roman-purtow.ru/articles/mike-vinogradov) (7 марта 2026, roman-purtow.ru)
