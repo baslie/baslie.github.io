@@ -1,0 +1,48 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+import type { Card } from '../data/cards';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  card: Card;
+  lang: Lang;
+  as?: 'a' | 'button';
+}
+
+const { card, lang, as = 'a' } = Astro.props;
+const localized = card[lang];
+const classes = ['bento-card', card.gridClass || ''].filter(Boolean).join(' ');
+const modalTrigger = card.type === 'contacts-modal' ? 'contacts-modal' : undefined;
+const showBadge = card.type !== 'contacts-modal';
+---
+
+{as === 'button' ? (
+  <button
+    type="button"
+    data-category={card.category}
+    data-card-type={card.type}
+    data-modal-trigger={modalTrigger}
+    class={classes}
+  >
+    {showBadge && <CategoryBadge category={card.category} />}
+    <Fragment set:html={card.iconHtml} />
+    <h3 class="card-title">{localized.title}</h3>
+    <p class="card-description">{localized.description}</p>
+    {localized.meta && <p class="card-meta">{localized.meta}</p>}
+  </button>
+) : (
+  <a
+    href={card.href}
+    target={card.external ? "_blank" : undefined}
+    rel={card.external ? "nofollow noopener noreferrer" : undefined}
+    data-category={card.category}
+    data-card-type={card.type}
+    class={classes}
+  >
+    {showBadge && <CategoryBadge category={card.category} />}
+    <Fragment set:html={card.iconHtml} />
+    <h3 class="card-title">{localized.title}</h3>
+    <p class="card-description">{localized.description}</p>
+    {localized.meta && <p class="card-meta">{localized.meta}</p>}
+  </a>
+)}

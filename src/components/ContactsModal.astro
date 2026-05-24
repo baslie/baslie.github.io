@@ -1,0 +1,38 @@
+---
+import BentoCard from './BentoCard.astro';
+import { contactCards } from '../data/cards';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<dialog id="contacts-modal" class="contacts-modal" aria-labelledby="contacts-modal-title">
+  <div class="contacts-modal__inner">
+    <h2 id="contacts-modal-title" class="contacts-modal__title">{t('contacts.modalTitle')}</h2>
+    <div class="contacts-modal__grid">
+      {contactCards.map(card => <BentoCard card={card} lang={lang} />)}
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dlg = document.getElementById('contacts-modal') as HTMLDialogElement | null;
+  if (dlg) {
+    document.querySelectorAll<HTMLElement>('[data-modal-trigger="contacts-modal"]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dlg.showModal();
+      });
+    });
+
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+  }
+</script>

@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="404 — Страница не найдена | Page Not Found"
+  description="Такой страницы нет. Вернитесь на главную. This page does not exist. Return to the home page."
+  canonical="https://roman-purtow.ru/404"
+  noPreload={true}
+  noindex={true}
+  lang="ru"
+>
+  <main class="nf-main">
+    <div class="nf-card">
+      <p class="nf-code">404</p>
+
+      <h1 class="nf-title">Страница не найдена</h1>
+      <p class="nf-desc">Возможно, вы перешли по устаревшей ссылке или ошиблись в адресе.</p>
+      <a href="/" class="nf-link">← Вернуться на главную</a>
+
+      <hr class="nf-divider" />
+
+      <h2 class="nf-title nf-title--en">Page not found</h2>
+      <p class="nf-desc">You may have followed an outdated link or mistyped the address.</p>
+      <a href="/en/" class="nf-link">← Back to home</a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .nf-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: var(--card-bg, #f5f5f5);
+  }
+  .nf-card {
+    max-width: 480px;
+    text-align: center;
+    padding: 2rem;
+  }
+  .nf-code {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 0.5rem;
+    color: var(--color-text-muted, #6B7280);
+  }
+  .nf-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+  }
+  .nf-title--en {
+    margin-top: 1.5rem;
+  }
+  .nf-desc {
+    color: var(--color-text-muted, #6B7280);
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .nf-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background: #F6522E;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .nf-link:hover {
+    background: #d9451f;
+    transform: translateY(-1px);
+  }
+  .nf-divider {
+    margin: 2rem auto;
+    width: 60%;
+    border: none;
+    border-top: 1px solid var(--color-text-muted, #6B7280);
+    opacity: 0.3;
+  }
+</style>

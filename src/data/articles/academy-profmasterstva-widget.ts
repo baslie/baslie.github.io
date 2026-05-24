@@ -1,0 +1,118 @@
+import type { Article } from './_types';
+
+export const academyProfmasterstvaWidget: Article = {
+  id: 'academy-profmasterstva-widget',
+  slug: 'academy-profmasterstva-widget',
+  badge: 'case',
+  image: '/images/articles/academy-profmasterstva-widget/cover.jpg',
+  sourceIcon: '/images/favicon.svg',
+  sourceName: 'roman-purtow.ru',
+  datePublished: '2026-03-16',
+  isSimple: false,
+  ru: {
+    title: 'Виджет «Таланты и профессии» — Академия ПрофМастерства',
+    ogTitle: 'Виджет «Таланты и профессии» для Академии ПрофМастерства',
+    description:
+      'Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт',
+    ogDescription:
+      'Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт.',
+    h1: 'Виджет «Таланты и&nbsp;профессии» для Академии ПрофМастерства',
+    metaLine: 'Пуртов Роман &middot; 16 марта 2026',
+    body: `<p>Онлайн-инструмент, который определяет таланты и&nbsp;подходящие профессии по&nbsp;натальной карте. Разработан для «Академии ПрофМастерства» (Краснодар).</p>
+
+<a class="article-site-link" href="https://rf.academy-profmasterstva.ru/test" rel="nofollow noopener noreferrer" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+    rf.academy-profmasterstva.ru/test
+</a>
+
+<img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Виджет «Таланты и профессии»" loading="lazy">
+
+<h2>Клиент и&nbsp;задача</h2>
+
+<p><a href="https://t.me/kolibry_astro" rel="nofollow noopener noreferrer" target="_blank">Наталья Березина</a> из&nbsp;«Академии ПрофМастерства» обратилась с&nbsp;запросом: сделать онлайн-инструмент, который определяет таланты и&nbsp;подходящие профессии по&nbsp;натальной карте, а&nbsp;также встраивается на&nbsp;любой сайт.</p>
+
+<p>У&nbsp;Натальи есть аудитория, которая интересуется профориентацией. Нужно было дать людям интерактивный квиз, собирать контакты и&nbsp;продавать видео-лекцию с&nbsp;подробной расшифровкой. Готовых решений не&nbsp;существует&nbsp;&mdash; нужен был инструмент с&nbsp;нуля: астрологический расчёт, квиз, результаты, отчёт, интеграция с&nbsp;CRM.</p>
+
+<h2>Что было сделано</h2>
+
+<p>Пользователь вводит дату, время и&nbsp;место рождения. Система строит натальную карту и&nbsp;на&nbsp;её основе формирует уникальный набор вопросов&nbsp;&mdash; у&nbsp;каждого пользователя свой. Вопросы уточняют склонности и&nbsp;помогают точнее подобрать профессии.</p>
+
+<p>Перед показом результатов пользователь оставляет имя, email и&nbsp;по&nbsp;желанию&nbsp;&mdash; телефон или Telegram. На&nbsp;выходе&nbsp;&mdash; список подходящих профессий, разделённый на&nbsp;три группы: «Наиболее подходящие», «Хорошо подходят» и&nbsp;«Возможные направления». Плюс описание талантов, которые соответствуют карте и&nbsp;ответам на&nbsp;квиз.</p>
+
+<p>После прохождения квиза автоматически генерируется PDF-отчёт с&nbsp;профессиями и&nbsp;талантами. Он&nbsp;загружается в&nbsp;облачное S3-хранилище&nbsp;&mdash; пользователь получает ссылку на&nbsp;скачивание. Результаты также приходят на&nbsp;email в&nbsp;виде HTML-письма и&nbsp;ссылкой на&nbsp;PDF.</p>
+
+<p>Заявка мгновенно уходит на&nbsp;почту и&nbsp;в&nbsp;GetCourse: создаётся контакт, присваивается группа подписки, в&nbsp;карточку записывается ссылка на&nbsp;PDF с&nbsp;результатами.</p>
+
+<p>Виджет встраивается на&nbsp;сайт одной строкой HTML. Работает на&nbsp;Тильде, WordPress, Wix, самописных сайтах&nbsp;&mdash; где угодно. Стили полностью изолированы и&nbsp;не&nbsp;ломают дизайн основного сайта (Shadow DOM). Можно настроить тему оформления, текст кнопки, привязать открытие к&nbsp;любому элементу на&nbsp;странице. UTM-метки подхватываются автоматически.</p>
+
+<p>Наталья может сама редактировать вопросы квиза, описания талантов и&nbsp;профессий через админ-панель&nbsp;&mdash; без разработчика. Изменения применяются мгновенно.</p>
+
+<h2>Результат</h2>
+
+<p>Клиент получил готовый продукт, который:</p>
+<ul>
+    <li>привлекает аудиторию интерактивным квизом</li>
+    <li>собирает контакты и&nbsp;передаёт их&nbsp;в&nbsp;CRM</li>
+    <li>продаёт видео-лекцию без участия человека</li>
+    <li>работает на&nbsp;любом сайте без доработок</li>
+    <li>управляется через админ-панель без разработчика</li>
+</ul>
+
+<p>Всё&nbsp;&mdash; от&nbsp;астрологического расчёта до&nbsp;PDF-отчёта&nbsp;&mdash; работает автоматически.</p>`,
+    screenshotAlt: 'Виджет «Таланты и профессии»',
+    dateLabel: '16 марта 2026',
+  },
+  en: {
+    title: 'Talents & Careers Widget — Academy of Professional Mastery',
+    ogTitle: 'Talents & Careers Widget for the Academy of Professional Mastery',
+    description:
+      'Interactive career guidance widget based on a natal chart: quiz, PDF report, GetCourse integration, and embeddable on any site',
+    ogDescription:
+      'Interactive career guidance widget based on a natal chart: quiz, PDF report, GetCourse integration, and embeddable on any site.',
+    h1: 'Talents &amp; Careers Widget for the Academy of&nbsp;Professional Mastery',
+    metaLine: 'Roman Purtov &middot; March 16, 2026',
+    body: `<p>An&nbsp;online tool that identifies talents and suitable careers based on&nbsp;a&nbsp;natal chart. Developed for the Academy of&nbsp;Professional Mastery (Krasnodar, Russia).</p>
+
+<a class="article-site-link" href="https://rf.academy-profmasterstva.ru/test" rel="nofollow noopener noreferrer" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+    rf.academy-profmasterstva.ru/test
+</a>
+
+<img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Talents & Careers widget" loading="lazy">
+
+<h2>Client &amp; Brief</h2>
+
+<p><a href="https://t.me/kolibry_astro" rel="nofollow noopener noreferrer" target="_blank">Natalia Berezina</a> from the Academy of&nbsp;Professional Mastery reached out with a&nbsp;request: build an&nbsp;online tool that identifies talents and suitable careers based on&nbsp;a&nbsp;natal chart, embeddable on&nbsp;any website.</p>
+
+<p>Natalia has an&nbsp;audience interested in&nbsp;career guidance. The goal was to&nbsp;provide an&nbsp;interactive quiz, collect contacts, and sell a&nbsp;video lecture with a&nbsp;detailed interpretation. No&nbsp;off-the-shelf solutions existed&nbsp;&mdash; the tool had to&nbsp;be&nbsp;built from scratch: astrological calculations, quiz, results, report, CRM integration.</p>
+
+<h2>What Was Done</h2>
+
+<p>The user enters their date, time, and place of&nbsp;birth. The system builds a&nbsp;natal chart and generates a&nbsp;unique set of&nbsp;questions based on&nbsp;it&nbsp;&mdash; each user gets their own. The questions refine inclinations and help match careers more accurately.</p>
+
+<p>Before seeing results, the user provides their name, email, and optionally a&nbsp;phone number or&nbsp;Telegram handle. The output is&nbsp;a&nbsp;list of&nbsp;suitable careers split into three groups: &ldquo;Best Matches,&rdquo; &ldquo;Good Matches,&rdquo; and &ldquo;Possible Directions.&rdquo; Plus a&nbsp;description of&nbsp;talents that correspond to&nbsp;the chart and quiz answers.</p>
+
+<p>After completing the quiz, a&nbsp;PDF report with careers and talents is&nbsp;generated automatically. It&nbsp;is&nbsp;uploaded to&nbsp;an&nbsp;S3 cloud storage&nbsp;&mdash; the user receives a&nbsp;download link. Results are also sent via email as&nbsp;an&nbsp;HTML message with a&nbsp;link to&nbsp;the PDF.</p>
+
+<p>The lead is&nbsp;instantly sent to&nbsp;email and GetCourse: a&nbsp;contact is&nbsp;created, a&nbsp;subscription group is&nbsp;assigned, and the PDF results link is&nbsp;saved to&nbsp;the contact card.</p>
+
+<p>The widget is&nbsp;embedded on&nbsp;a&nbsp;website with a&nbsp;single line of&nbsp;HTML. It&nbsp;works on&nbsp;Tilda, WordPress, Wix, custom-built sites&nbsp;&mdash; anywhere. Styles are fully isolated and don&rsquo;t break the host site&rsquo;s design (Shadow DOM). You can customize the theme, button text, and bind the widget to&nbsp;any element on&nbsp;the page. UTM tags are captured automatically.</p>
+
+<p>Natalia can edit quiz questions, talent descriptions, and career listings through an&nbsp;admin panel&nbsp;&mdash; no&nbsp;developer needed. Changes take effect instantly.</p>
+
+<h2>Result</h2>
+
+<p>The client received a&nbsp;ready-made product that:</p>
+<ul>
+    <li>attracts an&nbsp;audience with an&nbsp;interactive quiz</li>
+    <li>collects contacts and sends them to&nbsp;the CRM</li>
+    <li>sells a&nbsp;video lecture without human involvement</li>
+    <li>works on&nbsp;any website without modifications</li>
+    <li>is&nbsp;managed via an&nbsp;admin panel without a&nbsp;developer</li>
+</ul>
+
+<p>Everything&nbsp;&mdash; from astrological calculations to&nbsp;PDF reports&nbsp;&mdash; runs automatically.</p>`,
+    screenshotAlt: 'Talents & Careers widget',
+    dateLabel: 'March 16, 2026',
+  },
+};

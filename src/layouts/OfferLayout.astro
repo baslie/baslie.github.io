@@ -1,0 +1,33 @@
+---
+import Base from './Base.astro';
+import CornerNav from '../components/CornerNav.astro';
+
+interface Props {
+  pageNumber: number;
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+}
+
+const { pageNumber, title, description, ogTitle, ogDescription, ogImage } = Astro.props;
+
+const BASE_URL = 'https://roman-purtow.ru/offer';
+const pageUrl = `${BASE_URL}/${pageNumber}`;
+---
+
+<Base
+  title={title}
+  description={description}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  ogUrl={pageUrl}
+  canonical={pageUrl}
+  noPreload={true}
+  lang="ru"
+>
+  <CornerNav lang="ru" currentPath={Astro.url.pathname} showLang={false} homeLink={true} />
+  <slot />
+</Base>

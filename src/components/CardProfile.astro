@@ -1,0 +1,22 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="profile-block flex flex-col items-center text-center md:flex-row md:items-center md:text-left md:gap-6 lg:gap-8">
+    <div class="profile-image-wrapper md:shrink-0">
+        <img src="/images/roman.webp" alt={t('profile.name')} class="profile-image profile-image--default" width="160" height="160" fetchpriority="high" itemprop="image">
+        <img src="/images/roman-lol.webp" alt={t('profile.name')} class="profile-image profile-image--hover" width="160" height="160" loading="lazy">
+    </div>
+    <div class="profile-text md:flex-1 md:min-w-0">
+        <h1 class="profile-title">{t('profile.name')}</h1>
+        <p class="profile-description" set:html={t('profile.mainDescription1')}></p>
+    </div>
+</div>

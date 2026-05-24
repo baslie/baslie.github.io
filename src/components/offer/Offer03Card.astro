@@ -1,0 +1,70 @@
+---
+interface Props {
+  photo: string;
+  photoAlt: string;
+  superTitle: string;
+  heading?: string;
+  headingTag?: 'h1' | 'h2';
+  ctaText?: string;
+  ctaHref?: string;
+  eagerPhoto?: boolean;
+}
+
+const {
+  photo,
+  photoAlt,
+  superTitle,
+  heading,
+  headingTag = 'h2',
+  ctaText,
+  ctaHref,
+  eagerPhoto = false,
+} = Astro.props;
+
+import '../../styles/offer-card.css';
+
+const HeadingTag = headingTag;
+const hasHeadingSlot = Astro.slots.has('heading');
+---
+
+<main class="o3-page">
+  <div class="o3-card">
+    <div class="o3-photo">
+      <img
+        src={photo}
+        alt={photoAlt}
+        width="1920"
+        height="1080"
+        loading={eagerPhoto ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={eagerPhoto ? 'high' : 'auto'}
+      />
+    </div>
+    <div class="o3-content">
+      <span class="o3-super">{superTitle}</span>
+      {hasHeadingSlot ? (
+        <HeadingTag class="o3-heading"><slot name="heading" /></HeadingTag>
+      ) : (
+        <HeadingTag class="o3-heading">{heading}</HeadingTag>
+      )}
+      <div class="o3-body">
+        <slot />
+      </div>
+      {ctaText && ctaHref && (
+        <a href={ctaHref} class="o3-cta">{ctaText}</a>
+      )}
+    </div>
+  </div>
+  <slot name="footer" />
+</main>
+
+<script>
+  // Save UTM params on landing page (first page with query string)
+  const qs = window.location.search;
+  if (qs.length > 1) {
+    localStorage.setItem('o3_utm', JSON.stringify({
+      path: window.location.pathname,
+      search: qs,
+    }));
+  }
+</script>

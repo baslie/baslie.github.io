@@ -1,0 +1,356 @@
+---
+import Base from '../../layouts/Base.astro';
+import CornerNav from '../../components/CornerNav.astro';
+import OfferHero from '../../components/archive/OfferHero.astro';
+import OfferPain from '../../components/archive/OfferPain.astro';
+import OfferSolution from '../../components/archive/OfferSolution.astro';
+import OfferProcess from '../../components/archive/OfferProcess.astro';
+import OfferAdvantages from '../../components/archive/OfferAdvantages.astro';
+import OfferPricing from '../../components/archive/OfferPricing.astro';
+import OfferPortfolio from '../../components/archive/OfferPortfolio.astro';
+import OfferAbout from '../../components/archive/OfferAbout.astro';
+import OfferFAQ from '../../components/archive/OfferFAQ.astro';
+import OfferCTA from '../../components/archive/OfferCTA.astro';
+---
+
+<Base
+  title="Качественный лендинг за 48 часов — Роман Пуртов"
+  description="Закажите современный лендинг с чистым кодом и адаптивным дизайном. Быстро, прозрачно, под ключ."
+  ogUrl="https://roman-purtow.ru/archive/offer-01"
+  canonical="https://roman-purtow.ru/archive/offer-01"
+  noPreload={true}
+  noindex={true}
+  lang="ru"
+>
+  <CornerNav lang="ru" currentPath={Astro.url.pathname} showLang={false} homeLink={true} />
+
+  <main>
+    <OfferHero />
+    <OfferPain />
+    <OfferSolution />
+    <OfferProcess />
+    <OfferAdvantages />
+    <OfferPricing />
+    <OfferPortfolio />
+    <OfferAbout />
+    <OfferFAQ />
+    <OfferCTA />
+
+    <!-- Footer -->
+    <footer class="text-center py-8 px-4">
+      <p class="text-sm text-[color:var(--offer-text-muted)]">&copy; 2025–2026 Роман Пуртов. Все права защищены.</p>
+    </footer>
+  </main>
+</Base>
+
+<style is:global>
+  /* ========================================
+     Offer Page — CSS Variables
+     ======================================== */
+  :root {
+    --offer-bg: #ffffff;
+    --offer-bg-subtle: #f9fafb;
+    --offer-text-primary: #111827;
+    --offer-text-secondary: #374151;
+    --offer-text-muted: #6B7280;
+    --offer-accent: #F6522E;
+    --offer-accent-hover: #d9451f;
+    --offer-accent-dark: #b83a1a;
+    --offer-border: rgba(0, 0, 0, 0.1);
+    --offer-border-light: rgba(0, 0, 0, 0.05);
+    --offer-placeholder-bg: rgba(0, 0, 0, 0.03);
+    --offer-placeholder-border: rgba(0, 0, 0, 0.12);
+    --offer-placeholder-text: rgba(0, 0, 0, 0.3);
+    --offer-timeline-ring: #ffffff;
+    --offer-input-bg: #ffffff;
+    --offer-input-border: rgba(0, 0, 0, 0.15);
+  }
+
+  :global(.dark) {
+    --card-bg: #1e1e1e;
+    --shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    --offer-bg: #1a1a1a;
+    --offer-bg-subtle: #222222;
+    --offer-text-primary: #F9FAFB;
+    --offer-text-secondary: #D1D5DB;
+    --offer-text-muted: #9CA3AF;
+    --offer-accent: #F6522E;
+    --offer-accent-hover: #f97353;
+    --offer-accent-dark: #f97353;
+    --offer-border: rgba(255, 255, 255, 0.1);
+    --offer-border-light: rgba(255, 255, 255, 0.05);
+    --offer-placeholder-bg: rgba(255, 255, 255, 0.03);
+    --offer-placeholder-border: rgba(255, 255, 255, 0.12);
+    --offer-placeholder-text: rgba(255, 255, 255, 0.3);
+    --offer-timeline-ring: #1a1a1a;
+    --offer-input-bg: #2a2a2a;
+    --offer-input-border: rgba(255, 255, 255, 0.15);
+  }
+
+  /* ========================================
+     Override global dark overlay & background
+     ======================================== */
+  :global(body)::before {
+    display: none !important;
+  }
+
+  :global(body) {
+    background: var(--offer-bg) !important;
+  }
+
+  /* ========================================
+     Offer Page — Scoped Styles
+     ======================================== */
+
+  /* Sections scroll offset */
+  .offer-section {
+    scroll-margin-top: 3rem;
+  }
+
+  /* ---- Cards ---- */
+  .offer-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+  }
+
+  .offer-card--featured {
+    box-shadow: var(--shadow), inset 0 0 0 2px rgba(246, 82, 46, 0.5);
+  }
+
+  .offer-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--offer-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .offer-card-desc {
+    font-size: 0.9375rem;
+    color: var(--offer-text-muted);
+    line-height: 1.6;
+  }
+
+  /* ---- Icon accent ---- */
+  .offer-icon {
+    color: var(--offer-accent);
+  }
+
+  /* ---- CTA Button ---- */
+  .offer-btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: var(--offer-accent);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+
+  .offer-btn:hover {
+    background: var(--offer-accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .offer-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ---- Checklist ---- */
+  .offer-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .offer-checklist li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--offer-text-primary);
+    line-height: 1.5;
+  }
+
+  .offer-checklist li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--offer-accent);
+    font-weight: 700;
+  }
+
+  /* ---- Placeholder cards (portfolio) ---- */
+  .offer-card-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius);
+    background: var(--offer-placeholder-bg);
+    border: 2px dashed var(--offer-placeholder-border);
+    color: var(--offer-placeholder-text);
+    font-size: 0.875rem;
+  }
+
+  /* ---- Table ---- */
+  .offer-table {
+    border-collapse: collapse;
+  }
+
+  .offer-table-th {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--offer-text-muted);
+    border-bottom: 1px solid var(--offer-border);
+  }
+
+  .offer-table-th--accent {
+    color: var(--offer-accent-dark);
+    background: rgba(246, 82, 46, 0.05);
+  }
+
+  .offer-table-td {
+    padding: 0.75rem 1rem;
+    color: var(--offer-text-primary);
+    border-bottom: 1px solid var(--offer-border-light);
+  }
+
+  .offer-table-td--accent {
+    background: rgba(246, 82, 46, 0.05);
+  }
+
+  .offer-table-row:last-child .offer-table-td {
+    border-bottom: none;
+  }
+
+  /* ---- Timeline ---- */
+  .offer-timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .offer-timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.0625rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: rgba(246, 82, 46, 0.25);
+  }
+
+  .offer-timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .offer-timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .offer-timeline-number {
+    position: absolute;
+    left: -3rem;
+    top: 0;
+    width: 2.125rem;
+    height: 2.125rem;
+    background: var(--offer-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px var(--offer-timeline-ring);
+  }
+
+  /* ---- FAQ Accordion ---- */
+  .offer-faq {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .offer-faq-q {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--offer-text-primary);
+    transition: color 0.2s ease;
+    user-select: none;
+  }
+
+  .offer-faq-q::-webkit-details-marker {
+    display: none;
+  }
+
+  .offer-faq-q:hover {
+    color: var(--offer-accent-dark);
+  }
+
+  .offer-faq-chevron {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--offer-text-muted);
+  }
+
+  details[open] > .offer-faq-q .offer-faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .offer-faq-a {
+    padding: 0 1.5rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--offer-text-muted);
+    line-height: 1.65;
+  }
+
+  /* ---- Form ---- */
+  .offer-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--offer-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .offer-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--offer-input-border);
+    background: var(--offer-input-bg);
+    color: var(--offer-text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+  }
+
+  .offer-input:focus {
+    outline: none;
+    border-color: var(--offer-accent);
+    box-shadow: 0 0 0 3px rgba(246, 82, 46, 0.15);
+  }
+
+  .offer-input::placeholder {
+    color: var(--offer-text-muted);
+  }
+</style>
