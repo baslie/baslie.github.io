@@ -12,12 +12,14 @@ import { negolosom } from './negolosom';
 import { nutrilegal } from './nutrilegal';
 import { retroznak } from './retroznak';
 import { sandwichEhomestroy } from './sandwich-ehomestroy';
+import { sibanandaRetrit } from './sibananda-retrit';
 import { tiktokDownloader } from './tiktok-downloader';
 import { truedogage } from './truedogage';
 
 export type { Article, ArticleI18n, ArticleCardData } from './_types';
 
 export const articles: Article[] = [
+  sibanandaRetrit,
   tiktokDownloader,
   aloemero,
   berloga,
