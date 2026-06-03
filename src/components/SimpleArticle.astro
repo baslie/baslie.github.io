@@ -89,7 +89,9 @@ const articleJsonLd = {
             )
         )}
 
-        <p set:html={localized.body} />
+        {localized.body.split('\n\n').map((para) => (
+            <p set:html={para} />
+        ))}
 
         {article.tech && (
             <p><strong>{t('tech.label')}:</strong> {article.tech}</p>
