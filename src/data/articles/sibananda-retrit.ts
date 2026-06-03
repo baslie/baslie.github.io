@@ -13,6 +13,7 @@ export const sibanandaRetrit: Article = {
   siteUrl: 'https://retrit.sibananda.ru',
   siteDisplay: 'retrit.sibananda.ru',
   screenshotUrl: '/images/articles/sibananda-retrit/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'СибАНАНДА — лендинг ретрита по Крия-йоге под Томском — Роман Пуртов',
     ogTitle: 'СибАНАНДА — лендинг ретрита по Крия-йоге под Томском',

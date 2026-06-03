@@ -88,7 +88,18 @@ const articleJsonLd = {
         )}
 
         {article.screenshotUrl && article.siteUrl && (
-            <a href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank"><img src={article.screenshotUrl} alt={localized.screenshotAlt} loading="lazy"></a>
+            article.screenshotFramed ? (
+                <figure class="screenshot-browser">
+                    <div class="screenshot-browser__bar" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <a class="screenshot-browser__scroll" href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank">
+                        <img src={article.screenshotUrl} alt={localized.screenshotAlt} loading="lazy">
+                    </a>
+                </figure>
+            ) : (
+                <a href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank"><img src={article.screenshotUrl} alt={localized.screenshotAlt} loading="lazy"></a>
+            )
         )}
     </div>
 </Article>

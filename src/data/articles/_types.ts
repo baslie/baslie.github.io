@@ -24,6 +24,7 @@ export interface Article {
   siteUrl?: string;
   siteDisplay?: string;
   screenshotUrl?: string;
+  screenshotFramed?: boolean; // показывать скриншот в прокручиваемом «окне браузера»
   ru: ArticleI18n;
   en: ArticleI18n;
 }
