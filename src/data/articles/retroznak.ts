@@ -13,6 +13,7 @@ export const retroznak: Article = {
   siteUrl: 'https://roman-purtow.ru/land.retroznak.ru',
   siteDisplay: 'roman-purtow.ru/land.retroznak.ru',
   screenshotUrl: '/images/articles/retroznak/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'Ретрознак — лендинг производителя адресных табличек — Роман Пуртов',
     ogTitle: 'Ретрознак — лендинг производителя адресных табличек',

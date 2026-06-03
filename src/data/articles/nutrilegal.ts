@@ -13,6 +13,7 @@ export const nutrilegal: Article = {
   siteUrl: 'https://nutrilegal.ru',
   siteDisplay: 'nutrilegal.ru',
   screenshotUrl: '/images/articles/nutrilegal/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'Нутрилигал — сайт по регистрации БАД и СГР — Роман Пуртов',
     ogTitle: 'Нутрилигал — сайт консалтинговой компании по регистрации продукции',

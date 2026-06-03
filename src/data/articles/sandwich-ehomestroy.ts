@@ -13,6 +13,7 @@ export const sandwichEhomestroy: Article = {
   siteUrl: 'https://sandwich.e-homestroy.ru',
   siteDisplay: 'sandwich.e-homestroy.ru',
   screenshotUrl: '/images/articles/sandwich-ehomestroy/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'ЭкоHomeСтрой — лендинг строительной компании — Роман Пуртов',
     ogTitle: 'ЭкоHomeСтрой — лендинг строительной компании',

@@ -13,6 +13,7 @@ export const derevyannieGryadki: Article = {
   siteUrl: 'https://derevyannie-gryadki.ru',
   siteDisplay: 'derevyannie-gryadki.ru',
   screenshotUrl: '/images/articles/derevyannie-gryadki/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом» — Роман Пуртов',
     ogTitle: 'Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»',

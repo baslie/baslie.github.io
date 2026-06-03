@@ -13,6 +13,7 @@ export const aloemero: Article = {
   siteUrl: 'https://roman-purtow.ru/aloemero/',
   siteDisplay: 'roman-purtow.ru/aloemero',
   screenshotUrl: '/images/articles/aloemero/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'ALOEMERO — лендинг скульптурной мастерской из Томска — Роман Пуртов',
     ogTitle: 'ALOEMERO — лендинг скульптурной мастерской из Томска',

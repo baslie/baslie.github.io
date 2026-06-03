@@ -1403,16 +1403,22 @@ html.lenis {
 
 .article-body .screenshot-browser__scroll {
     display: block;
-    aspect-ratio: 4 / 3;
+    /* короткий скриншот — по высоте картинки (без пустот), длинный — упирается в потолок и прокручивается */
+    max-height: min(70vh, 30rem);
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: rgba(120, 120, 128, 0.55) transparent;
-    cursor: grab;
+    cursor: default;
     /* перетаскивание мышью по вертикали; на тач — нативный скролл */
     touch-action: pan-y;
     -webkit-user-select: none;
     user-select: none;
+}
+
+/* курсор-«ручка» только когда есть что прокручивать (класс ставит JS) */
+.article-body .screenshot-browser__scroll.is-scrollable {
+    cursor: grab;
 }
 
 .article-body .screenshot-browser__scroll.is-grabbing {

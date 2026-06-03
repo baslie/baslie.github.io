@@ -13,6 +13,7 @@ export const ehomestroy: Article = {
   siteUrl: 'https://e-homestroy.ru',
   siteDisplay: 'e-homestroy.ru',
   screenshotUrl: '/images/articles/ehomestroy/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании — Роман Пуртов',
     ogTitle: 'ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании',

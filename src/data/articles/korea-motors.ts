@@ -13,6 +13,7 @@ export const koreaMotors: Article = {
   siteUrl: 'https://exportautorus.ru',
   siteDisplay: 'exportautorus.ru',
   screenshotUrl: '/images/articles/korea-motors/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'Korea Motors — лендинг по заказу авто из Южной Кореи — Роман Пуртов',
     ogTitle: 'Korea Motors — лендинг по заказу авто из Южной Кореи',

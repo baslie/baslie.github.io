@@ -13,6 +13,7 @@ export const truedogage: Article = {
   siteUrl: 'https://truedogage.com',
   siteDisplay: 'truedogage.com',
   screenshotUrl: '/images/articles/truedogage/screenshot.jpg',
+  screenshotFramed: true,
   ru: {
     title: 'TrueDogAge — калькулятор возраста собаки по научной формуле — Роман Пуртов',
     ogTitle: 'TrueDogAge — калькулятор возраста собаки по научной формуле',
