@@ -93,9 +93,9 @@ const articleJsonLd = {
                     <div class="screenshot-browser__bar" aria-hidden="true">
                         <span></span><span></span><span></span>
                     </div>
-                    <a class="screenshot-browser__scroll" href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank">
-                        <img src={article.screenshotUrl} alt={localized.screenshotAlt} loading="lazy">
-                    </a>
+                    <div class="screenshot-browser__scroll" data-drag-scroll>
+                        <img src={article.screenshotUrl} alt={localized.screenshotAlt} loading="lazy" draggable="false">
+                    </div>
                 </figure>
             ) : (
                 <a href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank"><img src={article.screenshotUrl} alt={localized.screenshotAlt} loading="lazy"></a>
@@ -103,3 +103,57 @@ const articleJsonLd = {
         )}
     </div>
 </Article>
+
+<script>
+    // Drag-to-scroll для превью-скриншота в «окне браузера»:
+    // тянем мышью вверх-вниз прямо по картинке (колёсико и скроллбар тоже работают).
+    function initDragScroll() {
+        const containers = document.querySelectorAll<HTMLElement>('[data-drag-scroll]');
+        containers.forEach((el) => {
+            if (el.dataset.dragScrollReady === '1') return;
+            el.dataset.dragScrollReady = '1';
+
+            let isDown = false;
+            let startY = 0;
+            let startScroll = 0;
+            let moved = false;
+
+            const onPointerDown = (e: PointerEvent) => {
+                if (e.button !== 0) return; // только ЛКМ
+                isDown = true;
+                moved = false;
+                startY = e.clientY;
+                startScroll = el.scrollTop;
+                el.classList.add('is-grabbing');
+                el.setPointerCapture(e.pointerId);
+            };
+
+            const onPointerMove = (e: PointerEvent) => {
+                if (!isDown) return;
+                const delta = e.clientY - startY;
+                if (Math.abs(delta) > 2) moved = true;
+                el.scrollTop = startScroll - delta;
+                e.preventDefault();
+            };
+
+            const endDrag = (e: PointerEvent) => {
+                if (!isDown) return;
+                isDown = false;
+                el.classList.remove('is-grabbing');
+                try {
+                    el.releasePointerCapture(e.pointerId);
+                } catch {}
+            };
+
+            el.addEventListener('pointerdown', onPointerDown);
+            el.addEventListener('pointermove', onPointerMove);
+            el.addEventListener('pointerup', endDrag);
+            el.addEventListener('pointercancel', endDrag);
+            // не даём «улетать» выделению/перетаскиванию картинки
+            el.addEventListener('dragstart', (e) => e.preventDefault());
+        });
+    }
+
+    initDragScroll();
+    document.addEventListener('astro:after-swap', initDragScroll);
+</script>

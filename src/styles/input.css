@@ -1408,6 +1408,15 @@ html.lenis {
     overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: rgba(120, 120, 128, 0.55) transparent;
+    cursor: grab;
+    /* перетаскивание мышью по вертикали; на тач — нативный скролл */
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.article-body .screenshot-browser__scroll.is-grabbing {
+    cursor: grabbing;
 }
 
 .article-body .screenshot-browser__scroll::-webkit-scrollbar {
@@ -1433,6 +1442,9 @@ html.lenis {
     display: block;
     margin: 0;
     border-radius: 0;
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
 }
 
 .article-body .img-caption {
