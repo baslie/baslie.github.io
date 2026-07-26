@@ -6,6 +6,7 @@ import { berloga } from './berloga';
 import { academyProfmasterstvaWidget } from './academy-profmasterstva-widget';
 import { derevyannieGryadki } from './derevyannie-gryadki';
 import { ehomestroy } from './ehomestroy';
+import { jsJig } from './js-jig';
 import { koreaMotors } from './korea-motors';
 import { mikeVinogradov } from './mike-vinogradov';
 import { negolosom } from './negolosom';
@@ -19,6 +20,7 @@ import { truedogage } from './truedogage';
 export type { Article, ArticleI18n, ArticleCardData } from './_types';
 
 export const articles: Article[] = [
+  jsJig,
   sibanandaRetrit,
   tiktokDownloader,
   aloemero,

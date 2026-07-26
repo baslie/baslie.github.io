@@ -37,6 +37,7 @@
 
 ## Статьи
 
+- [JS JIG — интернет-магазин производителя рыболовной фурнитуры](https://roman-purtow.ru/articles/js-jig) (24 июля 2026, roman-purtow.ru)
 - [СибАНАНДА — лендинг ретрита по Крия-йоге под Томском](https://roman-purtow.ru/articles/sibananda-retrit) (2 июня 2026, roman-purtow.ru)
 - [TikTok Downloader — Android-приложение для скачивания видео из TikTok](https://roman-purtow.ru/articles/tiktok-downloader) (16 мая 2026, roman-purtow.ru)
 - [Не пиши голосовое! — мобильное приложение с локальным распознаванием речи](https://roman-purtow.ru/articles/negolosom) (22 апреля 2026, roman-purtow.ru)
