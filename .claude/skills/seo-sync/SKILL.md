@@ -1,95 +1,82 @@
 ---
 name: seo-sync
-description: Синхронизирует public/sitemap.xml, public/robots.txt и public/llms.txt с реальным содержимым сайта. Запускать при добавлении/удалении страниц или статей. Триггеры: «обнови sitemap», «обнови SEO-файлы», «синхронизируй llms.txt», «добавь статью в sitemap», «seo sync», «обнови мета-файлы».
+description: Синхронизирует public/llms.txt и public/llms-full.txt со статьями из src/data/articles/. Sitemap руками не редактируется — его генерирует @astrojs/sitemap при сборке. Запускать при добавлении/удалении статей или страниц. Триггеры: «обнови SEO-файлы», «синхронизируй llms.txt», «обнови llms», «seo sync», «обнови мета-файлы», «добавь статью в sitemap».
 user_invocable: true
 ---
 
 # SEO Sync — процедура синхронизации SEO-файлов
 
-Синхронизирует `public/sitemap.xml`, `public/robots.txt` и `public/llms.txt` с актуальным содержимым сайта.
+Синхронизирует `public/llms.txt` и `public/llms-full.txt` с актуальным списком статей и проверяет, что sitemap и robots.txt не требуют ручных правок.
 
 **Базовый URL:** `https://roman-purtow.ru`
 
 ---
 
+## Как устроено SEO в проекте
+
+| Файл | Кто управляет | Правится руками? |
+|---|---|---|
+| `dist/sitemap-index.xml`, `dist/sitemap-0.xml` | `@astrojs/sitemap` при `npm run build` | Нет. Файла `public/sitemap.xml` не существует — **не создавать** |
+| `public/robots.txt` | Статический файл: секция AI-ботов (Allow), `Sitemap: …/sitemap-index.xml` | Только при добавлении нового AI-бота или смене домена. Disallow-правил нет |
+| `public/llms.txt` | Секция `## Статьи` — вручную по шагу 2 | Да |
+| `public/llms-full.txt` | Секции `## Статьи (полный текст)` и `## Статьи на vc.ru (внешние)` — вручную по шагу 3 | Да |
+
+Источник данных о статьях: `src/data/articles/{slug}.ts`, реестр — `src/data/articles/index.ts` (массив `articles` — внутренние статьи, `externalArticleCards` — внешние публикации на vc.ru). Страницы рендерятся динамическими роутами `src/pages/articles/[slug].astro` и `src/pages/en/articles/[slug].astro` — отдельных `.astro`-файлов на статью нет, поэтому **новая статья попадает в sitemap автоматически**: `astro.config.mjs` импортирует `articles` и проставляет `lastmod` из `dateModified || datePublished`.
+
+Скрытие разделов от индексации делается **исключением из sitemap** через `EXCLUDED_PREFIXES` в `astro.config.mjs` (сейчас: `/archive/`, `/glavred-calls/`, `/helpa-research/`), а не через Disallow в robots.txt.
+
+---
+
 ## Шаг 1: Сбор данных
 
-1. Прочитать `src/data/articles.ts` — массив `articles` со всеми статьями (title, href, date, dateISO, sourceName).
-2. Просканировать `src/pages/` через glob (`src/pages/**/*.astro`) — определить все существующие страницы.
-3. Классифицировать:
-   - **Публичные**: `index.astro` + `articles/*.astro`
-   - **Скрытые**: `offer/*.astro` + любые другие директории в `src/pages/`, не входящие в `articles/`
-4. Прочитать текущий `public/robots.txt` — сохранить существующие Disallow-правила для `/glavred-calls/` и `/helpa-research/` (исторические пути, закрытые по решению пользователя, не имеют соответствующих страниц в `src/pages/`).
+1. Прочитать `src/data/articles/index.ts` — состав `articles` и `externalArticleCards`.
+2. Для каждой внутренней статьи из её файла `src/data/articles/{slug}.ts` взять: `slug`, `datePublished`, `siteUrl`, `tech`, `ru.ogTitle`, `ru.description`, `ru.dateLabel`, `ru.body`.
 
 ---
 
-## Шаг 2: Генерация `public/sitemap.xml`
+## Шаг 2: `public/llms.txt` — секция `## Статьи`
 
-Перезаписать файл полностью. Формат:
+Обновить **только** секцию `## Статьи` (остальной файл не трогать). Одна строка на статью, внутренние и внешние вперемешку, сортировка по `datePublished` по убыванию:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://roman-purtow.ru/</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <!-- Для каждой статьи из src/pages/articles/*.astro -->
-  <url>
-    <loc>https://roman-purtow.ru/articles/{slug}/</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-    <priority>0.8</priority>
-  </url>
-</urlset>
-```
+- Внутренние: `- [{ru.ogTitle}](https://roman-purtow.ru/articles/{slug}) ({ru.dateLabel}, roman-purtow.ru)`
+- Внешние: `- [{ru.title}](externalHref) ({ru.dateLabel}, vc.ru)`
 
-Правила:
-- `lastmod` — текущая дата в формате `YYYY-MM-DD`
-- Статьи сортировать по имени файла (алфавитно)
-- **Не включать** страницы из `offer/` и других скрытых директорий
+В заголовках заменить HTML-сущности на обычные символы (`&nbsp;` → пробел, `&mdash;` → «—» и т. п.).
 
 ---
 
-## Шаг 3: Генерация `public/robots.txt`
+## Шаг 3: `public/llms-full.txt`
 
-Перезаписать файл полностью. Формат:
+**Секция `## Статьи (полный текст)`** — блок на каждую внутреннюю статью, разделитель `---`, сортировка по `datePublished` по убыванию:
 
 ```
-User-agent: *
-Allow: /
-Disallow: /glavred-calls/
-Disallow: /helpa-research/
-Disallow: /offer/
+### {ru.ogTitle}
+
+- **URL:** https://roman-purtow.ru/articles/{slug}
+- **Дата:** {ru.dateLabel}
+- **Описание:** {ru.description}
+- **Сайт проекта:** {siteUrl}
+- **Технологии:** {tech}
+
+{ru.body обычным текстом: без HTML-сущностей и тегов — `&nbsp;` → пробел, `</p><p>` → новый абзац; допустимо сокращать до одного ёмкого абзаца}
 ```
 
-Правила:
-- `Disallow:` для каждой скрытой директории в `src/pages/` (всё кроме `articles/`): например `/offer/`
-- **Всегда сохранять** исторические Disallow: `/glavred-calls/`, `/helpa-research/`
-- Если обнаружены новые скрытые директории (помимо `offer/`), добавить Disallow и для них
-- Завершить пустой строкой и строкой `Sitemap: https://roman-purtow.ru/sitemap.xml`
+**Секция `## Статьи на vc.ru (внешние)`** — в конце файла, короткие блоки: заголовок + URL + дата.
 
 ---
 
-## Шаг 4: Обновление `public/llms.txt`
+## Шаг 4: robots.txt и sitemap — только проверка
 
-**Не перезаписывать весь файл** — обновить только секцию `## Статьи`.
-
-1. Прочитать `public/llms.txt`.
-2. Из `src/data/articles.ts` собрать полный список статей **в порядке массива**.
-3. Формат каждой записи:
-   - Внешние (href начинается с `https://`): `- [title](href) (date, sourceName)`
-   - Внутренние (href начинается с `/`): `- [title](https://roman-purtow.ru{href}) (date, sourceName)`
-4. В title заменить `\u00A0` (неразрывный пробел) на обычный пробел.
-5. Заменить содержимое от `## Статьи\n\n` до конца файла (или до следующей секции `## `).
+1. В `public/robots.txt` ничего не менять (если не добавлялся новый AI-бот и не менялся домен).
+2. Если появился новый скрытый раздел — добавить его префикс в `EXCLUDED_PREFIXES` в `astro.config.mjs`.
 
 ---
 
 ## Шаг 5: Проверка
 
 1. Запустить `npm run build`.
-2. Убедиться, что `dist/sitemap.xml`, `dist/robots.txt`, `dist/llms.txt` существуют и содержат актуальные данные.
-3. Сообщить пользователю итог: сколько статей в sitemap, сколько Disallow-правил в robots.txt, сколько записей в llms.txt.
+2. Убедиться: `dist/llms.txt` и `dist/llms-full.txt` содержат новые записи, `dist/sitemap-0.xml` содержит URL новых статей (RU и EN версии).
+3. Сообщить итог: сколько записей в llms.txt, сколько блоков в llms-full.txt.
 
 ---
 
@@ -97,8 +84,9 @@ Disallow: /offer/
 
 | Файл | Роль |
 |---|---|
-| `src/data/articles.ts` | Массив всех статей с title, href, date, dateISO, sourceName |
-| `src/pages/**/*.astro` | Все страницы сайта (glob-сканирование) |
-| `public/sitemap.xml` | Целевой файл — перезаписывается полностью |
-| `public/robots.txt` | Целевой файл — перезаписывается полностью |
-| `public/llms.txt` | Целевой файл — обновляется только секция «Статьи» |
+| `src/data/articles/index.ts` | Реестр статей: `articles` + `externalArticleCards` |
+| `src/data/articles/{slug}.ts` | Данные одной статьи (мета, тексты RU/EN) |
+| `astro.config.mjs` | Конфиг sitemap: `EXCLUDED_PREFIXES`, `lastmod` статей |
+| `public/robots.txt` | Статический, ссылается на `sitemap-index.xml` |
+| `public/llms.txt` | Обновляется секция «## Статьи» |
+| `public/llms-full.txt` | Обновляются секции статей (полный текст + внешние) |
