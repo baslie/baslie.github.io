@@ -27,7 +27,7 @@ export const ui = {
 
     'portfolio.title': 'Портфолио',
     'portfolio.description': 'Сайты на Тильде',
-    'resume.title': 'Моё резюме',
+    'resume.title': 'Резюме',
     'resume.description': 'Интернет-маркетолог',
     'resume.updated': 'обновлено 05.03.26',
 
@@ -85,7 +85,7 @@ export const ui = {
 
     'portfolio.title': 'Portfolio',
     'portfolio.description': 'Tilda websites',
-    'resume.title': 'My Resume',
+    'resume.title': 'Resume',
     'resume.description': 'Internet Marketer',
     'resume.updated': 'updated 05.03.26',
 

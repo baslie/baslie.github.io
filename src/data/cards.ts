@@ -16,8 +16,8 @@ export const mainButtons: Card[] = [
     href: '#contacts-modal',
     external: false,
     iconHtml: '<svg class="w-6 h-6 icon-contacts mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 2v2"/><path d="M7 22v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/><path d="M8 2v2"/><circle cx="12" cy="11" r="3"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>',
-    ru: { title: 'Контакты', description: 'Все способы связи' },
-    en: { title: 'Contacts', description: 'All ways to reach me' },
+    ru: { title: 'Мои контакты', description: 'Все способы связи' },
+    en: { title: 'My Contacts', description: 'All ways to reach me' },
   },
   {
     type: 'portfolio',
@@ -34,8 +34,8 @@ export const mainButtons: Card[] = [
     href: 'https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing',
     external: true,
     iconHtml: '<svg class="w-6 h-6 icon-resume mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>',
-    ru: { title: 'Моё резюме', description: 'Интернет-маркетолог', meta: 'обновлено 05.03.26' },
-    en: { title: 'My Resume', description: 'Internet Marketer', meta: 'updated 05.03.26' },
+    ru: { title: 'Резюме', description: 'Интернет-маркетолог', meta: 'обновлено 05.03.26' },
+    en: { title: 'Resume', description: 'Internet Marketer', meta: 'updated 05.03.26' },
   },
   {
     type: 'tomsk-walk',
