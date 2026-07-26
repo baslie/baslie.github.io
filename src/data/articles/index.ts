@@ -21,8 +21,8 @@ import { truedogage } from './truedogage';
 export type { Article, ArticleI18n, ArticleCardData } from './_types';
 
 export const articles: Article[] = [
-  glazamiSchaefer,
   jsJig,
+  glazamiSchaefer,
   sibanandaRetrit,
   tiktokDownloader,
   aloemero,
