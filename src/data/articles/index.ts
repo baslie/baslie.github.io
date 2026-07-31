@@ -12,6 +12,7 @@ import { koreaMotors } from './korea-motors';
 import { mikeVinogradov } from './mike-vinogradov';
 import { negolosom } from './negolosom';
 import { nutrilegal } from './nutrilegal';
+import { pechPolikarpova } from './pech-polikarpova';
 import { retroznak } from './retroznak';
 import { sandwichEhomestroy } from './sandwich-ehomestroy';
 import { sibanandaRetrit } from './sibananda-retrit';
@@ -22,6 +23,7 @@ export type { Article, ArticleI18n, ArticleCardData } from './_types';
 
 export const articles: Article[] = [
   jsJig,
+  pechPolikarpova,
   glazamiSchaefer,
   sibanandaRetrit,
   tiktokDownloader,
