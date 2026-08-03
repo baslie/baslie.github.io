@@ -20,12 +20,12 @@ export const academyProfmasterstvaWidget: Article = {
     metaLine: 'Пуртов Роман &middot; 16 марта 2026',
     body: `<p>Онлайн-инструмент, который определяет таланты и&nbsp;подходящие профессии по&nbsp;натальной карте. Разработан для «Академии ПрофМастерства» (Краснодар).</p>
 
+<img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Виджет «Таланты и профессии»" loading="lazy">
+
 <a class="article-site-link" href="https://rf.academy-profmasterstva.ru/test" rel="nofollow noopener noreferrer" target="_blank">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
     rf.academy-profmasterstva.ru/test
 </a>
-
-<img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Виджет «Таланты и профессии»" loading="lazy">
 
 <h2>Клиент и&nbsp;задача</h2>
 
@@ -73,12 +73,12 @@ export const academyProfmasterstvaWidget: Article = {
     metaLine: 'Roman Purtov &middot; March 16, 2026',
     body: `<p>An&nbsp;online tool that identifies talents and suitable careers based on&nbsp;a&nbsp;natal chart. Developed for the Academy of&nbsp;Professional Mastery (Krasnodar, Russia).</p>
 
+<img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Talents & Careers widget" loading="lazy">
+
 <a class="article-site-link" href="https://rf.academy-profmasterstva.ru/test" rel="nofollow noopener noreferrer" target="_blank">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
     rf.academy-profmasterstva.ru/test
 </a>
-
-<img src="/images/articles/academy-profmasterstva-widget/cover.jpg" alt="Talents & Careers widget" loading="lazy">
 
 <h2>Client &amp; Brief</h2>
 

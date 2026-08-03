@@ -46,6 +46,11 @@
     --color-accent: rgba(245, 158, 11, 0.6);
     --color-link: #3B82F6;
 
+    /* Фирменный оранжевый (логотип, кнопки, офферы) */
+    --color-brand-rgb: 246, 82, 46;
+    --color-brand: rgb(var(--color-brand-rgb));
+    --color-brand-hover: #d9451f;
+
     /* Цвета иконок - брендовые цвета */
     --icon-portfolio: #F59E0B;
     --icon-resume: #08b237;
@@ -74,9 +79,9 @@
     --icon-blog-dark: #38BDF8;
     --icon-vc-dark: #FB7185;
 
-    /* Article site-link */
-    --article-link-bg: #27272a;
-    --article-link-bg-hover: #3f3f46;
+    /* Article site-link (фирменный оранжевый) */
+    --article-link-bg: var(--color-brand);
+    --article-link-bg-hover: var(--color-brand-hover);
     --article-link-color: #ffffff;
 
     /* Article spacing */
@@ -93,8 +98,8 @@
     --nav-radius: 33%;
     --nav-bg: #ffffff;
     --nav-bg-dark: #1e1e1e;
-    --nav-logo-bg: #F6522E;
-    --nav-logo-bg-hover: #d9451f;
+    --nav-logo-bg: var(--color-brand);
+    --nav-logo-bg-hover: var(--color-brand-hover);
     --nav-lang-hover: #fef6e7;
     --nav-lang-hover-dark: #2e2714;
     --nav-lang-active: #fdedc4;
@@ -105,8 +110,8 @@
     --nav-theme-active-dark: #272747;
 
     /* Offer page accent */
-    --color-offer-accent: #F6522E;
-    --color-offer-accent-hover: #d9451f;
+    --color-offer-accent: var(--color-brand);
+    --color-offer-accent-hover: var(--color-brand-hover);
     --color-offer-body: #374151;
 
     /* Мобильный фон (вместо bg.webp) */
@@ -1507,7 +1512,13 @@ html.lenis {
     color: var(--article-link-color);
     border-radius: 9999px;
     text-decoration: none;
-    transition: background 0.2s ease;
+    font-weight: 600;
+    transition: background 0.25s ease;
+}
+
+/* Ссылка стоит сразу после скриншота — отбиваем её от следующего блока текста */
+.article-body a.article-site-link:not(:last-child) {
+    margin-bottom: var(--article-spacing-lg);
 }
 
 .article-body a.article-site-link:hover {

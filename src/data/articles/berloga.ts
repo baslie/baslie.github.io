@@ -2,13 +2,13 @@ import type { Article } from './_types';
 
 const bodyRu = `<p>Речь пойдёт о проекте, идея которого закралась мне в голову несколько лет назад. Сейчас это уже компания с 30 людьми в штате, оборотом 7-12 млн в месяц, выстроенным клиентским сервисом и довольно неплохим ассортиментом премиальных эко-продуктов.</p>
 
+<img src="/images/articles/berloga/berloga-store.png" alt="Интернет-магазин «Берлога»" loading="lazy">
+<p class="img-caption"><em>Интернет-магазин «Берлога». До лета 2021 года назывался «Погребочек»</em></p>
+
 <a class="article-site-link" href="https://berrrloga.ru" rel="nofollow noopener noreferrer" target="_blank">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
     berrrloga.ru
 </a>
-
-<img src="/images/articles/berloga/berloga-store.png" alt="Интернет-магазин «Берлога»" loading="lazy">
-<p class="img-caption"><em>Интернет-магазин «Берлога». До лета 2021 года назывался «Погребочек»</em></p>
 
 <h2>С чего всё начиналось?</h2>
 
@@ -59,13 +59,13 @@ const bodyRu = `<p>Речь пойдёт о проекте, идея котор�
 
 const bodyEn = `<p>This is about a project whose idea came to me several years ago. Now it's a company with 30 employees, a turnover of 7–12 million rubles per month, a well-built customer service, and a solid range of premium eco-products.</p>
 
+<img src="/images/articles/berloga/berloga-store.png" alt="Berloga online store" loading="lazy">
+<p class="img-caption"><em>The "Berloga" online store. Until the summer of 2021, it was called "Pogrebochek"</em></p>
+
 <a class="article-site-link" href="https://berrrloga.ru" rel="nofollow noopener noreferrer" target="_blank">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
     berrrloga.ru
 </a>
-
-<img src="/images/articles/berloga/berloga-store.png" alt="Berloga online store" loading="lazy">
-<p class="img-caption"><em>The "Berloga" online store. Until the summer of 2021, it was called "Pogrebochek"</em></p>
 
 <h2>How it all started</h2>
 

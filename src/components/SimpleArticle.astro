@@ -16,6 +16,9 @@ const { article, lang, canonical, alternates } = Astro.props;
 const t = useTranslations(lang);
 const localized = article[lang];
 
+const hasScreenshot = Boolean(article.screenshotUrl && article.siteUrl);
+const hasSiteLink = Boolean(article.siteUrl && article.siteDisplay);
+
 const ogImageAbsolute = `https://roman-purtow.ru${article.image}`;
 const homePath = lang === 'en' ? '/en/' : '/';
 const homeName = lang === 'en' ? 'Home' : 'Главная';
@@ -74,7 +77,7 @@ const articleJsonLd = {
     </header>
 
     <div class="article-body">
-        {article.screenshotUrl && article.siteUrl && (
+        {hasScreenshot && (
             article.screenshotFramed ? (
                 <figure class="screenshot-browser">
                     <div class="screenshot-browser__bar" aria-hidden="true">
@@ -89,6 +92,13 @@ const articleJsonLd = {
             )
         )}
 
+        {hasScreenshot && hasSiteLink && (
+            <a class="article-site-link" href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank">
+                <ExternalLinkIcon />
+                {article.siteDisplay}
+            </a>
+        )}
+
         {localized.body.split('\n\n').map((para) => (
             <p set:html={para} />
         ))}
@@ -97,7 +107,7 @@ const articleJsonLd = {
             <p><strong>{t('tech.label')}:</strong> {article.tech}</p>
         )}
 
-        {article.siteUrl && article.siteDisplay && (
+        {!hasScreenshot && hasSiteLink && (
             <a class="article-site-link" href={article.siteUrl} rel="nofollow noopener noreferrer" target="_blank">
                 <ExternalLinkIcon />
                 {article.siteDisplay}
