@@ -20,7 +20,7 @@ gh run watch $(gh run list --workflow=deploy.yml --limit 1 --json databaseId --j
 curl -o /dev/null -w '%{http_code}\n' https://roman-purtow.ru/images/articles/aloemero/og.jpg
 ```
 
-После успешного деплоя этот файл можно удалить.
+После успешного деплоя этот файл можно удалить. Пока он существует, Claude Code проверяет его в начале каждой сессии — см. правило в `CLAUDE.md`.
 
 ## Почему упало (6 августа 2026)
 
