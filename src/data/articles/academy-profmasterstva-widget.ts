@@ -10,7 +10,7 @@ export const academyProfmasterstvaWidget: Article = {
   datePublished: '2026-03-16',
   isSimple: false,
   ru: {
-    title: 'Виджет «Таланты и профессии» — Академия ПрофМастерства',
+    title: 'Виджет «Таланты и профессии» — Академия ПрофМастерства — Роман Пуртов',
     ogTitle: 'Виджет «Таланты и профессии» для Академии ПрофМастерства',
     description:
       'Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт',
@@ -63,7 +63,7 @@ export const academyProfmasterstvaWidget: Article = {
     dateLabel: '16 марта 2026',
   },
   en: {
-    title: 'Talents & Careers Widget — Academy of Professional Mastery',
+    title: 'Talents & Careers Widget — Academy of Professional Mastery — Roman Purtov',
     ogTitle: 'Talents & Careers Widget for the Academy of Professional Mastery',
     description:
       'Interactive career guidance widget based on a natal chart: quiz, PDF report, GetCourse integration, and embeddable on any site',

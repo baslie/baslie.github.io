@@ -23,7 +23,7 @@ export const ui = {
     'site.metaDescription':
       'Маркетолог, UX/UI дизайнер и веб-разработчик из Томска. Делаю лендинги и сайты на чистом коде — от дизайна до деплоя',
     'profile.name': 'Роман Пуртов',
-    'profile.mainDescription1': `Делаю сайты, мобильные приложения, <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">различные IT-системы</a>. В душе — <a href="/articles/berloga" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4).<br><br>Берусь за всё, за что берусь.`,
+    'profile.mainDescription1': `Делаю сайты, мобильные приложения, <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сложные IT-системы</a>. В душе — <a href="/articles/berloga" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4).<br><br>Берусь за всё, за что берусь.`,
 
     'portfolio.title': 'Портфолио',
     'portfolio.description': 'Сайты на Тильде',
@@ -81,7 +81,7 @@ export const ui = {
     'site.metaDescription':
       'Marketer, UX/UI Designer and Web Developer from Tomsk. Building landing pages and websites with clean code — from design to deploy',
     'profile.name': 'Roman Purtov',
-    'profile.mainDescription1': `I make websites, mobile apps and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">all sorts of IT systems</a>. At heart, I'm a <a href="/en/articles/berloga" class="inline-link">marketer</a> from the Siberian taiga (Tomsk, UTC+7).<br><br>I deliver on everything I commit to.`,
+    'profile.mainDescription1': `I make websites, mobile apps and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">complex IT systems</a>. At heart, I'm a <a href="/en/articles/berloga" class="inline-link">marketer</a> from the Siberian taiga (Tomsk, UTC+7).<br><br>I deliver on everything I commit to.`,
 
     'portfolio.title': 'Portfolio',
     'portfolio.description': 'Tilda websites',

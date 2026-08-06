@@ -75,6 +75,7 @@ const altLocale = lang === 'ru' ? 'en' : 'ru';
     <meta property="og:title" content={finalOgTitle}>
     <meta property="og:description" content={finalOgDescription}>
     <meta property="og:image" content={ogImage}>
+    <meta property="og:image:alt" content={finalOgTitle}>
     <meta property="og:url" content={ogUrl}>
     <meta property="og:type" content={ogType}>
     <meta property="og:site_name" content="Роман Пуртов">
@@ -84,6 +85,7 @@ const altLocale = lang === 'ru' ? 'en' : 'ru';
     <meta name="twitter:title" content={finalOgTitle}>
     <meta name="twitter:description" content={finalOgDescription}>
     <meta name="twitter:image" content={ogImage}>
+    <meta name="twitter:image:alt" content={finalOgTitle}>
 
     <!-- Preload LCP image (only on main page) -->
     {!noPreload && <link rel="preload" as="image" href="/images/roman.webp" type="image/webp">}

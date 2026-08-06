@@ -28,18 +28,19 @@ export function getAlternateUrl(pathname: string, targetLang: Lang): string {
 
   if (targetLang === 'en') {
     if (isEn) return ensureTrailingSlash(p);
-    if (p === '/' || p === '') return '/en/';
-    return '/en' + p;
+    if (p === '/') return '/en/';
+    return ensureTrailingSlash('/en' + p);
   }
 
-  if (!isEn) return p === '' ? '/' : ensureTrailingSlash(p);
+  if (!isEn) return ensureTrailingSlash(p);
   if (p === '/en') return '/';
-  return p.replace(/^\/en/, '');
+  return ensureTrailingSlash(p.replace(/^\/en/, ''));
 }
 
+// Канонический вид URL — со слэшем на конце: так страницы отдаются GitHub Pages
+// и так они перечислены в sitemap.
 function ensureTrailingSlash(p: string): string {
-  if (p === '/') return '/';
-  return p;
+  return p.endsWith('/') ? p : p + '/';
 }
 
 export function hasEnglishVersion(pathname: string): boolean {

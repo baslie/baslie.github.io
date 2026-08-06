@@ -20,7 +20,7 @@ export default defineConfig({
     },
   },
   redirects: {
-    '/offer': '/offer/1',
+    '/offer': '/offer/1/',
   },
   integrations: [
     sitemap({
