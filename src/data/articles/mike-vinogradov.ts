@@ -10,7 +10,7 @@ export const mikeVinogradov: Article = {
   datePublished: '2026-03-07',
   isSimple: false,
   ru: {
-    title: 'Михаил Виноградов — портфолио фотографа и видеографа — Роман Пуртов',
+    title: 'Михаил Виноградов — портфолио фотографа — Роман Пуртов',
     ogTitle: 'Михаил Виноградов — портфолио фотографа и видеографа',
     description:
       'Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4',
@@ -43,12 +43,12 @@ export const mikeVinogradov: Article = {
     dateLabel: '7 марта 2026',
   },
   en: {
-    title: 'Mike Vinogradov — Photographer & Videographer Portfolio — Roman Purtov',
+    title: 'Mike Vinogradov — Photographer Portfolio — Roman Purtov',
     ogTitle: 'Mike Vinogradov — Photographer & Videographer Portfolio',
     description:
-      'Portfolio for a travel photographer and videographer. Bento grid with galleries, lightbox and scroll animations, bilingual interface (RU/EN), self-hosted fonts and GitHub Pages deployment.',
+      'Portfolio for a travel photographer and videographer: bento grid with galleries, lightbox and scroll animations, bilingual RU/EN interface on Astro.',
     ogDescription:
-      'Portfolio for a travel photographer and videographer. Bento grid with galleries, lightbox and scroll animations, bilingual interface (RU/EN), self-hosted fonts and GitHub Pages deployment.',
+      'Portfolio for a travel photographer and videographer: bento grid with galleries, lightbox and scroll animations, bilingual RU/EN interface on Astro.',
     h1: 'Mike Vinogradov — Photographer & Videographer Portfolio',
     metaLine: 'Roman Purtov &middot; March 7, 2026',
     body: `<figure class="screenshot-browser">

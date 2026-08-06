@@ -124,7 +124,7 @@ export const berloga: Article = {
   datePublished: '2022-04-12',
   isSimple: false,
   ru: {
-    title: 'Как запускалась «Берлога» и как зарабатывались миллионы? — Роман Пуртов',
+    title: 'Как запускалась «Берлога»: путь к миллионам — Роман Пуртов',
     ogTitle: 'Как запускалась «Берлога» и как зарабатывались миллионы?',
     description:
       'Как запускалась «Берлога» и как зарабатывались миллионы? История создания интернет-магазина премиальных эко-продуктов.',
@@ -137,7 +137,7 @@ export const berloga: Article = {
     dateLabel: '12 апреля 2022',
   },
   en: {
-    title: 'How "Berloga" Was Launched and How Millions Were Made — Roman Purtov',
+    title: 'How "Berloga" Was Launched and Made Millions — Roman Purtov',
     ogTitle: 'How "Berloga" Was Launched and How Millions Were Made',
     description:
       'How "Berloga" was launched and how millions were made. The story of building an online store of premium eco-products.',

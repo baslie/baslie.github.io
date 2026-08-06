@@ -14,7 +14,10 @@ interface Props {
 const { article, lang, canonical, alternates } = Astro.props;
 const localized = article[lang];
 
-const ogImageAbsolute = `https://roman-purtow.ru${article.image}`;
+const coverAbsolute = `https://roman-purtow.ru${article.image}`;
+// Для соцсетей — отдельная версия 1200×630 (scripts/build-og-images.mjs):
+// обложки кейсов бывают 4:3, а summary_large_image ждёт 1.91:1.
+const ogImageAbsolute = coverAbsolute.replace(/\/cover\.jpg$/, '/og.jpg');
 const homePath = lang === 'en' ? '/en/' : '/';
 const homeName = lang === 'en' ? 'Home' : 'Главная';
 const headlinePlain = localized.h1.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -26,7 +29,7 @@ const articleJsonLd = {
       "@type": "Article",
       "headline": localized.ogTitle,
       "description": localized.ogDescription,
-      "image": ogImageAbsolute,
+      "image": coverAbsolute,
       "url": canonical,
       "inLanguage": htmlLang[lang],
       "datePublished": article.datePublished,

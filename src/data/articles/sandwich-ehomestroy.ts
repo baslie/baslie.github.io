@@ -28,7 +28,7 @@ export const sandwichEhomestroy: Article = {
     dateLabel: '30 декабря 2025',
   },
   en: {
-    title: 'EcoHomeStroy — Construction Company Landing Page — Roman Purtov',
+    title: 'EcoHomeStroy — Construction Landing Page — Roman Purtov',
     ogTitle: 'EcoHomeStroy — Construction Company Landing Page',
     description:
       'A landing page for "EcoHomeStroy" — fast-build construction from sandwich panels in Moscow and Moscow Region.',

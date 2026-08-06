@@ -28,12 +28,12 @@ export const nutrilegal: Article = {
     dateLabel: '28 февраля 2026',
   },
   en: {
-    title: 'Nutrilegal — Product Registration Consulting Website — Roman Purtov',
+    title: 'Nutrilegal — Product Registration Consulting — Roman Purtov',
     ogTitle: 'Nutrilegal — Consulting Company Website for Product Registration',
     description:
-      'A consulting company that helps with state product registration: dietary supplements, sports nutrition, obtaining certificates — from formulation to certification.',
+      'A consulting company that helps with state product registration: dietary supplements, sports nutrition and certificates — from formula to approval.',
     ogDescription:
-      'A consulting company that helps with state product registration: dietary supplements, sports nutrition, obtaining certificates — from formulation to certification.',
+      'A consulting company that helps with state product registration: dietary supplements, sports nutrition and certificates — from formula to approval.',
     h1: 'Nutrilegal — Consulting Company Website for Product Registration',
     metaLine: 'Roman Purtov &middot; February 28, 2026',
     body: 'Website for the consulting company Nutrilegal, which assists with state product registration: dietary supplements, sports nutrition, specialized products. Full cycle — from formulation development to&nbsp;obtaining the State Registration Certificate.',

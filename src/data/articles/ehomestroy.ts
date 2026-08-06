@@ -15,7 +15,7 @@ export const ehomestroy: Article = {
   screenshotUrl: '/images/articles/ehomestroy/screenshot.jpg',
   screenshotFramed: true,
   ru: {
-    title: 'ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании — Роман Пуртов',
+    title: 'ЭкоHomeСтрой 2.0 — редизайн сайта застройщика — Роман Пуртов',
     ogTitle: 'ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании',
     description:
       'Редизайн основного сайта ЭкоHomeСтрой — строительство домов и бань из СИП-панелей в Москве и Московской области с 2014 года.',
@@ -28,7 +28,7 @@ export const ehomestroy: Article = {
     dateLabel: '21 апреля 2026',
   },
   en: {
-    title: 'EcoHomeStroy 2.0 — Construction Company Website Redesign — Roman Purtov',
+    title: 'EcoHomeStroy 2.0 — Website Redesign — Roman Purtov',
     ogTitle: 'EcoHomeStroy 2.0 — Construction Company Website Redesign',
     description:
       'Redesign of the main website for EcoHomeStroy — SIP-panel home and sauna construction in Moscow and Moscow Region since 2014.',

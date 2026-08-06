@@ -15,7 +15,7 @@ export const retroznak: Article = {
   screenshotUrl: '/images/articles/retroznak/screenshot.jpg',
   screenshotFramed: true,
   ru: {
-    title: 'Ретрознак — лендинг производителя адресных табличек — Роман Пуртов',
+    title: 'Ретрознак — лендинг адресных табличек — Роман Пуртов',
     ogTitle: 'Ретрознак — лендинг производителя адресных табличек',
     description:
       'Лендинг с интерактивным конструктором для компании «Ретрознак» из Томска — дизайнерские адресные таблички с LED-подсветкой.',
@@ -28,7 +28,7 @@ export const retroznak: Article = {
     dateLabel: '1 ноября 2025',
   },
   en: {
-    title: 'Retroznak — Address Plaque Manufacturer Landing Page — Roman Purtov',
+    title: 'Retroznak — Address Plaque Landing Page — Roman Purtov',
     ogTitle: 'Retroznak — Address Plaque Manufacturer Landing Page',
     description:
       'Landing page with an interactive sign builder for Retroznak from Tomsk — designer address plaques with LED backlighting.',

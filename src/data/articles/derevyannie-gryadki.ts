@@ -16,7 +16,7 @@ export const derevyannieGryadki: Article = {
   screenshotUrl: '/images/articles/derevyannie-gryadki/screenshot.jpg',
   screenshotFramed: true,
   ru: {
-    title: 'Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом» — Роман Пуртов',
+    title: 'Деревянные грядки — лендинг «ДекорДома» — Роман Пуртов',
     ogTitle: 'Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»',
     description:
       'Лендинг с тёмно-коричневым дизайном для томской компании «ДекорДом» — высокие деревянные грядки и парники-домики под ключ.',
@@ -29,7 +29,7 @@ export const derevyannieGryadki: Article = {
     dateLabel: '4 мая 2026',
   },
   en: {
-    title: 'Wooden Garden Beds — DecorDom Mini-Greenhouse Manufacturer Landing — Roman Purtov',
+    title: 'Wooden Garden Beds — DecorDom Landing Page — Roman Purtov',
     ogTitle: 'Wooden Garden Beds — DecorDom Mini-Greenhouse Manufacturer Landing Page',
     description:
       'A landing page with a dark-brown design for DecorDom, a Tomsk-based company — raised wooden garden beds and dome-roof mini greenhouses turnkey.',
