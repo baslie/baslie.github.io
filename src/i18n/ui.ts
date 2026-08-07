@@ -51,8 +51,6 @@ export const ui = {
     'github.description': '@baslie',
     'blog.title': 'Пурточка вещает',
     'blog.description': 'Telegram-канал',
-    'vc.title': 'Роман Пуртов',
-    'vc.description': 'Личный блог на vc.ru',
     'tomskWalk.title': 'Томская Прогулка',
     'tomskWalk.description': 'Гуляем с друзьями и не только',
 
@@ -111,8 +109,6 @@ export const ui = {
     'github.description': '@baslie',
     'blog.title': 'Purtochka Speaks',
     'blog.description': 'Telegram Channel',
-    'vc.title': 'Roman Purtov',
-    'vc.description': 'Personal blog on vc.ru',
     'tomskWalk.title': 'Tomsk Walk',
     'tomskWalk.description': 'Walking with friends and more',
 

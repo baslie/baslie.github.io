@@ -32,7 +32,6 @@
 
 - [Томская Прогулка](https://vk.com/tomsk_progulka): Городской проект
 - [Telegram-канал](https://t.me/purtochka_live): Блог о разработке и дизайне
-- [vc.ru](https://vc.ru/u/454432-roman-purtov): Статьи и публикации
 
 - [Полная версия для LLM](https://roman-purtow.ru/llms-full.txt)
 
@@ -45,6 +44,7 @@
 - [TikTok Downloader — Android-приложение для скачивания видео из TikTok](https://roman-purtow.ru/articles/tiktok-downloader) (16 мая 2026, roman-purtow.ru)
 - [ALOEMERO — лендинг скульптурной мастерской из Томска](https://roman-purtow.ru/articles/aloemero) (12 мая 2026, roman-purtow.ru)
 - [Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»](https://roman-purtow.ru/articles/derevyannie-gryadki) (4 мая 2026, roman-purtow.ru)
+- [За 2 дня навайбкодил офлайн-расшифровщик голосовых под Android](https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android) (23 апреля 2026, vc.ru)
 - [Не пиши голосовое! — мобильное приложение с локальным распознаванием речи](https://roman-purtow.ru/articles/negolosom) (22 апреля 2026, roman-purtow.ru)
 - [ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании](https://roman-purtow.ru/articles/ehomestroy) (21 апреля 2026, roman-purtow.ru)
 - [Виджет «Таланты и профессии» для Академии ПрофМастерства](https://roman-purtow.ru/articles/academy-profmasterstva-widget) (16 марта 2026, roman-purtow.ru)

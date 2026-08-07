@@ -28,7 +28,6 @@
 
 - [Томская Прогулка](https://vk.com/tomsk_progulka): Городской проект
 - [Telegram-канал](https://t.me/purtochka_live): Блог о разработке и дизайне
-- [vc.ru](https://vc.ru/u/454432-roman-purtov): Статьи и публикации
 
 - [Краткая версия (llms.txt)](https://roman-purtow.ru/llms.txt)
 
@@ -297,6 +296,11 @@
 ---
 
 ## Статьи на vc.ru (внешние)
+
+### За 2 дня навайбкодил офлайн-расшифровщик голосовых под Android
+
+- **URL:** https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android
+- **Дата:** 23 апреля 2026
 
 ### Расширение для Chrome для структурирования промптов
 

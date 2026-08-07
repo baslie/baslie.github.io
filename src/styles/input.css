@@ -64,7 +64,6 @@
     --icon-youtube: #FF0000;
     --icon-github: #333333;
     --icon-blog: #0088CC;
-    --icon-vc: #FF5A5F;
 
     /* Цвета иконок для тёмной темы (ярче) */
     --icon-portfolio-dark: #FCD34D;
@@ -79,7 +78,6 @@
     --icon-youtube-dark: #F87171;
     --icon-github-dark: #E5E7EB;
     --icon-blog-dark: #38BDF8;
-    --icon-vc-dark: #FB7185;
 
     /* Article site-link (фирменный оранжевый) */
     --article-link-bg: var(--color-brand);
@@ -183,7 +181,6 @@
     --card-bg-youtube: #FF0000;
     --card-bg-github: #333333;
     --card-bg-blog: #0088CC;
-    --card-bg-vc: #FF5A5F;
     --card-bg-tomsk-walk-from: #6D107E;
     --card-bg-tomsk-walk-to: #F03358;
     --card-bg-gist: #333333;
@@ -402,7 +399,6 @@ body::before {
 .icon-youtube { color: var(--icon-youtube); }
 .icon-github { color: var(--icon-github); }
 .icon-blog { color: var(--icon-blog); }
-.icon-vc { color: var(--icon-vc); fill: currentColor; }
 
 /* Dark mode icons (brighter) */
 .dark .icon-portfolio { color: var(--icon-portfolio-dark); }
@@ -418,7 +414,6 @@ body::before {
 .dark .icon-youtube { color: var(--icon-youtube-dark); }
 .dark .icon-github { color: var(--icon-github-dark); }
 .dark .icon-blog { color: var(--icon-blog-dark); }
-.dark .icon-vc { color: var(--icon-vc-dark); }
 
 /* ========================================
    Card Text
@@ -477,7 +472,6 @@ body::before {
 .bento-card[data-card-type="github"]    { --_icon-color: var(--icon-github);    --_hover-bg: var(--card-bg-github); }
 .bento-card[data-card-type="gist"]      { --_icon-color: var(--icon-github);    --_hover-bg: var(--card-bg-gist); }
 .bento-card[data-card-type="blog"]      { --_icon-color: var(--icon-blog);      --_hover-bg: var(--card-bg-blog); }
-.bento-card[data-card-type="vc"]        { --_icon-color: var(--icon-vc);        --_hover-bg: var(--card-bg-vc); }
 .bento-card[data-card-type="tomsk-walk"] { --_hover-bg: linear-gradient(to top right, var(--card-bg-tomsk-walk-from), var(--card-bg-tomsk-walk-to)); }
 
 /* Тёмная тема — переопределение цвета иконок для тёмных брендов */
@@ -1009,15 +1003,16 @@ html.lenis {
     color: #ffffff;
 }
 
+/* Сетка 5-2-1: в ряду либо 5 карточек (десктоп), либо 2 (планшет), либо 1 (мобильный) */
 .contacts-modal__grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
 }
 
 @media (min-width: 48rem) {
     .contacts-modal__grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
     }
 }
