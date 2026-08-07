@@ -58,6 +58,7 @@
     --icon-mail: #EA580C;
     --icon-telegram: #0088CC;
     --icon-max: #863DD9;
+    --icon-threads: #000000;
     --icon-instagram: #E4405F;
     --icon-vk: #0077FF;
     --icon-youtube: #FF0000;
@@ -72,6 +73,7 @@
     --icon-mail-dark: #F97316;
     --icon-telegram-dark: #38BDF8;
     --icon-max-dark: #A05CED;
+    --icon-threads-dark: #E5E7EB;
     --icon-instagram-dark: #F472B6;
     --icon-vk-dark: #60A5FA;
     --icon-youtube-dark: #F87171;
@@ -175,6 +177,7 @@
     --card-bg-mail: #EA580C;
     --card-bg-telegram: #0088CC;
     --card-bg-max: #863DD9;
+    --card-bg-threads: #000000;
     --card-bg-instagram: #E4405F;
     --card-bg-vk: #0077FF;
     --card-bg-youtube: #FF0000;
@@ -393,6 +396,7 @@ body::before {
 .icon-mail { color: var(--icon-mail); }
 .icon-telegram { color: var(--icon-telegram); }
 .icon-max { color: var(--icon-max); }
+.icon-threads { color: var(--icon-threads); fill: currentColor; }
 .icon-instagram { color: var(--icon-instagram); }
 .icon-vk { color: var(--icon-vk); fill: currentColor; }
 .icon-youtube { color: var(--icon-youtube); }
@@ -408,6 +412,7 @@ body::before {
 .dark .icon-mail { color: var(--icon-mail-dark); }
 .dark .icon-telegram { color: var(--icon-telegram-dark); }
 .dark .icon-max { color: var(--icon-max-dark); }
+.dark .icon-threads { color: var(--icon-threads-dark); }
 .dark .icon-instagram { color: var(--icon-instagram-dark); }
 .dark .icon-vk { color: var(--icon-vk-dark); }
 .dark .icon-youtube { color: var(--icon-youtube-dark); }
@@ -465,6 +470,7 @@ body::before {
 .bento-card[data-card-type="mail"]      { --_icon-color: var(--icon-mail);      --_hover-bg: var(--card-bg-mail); }
 .bento-card[data-card-type="telegram"]  { --_icon-color: var(--icon-telegram);  --_hover-bg: var(--card-bg-telegram); }
 .bento-card[data-card-type="max"]       { --_icon-color: var(--icon-max);       --_hover-bg: var(--card-bg-max); }
+.bento-card[data-card-type="threads"]   { --_icon-color: var(--icon-threads);   --_hover-bg: var(--card-bg-threads); }
 .bento-card[data-card-type="instagram"] { --_icon-color: var(--icon-instagram); --_hover-bg: var(--card-bg-instagram); }
 .bento-card[data-card-type="vk"]        { --_icon-color: var(--icon-vk);        --_hover-bg: var(--card-bg-vk); }
 .bento-card[data-card-type="youtube"]   { --_icon-color: var(--icon-youtube);   --_hover-bg: var(--card-bg-youtube); }
@@ -477,6 +483,7 @@ body::before {
 /* Тёмная тема — переопределение цвета иконок для тёмных брендов */
 .dark .bento-card[data-card-type="github"] { --_icon-color: var(--icon-github-dark); }
 .dark .bento-card[data-card-type="gist"]   { --_icon-color: var(--icon-github-dark); }
+.dark .bento-card[data-card-type="threads"] { --_icon-color: var(--icon-threads-dark); }
 
 /* Общие стили для всех цветных карточек */
 .bento-card[data-card-type] {
