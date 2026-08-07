@@ -12,7 +12,9 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<dialog id="contacts-modal" class="contacts-modal" aria-labelledby="contacts-modal-title">
+<!-- data-lenis-prevent: Lenis не перехватывает колесо и свайп над модалкой,
+     список листается нативно, а страница под ней остаётся на месте -->
+<dialog id="contacts-modal" class="contacts-modal" aria-labelledby="contacts-modal-title" data-lenis-prevent>
   <div class="contacts-modal__inner">
     <h2 id="contacts-modal-title" class="contacts-modal__title">{t('contacts.modalTitle')}</h2>
     <div class="contacts-modal__grid">

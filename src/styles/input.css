@@ -957,6 +957,8 @@ html.lenis {
     border: none;
     background: transparent;
     padding: 1rem;
+    /* Без width: 100% dialog схлопывается по fit-content — в одну колонку это узкий столбец */
+    width: 100%;
     max-width: min(72rem, 100vw);
     max-height: 100vh;
     color: #ffffff;
@@ -984,6 +986,17 @@ html.lenis {
     padding: 0;
     max-height: calc(100vh - 2rem);
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    /* Полоса прокрутки скрыта — список листается свайпом или колёсиком */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.contacts-modal__inner::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 @media (min-width: 48rem) {
