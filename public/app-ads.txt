@@ -1,4 +1,5 @@
 e-planning.net, 2f3a04630ba9ba3f, RESELLER, c1ba615865ed87b2
+yandex.com, 326212489, DIRECT
 pubmatic.com, 165157, RESELLER, 5d62403b186f2ace
 rubiconproject.com, 27842, RESELLER, 0bfd66d529a55807
 triplelift.com, 14127, RESELLER, 6c33edb13117fd86
@@ -100,6 +101,7 @@ rubiconproject.com, 27136, RESELLER, 0bfd66d529a55807
 adingenious.com, 75075, RESELLER
 media.net, 8CUSC3UJ7, RESELLER, 818f58666cabc936
 media.net, 8CU47MDK1, RESELLER, 818f58666cabc936
+yango-ads.com, 326212489, DIRECT
 lijit.com, 417620, RESELLER, fafdf38b16bf6b2b
 smartadserver.com, 4568, RESELLER, 060d053dcf45cbf3
 opera.com, pub10014056052800, RESELLER, 55a0c5fd61378de3
@@ -121,8 +123,8 @@ lijit.com, 558045, RESELLER, fafdf38b16bf6b2b
 improvedigital.com, 2525, RESELLER
 rubiconproject.com, 27969, RESELLER, 0bfd66d529a55807
 rubiconproject.com, 22134, RESELLER, 0bfd66d529a55807
-yango-ads.com, 2413566, DIRECT
 smartadserver.com, 5450, RESELLER, 060d053dcf45cbf3
+yango-ads.com, 2413566, DIRECT
 lijit.com, 465542, RESELLER, fafdf38b16bf6b2b
 lijit.com, 551525, RESELLER, fafdf38b16bf6b2b
 sonobi.com, 97e60f3067, RESELLER, d1a215d9eb5aee9e
