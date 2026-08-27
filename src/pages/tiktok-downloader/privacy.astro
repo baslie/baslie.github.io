@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import CornerNav from '../../components/CornerNav.astro';
 
 const canonical = 'https://roman-purtow.ru/tiktok-downloader/privacy/';
-const updated = '26 августа 2026';
+const updated = '27 августа 2026';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -13,7 +13,7 @@ const jsonLd = {
     'Какие данные обрабатывает приложение TikTok Downloader, кому они передаются и как отказаться от рекламной персонализации.',
   url: canonical,
   inLanguage: 'ru-RU',
-  dateModified: '2026-08-26',
+  dateModified: '2026-08-27',
   publisher: {
     '@type': 'Person',
     name: 'Роман Пуртов',
@@ -133,6 +133,17 @@ const jsonLd = {
         Встроенный движок yt-dlp обновляется, чтобы приложение продолжало работать после изменений
         на стороне TikTok. Файл обновления загружается с GitHub; при этом передаётся только то, что
         сопровождает любой сетевой запрос, — IP-адрес и служебные заголовки.
+      </p>
+
+      <h4>RuStore — форма оценки приложения</h4>
+      <p>
+        После успешного скачивания приложение может показать системную форму оценки RuStore
+        (АО «ВК»). Для этого используется RuStore In-App Review SDK: он обменивается данными с
+        установленным на устройстве приложением RuStore напрямую, внутри устройства. Само
+        приложение при этом ничего не отправляет в сеть и не узнаёт, какую оценку вы поставили
+        и ставили ли вообще. Отправку оценки и отзыва выполняет приложение RuStore по
+        собственным правилам — см.
+        <a href="https://www.rustore.ru/help/legal/privacy-policy-users" target="_blank" rel="noopener">политику конфиденциальности RuStore</a>.
       </p>
 
       <h2>4. Чего приложение не делает</h2>
