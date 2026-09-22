@@ -87,8 +87,8 @@
     --shadow-1: 0 4px 30px rgba(0, 0, 0, 0.1);
     --shadow-2: 0 12px 40px rgba(0, 0, 0, 0.15);
     --shadow-chip: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --overlay: rgba(0, 0, 0, 0.3);
-    --bg-media: none;   /* на десктопе кадр несёт <video> */
+    --overlay: rgba(0, 0, 0, 0.3);   /* как было до редизайна */
+    --bg-media: none;                /* на десктопе кадр несёт <video> */
     --text-shadow-media: 0 1px 3px rgba(0, 0, 0, 0.35);
 
     /* Nav */
@@ -201,7 +201,7 @@
     --shadow-2: 0 12px 40px rgba(0, 0, 0, 0.4);
     --shadow-chip: 0 1px 3px rgba(0, 0, 0, 0.4);
     --text-shadow-media: 0 1px 3px rgba(0, 0, 0, 0.6);
-    --overlay: rgba(0, 0, 0, 0.76);
+    --overlay: rgba(0, 0, 0, 0.5);
 
     /* Плашки поднимаются на ступень: тень на #1e1e1e не читается,
        форму держат светлота и волосяная обводка. */
@@ -250,6 +250,11 @@
 /* ========================================
    Background Video
    ======================================== */
+/* Фон страницы виден, пока грузится видео, и сквозь его поля */
+body {
+    background: var(--surface-page);
+}
+
 #background-video {
     position: fixed;
     top: 50%;
@@ -273,10 +278,11 @@ body::before {
     position: fixed;
     inset: 0;
     z-index: -1;
+    /* Только скрим и статичный кадр. Фолбэк-цвет здесь ставить нельзя:
+       слой лежит над видео (z-index -2) и закрыл бы его наглухо. */
     background:
         linear-gradient(var(--overlay), var(--overlay)),
-        var(--bg-media),
-        var(--surface-page);
+        var(--bg-media);
 }
 
 /* Страница без фона: специфичность body[data-background] перебивает и базовое
@@ -523,21 +529,16 @@ html.lenis {
         display: none;
     }
 
-    /* Фоллбэк-цвет, пока изображение грузится / просвечивает сквозь прозрачные участки */
-    body {
-        background: var(--surface-page);
-    }
-
     /* Статичный кадр вместо видео. Сам слой рисует body::before,
        здесь только подменяется токен. */
     :root {
         --bg-media: url('/images/mobile-bg.jpg') center center / cover no-repeat;
     }
 
-    /* Мобильный кадр втрое темнее десктопного (0.034 против 0.104),
-       поэтому при .76 он превратился бы в чёрный прямоугольник. */
-    .dark {
-        --overlay: rgba(0, 0, 0, 0.45);
+    /* Мобильный кадр и так втрое темнее десктопного (0.034 против 0.104),
+       поэтому скрим поверх него не нужен — как и было раньше. */
+    :root {
+        --overlay: transparent;
     }
 }
 
