@@ -1,0 +1,15 @@
+---
+import { icons, type IconName } from '../data/icons';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className } = Astro.props;
+---
+
+<span class:list={['icon', className]} style={`--icon-size:${size}px`} aria-hidden="true">
+  <Fragment set:html={icons[name]} />
+</span>

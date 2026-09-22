@@ -8,6 +8,17 @@ export function useTranslations(lang: Lang) {
   };
 }
 
+/**
+ * Форма существительного при числительном. Правила берём у Intl, а не своей
+ * таблицей: 21 материал, 22 материала, 20 материалов.
+ */
+export function pluralSuffix(lang: Lang, n: number): 'one' | 'few' | 'many' {
+  const rule = new Intl.PluralRules(lang === 'ru' ? 'ru-RU' : 'en-US').select(n);
+  if (rule === 'one') return 'one';
+  if (rule === 'few') return 'few';
+  return 'many';
+}
+
 function normalizePath(pathname: string): string {
   if (!pathname.startsWith('/')) pathname = '/' + pathname;
   if (pathname.length > 1 && pathname.endsWith('/')) {
