@@ -19,37 +19,58 @@ const CONFIG = {
 /* ========================================
    Theme Manager
    ======================================== */
-const SVG_MOON = '<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
-const SVG_SUN = '<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+const THEME_KEY = 'theme';
+const THEME_COLOR = { light: '#222222', dark: '#0F0F0F' };
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-function setTheme(isDark) {
-    const themeToggle = document.getElementById('theme-toggle');
-
-    if (isDark) {
-        document.documentElement.classList.add('dark');
-        if (themeToggle) {
-            themeToggle.innerHTML = SVG_SUN;
-        }
-    } else {
-        document.documentElement.classList.remove('dark');
-        if (themeToggle) {
-            themeToggle.innerHTML = SVG_MOON;
-        }
+function storedTheme() {
+    try {
+        return localStorage.getItem(THEME_KEY);
+    } catch (e) {
+        return null;
     }
 }
 
+/** Ручной выбор важнее системной настройки; без выбора идём за системой. */
+function resolveTheme() {
+    const stored = storedTheme();
+    if (stored === 'dark' || stored === 'light') return stored;
+    return prefersDark.matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    const root = document.documentElement;
+
+    root.classList.toggle('dark', isDark);
+    root.style.colorScheme = isDark ? 'dark' : 'light';
+
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', THEME_COLOR[theme]);
+
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) themeToggle.setAttribute('aria-pressed', String(isDark));
+}
+
 function initTheme() {
-    const isDark = localStorage.getItem('theme') === 'dark';
-    setTheme(isDark);
+    applyTheme(resolveTheme());
 
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            setTheme(isDark);
+            const next = resolveTheme() === 'dark' ? 'light' : 'dark';
+            try {
+                // Выбор совпал с системой — снимаем оверрайд и снова следуем за ней.
+                if ((next === 'dark') === prefersDark.matches) localStorage.removeItem(THEME_KEY);
+                else localStorage.setItem(THEME_KEY, next);
+            } catch (e) {}
+            applyTheme(next);
         });
     }
+
+    prefersDark.addEventListener('change', () => {
+        if (!storedTheme()) applyTheme(prefersDark.matches ? 'dark' : 'light');
+    });
 }
 
 /* ========================================
@@ -58,6 +79,13 @@ function initTheme() {
 function initBackgroundVideo() {
     const video = document.getElementById('background-video');
     if (!video) return;
+
+    // WCAG 2.2.2: зацикленное видео на весь экран — это движение дольше 5 секунд.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.removeAttribute('autoplay');
+        video.pause();
+        return;
+    }
 
     video.play().catch(e => console.log('Autoplay blocked:', e));
 

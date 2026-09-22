@@ -65,7 +65,18 @@ const altLocale = lang === 'ru' ? 'en' : 'ru';
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#222222">
     <script is:inline>
-      if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark')}
+      // Резолвим тему до первого кадра: ручной выбор важнее системной настройки.
+      (function () {
+        var stored = null;
+        try { stored = localStorage.getItem('theme'); } catch (e) {}
+        var dark = stored === 'dark'
+          || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var root = document.documentElement;
+        if (dark) root.classList.add('dark');
+        root.style.colorScheme = dark ? 'dark' : 'light';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#0F0F0F' : '#222222');
+      })();
     </script>
     <link rel="canonical" href={canonical}>
     {alternates && (

@@ -704,6 +704,12 @@ button.corner-nav-item > * {
 #theme-toggle svg { color: var(--color-text); }
 .dark #theme-toggle svg { color: var(--color-text-light); }
 
+/* Луна в светлой теме, солнце в тёмной. Переключает CSS, а не JS:
+   inline-скрипт в <head> выполняется до появления кнопки в DOM. */
+.theme-icon--sun { display: none; }
+.dark .theme-icon--moon { display: none; }
+.dark .theme-icon--sun { display: block; }
+
 /* Theme — индиго тинт */
 #theme-toggle:hover { background: var(--nav-theme-hover); }
 .dark #theme-toggle:hover { background: var(--nav-theme-hover-dark); }
