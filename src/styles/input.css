@@ -1,25 +1,23 @@
 /*
  * Table of Contents
  * -----------------
- *  1. CSS Variables
+ *  1. Design Tokens (:root + .dark)
  *  2. Background Video
  *  3. Overlay
- *  4. Glassmorphism Cards
- *  5. Profile Card (главная карточка с фото и именем)
- *  6. Icon Colors
- *  7. Card Text
- *  8. Colored Cards (data-card-type)
- *  9. Profile (изображение, заголовок, описание)
- * 10. Corner Nav
- * 11. Lenis
- * 12. Mobile Styles
- * 13. Category Badges
- * 14. Copy Tooltip
- * 15. Performance (Mobile)
- * 16. Contacts Modal
- * 17. Articles Section
- * 18. Article Content
- * 19. Footer
+ *  4. Icon Colors
+ *  5. Profile Image (фото в визитке + пасхалка)
+ *  6. Corner Nav
+ *  7. Lenis
+ *  8. Mobile + Tablet Styles
+ *  9. Copy Tooltip
+ * 10. Performance (Mobile)
+ * 11. Articles Grid
+ * 12. Article Content
+ * 13. Footer
+ * 14. Icon
+ * 15. Home Layout (визитка + лента)
+ * 16. VCard (колонка-визитка)
+ * 17. Feed (лента «Кейсы и статьи»)
  */
 
 @import "tailwindcss";
@@ -48,7 +46,7 @@
 }
 
 /* ========================================
-   CSS Variables
+   Design Tokens
    ======================================== */
 :root {
     /* ========================================================
@@ -104,7 +102,6 @@
     --color-footer: rgba(255, 255, 255, 0.75);
 
     /* Accent цвет (золотой) */
-    --color-accent: rgba(245, 158, 11, 0.6);
     --color-link: var(--link);
 
     /* Фирменный оранжевый (логотип, кнопки, офферы) */
@@ -126,21 +123,6 @@
     --icon-github: #333333;
     --icon-blog: #0088CC;
     --icon-progulka: #0D571B;
-
-    /* Цвета иконок для тёмной темы (ярче) */
-    --icon-portfolio-dark: #FCD34D;
-    --icon-resume-dark: #34D399;
-    --icon-phone-dark: #9CA3AF;
-    --icon-mail-dark: #F97316;
-    --icon-telegram-dark: #38BDF8;
-    --icon-max-dark: #A05CED;
-    --icon-threads-dark: #E5E7EB;
-    --icon-instagram-dark: #F472B6;
-    --icon-vk-dark: #60A5FA;
-    --icon-youtube-dark: #F87171;
-    --icon-github-dark: #E5E7EB;
-    --icon-blog-dark: #38BDF8;
-    --icon-progulka-dark: #4CAF50;
 
     /* Article site-link (фирменный оранжевый) */
     --article-link-bg: var(--color-brand);
@@ -175,84 +157,31 @@
     /* Offer page accent */
     --color-offer-accent: var(--color-brand);
     --color-offer-accent-hover: var(--color-brand-hover);
-    --color-offer-body: #374151;
-
-    /* Мобильный фон (вместо bg.webp) */
-    --color-bg-mobile: var(--surface-page);
+    --color-offer-body: #374151;   /* тёмное значение — в блоке .dark */
 
     /* Размеры */
     --radius: 1.5rem;
     --shadow: var(--shadow-1);
     --shadow-hover: var(--shadow-2);
-    --shadow-hover-dark: 0 12px 40px rgba(0, 0, 0, 0.4);
 
     /* Hover эффекты */
     --hover-translate: -4px;
-    --hover-scale: 1.02;
-    --hover-border-width: 4px;
 
     /* Анимации */
     --transition-default: 0.3s ease;
 
-    /* Blur */
-    --blur-amount: 16px;
-    --blur-mobile: 12px;
-
     /* Overlay */
-    --overlay-light: rgba(0, 0, 0, 0.3);
-    --overlay-dark: rgba(0, 0, 0, 0.5);
-
-    /* Overlay для цветных карточек в тёмной теме */
-    --card-overlay-dark: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 
     /* Category badges - светлая тема */
-    --badge-work: rgba(245, 158, 11, 0.7);
-    --badge-work-bg: rgba(245, 158, 11, 0.12);
-    --badge-projects: rgba(139, 92, 246, 0.7);
-    --badge-projects-bg: rgba(139, 92, 246, 0.10);
-    --badge-contacts: rgba(107, 114, 128, 0.7);
-    --badge-contacts-bg: rgba(107, 114, 128, 0.10);
-    --badge-social: rgba(59, 130, 246, 0.7);
-    --badge-social-bg: rgba(59, 130, 246, 0.10);
     --badge-article: #1D4ED8;      /* тинт-фон как в макете, читаемым делаем лейбл */
     --badge-article-bg: rgba(59, 130, 246, 0.10);
     --badge-case: #15803D;         /* было rgba(34,197,94,.7) — 1.70:1 на тинте */
     --badge-case-bg: rgba(34, 197, 94, 0.10);
 
-    /* Hover-обводки по категориям */
-    --hover-border-work: rgba(245, 158, 11, 0.7);
-    --hover-border-projects: rgba(139, 92, 246, 0.7);
-    --hover-border-contacts: rgba(107, 114, 128, 0.7);
-    --hover-border-social: rgba(59, 130, 246, 0.7);
-
     /* Фоны карточек */
     --card-bg: var(--surface-card);
-    --card-bg-dark: #1e1e1e;
-    --card-bg-dark-hover: #282828;
-    --card-shadow-dark: rgba(0, 0, 0, 0.3);
-
-    /* Фирменные фоны для цветных карточек */
-    --card-bg-portfolio: #F59E0B;
-    --card-bg-resume: #08b237;
-    --card-bg-phone: #6B7280;
-    --card-bg-mail: #EA580C;
-    --card-bg-telegram: #0088CC;
-    --card-bg-max: #863DD9;
-    --card-bg-threads: #000000;
-    --card-bg-instagram: #E4405F;
-    --card-bg-vk: #0077FF;
-    --card-bg-youtube: #FF0000;
-    --card-bg-github: #333333;
-    --card-bg-blog: #0088CC;
-    --card-bg-tomsk-walk-from: #6D107E;
-    --card-bg-tomsk-walk-to: #F03358;
-    --card-bg-gist: #333333;
 
     /* Фоны кнопок управления */
-    --btn-bg: rgba(255, 255, 255, 0.75);
-    --btn-border: rgba(255, 255, 255, 0.3);
-    --btn-bg-dark: rgba(30, 30, 30, 0.75);
-    --btn-border-dark: rgba(255, 255, 255, 0.1);
 }
 
 /* Тёмная тема */
@@ -280,6 +209,8 @@
     --surface-raised-hover: #353535;
     --ring-hairline: rgba(255, 255, 255, 0.07);
 
+    --color-offer-body: rgba(255, 255, 255, 0.75);
+
     /* Текст и ссылки */
     --text-primary: #F9FAFB;
     --text-secondary: #A1A1AA;
@@ -287,15 +218,23 @@
     --link: #7BAEFA;
     --link-hover: #93C5FD;
 
+    /* Иконки сервисов: ярче, потому что #000 и #333 на тёмной карточке
+       дают контраст 1.00 и 1.32 — они просто не видны */
+    --icon-portfolio: #FCD34D;
+    --icon-resume: #34D399;
+    --icon-phone: #9CA3AF;
+    --icon-mail: #F97316;
+    --icon-telegram: #38BDF8;
+    --icon-max: #A05CED;
+    --icon-threads: #E5E7EB;
+    --icon-instagram: #F472B6;
+    --icon-vk: #60A5FA;
+    --icon-youtube: #F87171;
+    --icon-github: #E5E7EB;
+    --icon-blog: #38BDF8;
+    --icon-progulka: #4CAF50;
+
     /* Category badges */
-    --badge-work: rgba(251, 191, 36, 0.8);
-    --badge-work-bg: rgba(251, 191, 36, 0.15);
-    --badge-projects: rgba(167, 139, 250, 0.8);
-    --badge-projects-bg: rgba(167, 139, 250, 0.15);
-    --badge-contacts: rgba(156, 163, 175, 0.8);
-    --badge-contacts-bg: rgba(156, 163, 175, 0.15);
-    --badge-social: rgba(96, 165, 250, 0.8);
-    --badge-social-bg: rgba(96, 165, 250, 0.15);
     --badge-article: #93C5FD;
     --badge-article-bg: rgba(59, 130, 246, 0.16);
     --badge-case: #86EFAC;
@@ -306,17 +245,6 @@
     --article-link-bg-hover: #52525b;
 
     /* Hover-обводки по категориям - тёмная тема */
-    --hover-border-work: rgba(251, 191, 36, 0.8);
-    --hover-border-projects: rgba(167, 139, 250, 0.8);
-    --hover-border-contacts: rgba(156, 163, 175, 0.8);
-    --hover-border-social: rgba(96, 165, 250, 0.8);
-}
-
-/* Breakpoint-зависимые переменные */
-@media (min-width: 768px) {
-    :root {
-        --hover-border-width: 6px;
-    }
 }
 
 /* ========================================
@@ -375,130 +303,6 @@ body[data-background="plain"]::before {
 }
 
 /* ========================================
-   Glassmorphism Cards
-   ======================================== */
-.bento-card {
-    position: relative;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform var(--transition-default), box-shadow var(--transition-default), background var(--transition-default);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 1.5rem;
-    text-align: left;
-    font: inherit;
-    color: inherit;
-    text-decoration: none;
-    background: var(--card-bg);
-    border: none;
-    cursor: pointer;
-}
-
-@media (min-width: 75rem) {
-    .bento-card {
-        padding: 1rem;
-    }
-}
-
-.bento-card:hover {
-    transform: translateY(var(--hover-translate)) scale(var(--hover-scale));
-    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--color-accent);
-    background: var(--card-bg);
-}
-
-/* Цветные hover-обводки по категориям */
-.bento-card[data-category="work"]:hover {
-    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-work);
-}
-
-.bento-card[data-category="projects"]:hover {
-    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-projects);
-}
-
-.bento-card[data-category="contacts"]:hover {
-    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-contacts);
-}
-
-.bento-card[data-category="social"]:hover {
-    box-shadow: var(--shadow-hover), inset 0 0 0 var(--hover-border-width) var(--hover-border-social);
-}
-
-/* Dark mode cards */
-.dark .bento-card {
-    background: var(--card-bg-dark);
-    border: none;
-    box-shadow: 0 4px 30px var(--card-shadow-dark);
-}
-
-.dark .bento-card:hover {
-    background: var(--card-bg-dark-hover);
-    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--color-accent);
-}
-
-/* Цветные hover-обводки по категориям - тёмная тема */
-.dark .bento-card[data-category="work"]:hover {
-    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-work);
-}
-
-.dark .bento-card[data-category="projects"]:hover {
-    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-projects);
-}
-
-.dark .bento-card[data-category="contacts"]:hover {
-    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-contacts);
-}
-
-.dark .bento-card[data-category="social"]:hover {
-    box-shadow: var(--shadow-hover-dark), inset 0 0 0 var(--hover-border-width) var(--hover-border-social);
-}
-
-/* ========================================
-   Profile Card
-   ======================================== */
-.card-profile {
-    /* Внутреннюю раскладку (фото + текстовый блок) делает .profile-block */
-    padding: 1.5rem;
-}
-
-@media (min-width: 75rem) {
-    .card-profile {
-        padding: 2rem;
-    }
-}
-
-/* У карточки профиля при наведении остаётся только лифт и тень — без акцент-обводки */
-.card-profile:hover {
-    box-shadow: var(--shadow-hover);
-}
-
-.dark .card-profile:hover {
-    box-shadow: var(--shadow-hover-dark);
-}
-
-/* Внутренний layout профиля */
-.profile-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-    width: 100%;
-}
-
-@media (min-width: 75rem) {
-    .profile-block {
-        flex-direction: row;
-        align-items: center;
-        text-align: left;
-        gap: 2rem;
-    }
-}
-
-
-/* ========================================
    Icon Colors
    ======================================== */
 .icon-portfolio { color: var(--icon-portfolio); }
@@ -514,176 +318,16 @@ body[data-background="plain"]::before {
 .icon-youtube { color: var(--icon-youtube); }
 .icon-github { color: var(--icon-github); }
 .icon-blog { color: var(--icon-blog); }
+.icon-progulka { color: var(--icon-progulka); }
+.icon-max { fill: currentColor; }
 
-/* Dark mode icons (brighter) */
-.dark .icon-portfolio { color: var(--icon-portfolio-dark); }
-.dark .icon-resume { color: var(--icon-resume-dark); }
-.dark .icon-contacts { color: var(--icon-telegram-dark); }
-.dark .icon-phone { color: var(--icon-phone-dark); }
-.dark .icon-mail { color: var(--icon-mail-dark); }
-.dark .icon-telegram { color: var(--icon-telegram-dark); }
-.dark .icon-max { color: var(--icon-max-dark); }
-.dark .icon-threads { color: var(--icon-threads-dark); }
-.dark .icon-instagram { color: var(--icon-instagram-dark); }
-.dark .icon-vk { color: var(--icon-vk-dark); }
-.dark .icon-youtube { color: var(--icon-youtube-dark); }
-.dark .icon-github { color: var(--icon-github-dark); }
-.dark .icon-blog { color: var(--icon-blog-dark); }
+/* В тёмной теме значение меняет сам токен — отдельных правил не нужно */
 
 /* ========================================
-   Card Text
-   ======================================== */
-.card-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.25rem;
-}
-
-.card-description {
-    font-size: 0.875rem;
-    color: var(--color-text);
-}
-
-.card-meta {
-    font-size: 0.75rem;
-    font-style: italic;
-    color: var(--color-text);
-    opacity: 0.6;
-    margin-top: 0.15rem;
-}
-
-.dark .card-title {
-    color: var(--color-text-light);
-}
-
-.dark .card-description {
-    color: var(--color-text-light);
-}
-
-.dark .card-meta {
-    color: var(--color-text-light);
-}
-
-/* ========================================
-   Colored Cards (data-card-type)
-   ИНВЕРТИРОВАННАЯ ЛОГИКА:
-   - По умолчанию: белый фон, цветные иконки, тёмный текст
-   - При hover: цветной фон, белый текст и иконки
-   ======================================== */
-
-/* Локальные переменные для каждого типа карточки */
-.bento-card[data-card-type="contacts-modal"] { --_icon-color: var(--color-link); --_hover-bg: var(--color-link); }
-.bento-card[data-card-type="portfolio"] { --_icon-color: var(--icon-portfolio); --_hover-bg: var(--card-bg-portfolio); }
-.bento-card[data-card-type="resume"]    { --_icon-color: var(--icon-resume);    --_hover-bg: var(--card-bg-resume); }
-.bento-card[data-card-type="phone"]     { --_icon-color: var(--icon-phone);     --_hover-bg: var(--card-bg-phone); }
-.bento-card[data-card-type="mail"]      { --_icon-color: var(--icon-mail);      --_hover-bg: var(--card-bg-mail); }
-.bento-card[data-card-type="telegram"]  { --_icon-color: var(--icon-telegram);  --_hover-bg: var(--card-bg-telegram); }
-.bento-card[data-card-type="max"]       { --_icon-color: var(--icon-max);       --_hover-bg: var(--card-bg-max); }
-.bento-card[data-card-type="threads"]   { --_icon-color: var(--icon-threads);   --_hover-bg: var(--card-bg-threads); }
-.bento-card[data-card-type="instagram"] { --_icon-color: var(--icon-instagram); --_hover-bg: var(--card-bg-instagram); }
-.bento-card[data-card-type="vk"]        { --_icon-color: var(--icon-vk);        --_hover-bg: var(--card-bg-vk); }
-.bento-card[data-card-type="youtube"]   { --_icon-color: var(--icon-youtube);   --_hover-bg: var(--card-bg-youtube); }
-.bento-card[data-card-type="github"]    { --_icon-color: var(--icon-github);    --_hover-bg: var(--card-bg-github); }
-.bento-card[data-card-type="gist"]      { --_icon-color: var(--icon-github);    --_hover-bg: var(--card-bg-gist); }
-.bento-card[data-card-type="blog"]      { --_icon-color: var(--icon-blog);      --_hover-bg: var(--card-bg-blog); }
-.bento-card[data-card-type="tomsk-walk"] { --_hover-bg: linear-gradient(to top right, var(--card-bg-tomsk-walk-from), var(--card-bg-tomsk-walk-to)); }
-
-/* Тёмная тема — переопределение цвета иконок для тёмных брендов */
-.dark .bento-card[data-card-type="github"] { --_icon-color: var(--icon-github-dark); }
-.dark .bento-card[data-card-type="gist"]   { --_icon-color: var(--icon-github-dark); }
-.dark .bento-card[data-card-type="threads"] { --_icon-color: var(--icon-threads-dark); }
-
-/* Общие стили для всех цветных карточек */
-.bento-card[data-card-type] {
-    background: var(--card-bg);
-}
-
-.bento-card[data-card-type] .card-title,
-.bento-card[data-card-type] .card-description,
-.bento-card[data-card-type] .card-meta {
-    color: var(--color-text);
-}
-
-.bento-card[data-card-type] [class*="icon-"] {
-    color: var(--_icon-color);
-}
-
-.bento-card[data-card-type]:hover {
-    background: var(--_hover-bg);
-    box-shadow: var(--shadow-hover);
-    transform: none;
-}
-
-.bento-card[data-card-type]:hover .card-title,
-.bento-card[data-card-type]:hover .card-description,
-.bento-card[data-card-type]:hover .card-meta,
-.bento-card[data-card-type]:hover [class*="icon-"] {
-    color: white;
-}
-
-/* Tomsk Walk — особая обработка для img */
-.bento-card[data-card-type="tomsk-walk"] img {
-    transition: filter var(--transition-default);
-}
-
-.bento-card[data-card-type="tomsk-walk"]:hover img {
-    filter: brightness(0) invert(1);
-}
-
-/* Category badges — при hover на карточке белые */
-.bento-card[data-card-type]:hover .category-badge {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-/* Dark mode для цветных карточек */
-.dark .bento-card[data-card-type] {
-    background: var(--card-bg-dark);
-}
-
-.dark .bento-card[data-card-type] .card-title,
-.dark .bento-card[data-card-type] .card-description,
-.dark .bento-card[data-card-type] .card-meta {
-    color: var(--color-text-light);
-}
-
-.dark .bento-card[data-card-type]:hover {
-    background: var(--card-overlay-dark), var(--_hover-bg);
-    box-shadow: var(--shadow-hover-dark);
-}
-
-.dark .bento-card[data-card-type]:hover .card-title,
-.dark .bento-card[data-card-type]:hover .card-description,
-.dark .bento-card[data-card-type]:hover .card-meta,
-.dark .bento-card[data-card-type]:hover [class*="icon-"] {
-    color: white;
-}
-
-.dark .bento-card[data-card-type]:hover .category-badge {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-/* Dark mode — Tomsk Walk img */
-.dark .bento-card[data-card-type="tomsk-walk"]:hover img {
-    filter: brightness(0) invert(1);
-}
-
-/* ========================================
-   Profile (изображение, заголовок, описание)
+   Profile Image (фото в визитке + пасхалка)
    ======================================== */
 .profile-image-wrapper {
     position: relative;
-    width: 10rem;
-    height: 10rem;
-    margin-bottom: 1rem;
-}
-
-@media (min-width: 75rem) {
-    .profile-block .profile-image-wrapper {
-        margin-bottom: 0;
-    }
 }
 
 .profile-image {
@@ -707,32 +351,6 @@ body[data-background="plain"]::before {
 
 .profile-image-wrapper:hover .profile-image--hover {
     opacity: 1;
-}
-
-.profile-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin-bottom: 0.75rem;
-}
-
-.dark .profile-title {
-    color: var(--color-text-light);
-}
-
-.profile-description {
-    font-size: 0.9rem;
-    color: var(--color-text);
-    line-height: 1.6;
-}
-
-/* Отступ между абзацами профиля */
-.profile-description + .profile-description {
-    margin-top: 0.6rem;
-}
-
-.dark .profile-description {
-    color: var(--color-text-light);
 }
 
 .inline-link {
@@ -843,7 +461,6 @@ html.lenis {
     scroll-behavior: auto;
 }
 
-
 /* ========================================
    Mobile + Tablet Styles
    До lg-breakpoint (1200px) — вертикальный стек на главной
@@ -861,154 +478,6 @@ html.lenis {
     .corner-nav-item:not(.logo-badge) span {
         font-size: 0.625rem;
     }
-
-    .category-badge {
-        top: 8px;
-        right: 8px;
-        width: 24px;
-        height: 24px;
-        opacity: 1;
-    }
-
-    .category-badge svg {
-        width: 14px;
-        height: 14px;
-    }
-}
-
-/* Mobile + Tablet (<1200px): 4 кнопки-карточки в формате "иконка слева + текст справа" */
-@media (max-width: 74.99rem) {
-    .bento-card:not(.card-profile) {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-            "icon title"
-            "desc desc";
-        column-gap: 0.75rem;
-        row-gap: 0.25rem;
-        align-items: center;
-        padding: 1rem 1.25rem;
-    }
-
-    .bento-card:not(.card-profile):has(.card-meta) {
-        grid-template-rows: auto auto auto;
-        grid-template-areas:
-            "icon title"
-            "desc desc"
-            "meta meta";
-    }
-
-    .bento-card:not(.card-profile) > svg,
-    .bento-card:not(.card-profile) > img {
-        grid-area: icon;
-        margin-bottom: 0;
-        align-self: center;
-    }
-
-    .bento-card:not(.card-profile) > .card-title {
-        grid-area: title;
-        margin-bottom: 0;
-    }
-
-    .bento-card:not(.card-profile) > .card-description {
-        grid-area: desc;
-    }
-
-    .bento-card:not(.card-profile) > .card-meta {
-        grid-area: meta;
-        margin-top: 0;
-    }
-}
-
-/* ========================================
-   Category Badges
-   ======================================== */
-.category-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    opacity: 0.8;
-    transition: opacity var(--transition-default), transform 0.2s ease;
-    cursor: pointer;
-}
-
-.category-badge:hover {
-    transform: scale(1.15);
-}
-
-.category-badge:active {
-    transform: scale(0.95);
-}
-
-.bento-card:hover .category-badge {
-    opacity: 1;
-}
-
-/* Светлая тема — default: белые бейджики */
-.category-badge--work,
-.category-badge--projects,
-.category-badge--contacts,
-.category-badge--social {
-    background: #ffffff;
-    color: var(--color-text-muted);
-}
-
-/* Светлая тема — hover: цветные бейджики */
-.bento-card:hover .category-badge--work {
-    background: var(--badge-work-bg);
-    color: var(--badge-work);
-}
-
-.bento-card:hover .category-badge--projects {
-    background: var(--badge-projects-bg);
-    color: var(--badge-projects);
-}
-
-.bento-card:hover .category-badge--contacts {
-    background: var(--badge-contacts-bg);
-    color: var(--badge-contacts);
-}
-
-.bento-card:hover .category-badge--social {
-    background: var(--badge-social-bg);
-    color: var(--badge-social);
-}
-
-/* Тёмная тема — default: тёмные бейджики */
-.dark .category-badge--work,
-.dark .category-badge--projects,
-.dark .category-badge--contacts,
-.dark .category-badge--social {
-    background: #1e1e1e;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* Тёмная тема — hover: приглушённые цветные бейджики */
-.dark .bento-card:hover .category-badge--work {
-    background: var(--badge-work-bg);
-    color: var(--badge-work);
-}
-
-.dark .bento-card:hover .category-badge--projects {
-    background: var(--badge-projects-bg);
-    color: var(--badge-projects);
-}
-
-.dark .bento-card:hover .category-badge--contacts {
-    background: var(--badge-contacts-bg);
-    color: var(--badge-contacts);
-}
-
-.dark .bento-card:hover .category-badge--social {
-    background: var(--badge-social-bg);
-    color: var(--badge-social);
 }
 
 /* ========================================
@@ -1042,8 +511,7 @@ html.lenis {
 }
 
 .dark .copy-tooltip {
-    background: var(--card-bg-dark-hover);
-    color: var(--color-text-light);
+    background: var(--surface-raised);
 }
 
 /* ========================================
@@ -1074,132 +542,8 @@ html.lenis {
 }
 
 /* ========================================
-   Contacts Modal
+   Articles Grid
    ======================================== */
-.contacts-modal {
-    border: none;
-    background: transparent;
-    padding: 1rem;
-    /* Без width: 100% dialog схлопывается по fit-content — в одну колонку это узкий столбец */
-    width: 100%;
-    max-width: min(72rem, 100vw);
-    max-height: 100vh;
-    color: #ffffff;
-}
-
-.contacts-modal::backdrop {
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(6px);
-}
-
-.contacts-modal[open] {
-    display: block;
-    margin: auto;
-}
-
-@media (min-width: 48rem) {
-    .contacts-modal {
-        padding: 1.5rem;
-    }
-}
-
-.contacts-modal__inner {
-    background: transparent;
-    box-shadow: none;
-    padding: 0;
-    max-height: calc(100vh - 2rem);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    /* Полоса прокрутки скрыта — список листается свайпом или колёсиком */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.contacts-modal__inner::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none;
-}
-
-@media (min-width: 48rem) {
-    .contacts-modal__inner {
-        max-height: calc(100vh - 3rem);
-    }
-}
-
-.contacts-modal__title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 1.25rem 0;
-}
-
-.dark .contacts-modal__title {
-    color: #ffffff;
-}
-
-/* Сетка 5-2-1: в ряду либо 5 карточек (десктоп), либо 2 (планшет), либо 1 (мобильный) */
-.contacts-modal__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.75rem;
-}
-
-@media (min-width: 48rem) {
-    .contacts-modal__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-    }
-}
-
-@media (min-width: 75rem) {
-    .contacts-modal__grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-    }
-}
-
-/* ========================================
-   Articles Section
-   ======================================== */
-.articles-section {
-    padding-bottom: 3rem;
-}
-
-@media (min-width: 75rem) {
-    .articles-section {
-        padding-bottom: 4rem;
-    }
-}
-
-/* Articles heading */
-.articles-heading {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text-light);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    margin-bottom: 0.75rem;
-}
-
-@media (min-width: 768px) {
-    .articles-heading {
-        font-size: 1.75rem;
-        margin-bottom: 1rem;
-    }
-}
-
-@media (min-width: 1280px) {
-    .articles-heading {
-        margin-bottom: 1.25rem;
-    }
-}
-
-@media (min-width: 1536px) {
-    .articles-heading {
-        margin-bottom: 1.5rem;
-    }
-}
-
 /* Articles masonry grid */
 .articles-grid {
     display: grid;
@@ -1261,18 +605,9 @@ html.lenis {
 }
 
 .article-card:hover {
+    background: var(--surface-card-hover);
     transform: translateY(var(--hover-translate));
-    box-shadow: var(--shadow-hover);
-}
-
-.dark .article-card {
-    background: var(--card-bg-dark);
-    box-shadow: 0 4px 30px var(--card-shadow-dark);
-}
-
-.dark .article-card:hover {
-    background: var(--card-bg-dark-hover);
-    box-shadow: var(--shadow-hover-dark);
+    box-shadow: var(--shadow-2);
 }
 
 .article-card-image-wrapper {
@@ -1531,8 +866,7 @@ html.lenis {
 }
 
 .dark .article-body .screenshot-browser {
-    border-color: rgba(255, 255, 255, 0.12);
-    background: var(--card-bg-dark);
+    border-color: var(--border-subtle);
 }
 
 .article-body .screenshot-browser__bar {

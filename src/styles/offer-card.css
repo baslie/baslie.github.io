@@ -34,11 +34,6 @@ body {
   box-shadow: var(--shadow);
 }
 
-.dark .o3-card {
-  background: var(--card-bg-dark);
-  box-shadow: 0 4px 30px var(--card-shadow-dark);
-}
-
 /* ========================================
    Photo
    ======================================== */
@@ -634,29 +629,6 @@ body {
 /* ========================================
    Dark Theme
    ======================================== */
-.dark .o3-heading,
-.dark .o3-subheading,
-.dark .o3-body strong,
-.dark .o3-details strong,
-.dark .o3-label {
-  color: var(--color-text-light);
-}
-
-.dark .o3-body,
-.dark .o3-checklist li,
-.dark .o3-details {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.dark .o3-price-old,
-.dark .o3-optional,
-.dark .o3-form-note,
-.dark .o3-footer p,
-.dark .o3-portfolio-name,
-.dark .o3-portfolio-thumb::after {
-  color: rgba(255, 255, 255, 0.5);
-}
-
 .dark .o3-availability {
   background: rgba(255, 255, 255, 0.08);
   color: var(--color-text-light);

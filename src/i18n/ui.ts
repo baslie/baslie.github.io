@@ -46,7 +46,6 @@ export const ui = {
     'filter.status.few': 'Показано {n} материала',
     'filter.status.many': 'Показано {n} материалов',
     'copy.label': 'Скопировать',
-    'profile.mainDescription1': `Делаю сайты, мобильные приложения, <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сложные IT-системы</a>. В душе — <a href="/articles/berloga" class="inline-link">маркетолог</a> из тайги (Томск, МСК+4).<br><br>Берусь за всё, за что берусь.`,
 
     'portfolio.title': 'Портфолио',
     'portfolio.description': 'Сайты на Тильде',
@@ -77,7 +76,6 @@ export const ui = {
     'tomskWalk.title': 'Томская Прогулка',
     'tomskWalk.description': 'Гуляем с друзьями и не только',
 
-    'contacts.modalTitle': 'Мои контакты',
 
     'article.back': 'На главную',
     'articles.heading': 'Кейсы и статьи',
@@ -127,7 +125,6 @@ export const ui = {
     'filter.status.few': 'Showing {n} materials',
     'filter.status.many': 'Showing {n} materials',
     'copy.label': 'Copy',
-    'profile.mainDescription1': `I make websites, mobile apps and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">complex IT systems</a>. At heart, I'm a <a href="/en/articles/berloga" class="inline-link">marketer</a> from the Siberian taiga (Tomsk, UTC+7).<br><br>I deliver on everything I commit to.`,
 
     'portfolio.title': 'Portfolio',
     'portfolio.description': 'Tilda websites',
@@ -158,7 +155,6 @@ export const ui = {
     'tomskWalk.title': 'Tomsk Walk',
     'tomskWalk.description': 'Walking with friends and more',
 
-    'contacts.modalTitle': 'My Contacts',
 
     'article.back': 'Back to home',
     'articles.heading': 'Case Studies & Articles',
