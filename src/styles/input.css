@@ -1970,11 +1970,46 @@ html.lenis {
 }
 
 .vcard-link__text {
-    flex: 1;
-    min-width: 0;
+    /* Название не сжимается и не переносится — место уступает подсказка */
+    flex: none;
     font-size: 0.9375rem;
+    white-space: nowrap;
     color: var(--text-primary);
     transition: color var(--transition-default);
+}
+
+/* Описание ссылки проявляется под курсором. Место занято всегда,
+   поэтому строки не прыгают, а скринридер читает текст в любом случае. */
+.vcard-link__hint {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    text-align: right;
+    text-overflow: ellipsis;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity var(--transition-default);
+}
+
+.vcard-link:hover .vcard-link__hint,
+.vcard-link:focus-visible .vcard-link__hint {
+    opacity: 1;
+}
+
+/* Там, где курсора нет, подсказке не место: строка и так узкая */
+@media (hover: none) {
+    .vcard-link__hint {
+        display: none;
+    }
+
+    .vcard-link__text {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .vcard-link__arrow {

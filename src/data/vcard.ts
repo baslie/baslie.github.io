@@ -24,6 +24,8 @@ export interface VCardLink {
   href: string;
   icon: IconName;
   labelKey: TranslationKey;
+  /** Показывается при наведении — там, где есть курсор */
+  hintKey: TranslationKey;
 }
 
 export const vcardContacts: VCardContact[] = [
@@ -63,13 +65,14 @@ export const vcardSocials: VCardSocial[] = [
 ];
 
 export const vcardLinks: VCardLink[] = [
-  { type: 'portfolio', href: 'https://experts.tilda.cc/roman-purtow', icon: 'portfolio', labelKey: 'link.portfolio' },
+  { type: 'portfolio', href: 'https://experts.tilda.cc/roman-purtow', icon: 'portfolio', labelKey: 'link.portfolio', hintKey: 'portfolio.description' },
   {
     type: 'resume',
     href: 'https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing',
     icon: 'resume',
     labelKey: 'link.resume',
+    hintKey: 'resume.description',
   },
-  { type: 'progulka', href: 'https://vk.com/tomsk_progulka', icon: 'progulka', labelKey: 'link.progulka' },
-  { type: 'blog', href: 'https://t.me/purtochka_live', icon: 'blog', labelKey: 'link.blog' },
+  { type: 'progulka', href: 'https://vk.com/tomsk_progulka', icon: 'progulka', labelKey: 'link.progulka', hintKey: 'tomskWalk.description' },
+  { type: 'blog', href: 'https://t.me/purtochka_live', icon: 'blog', labelKey: 'link.blog', hintKey: 'blog.description' },
 ];

@@ -133,14 +133,8 @@ function initYandexMetrika() {
 
 
 /* ========================================
-   Copy on Badge Click
+   Copy to Clipboard
    ======================================== */
-
-function extractCopyData(href) {
-    if (href.startsWith('tel:')) return href.replace('tel:', '');
-    if (href.startsWith('mailto:')) return href.replace('mailto:', '');
-    return href;
-}
 
 async function copyToClipboard(text) {
     try {
@@ -180,20 +174,17 @@ function showCopyTooltip(element) {
     }, 1500);
 }
 
-function initCopyOnBadgeClick() {
-    document.querySelectorAll('.category-badge').forEach(badge => {
-        badge.addEventListener('click', async (e) => {
+function initCopyButtons() {
+    document.querySelectorAll('[data-copy]').forEach(button => {
+        button.addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation();
 
-            const card = badge.closest('.bento-card');
-            if (!card) return;
+            const value = button.getAttribute('data-copy');
+            if (!value) return;
 
-            const href = card.getAttribute('href');
-            if (!href) return;
-
-            const success = await copyToClipboard(extractCopyData(href));
-            if (success) showCopyTooltip(badge);
+            const success = await copyToClipboard(value);
+            if (success) showCopyTooltip(button);
         });
     });
 }
@@ -202,27 +193,86 @@ function initCopyOnBadgeClick() {
    Profile Image Toggle (Mobile)
    ======================================== */
 function initProfileImageToggle() {
-    const profileCard = document.querySelector('.card-profile');
-    if (!profileCard) return;
+    const wrapper = document.querySelector('.profile-image-wrapper');
+    if (!wrapper) return;
 
     let isHoverImage = false;
 
-    profileCard.addEventListener('click', (e) => {
+    wrapper.addEventListener('click', (e) => {
         if (e.target.closest('a')) return;
 
+        // На десктопе картинку меняет CSS-ховер
         const hasHover = window.matchMedia('(hover: hover)').matches;
         if (hasHover) return;
 
         isHoverImage = !isHoverImage;
 
-        const defaultImg = profileCard.querySelector('.profile-image--default');
-        const hoverImg = profileCard.querySelector('.profile-image--hover');
+        const defaultImg = wrapper.querySelector('.profile-image--default');
+        const hoverImg = wrapper.querySelector('.profile-image--hover');
 
         if (defaultImg && hoverImg) {
             defaultImg.style.opacity = isHoverImage ? '0' : '1';
             hoverImg.style.opacity = isHoverImage ? '1' : '0';
         }
     });
+}
+
+/* ========================================
+   Feed Filters
+   ======================================== */
+const FILTER_KEY = 'feed-filter';
+
+function initFeedFilters() {
+    const bar = document.querySelector('.feed-filters');
+    const grid = document.getElementById('articles-grid');
+    if (!bar || !grid) return;
+
+    const cards = Array.from(grid.querySelectorAll('.article-card'));
+    const status = document.getElementById('feed-status');
+
+    function announce(shown) {
+        if (!status) return;
+        const rule = new Intl.PluralRules(document.documentElement.lang || 'ru').select(shown);
+        const key = rule === 'one' ? 'statusOne' : rule === 'few' ? 'statusFew' : 'statusMany';
+        const template = bar.dataset[key];
+        if (template) status.textContent = template.replace('{n}', String(shown));
+    }
+
+    function apply(value, persist) {
+        let shown = 0;
+
+        for (const card of cards) {
+            const match = value === 'all' || card.dataset.badge === value;
+            card.toggleAttribute('hidden', !match);
+            if (match) shown++;
+        }
+
+        bar.querySelectorAll('[data-filter]').forEach(button => {
+            button.setAttribute('aria-pressed', String(button.dataset.filter === value));
+        });
+
+        if (persist) {
+            try {
+                sessionStorage.setItem(FILTER_KEY, value);
+            } catch (e) {}
+        }
+
+        announce(shown);
+        // Masonry пересобирает раскладку по этому событию
+        document.dispatchEvent(new CustomEvent('feed:changed'));
+    }
+
+    bar.addEventListener('click', (e) => {
+        const button = e.target.closest('[data-filter]');
+        if (button) apply(button.dataset.filter, true);
+    });
+
+    // Возврат со страницы кейса не должен сбрасывать выбор
+    let saved = null;
+    try {
+        saved = sessionStorage.getItem(FILTER_KEY);
+    } catch (e) {}
+    if (saved && saved !== 'all') apply(saved, false);
 }
 
 /* ========================================
@@ -235,66 +285,81 @@ function initMasonry() {
     function layout() {
         const style = getComputedStyle(grid);
         const columns = style.gridTemplateColumns.split(' ').length;
+        const all = Array.from(grid.children);
+
+        for (const item of all) {
+            item.style.gridRowEnd = '';
+            item.style.gridColumn = '';
+            item.style.gridRowStart = '';
+        }
+
         if (columns < 2) {
             grid.style.gridAutoRows = '';
             grid.style.alignItems = '';
-            for (const item of grid.children) {
-                item.style.gridRowEnd = '';
-                item.style.gridColumn = '';
-                item.style.gridRowStart = '';
-            }
             return;
         }
+
         const rowHeight = 10;
         const gap = parseFloat(style.rowGap) || parseFloat(style.gap) || 0;
 
         grid.style.gridAutoRows = 'auto';
         grid.style.alignItems = 'start';
-        for (const item of grid.children) {
-            item.style.gridRowEnd = '';
-            item.style.gridColumn = '';
-            item.style.gridRowStart = '';
-        }
         grid.offsetHeight;
 
-        const spans = [];
-        for (const item of grid.children) {
-            const height = item.getBoundingClientRect().height;
-            spans.push(Math.ceil((height + gap) / (rowHeight + gap)));
-        }
+        // Скрытые фильтром карточки не участвуют в раскладке
+        const items = all.filter(item => !item.hasAttribute('hidden'));
+        const spans = items.map(item =>
+            Math.ceil((item.getBoundingClientRect().height + gap) / (rowHeight + gap))
+        );
 
         grid.style.gridAutoRows = rowHeight + 'px';
         grid.style.alignItems = '';
+
+        // Каждая карточка уходит в самую короткую колонку: порядок в DOM
+        // остаётся хронологическим, а колонки не расходятся по высоте.
+        const colHeight = new Array(columns).fill(0);
         const colNextRow = new Array(columns).fill(1);
-        Array.from(grid.children).forEach((item, i) => {
-            const col = i % columns;
+
+        items.forEach((item, i) => {
+            const col = colHeight.indexOf(Math.min(...colHeight));
             item.style.gridColumn = col + 1;
             item.style.gridRowStart = colNextRow[col];
             item.style.gridRowEnd = 'span ' + spans[i];
             colNextRow[col] += spans[i];
+            colHeight[col] += spans[i];
         });
     }
 
-    const images = grid.querySelectorAll('img');
-    let loaded = 0;
-    const total = images.length;
-
-    function onImageReady() {
-        loaded++;
-        if (loaded >= total) layout();
+    let scheduled = false;
+    function relayout() {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(() => {
+            scheduled = false;
+            layout();
+        });
     }
 
-    images.forEach(img => {
-        if (img.complete) onImageReady();
-        else {
-            img.addEventListener('load', onImageReady);
-            img.addEventListener('error', onImageReady);
-        }
+    // Высота карточки известна до загрузки обложки: у картинки задан
+    // aspect-ratio, место зарезервировано. Ждать картинки нельзя —
+    // с lazy-загрузкой нижние так и не дождутся.
+    relayout();
+
+    grid.querySelectorAll('img').forEach(img => {
+        if (img.complete) return;
+        img.addEventListener('load', relayout);
+        img.addEventListener('error', relayout);
     });
 
-    if (total === 0) layout();
+    document.addEventListener('feed:changed', relayout);
 
-    window.addEventListener('resize', layout);
+    // Мобильные браузеры шлют resize при показе адресной строки
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        relayout();
+    });
 }
 
 /* ========================================
@@ -305,8 +370,10 @@ function init() {
     initBackgroundVideo();
     initLenis();
     initYandexMetrika();
-    initCopyOnBadgeClick();
+    initCopyButtons();
     initProfileImageToggle();
+    // Фильтры до masonry: восстановленный выбор должен попасть в первый расчёт
+    initFeedFilters();
     initMasonry();
 }
 
