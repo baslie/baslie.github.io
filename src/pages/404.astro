@@ -10,79 +10,125 @@ import Base from '../layouts/Base.astro';
   noPreload={true}
   noindex={true}
   lang="ru"
+  background="plain"
 >
-  <main class="nf-main">
-    <div class="nf-card">
-      <p class="nf-code">404</p>
+  <main class="nf">
+    <div class="nf__inner">
+      <p class="nf__eyebrow">404</p>
 
-      <h1 class="nf-title">Страница не найдена</h1>
-      <p class="nf-desc">Возможно, вы перешли по устаревшей ссылке или ошиблись в адресе.</p>
-      <a href="/" class="nf-link">← Вернуться на главную</a>
+      <div class="nf__titles">
+        <h1 class="nf__title">Страница не найдена</h1>
+        <!-- lang на английских узлах: иначе скринридер прочитает их по-русски -->
+        <p class="nf__title nf__title--muted" lang="en">Page not found</p>
+      </div>
 
-      <hr class="nf-divider" />
-
-      <h2 class="nf-title nf-title--en">Page not found</h2>
-      <p class="nf-desc">You may have followed an outdated link or mistyped the address.</p>
-      <a href="/en/" class="nf-link">← Back to home</a>
+      <div class="nf__actions">
+        <a href="/" class="nf__btn nf__btn--primary">
+          <span aria-hidden="true">←</span> Вернуться на главную
+        </a>
+        <a href="/en/" class="nf__btn nf__btn--ghost" lang="en">
+          <span aria-hidden="true">←</span> Back to home
+        </a>
+      </div>
     </div>
   </main>
 </Base>
 
 <style>
-  .nf-main {
-    min-height: 100vh;
+  .nf {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100svh;
     padding: 2rem 1rem;
-    background: var(--surface-card);
   }
-  .nf-card {
-    max-width: 480px;
+
+  .nf__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+    max-width: 45rem;
     text-align: center;
-    padding: 2rem;
   }
-  .nf-code {
-    color: var(--text-secondary);
-    font-size: 5rem;
-    font-weight: 700;
-    line-height: 1;
-    margin: 0 0 0.5rem;
-  }
-  .nf-title {
-    color: var(--text-primary);
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin: 0 0 0.75rem;
-  }
-  .nf-title--en {
-    margin-top: 1.5rem;
-  }
-  .nf-desc {
-    color: var(--text-secondary);
-    margin: 0 0 1.5rem;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  .nf-link {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    background: var(--brand);
-    color: #fff;
-    text-decoration: none;
+
+  .nf__eyebrow {
+    font-size: clamp(0.75rem, 0.68rem + 0.2vw, 0.875rem);
     font-weight: 600;
-    transition: background 0.2s ease, transform 0.2s ease;
+    line-height: 1;
+    letter-spacing: 0.1875rem;
+    color: var(--text-secondary);
   }
-  .nf-link:hover {
+
+  .nf__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  /* Один clamp даёт ровно макетные 26 / 34 / 40 пикселей */
+  .nf__title {
+    font-size: clamp(1.625rem, 1.2rem + 1.8vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.03125rem;
+    color: var(--text-primary);
+  }
+
+  .nf__title--muted {
+    color: var(--text-secondary);
+  }
+
+  .nf__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nf__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: background var(--transition-default), transform var(--transition-default);
+  }
+
+  .nf__btn--primary {
+    color: var(--text-inverse);
+    background: var(--brand);
+  }
+
+  .nf__btn--primary:hover {
     background: var(--brand-hover);
     transform: translateY(-1px);
   }
-  .nf-divider {
-    margin: 2rem auto;
-    width: 60%;
-    border: none;
-    border-top: 1px solid var(--border-subtle);
-    opacity: 0.3;
+
+  .nf__btn--ghost {
+    color: var(--text-primary);
+    box-shadow: inset 0 0 0 1px var(--border-subtle);
+  }
+
+  .nf__btn--ghost:hover {
+    background: var(--surface-muted);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 30rem) {
+    .nf__actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 16.25rem;
+    }
+
+    .nf__btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9375rem;
+    }
   }
 </style>

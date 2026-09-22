@@ -351,6 +351,16 @@ body::before {
         var(--surface-page);
 }
 
+/* Страница без фона: специфичность body[data-background] перебивает и базовое
+   правило, и мобильный блок, поэтому mobile-bg.jpg там тоже не грузится. */
+body[data-background="plain"] {
+    background: var(--surface-card);
+}
+
+body[data-background="plain"]::before {
+    display: none;
+}
+
 /* Движение дольше 5 секунд требует механизма паузы (WCAG 2.2.2):
    вместо видео показываем его же постер. Блок стоит до мобильного,
    чтобы на узких экранах победил мобильный кадр. */
