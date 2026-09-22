@@ -28,6 +28,7 @@ export const ui = {
 
     'vcard.contactsLabel': 'СВЯЗАТЬСЯ',
     'vcard.socialLabel': 'СОЦСЕТИ',
+    'vcard.moreLabel': 'ЕЩЁ',
     'link.portfolio': 'Портфолио на Тильде',
     'link.resume': 'Резюме',
     'link.progulka': 'Томская Прогулка',
@@ -108,6 +109,7 @@ export const ui = {
 
     'vcard.contactsLabel': 'GET IN TOUCH',
     'vcard.socialLabel': 'SOCIAL',
+    'vcard.moreLabel': 'MORE',
     'link.portfolio': 'Portfolio on Tilda',
     'link.resume': 'Resume',
     'link.progulka': 'Tomsk Walk',

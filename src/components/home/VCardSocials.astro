@@ -1,0 +1,34 @@
+---
+import Icon from '../Icon.astro';
+import { vcardSocials } from '../../data/vcard';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="vcard__section">
+  <h2 class="vcard__label">{t('vcard.socialLabel')}</h2>
+
+  <ul class="vcard__socials">
+    {vcardSocials.map(social => (
+      <li>
+        <a
+          class="social-dot"
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t(social.labelKey)}
+          title={t(social.labelKey)}
+        >
+          <Icon name={social.icon} size={17} class={`icon-${social.type}`} />
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>

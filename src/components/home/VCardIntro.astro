@@ -1,0 +1,40 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="vcard__head">
+  <!-- Классы .profile-image* сохранены: на них завязаны CSS-ховер и тап-переключение в app.js -->
+  <div class="profile-image-wrapper">
+    <img
+      src="/images/roman.webp"
+      alt={t('profile.name')}
+      class="profile-image profile-image--default"
+      width="132"
+      height="132"
+      fetchpriority="high"
+      itemprop="image"
+    />
+    <img
+      src="/images/roman-lol.webp"
+      alt={t('profile.name')}
+      class="profile-image profile-image--hover"
+      width="132"
+      height="132"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="vcard__who">
+    <h1 class="vcard__name">{t('profile.name')}</h1>
+    <p class="vcard__about" set:html={t('profile.about')}></p>
+    <p class="vcard__joke">{t('profile.joke')}</p>
+  </div>
+</div>

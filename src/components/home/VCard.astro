@@ -1,0 +1,34 @@
+---
+import VCardIntro from './VCardIntro.astro';
+import VCardContacts from './VCardContacts.astro';
+import VCardSocials from './VCardSocials.astro';
+import VCardLinks from './VCardLinks.astro';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="vcard">
+  <VCardIntro lang={lang} />
+
+  <hr class="vcard__divider" />
+
+  <VCardContacts lang={lang} />
+
+  <!-- На планшете соцсети и ссылки встают в одну строку, поэтому у них общая обёртка -->
+  <div class="vcard__bottom">
+    <VCardSocials lang={lang} />
+    <VCardLinks lang={lang} />
+  </div>
+
+  <footer class="vcard__legal">
+    <p>{t('footer.name')}</p>
+    <p>{t('footer.inn')}</p>
+  </footer>
+</div>

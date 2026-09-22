@@ -1,0 +1,43 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const filters = [
+  { value: 'all', label: t('filter.all') },
+  { value: 'case', label: t('filter.case') },
+  { value: 'article', label: t('filter.article') },
+];
+---
+
+<!-- Активная пилюля стилизуется по aria-pressed, а не по классу: так визуал
+     и доступность нельзя рассинхронизировать. Шаблоны статуса едут
+     data-атрибутами — строки нужны клиентскому скрипту. -->
+<div
+  class="feed-filters"
+  role="group"
+  aria-label={t('filter.label')}
+  data-status-one={t('filter.status.one')}
+  data-status-few={t('filter.status.few')}
+  data-status-many={t('filter.status.many')}
+>
+  {filters.map(filter => (
+    <button
+      type="button"
+      class="feed-filter"
+      data-filter={filter.value}
+      aria-pressed={filter.value === 'all' ? 'true' : 'false'}
+      aria-controls="articles-grid"
+    >
+      {filter.label}
+    </button>
+  ))}
+</div>
+
+<p id="feed-status" class="sr-only" role="status" aria-live="polite"></p>

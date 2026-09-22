@@ -1,0 +1,23 @@
+---
+import FeedHeader from './FeedHeader.astro';
+import ArticleCard from '../ArticleCard.astro';
+import { getArticleCards } from '../../data/articles';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const articleCards = getArticleCards(lang);
+---
+
+<section class="feed">
+  <FeedHeader lang={lang} count={articleCards.length} />
+
+  <div class="articles-grid" id="articles-grid">
+    {articleCards.map((article, index) => (
+      <ArticleCard article={article} lang={lang} index={index} />
+    ))}
+  </div>
+</section>

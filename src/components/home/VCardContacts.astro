@@ -1,0 +1,39 @@
+---
+import Icon from '../Icon.astro';
+import { vcardContacts } from '../../data/vcard';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="vcard__section">
+  <h2 class="vcard__label">{t('vcard.contactsLabel')}</h2>
+
+  <ul class="vcard__contacts">
+    {vcardContacts.map(contact => (
+      <li class="contact-chip">
+        <a class="contact-chip__link" href={contact.href} target="_blank" rel="noopener noreferrer">
+          <Icon name={contact.icon} size={18} class={`icon-${contact.type}`} />
+          <span class="contact-chip__text">
+            <span class="contact-chip__label">{t(contact.labelKey)}</span>
+            <span class="contact-chip__value">{t(contact.valueKey)}</span>
+          </span>
+        </a>
+        <button
+          type="button"
+          class="contact-chip__copy"
+          data-copy={contact.copy}
+          aria-label={`${t('copy.label')}: ${t(contact.valueKey)}`}
+        >
+          <Icon name="copy" size={15} />
+        </button>
+      </li>
+    ))}
+  </ul>
+</section>

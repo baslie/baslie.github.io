@@ -1690,3 +1690,446 @@ html.lenis {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ========================================
+   Icon
+   ======================================== */
+/* Размер иконки задаёт обёртка, а не классы внутри SVG-строки:
+   одна и та же иконка ложится и на 15, и на 24 пикселя. */
+.icon {
+    display: inline-flex;
+    flex: none;
+    width: var(--icon-size, 1.25rem);
+    height: var(--icon-size, 1.25rem);
+}
+
+.icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Доступно скринридеру, не видно глазами */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ========================================
+   Home Layout (визитка + лента)
+   ======================================== */
+.home {
+    display: grid;
+    gap: 1rem;
+    /* Сверху место под фиксированный CornerNav */
+    padding: 3.5rem 1.25rem 2rem;
+}
+
+@media (min-width: 48rem) {
+    .home {
+        gap: 2rem;
+        padding: 3.5rem 2rem 4rem;
+    }
+}
+
+@media (min-width: 75rem) {
+    .home {
+        grid-template-columns: 420px minmax(0, 1fr);
+        gap: 0;
+        padding: 0;
+    }
+
+    /* Белую полосу во всю высоту страницы несёт растянутый грид-айтем,
+       а липнет внутренняя визитка — иначе одно исключает другое. */
+    .home__aside {
+        background: var(--surface-card);
+    }
+}
+
+/* ========================================
+   VCard (колонка-визитка)
+   ======================================== */
+.vcard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem 1.25rem;
+    background: var(--surface-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1), inset 0 0 0 1px var(--ring-hairline);
+}
+
+.vcard__head {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.vcard__who {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    min-width: 0;
+}
+
+.vcard__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+.vcard__about {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.vcard__joke {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-primary);
+}
+
+.vcard__divider {
+    height: 1px;
+    border: none;
+    background: var(--border-subtle);
+}
+
+.vcard__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.vcard__label {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.0875rem;
+    color: var(--text-secondary);
+}
+
+.vcard__contacts,
+.vcard__socials,
+.vcard__links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vcard__contacts {
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.vcard__socials {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.vcard__links {
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.vcard__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.vcard__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* Плашка контакта: в светлой теме её отделяет тень, в тёмной — светлота
+   и волосяная обводка, потому что тень на #1e1e1e не читается. */
+.contact-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.875rem;
+    background: var(--surface-raised);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-chip), inset 0 0 0 1px var(--ring-hairline);
+    transition: background var(--transition-default), box-shadow var(--transition-default);
+}
+
+.contact-chip:hover {
+    background: var(--surface-raised-hover);
+}
+
+.contact-chip__link {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.contact-chip__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.contact-chip__label {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+}
+
+.contact-chip__value {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contact-chip__copy {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    color: var(--text-subtle);
+    background: none;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: color var(--transition-default), background var(--transition-default);
+}
+
+.contact-chip__copy:hover {
+    color: var(--text-primary);
+    background: var(--surface-muted);
+}
+
+.social-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--surface-raised);
+    border-radius: 50%;
+    box-shadow: var(--shadow-chip), inset 0 0 0 1px var(--ring-hairline);
+    transition: transform var(--transition-default), background var(--transition-default);
+}
+
+.social-dot:hover {
+    background: var(--surface-raised-hover);
+    transform: translateY(-2px);
+}
+
+.vcard-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+}
+
+.vcard-link__text {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    transition: color var(--transition-default);
+}
+
+.vcard-link__arrow {
+    color: var(--text-subtle);
+    transition: transform var(--transition-default), color var(--transition-default);
+}
+
+.vcard-link:hover .vcard-link__text {
+    color: var(--link);
+}
+
+.vcard-link:hover .vcard-link__arrow {
+    color: var(--link);
+    transform: translate(2px, -2px);
+}
+
+/* Планшет: визитка раскладывается вширь */
+@media (min-width: 48rem) and (max-width: 74.99rem) {
+    .vcard {
+        gap: 1.5rem;
+        padding: 2rem 1.75rem;
+    }
+
+    .vcard__head {
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .vcard__contacts {
+        flex-direction: row;
+    }
+
+    .vcard__contacts > li {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .vcard__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    .vcard__bottom > .vcard__section:first-child {
+        flex: 1;
+    }
+
+    .vcard__bottom > .vcard__section:last-child {
+        width: 300px;
+    }
+}
+
+/* Десктоп: липкая колонка без скруглений — она и есть край страницы */
+@media (min-width: 75rem) {
+    .vcard {
+        position: sticky;
+        top: 0;
+        gap: 1.75rem;
+        padding: 3.5rem 2.5rem;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        max-height: 100svh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+    }
+
+    .vcard::-webkit-scrollbar {
+        width: 0;
+        display: none;
+    }
+
+    .vcard__name {
+        font-size: 1.75rem;
+    }
+}
+
+/* ========================================
+   Feed (лента «Кейсы и статьи»)
+   ======================================== */
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.feed__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feed__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    align-items: flex-start;
+}
+
+.feed__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-on-media);
+    text-shadow: var(--text-shadow-media);
+}
+
+/* Подпись лежит на белой плашке — на видеофоне так читается лучше всего */
+.feed__subtitle {
+    padding: 0.5rem 1rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    background: var(--surface-card);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-chip), inset 0 0 0 1px var(--ring-hairline);
+}
+
+.feed-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feed-filter {
+    padding: 0.5rem 1rem;
+    font: inherit;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    background: var(--surface-raised);
+    border: none;
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-chip), inset 0 0 0 1px var(--ring-hairline);
+    cursor: pointer;
+    transition: background var(--transition-default), color var(--transition-default);
+}
+
+.feed-filter:hover {
+    background: var(--surface-raised-hover);
+}
+
+.feed-filter[aria-pressed="true"] {
+    color: var(--text-inverse);
+    background: var(--brand);
+}
+
+.feed-filter[aria-pressed="true"]:hover {
+    background: var(--brand-hover);
+}
+
+/* Авторский display: block у карточки перебивает UA-правило [hidden] */
+.article-card[hidden] {
+    display: none;
+}
+
+@media (min-width: 48rem) {
+    .feed {
+        gap: 1.5rem;
+    }
+
+    .feed__title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (min-width: 75rem) {
+    .feed {
+        gap: 1.75rem;
+        padding: 3.5rem clamp(1.5rem, 3.33vw, 4rem) 5.5rem;
+    }
+
+    .feed__header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    .feed__title {
+        font-size: 2.125rem;
+    }
+}

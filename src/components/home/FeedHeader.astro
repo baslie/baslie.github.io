@@ -1,0 +1,25 @@
+---
+import FeedFilters from './FeedFilters.astro';
+import { useTranslations, pluralSuffix } from '../../i18n/utils';
+import type { Lang, TranslationKey } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  count: number;
+}
+
+const { lang, count } = Astro.props;
+const t = useTranslations(lang);
+
+const word = t(`feed.materials.${pluralSuffix(lang, count)}` as TranslationKey);
+const subtitle = t('feed.subtitle').replace('{n}', `${count} ${word}`);
+---
+
+<header class="feed__header">
+  <div class="feed__heading">
+    <h2 class="feed__title">{t('articles.heading')}</h2>
+    <p class="feed__subtitle">{subtitle}</p>
+  </div>
+
+  <FeedFilters lang={lang} />
+</header>

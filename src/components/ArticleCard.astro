@@ -6,9 +6,11 @@ import type { Lang } from '../i18n/ui';
 interface Props {
   article: ArticleCardData;
   lang: Lang;
+  /** Порядковый номер в ленте: первые карточки попадают в первый экран */
+  index?: number;
 }
 
-const { article, lang } = Astro.props;
+const { article, lang, index = 0 } = Astro.props;
 const t = useTranslations(lang);
 const localized = article[lang];
 
@@ -25,6 +27,7 @@ const badgeText = article.badge === 'case' ? t('badge.case') : t('badge.article'
 <a
   href={href}
   class="article-card"
+  data-badge={article.badge}
   {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
 >
   <div class="article-card-image-wrapper">
@@ -32,7 +35,7 @@ const badgeText = article.badge === 'case' ? t('badge.case') : t('badge.article'
       src={article.image}
       alt={localized.title}
       class="article-card-image"
-      loading="lazy"
+      loading={index < 3 ? 'eager' : 'lazy'}
     />
   </div>
   <div class="article-card-body">

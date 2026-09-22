@@ -1,0 +1,29 @@
+---
+import Icon from '../Icon.astro';
+import { vcardLinks } from '../../data/vcard';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="vcard__section">
+  <h2 class="vcard__label">{t('vcard.moreLabel')}</h2>
+
+  <ul class="vcard__links">
+    {vcardLinks.map(link => (
+      <li>
+        <a class="vcard-link" href={link.href} target="_blank" rel="noopener noreferrer">
+          <Icon name={link.icon} size={16} class={`icon-${link.type}`} />
+          <span class="vcard-link__text">{t(link.labelKey)}</span>
+          <Icon name="arrowUpRight" size={15} class="vcard-link__arrow" />
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
