@@ -35,7 +35,7 @@ import Base from '../layouts/Base.astro';
     align-items: center;
     justify-content: center;
     padding: 2rem 1rem;
-    background: var(--card-bg, #f5f5f5);
+    background: var(--surface-card);
   }
   .nf-card {
     max-width: 480px;
@@ -43,13 +43,14 @@ import Base from '../layouts/Base.astro';
     padding: 2rem;
   }
   .nf-code {
+    color: var(--text-secondary);
     font-size: 5rem;
     font-weight: 700;
     line-height: 1;
     margin: 0 0 0.5rem;
-    color: var(--color-text-muted, #6B7280);
   }
   .nf-title {
+    color: var(--text-primary);
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.75rem;
@@ -58,7 +59,7 @@ import Base from '../layouts/Base.astro';
     margin-top: 1.5rem;
   }
   .nf-desc {
-    color: var(--color-text-muted, #6B7280);
+    color: var(--text-secondary);
     margin: 0 0 1.5rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -67,21 +68,21 @@ import Base from '../layouts/Base.astro';
     display: inline-block;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
-    background: var(--color-brand, #F6522E);
+    background: var(--brand);
     color: #fff;
     text-decoration: none;
     font-weight: 600;
     transition: background 0.2s ease, transform 0.2s ease;
   }
   .nf-link:hover {
-    background: var(--color-brand-hover, #d9451f);
+    background: var(--brand-hover);
     transform: translateY(-1px);
   }
   .nf-divider {
     margin: 2rem auto;
     width: 60%;
     border: none;
-    border-top: 1px solid var(--color-text-muted, #6B7280);
+    border-top: 1px solid var(--border-subtle);
     opacity: 0.3;
   }
 </style>

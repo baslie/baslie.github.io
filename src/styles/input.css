@@ -31,25 +31,86 @@
     --font-sans: system-ui, -apple-system, sans-serif;
 }
 
+/* Мост в Tailwind: именно inline, иначе утилита получит значение на этапе
+   сборки и перестанет переключаться вместе с темой. */
+@theme inline {
+    --color-card: var(--surface-card);
+    --color-raised: var(--surface-raised);
+    --color-muted: var(--surface-muted);
+    --color-fg: var(--text-primary);
+    --color-fg-muted: var(--text-secondary);
+    --color-fg-subtle: var(--text-subtle);
+    --color-on-media: var(--text-on-media);
+    --color-brand: var(--brand);
+    --color-line: var(--border-subtle);
+    --radius-card: var(--radius);
+    --shadow-card: var(--shadow-1);
+}
+
 /* ========================================
    CSS Variables
    ======================================== */
 :root {
+    /* ========================================================
+       Семантические токены: компонент ссылается на имя, а тему
+       переключает значение — тёмные значения в блоке .dark.
+       ======================================================== */
+
+    /* Поверхности */
+    --surface-page: #111111;
+    --surface-card: #ffffff;
+    --surface-card-hover: #ffffff;
+    --surface-raised: #ffffff;
+    --surface-raised-hover: #F4F4F4;
+    --surface-muted: #F4F4F4;
+    --surface-inset: #F4F4F4;
+
+    /* Границы */
+    --border-subtle: #E3E3E3;
+    --border-strong: #D4D4D4;
+    /* Волосяная обводка: в светлой прозрачна, в тёмной держит форму карточки,
+       где тень не работает. Одно правило CSS на обе темы. */
+    --ring-hairline: transparent;
+
+    /* Текст */
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --text-subtle: #9B9B9B;        /* ТОЛЬКО декор: 2.78:1 на белом — не для текста */
+    --text-on-media: #F9FAFB;
+    --text-inverse: #ffffff;
+
+    /* Бренд и ссылки */
+    --brand: rgb(var(--color-brand-rgb));
+    --brand-hover: #d9451f;
+    --link: #2563EB;          /* было #3B82F6 — 3.68:1 на белом */
+    --link-hover: #1D4ED8;
+
+    /* Тени, фон, оверлей */
+    --shadow-1: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --shadow-2: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --shadow-chip: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --overlay: rgba(0, 0, 0, 0.3);
+    --bg-media: none;   /* на десктопе кадр несёт <video> */
+    --text-shadow-media: 0 1px 3px rgba(0, 0, 0, 0.35);
+
+    /* Nav */
+    --nav-surface: #ffffff;
+
     /* Цвета */
     --color-bg: #222222;
-    --color-text: #111827;
-    --color-text-light: #F9FAFB;
-    --color-text-muted: #6B7280;
+    --color-text: var(--text-primary);
+    --color-text-light: var(--text-on-media);
+    --color-text-muted: var(--text-secondary);
     --color-footer: rgba(255, 255, 255, 0.75);
 
     /* Accent цвет (золотой) */
     --color-accent: rgba(245, 158, 11, 0.6);
-    --color-link: #3B82F6;
+    --color-link: var(--link);
 
     /* Фирменный оранжевый (логотип, кнопки, офферы) */
     --color-brand-rgb: 246, 82, 46;
     --color-brand: rgb(var(--color-brand-rgb));
-    --color-brand-hover: #d9451f;
+    --color-brand-hover: var(--brand-hover);
 
     /* Цвета иконок - брендовые цвета */
     --icon-portfolio: #F59E0B;
@@ -64,6 +125,7 @@
     --icon-youtube: #FF0000;
     --icon-github: #333333;
     --icon-blog: #0088CC;
+    --icon-progulka: #0D571B;
 
     /* Цвета иконок для тёмной темы (ярче) */
     --icon-portfolio-dark: #FCD34D;
@@ -78,6 +140,7 @@
     --icon-youtube-dark: #F87171;
     --icon-github-dark: #E5E7EB;
     --icon-blog-dark: #38BDF8;
+    --icon-progulka-dark: #4CAF50;
 
     /* Article site-link (фирменный оранжевый) */
     --article-link-bg: var(--color-brand);
@@ -96,7 +159,7 @@
     --nav-size: 2.5rem;
     --nav-gap: 0.5rem;
     --nav-radius: 33%;
-    --nav-bg: #ffffff;
+    --nav-bg: var(--nav-surface);
     --nav-bg-dark: #1e1e1e;
     --nav-logo-bg: var(--color-brand);
     --nav-logo-bg-hover: var(--color-brand-hover);
@@ -115,12 +178,12 @@
     --color-offer-body: #374151;
 
     /* Мобильный фон (вместо bg.webp) */
-    --color-bg-mobile: #111111;
+    --color-bg-mobile: var(--surface-page);
 
     /* Размеры */
     --radius: 1.5rem;
-    --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --shadow: var(--shadow-1);
+    --shadow-hover: var(--shadow-2);
     --shadow-hover-dark: 0 12px 40px rgba(0, 0, 0, 0.4);
 
     /* Hover эффекты */
@@ -151,9 +214,9 @@
     --badge-contacts-bg: rgba(107, 114, 128, 0.10);
     --badge-social: rgba(59, 130, 246, 0.7);
     --badge-social-bg: rgba(59, 130, 246, 0.10);
-    --badge-article: rgba(59, 130, 246, 0.7);
+    --badge-article: #1D4ED8;      /* тинт-фон как в макете, читаемым делаем лейбл */
     --badge-article-bg: rgba(59, 130, 246, 0.10);
-    --badge-case: rgba(34, 197, 94, 0.7);
+    --badge-case: #15803D;         /* было rgba(34,197,94,.7) — 1.70:1 на тинте */
     --badge-case-bg: rgba(34, 197, 94, 0.10);
 
     /* Hover-обводки по категориям */
@@ -163,7 +226,7 @@
     --hover-border-social: rgba(59, 130, 246, 0.7);
 
     /* Фоны карточек */
-    --card-bg: #ffffff;
+    --card-bg: var(--surface-card);
     --card-bg-dark: #1e1e1e;
     --card-bg-dark-hover: #282828;
     --card-shadow-dark: rgba(0, 0, 0, 0.3);
@@ -192,8 +255,39 @@
     --btn-border-dark: rgba(255, 255, 255, 0.1);
 }
 
-/* Category badges - тёмная тема */
+/* Тёмная тема */
 .dark {
+    /* Поверхности и тени */
+    --surface-page: #0A0A0A;
+    --surface-card: #1e1e1e;
+    --surface-card-hover: #282828;
+    --surface-raised: #1e1e1e;
+    --surface-raised-hover: #282828;
+    --surface-muted: #242424;
+    --surface-inset: #171717;
+    --border-subtle: rgba(255, 255, 255, 0.10);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --nav-surface: #1e1e1e;
+    --shadow-1: 0 4px 30px rgba(0, 0, 0, 0.3);
+    --shadow-2: 0 12px 40px rgba(0, 0, 0, 0.4);
+    --shadow-chip: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --text-shadow-media: 0 1px 3px rgba(0, 0, 0, 0.6);
+    --overlay: rgba(0, 0, 0, 0.76);
+
+    /* Плашки поднимаются на ступень: тень на #1e1e1e не читается,
+       форму держат светлота и волосяная обводка. */
+    --surface-raised: #2B2B2B;
+    --surface-raised-hover: #353535;
+    --ring-hairline: rgba(255, 255, 255, 0.07);
+
+    /* Текст и ссылки */
+    --text-primary: #F9FAFB;
+    --text-secondary: #A1A1AA;
+    --text-subtle: #8A8A8A;
+    --link: #7BAEFA;
+    --link-hover: #93C5FD;
+
+    /* Category badges */
     --badge-work: rgba(251, 191, 36, 0.8);
     --badge-work-bg: rgba(251, 191, 36, 0.15);
     --badge-projects: rgba(167, 139, 250, 0.8);
@@ -202,10 +296,10 @@
     --badge-contacts-bg: rgba(156, 163, 175, 0.15);
     --badge-social: rgba(96, 165, 250, 0.8);
     --badge-social-bg: rgba(96, 165, 250, 0.15);
-    --badge-article: rgba(96, 165, 250, 0.8);
-    --badge-article-bg: rgba(96, 165, 250, 0.15);
-    --badge-case: rgba(74, 222, 128, 0.8);
-    --badge-case-bg: rgba(74, 222, 128, 0.15);
+    --badge-article: #93C5FD;
+    --badge-article-bg: rgba(59, 130, 246, 0.16);
+    --badge-case: #86EFAC;
+    --badge-case-bg: rgba(34, 197, 94, 0.16);
 
     /* Article site-link - тёмная тема */
     --article-link-bg: #3f3f46;
@@ -244,19 +338,30 @@
 /* ========================================
    Overlay
    ======================================== */
+/* Один слоёный фон на все случаи: скрим поверх статичного кадра поверх
+   фолбэк-цвета. Кадр и плотность скрима задаются токенами ниже. */
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--overlay-light);
+    inset: 0;
     z-index: -1;
+    background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        var(--bg-media),
+        var(--surface-page);
 }
 
-.dark body::before {
-    background: var(--overlay-dark);
+/* Движение дольше 5 секунд требует механизма паузы (WCAG 2.2.2):
+   вместо видео показываем его же постер. Блок стоит до мобильного,
+   чтобы на узких экранах победил мобильный кадр. */
+@media (prefers-reduced-motion: reduce) {
+    #background-video {
+        display: none;
+    }
+
+    :root {
+        --bg-media: url('/images/bg.webp') center center / cover no-repeat;
+    }
 }
 
 /* ========================================
@@ -942,17 +1047,19 @@ html.lenis {
 
     /* Фоллбэк-цвет, пока изображение грузится / просвечивает сквозь прозрачные участки */
     body {
-        background: var(--color-bg-mobile);
+        background: var(--surface-page);
     }
 
-    /* Статичное фоновое изображение во весь viewport.
-       body::before уже position: fixed; inset: 0; z-index: -1,
-       поэтому оно не скроллится вместе с контентом. */
-    body::before {
-        display: block;
-        background:
-            url('/images/mobile-bg.jpg') center center / cover no-repeat
-            var(--color-bg-mobile);
+    /* Статичный кадр вместо видео. Сам слой рисует body::before,
+       здесь только подменяется токен. */
+    :root {
+        --bg-media: url('/images/mobile-bg.jpg') center center / cover no-repeat;
+    }
+
+    /* Мобильный кадр втрое темнее десктопного (0.034 против 0.104),
+       поэтому при .76 он превратился бы в чёрный прямоугольник. */
+    .dark {
+        --overlay: rgba(0, 0, 0, 0.45);
     }
 }
 
