@@ -1222,6 +1222,22 @@ html.lenis {
     }
 }
 
+/* С 1200px слева встаёт визитка 420px. Три колонки дали бы карточку в 200px
+   с обложкой высотой 113px, поэтому до 1536px лента идёт в две колонки,
+   а на 1920 возвращается к макетным 441px. */
+@media (min-width: 75rem) {
+    .articles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 96rem) {
+    .articles-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 .article-card {
     position: relative;
     border-radius: var(--radius);
@@ -1799,9 +1815,18 @@ html.lenis {
 }
 
 .vcard__divider {
+    /* flex: none — в колонке высота идёт по главной оси и схлопывается */
+    flex: none;
     height: 1px;
     border: none;
     background: var(--border-subtle);
+}
+
+/* Фото приезжает из старой карточки профиля — там оно было 160px */
+.vcard .profile-image-wrapper {
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 0;
 }
 
 .vcard__section {
@@ -1979,6 +2004,11 @@ html.lenis {
         gap: 1.5rem;
     }
 
+    .vcard .profile-image-wrapper {
+        width: 7rem;
+        height: 7rem;
+    }
+
     .vcard__contacts {
         flex-direction: row;
     }
@@ -1986,6 +2016,19 @@ html.lenis {
     .vcard__contacts > li {
         flex: 1;
         min-width: 0;
+    }
+
+    .contact-chip {
+        gap: 0.375rem;
+        padding: 0.75rem;
+    }
+
+    .contact-chip__link {
+        gap: 0.625rem;
+    }
+
+    .contact-chip__value {
+        font-size: 0.875rem;
     }
 
     .vcard__bottom {
@@ -2024,6 +2067,11 @@ html.lenis {
         display: none;
     }
 
+    .vcard .profile-image-wrapper {
+        width: 8.25rem;
+        height: 8.25rem;
+    }
+
     .vcard__name {
         font-size: 1.75rem;
     }
@@ -2041,14 +2089,16 @@ html.lenis {
 .feed__header {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 0.75rem;
 }
 
-.feed__heading {
+/* Подпись и фильтры — одна строка под заголовком: плашка слева, пилюли справа */
+.feed__meta {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
-    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
 }
 
 .feed__title {
@@ -2060,6 +2110,7 @@ html.lenis {
 
 /* Подпись лежит на белой плашке — на видеофоне так читается лучше всего */
 .feed__subtitle {
+    align-self: flex-start;
     padding: 0.5rem 1rem;
     font-size: 0.9375rem;
     color: var(--text-secondary);
@@ -2111,6 +2162,25 @@ html.lenis {
         gap: 1.5rem;
     }
 
+    .feed__meta {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    /* Подпись сжимается и переносится, пилюли держат одну строку */
+    .feed__subtitle {
+        align-self: auto;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .feed__meta .feed-filters {
+        flex: none;
+        flex-wrap: nowrap;
+    }
+
     .feed__title {
         font-size: 1.75rem;
     }
@@ -2120,13 +2190,6 @@ html.lenis {
     .feed {
         gap: 1.75rem;
         padding: 3.5rem clamp(1.5rem, 3.33vw, 4rem) 5.5rem;
-    }
-
-    .feed__header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.5rem;
     }
 
     .feed__title {

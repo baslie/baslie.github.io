@@ -16,10 +16,11 @@ const subtitle = t('feed.subtitle').replace('{n}', `${count} ${word}`);
 ---
 
 <header class="feed__header">
-  <div class="feed__heading">
-    <h2 class="feed__title">{t('articles.heading')}</h2>
-    <p class="feed__subtitle">{subtitle}</p>
-  </div>
+  <h2 class="feed__title">{t('articles.heading')}</h2>
 
-  <FeedFilters lang={lang} />
+  <!-- Подпись и фильтры живут одной строкой: слева плашка, справа пилюли -->
+  <div class="feed__meta">
+    <p class="feed__subtitle">{subtitle}</p>
+    <FeedFilters lang={lang} />
+  </div>
 </header>
