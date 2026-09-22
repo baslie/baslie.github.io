@@ -229,13 +229,27 @@ function initFeedFilters() {
 
     const cards = Array.from(grid.querySelectorAll('.article-card'));
     const status = document.getElementById('feed-status');
+    const subtitle = document.querySelector('[data-feed-subtitle]');
+
+    /** 'one' | 'few' | 'many' — как в pluralSuffix() на сервере */
+    function pluralKey(n) {
+        const rule = new Intl.PluralRules(document.documentElement.lang || 'ru').select(n);
+        return rule === 'one' ? 'One' : rule === 'few' ? 'Few' : 'Many';
+    }
 
     function announce(shown) {
         if (!status) return;
-        const rule = new Intl.PluralRules(document.documentElement.lang || 'ru').select(shown);
-        const key = rule === 'one' ? 'statusOne' : rule === 'few' ? 'statusFew' : 'statusMany';
-        const template = bar.dataset[key];
+        const template = bar.dataset['status' + pluralKey(shown)];
         if (template) status.textContent = template.replace('{n}', String(shown));
+    }
+
+    /** Число в плашке под заголовком всегда равно числу видимых карточек */
+    function retitle(shown) {
+        if (!subtitle) return;
+        const template = subtitle.dataset.template;
+        const word = subtitle.dataset['word' + pluralKey(shown)];
+        if (!template || !word) return;
+        subtitle.textContent = template.replace('{n}', shown + '\u00A0' + word);
     }
 
     function apply(value, persist) {
@@ -258,6 +272,7 @@ function initFeedFilters() {
         }
 
         announce(shown);
+        retitle(shown);
         // Masonry пересобирает раскладку по этому событию
         document.dispatchEvent(new CustomEvent('feed:changed'));
     }

@@ -11,9 +11,9 @@ export const academyProfmasterstvaWidget: Article = {
   isSimple: false,
   ru: {
     title: 'Виджет профориентации «Таланты и профессии» — Роман Пуртов',
-    ogTitle: 'Виджет «Таланты и профессии» для Академии ПрофМастерства',
+    ogTitle: 'Виджет «Таланты и\u00A0профессии» для Академии ПрофМастерства',
     description:
-      'Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт',
+      'Интерактивный виджет профориентации на\u00A0основе натальной карты: квиз, PDF-отчёт, интеграция с\u00A0GetCourse и\u00A0встраивание на\u00A0любой сайт',
     ogDescription:
       'Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт.',
     h1: 'Виджет «Таланты и&nbsp;профессии» для Академии ПрофМастерства',
@@ -60,13 +60,13 @@ export const academyProfmasterstvaWidget: Article = {
 
 <p>Всё&nbsp;&mdash; от&nbsp;астрологического расчёта до&nbsp;PDF-отчёта&nbsp;&mdash; работает автоматически.</p>`,
     screenshotAlt: 'Виджет «Таланты и профессии»',
-    dateLabel: '16 марта 2026',
+    dateLabel: '16\u00A0марта 2026',
   },
   en: {
     title: 'Talents & Careers — Career Guidance Widget — Roman Purtov',
-    ogTitle: 'Talents & Careers Widget for the Academy of Professional Mastery',
+    ogTitle: 'Talents & Careers Widget for the Academy of\u00A0Professional Mastery',
     description:
-      'Interactive career guidance widget based on a natal chart: quiz, PDF report, GetCourse integration, and embeddable on any site',
+      'Interactive career guidance widget based on\u00A0a\u00A0natal chart: quiz, PDF report, GetCourse integration, and embeddable on\u00A0any site',
     ogDescription:
       'Interactive career guidance widget based on a natal chart: quiz, PDF report, GetCourse integration, and embeddable on any site.',
     h1: 'Talents &amp; Careers Widget for the Academy of&nbsp;Professional Mastery',

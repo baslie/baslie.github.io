@@ -8,16 +8,18 @@ import type { Lang } from '../../i18n/ui';
 
 interface Props {
   lang: Lang;
+  /** 'article' — визитка-спутник на странице кейса: имя не h1, фото ленивые */
+  variant?: 'home' | 'article';
 }
 
-const { lang } = Astro.props;
+const { lang, variant = 'home' } = Astro.props;
 const t = useTranslations(lang);
 ---
 
 <!-- data-lenis-prevent: на невысоких экранах визитка прокручивается внутри себя,
      и колесо мыши над ней не должно уходить в плавный скролл страницы -->
 <div class="vcard" data-lenis-prevent>
-  <VCardIntro lang={lang} />
+  <VCardIntro lang={lang} variant={variant} />
 
   <hr class="vcard__divider" />
 

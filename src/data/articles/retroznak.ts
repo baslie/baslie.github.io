@@ -16,22 +16,22 @@ export const retroznak: Article = {
   screenshotFramed: true,
   ru: {
     title: 'Ретрознак — лендинг адресных табличек — Роман Пуртов',
-    ogTitle: 'Ретрознак — лендинг производителя адресных табличек',
+    ogTitle: 'Ретрознак\u00A0— лендинг производителя адресных табличек',
     description:
-      'Лендинг с интерактивным конструктором для компании «Ретрознак» из Томска — дизайнерские адресные таблички с LED-подсветкой.',
+      'Лендинг с\u00A0интерактивным конструктором для компании «Ретрознак» из\u00A0Томска\u00A0— дизайнерские адресные таблички с\u00A0LED-подсветкой.',
     ogDescription:
       'Лендинг с интерактивным конструктором для компании «Ретрознак» из Томска — дизайнерские адресные таблички с LED-подсветкой.',
     h1: 'Ретрознак — лендинг производителя адресных табличек',
     metaLine: 'Пуртов Роман &middot; 1 ноября 2025',
     body: 'Лендинг с&nbsp;интерактивным конструктором для компании «Ретрознак» из&nbsp;Томска — дизайнерские адресные таблички в&nbsp;стиле советской эпохи с&nbsp;LED-подсветкой. Конструктор позволяет в&nbsp;реальном времени выбрать дизайн, материал, цвет и&nbsp;увидеть результат на&nbsp;Canvas-превью.',
     screenshotAlt: 'Скриншот сайта Ретрознак',
-    dateLabel: '1 ноября 2025',
+    dateLabel: '1\u00A0ноября 2025',
   },
   en: {
     title: 'Retroznak — Address Plaque Landing Page — Roman Purtov',
-    ogTitle: 'Retroznak — Address Plaque Manufacturer Landing Page',
+    ogTitle: 'Retroznak\u00A0— Address Plaque Manufacturer Landing Page',
     description:
-      'Landing page with an interactive sign builder for Retroznak from Tomsk — designer address plaques with LED backlighting.',
+      'Landing page with an\u00A0interactive sign builder for Retroznak from Tomsk\u00A0— designer address plaques with LED backlighting.',
     ogDescription:
       'Landing page with an interactive sign builder for Retroznak from Tomsk — designer address plaques with LED backlighting.',
     h1: 'Retroznak — Address Plaque Manufacturer Landing Page',

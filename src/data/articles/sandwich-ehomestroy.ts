@@ -16,22 +16,22 @@ export const sandwichEhomestroy: Article = {
   screenshotFramed: true,
   ru: {
     title: 'ЭкоHomeСтрой — лендинг строительной компании — Роман Пуртов',
-    ogTitle: 'ЭкоHomeСтрой — лендинг строительной компании',
+    ogTitle: 'ЭкоHomeСтрой\u00A0— лендинг строительной компании',
     description:
-      'Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из сэндвич-панелей в Москве и Московской области.',
+      'Лендинг для компании «ЭкоHomeСтрой»\u00A0— строительство быстровозводимых зданий из\u00A0сэндвич-панелей в\u00A0Москве и\u00A0Московской области.',
     ogDescription:
       'Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из сэндвич-панелей в Москве и Московской области.',
     h1: 'ЭкоHomeСтрой — лендинг строительной компании',
     metaLine: 'Пуртов Роман &middot; 30 декабря 2025',
     body: 'Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из&nbsp;сэндвич-панелей в&nbsp;Москве и&nbsp;Московской области.',
     screenshotAlt: 'Скриншот сайта ЭкоHomeСтрой',
-    dateLabel: '30 декабря 2025',
+    dateLabel: '30\u00A0декабря 2025',
   },
   en: {
     title: 'EcoHomeStroy — Construction Landing Page — Roman Purtov',
-    ogTitle: 'EcoHomeStroy — Construction Company Landing Page',
+    ogTitle: 'EcoHomeStroy\u00A0— Construction Company Landing Page',
     description:
-      'A landing page for "EcoHomeStroy" — fast-build construction from sandwich panels in Moscow and Moscow Region.',
+      'A\u00A0landing page for "EcoHomeStroy"\u00A0— fast-build construction from sandwich panels in\u00A0Moscow and Moscow Region.',
     ogDescription:
       'A landing page for "EcoHomeStroy" — fast-build construction from sandwich panels in Moscow and Moscow Region.',
     h1: 'EcoHomeStroy — Construction Company Landing Page',

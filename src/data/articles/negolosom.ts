@@ -16,22 +16,22 @@ export const negolosom: Article = {
   screenshotUrl: '/images/articles/negolosom/screenshot.jpg',
   ru: {
     title: 'Не пиши голосовое! — офлайн-расшифровка речи — Роман Пуртов',
-    ogTitle: 'Не пиши голосовое! — мобильное приложение с локальным распознаванием речи',
+    ogTitle: 'Не\u00A0пиши голосовое!\u00A0— мобильное приложение с\u00A0локальным распознаванием речи',
     description:
-      'Android-приложение записывает голосовые и расшифровывает их в текст прямо на телефоне: без облака и интернета, на русском. Вторая версия — на Kotlin.',
+      'Android-приложение записывает голосовые и\u00A0расшифровывает их в\u00A0текст прямо на\u00A0телефоне: без облака и\u00A0интернета, на\u00A0русском. Вторая версия\u00A0— на\u00A0Kotlin.',
     ogDescription:
       'Android-приложение записывает голосовые и расшифровывает их в текст прямо на телефоне: без облака и интернета, на русском. Вторая версия — на Kotlin.',
     h1: 'Не пиши голосовое! — мобильное приложение с локальным распознаванием речи',
     metaLine: 'Пуртов Роман &middot; 22 апреля 2026',
     body: 'В&nbsp;апреле выпустил в&nbsp;RuStore Android-приложение «Не&nbsp;пиши голосовое!». Наговорил в&nbsp;микрофон, получил расшифровку. Всё прямо на&nbsp;телефоне: ни&nbsp;облака, ни&nbsp;аккаунта, ни&nbsp;интернета. Голосовые часто содержат чувствительные вещи, и&nbsp;отправлять их&nbsp;на&nbsp;чужие серверы — так себе идея.</p><p>Первую версию собрал за&nbsp;два дня на&nbsp;Expo SDK&nbsp;54 и&nbsp;React Native&nbsp;0.81. Прожила месяц. За&nbsp;это время подкрутил чанкинг, поймал пару утечек памяти на&nbsp;долгих записях, повоевал с&nbsp;JS-мостом и&nbsp;таймерами. Стало понятно: дальше пилить надстройку поверх RN значит каждый раз воевать с&nbsp;прокладкой между приложением и&nbsp;микрофоном.</p><p>Перевёл всё на&nbsp;Kotlin. Главный довод — прямой доступ к&nbsp;AudioRecord и&nbsp;foreground-сервису без RN-моста. Поток PCM-байтов идёт от&nbsp;микрофона сразу в&nbsp;sherpa-onnx, без сериализации через JS. Меньше слоёв, меньше мест, где течёт память. Заодно проще тестировать: Robolectric поднимает Android-окружение без эмулятора, тесты бегут на&nbsp;CI в&nbsp;считаные минуты. И&nbsp;инструменты: Android Studio с&nbsp;профилировщиком честнее показывает, на&nbsp;что уходит время и&nbsp;память, чем Flipper с&nbsp;RN.</p><p>Стек: Kotlin&nbsp;2.2.21, Jetpack Compose с&nbsp;Material&nbsp;3, Hilt для внедрения зависимостей, Room для базы заметок, Coroutines и&nbsp;StateFlow для состояния. Запись идёт через нативный AudioRecord, 16&nbsp;кГц mono PCM16. Навигация на&nbsp;Navigation Compose. Аналитика на&nbsp;AppMetrica&nbsp;8.2.0, события собираю анонимно: запуск записи, скачивание модели, ошибки распознавания. Поддерживает Android&nbsp;7 и&nbsp;выше, тестировал в&nbsp;основном на&nbsp;Xiaomi Poco&nbsp;M5S.</p><p>Сердце то&nbsp;же: sherpa-onnx&nbsp;1.13.2 и&nbsp;GigaAM&nbsp;v3 e2e CTC (int8). Модель Сбера весит около 320&nbsp;МБ, качается один раз, дальше работает офлайн. На&nbsp;русском она примерно в&nbsp;2,5&nbsp;раза точнее Whisper-large-v3. Длинные записи режу на&nbsp;чанки по&nbsp;22&ndash;25&nbsp;секунд и&nbsp;склеиваю результат. Поверх движка повесил VAD, чтобы не&nbsp;гонять распознавание по&nbsp;тишине. Базу со&nbsp;старыми записями подтягиваю из&nbsp;RN-версии при первом запуске — пользователю не&nbsp;нужно ничего экспортировать руками.</p><p>Что прокачалось по&nbsp;сравнению с&nbsp;RN-версией. Тестов было около шести на&nbsp;Jest, стало 295 на&nbsp;JUnit, Robolectric и&nbsp;Compose&nbsp;UI. Настройки переехали с&nbsp;AsyncStorage на&nbsp;Preferences DataStore: теперь ключи типизированы на&nbsp;этапе компиляции, а&nbsp;не&nbsp;подбираются строкой в&nbsp;рантайме. Темизацию Light, Dark и&nbsp;System собрал на&nbsp;CompositionLocal и&nbsp;Material&nbsp;3 одновременно, чтобы и&nbsp;моя палитра, и&nbsp;системные диалоги выглядели одинаково. Foreground-сервис теперь явный, со&nbsp;своим каналом уведомлений и&nbsp;обработкой отмены. Часовая запись больше не&nbsp;падает, когда телефон уходит в&nbsp;спящий режим.</p><p>Интерфейс остался прежним: список заметок, плавающая кнопка записи, live-волнограмма из&nbsp;44&nbsp;баров в&nbsp;такт громкости, свайп влево удаляет. Свайпы и&nbsp;пульсация теперь сделаны нативно через Compose-анимации вместо Reanimated. Темы переключаются прямо в&nbsp;настройках, включая режим System: приложение слушает системную тему и&nbsp;подхватывает изменение без перезапуска. Лендинг negolosom.ru не&nbsp;трогал — одностраничник с&nbsp;кнопками в&nbsp;RuStore и&nbsp;к&nbsp;контактам, он&nbsp;и&nbsp;так делал работу.',
     screenshotAlt: 'Лендинг приложения «Не пиши голосовое!»',
-    dateLabel: '22 апреля 2026',
+    dateLabel: '22\u00A0апреля 2026',
   },
   en: {
     title: '«Ne pishi golosovoe!» — Offline Transcription — Roman Purtov',
-    ogTitle: '«Ne pishi golosovoe!» — Mobile App with On-Device Speech Recognition',
+    ogTitle: '«Ne pishi golosovoe!»\u00A0— Mobile App with On-Device Speech Recognition',
     description:
-      'Android app that records voice notes and transcribes them on the device — no cloud, no internet, Russian speech. Version 2 rewritten in Kotlin.',
+      'Android app that records voice notes and transcribes them on\u00A0the device\u00A0— no cloud, no internet, Russian speech. Version 2 rewritten in\u00A0Kotlin.',
     ogDescription:
       'Android app that records voice notes and transcribes them on the device — no cloud, no internet, Russian speech. Version 2 rewritten in Kotlin.',
     h1: '«Ne pishi golosovoe!» — Mobile App with On-Device Speech Recognition',

@@ -16,22 +16,22 @@ export const nutrilegal: Article = {
   screenshotFramed: true,
   ru: {
     title: 'Нутрилигал — сайт по регистрации БАД и СГР — Роман Пуртов',
-    ogTitle: 'Нутрилигал — сайт консалтинговой компании по регистрации продукции',
+    ogTitle: 'Нутрилигал\u00A0— сайт консалтинговой компании по\u00A0регистрации продукции',
     description:
-      'Нутрилигал — консалтинговая компания, которая помогает с государственной регистрацией продукции: БАД, спортивное питание, получение СГР.',
+      'Нутрилигал\u00A0— консалтинговая компания, которая помогает с\u00A0государственной регистрацией продукции: БАД, спортивное питание, получение СГР.',
     ogDescription:
       'Консалтинговая компания, которая помогает с государственной регистрацией продукции: БАД, спортивное питание, получение СГР — от рецептуры до свидетельства.',
     h1: 'Нутрилигал — сайт консалтинговой компании по&nbsp;регистрации продукции',
     metaLine: 'Пуртов Роман &middot; 28 февраля 2026',
     body: 'Сайт для консалтинговой компании «Нутрилигал», которая помогает с&nbsp;государственной регистрацией продукции: БАД, спортивное питание, специализированные продукты. Полный цикл — от&nbsp;разработки рецептуры до&nbsp;получения свидетельства о&nbsp;государственной регистрации (СГР).',
     screenshotAlt: 'Скриншот сайта Нутрилигал',
-    dateLabel: '28 февраля 2026',
+    dateLabel: '28\u00A0февраля 2026',
   },
   en: {
     title: 'Nutrilegal — Product Registration Consulting — Roman Purtov',
-    ogTitle: 'Nutrilegal — Consulting Company Website for Product Registration',
+    ogTitle: 'Nutrilegal\u00A0— Consulting Company Website for Product Registration',
     description:
-      'A consulting company that helps with state product registration: dietary supplements, sports nutrition and certificates — from formula to approval.',
+      'A\u00A0consulting company that helps with state product registration: dietary supplements, sports nutrition and certificates\u00A0— from formula to\u00A0approval.',
     ogDescription:
       'A consulting company that helps with state product registration: dietary supplements, sports nutrition and certificates — from formula to approval.',
     h1: 'Nutrilegal — Consulting Company Website for Product Registration',

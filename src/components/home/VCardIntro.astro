@@ -4,10 +4,17 @@ import type { Lang } from '../../i18n/ui';
 
 interface Props {
   lang: Lang;
+  /** На главной имя — заголовок страницы, на статье h1 уже занят её заголовком */
+  variant?: 'home' | 'article';
 }
 
-const { lang } = Astro.props;
+const { lang, variant = 'home' } = Astro.props;
 const t = useTranslations(lang);
+
+const isHome = variant === 'home';
+const NameTag = isHome ? 'h1' : 'p';
+// На статье колонка скрыта до 1200px — грузить фото заранее там незачем
+const defaultImageLoading = isHome ? undefined : 'lazy';
 ---
 
 <div class="vcard__head">
@@ -19,7 +26,8 @@ const t = useTranslations(lang);
       class="profile-image profile-image--default"
       width="132"
       height="132"
-      fetchpriority="high"
+      loading={defaultImageLoading}
+      fetchpriority={isHome ? 'high' : undefined}
       itemprop="image"
     />
     <img
@@ -33,7 +41,7 @@ const t = useTranslations(lang);
   </div>
 
   <div class="vcard__who">
-    <h1 class="vcard__name">{t('profile.name')}</h1>
+    <NameTag class="vcard__name">{t('profile.name')}</NameTag>
     <p class="vcard__about" set:html={t('profile.about')}></p>
     <p class="vcard__joke">{t('profile.joke')}</p>
   </div>

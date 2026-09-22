@@ -16,22 +16,22 @@ export const koreaMotors: Article = {
   screenshotFramed: true,
   ru: {
     title: 'Korea Motors — лендинг заказа авто из Кореи — Роман Пуртов',
-    ogTitle: 'Korea Motors — лендинг по заказу авто из Южной Кореи',
+    ogTitle: 'Korea Motors\u00A0— лендинг по\u00A0заказу авто из\u00A0Южной Кореи',
     description:
-      'Лендинг для компании, которая импортирует автомобили из Южной Кореи в Россию: от подбора до доставки за 7 дней.',
+      'Лендинг для компании, которая импортирует автомобили из\u00A0Южной Кореи в\u00A0Россию: от\u00A0подбора до\u00A0доставки за\u00A07\u00A0дней.',
     ogDescription:
       'Лендинг для компании, которая импортирует автомобили из Южной Кореи в Россию: от подбора до доставки за 7 дней.',
     h1: 'Korea Motors — лендинг по&nbsp;заказу авто из&nbsp;Южной Кореи',
     metaLine: 'Пуртов Роман &middot; 20 декабря 2025',
     body: 'Лендинг для компании, которая импортирует автомобили из&nbsp;Южной Кореи в&nbsp;Россию. Основной фокус — конверсия в&nbsp;Telegram-канал компании. Каталог брендов: Genesis, BMW, Mercedes, Porsche, Audi, Hyundai, Kia, Volkswagen.',
     screenshotAlt: 'Скриншот сайта Korea Motors',
-    dateLabel: '20 декабря 2025',
+    dateLabel: '20\u00A0декабря 2025',
   },
   en: {
     title: 'Korea Motors — Car Import Landing Page — Roman Purtov',
-    ogTitle: 'Korea Motors — Car Import Landing Page',
+    ogTitle: 'Korea Motors\u00A0— Car Import Landing Page',
     description:
-      'Landing page for a car import company bringing vehicles from South Korea to Russia: from selection to delivery in 7 days.',
+      'Landing page for a\u00A0car import company bringing vehicles from South Korea to\u00A0Russia: from selection to\u00A0delivery in\u00A07 days.',
     ogDescription:
       'Landing page for a car import company bringing vehicles from South Korea to Russia: from selection to delivery in 7 days.',
     h1: 'Korea Motors — Car Import Landing Page',

@@ -15,22 +15,22 @@ export const tiktokDownloader: Article = {
   screenshotUrl: '/images/articles/tiktok-downloader/screenshot.jpg',
   ru: {
     title: 'TikTok Downloader — видео без водяных знаков — Роман Пуртов',
-    ogTitle: 'TikTok Downloader — Android-приложение для скачивания видео из TikTok',
+    ogTitle: 'TikTok Downloader\u00A0— Android-приложение для скачивания видео из\u00A0TikTok',
     description:
-      'Выпустил в RuStore Android-приложение TikTok Downloader: скачивает видео без водяных знаков, до Full HD, аудио в MP3. Бесплатно, без рекламы и подписок.',
+      'Выпустил в\u00A0RuStore Android-приложение TikTok Downloader: скачивает видео без водяных знаков, до\u00A0Full HD, аудио в\u00A0MP3. Бесплатно, без рекламы и\u00A0подписок.',
     ogDescription:
       'Выпустил в RuStore Android-приложение TikTok Downloader: скачивает видео без водяных знаков, до Full HD, аудио в MP3. Бесплатно, без рекламы и подписок.',
     h1: 'TikTok Downloader — Android-приложение для скачивания видео без&nbsp;водяных знаков',
     metaLine: 'Пуртов Роман &middot; 16 мая 2026',
     body: 'Выпустил в&nbsp;RuStore Android-приложение TikTok Downloader. Скачивает видео из&nbsp;тиктока без&nbsp;водяных знаков, в&nbsp;максимальном качестве, а&nbsp;ещё умеет выдёргивать звук в&nbsp;MP3. На&nbsp;РуСторе таких уже десяток с&nbsp;гаком, конкуренция плотная. Только у&nbsp;большинства оценки в&nbsp;районе тройки и&nbsp;сыроватый UX, а&nbsp;хороших по&nbsp;пальцам одной руки. Даже те, что хороши, мне по&nbsp;ощущениям не&nbsp;зашли, так что собрал своё.</p><p>Нативный Android: Kotlin&nbsp;и&nbsp;Jetpack Compose с&nbsp;Material 3. Под&nbsp;капотом упакован yt-dlp, а&nbsp;вместе с&nbsp;ним прямо в&nbsp;APK живут Python&nbsp;и&nbsp;FFmpeg, всё через библиотеку youtubedl-android. Парсер обновляется сам при&nbsp;первом запуске, так что версия приложения не&nbsp;завязана на&nbsp;то, как часто TikTok ломает свой API.</p><p>Папку сохранения пользователь выбирает сам через Storage Access Framework, скачка идёт в&nbsp;фоновом сервисе с&nbsp;видимым уведомлением о&nbsp;прогрессе. Ссылку приложение подхватывает из&nbsp;буфера обмена или из&nbsp;системного «Поделиться». Без&nbsp;рекламы (пока), без&nbsp;подписок, без&nbsp;покупок.</p><p>Следующий на&nbsp;очереди&nbsp;— такой&nbsp;же скачивальщик для&nbsp;соцсети, которую нельзя называть.',
     screenshotAlt: 'Обложка приложения TikTok Downloader',
-    dateLabel: '16 мая 2026',
+    dateLabel: '16\u00A0мая 2026',
   },
   en: {
     title: 'TikTok Downloader — Videos Without Watermarks — Roman Purtov',
-    ogTitle: 'TikTok Downloader — Android App for Downloading TikTok Videos',
+    ogTitle: 'TikTok Downloader\u00A0— Android App for Downloading TikTok Videos',
     description:
-      'Shipped TikTok Downloader to RuStore: an Android app that grabs TikTok videos without watermarks, up to Full HD, plus MP3 audio. Free and ad-free.',
+      'Shipped TikTok Downloader to\u00A0RuStore: an\u00A0Android app that grabs TikTok videos without watermarks, up to\u00A0Full HD, plus MP3 audio. Free and ad-free.',
     ogDescription:
       'Shipped TikTok Downloader to RuStore: an Android app that grabs TikTok videos without watermarks, up to Full HD, plus MP3 audio. Free and ad-free.',
     h1: 'TikTok Downloader — Android App for Downloading TikTok Videos Without Watermarks',

@@ -16,22 +16,22 @@ export const aloemero: Article = {
   screenshotFramed: true,
   ru: {
     title: 'ALOEMERO — лендинг скульптурной мастерской — Роман Пуртов',
-    ogTitle: 'ALOEMERO — лендинг скульптурной мастерской из Томска',
+    ogTitle: 'ALOEMERO\u00A0— лендинг скульптурной мастерской из\u00A0Томска',
     description:
-      'Сайт-визитка скульптурной мастерской ALOEMERO из Томска: парковая и интерьерная скульптура, барельефы, фигуры для фонтанов. Галерея на 12 работ.',
+      'Сайт-визитка скульптурной мастерской ALOEMERO из\u00A0Томска: парковая и\u00A0интерьерная скульптура, барельефы, фигуры для фонтанов. Галерея на\u00A012\u00A0работ.',
     ogDescription:
       'Сайт-визитка скульптурной мастерской ALOEMERO из Томска: парковая и интерьерная скульптура, барельефы, фигуры для фонтанов. Галерея на 12 работ.',
     h1: 'ALOEMERO — лендинг скульптурной мастерской из&nbsp;Томска',
     metaLine: 'Пуртов Роман &middot; 12 мая 2026',
     body: 'Одностраничный лендинг для&nbsp;мастерской скульптуры ALOEMERO из&nbsp;Томска. Bento-сетка от&nbsp;3 до&nbsp;6 колонок, тёмная палитра zinc-950 с&nbsp;кремовым акцентом цвета гипса. Структура: что делает мастерская (парковая скульптура, интерьерный декор, барельефы, фигуры для&nbsp;фонтанов), где её&nbsp;ставят (барные стойки, ванные, акцентные стены, гостиные, ресепшены, торговые залы), материалы и&nbsp;сроки производства. Внизу&nbsp;— галерея на&nbsp;12&nbsp;работ с&nbsp;лайтбоксом и&nbsp;контакты с&nbsp;переходом в&nbsp;Telegram-канал.',
     screenshotAlt: 'Скриншот лендинга мастерской ALOEMERO',
-    dateLabel: '12 мая 2026',
+    dateLabel: '12\u00A0мая 2026',
   },
   en: {
     title: 'ALOEMERO — Sculpture Studio Landing Page — Roman Purtov',
-    ogTitle: 'ALOEMERO — Sculpture Studio Landing Page',
+    ogTitle: 'ALOEMERO\u00A0— Sculpture Studio Landing Page',
     description:
-      'A single-page site for a sculpture studio from Tomsk: park and interior pieces, bas-reliefs and fountain figures, plus a 12-piece gallery.',
+      'A\u00A0single-page site for a\u00A0sculpture studio from Tomsk: park and interior pieces, bas-reliefs and fountain figures, plus a\u00A012-piece gallery.',
     ogDescription:
       'A single-page site for a sculpture studio from Tomsk: park and interior pieces, bas-reliefs and fountain figures, plus a 12-piece gallery.',
     h1: 'ALOEMERO — Sculpture Studio Landing Page',

@@ -125,22 +125,22 @@ export const berloga: Article = {
   isSimple: false,
   ru: {
     title: 'Как запускалась «Берлога»: путь к миллионам — Роман Пуртов',
-    ogTitle: 'Как запускалась «Берлога» и как зарабатывались миллионы?',
+    ogTitle: 'Как запускалась «Берлога» и\u00A0как зарабатывались миллионы?',
     description:
-      'Как запускалась «Берлога» и как зарабатывались миллионы? История создания интернет-магазина премиальных эко-продуктов.',
+      'Как запускалась «Берлога» и\u00A0как зарабатывались миллионы? История создания интернет-магазина премиальных эко-продуктов.',
     ogDescription:
       'История создания интернет-магазина премиальных эко-продуктов с оборотом 7-12 млн в месяц.',
     h1: 'Как запускалась «Берлога» и как зарабатывались миллионы?',
     metaLine: 'Пуртов Роман &middot; 12 апреля 2022',
     body: bodyRu,
     screenshotAlt: 'Интернет-магазин «Берлога»',
-    dateLabel: '12 апреля 2022',
+    dateLabel: '12\u00A0апреля 2022',
   },
   en: {
     title: 'How "Berloga" Was Launched and Made Millions — Roman Purtov',
     ogTitle: 'How "Berloga" Was Launched and How Millions Were Made',
     description:
-      'How "Berloga" was launched and how millions were made. The story of building an online store of premium eco-products.',
+      'How "Berloga" was launched and how millions were made. The story of\u00A0building an\u00A0online store of\u00A0premium eco-products.',
     ogDescription:
       'The story of building an online store of premium eco-products with a turnover of 7–12 million rubles per month.',
     h1: 'How "Berloga" Was Launched and How Millions Were Made',

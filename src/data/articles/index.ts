@@ -61,13 +61,13 @@ export const externalArticleCards: ArticleCardData[] = [
     externalHref:
       'https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android',
     ru: {
-      title: 'За 2 дня навайбкодил офлайн-расшифровщик голосовых под Android',
+      title: 'За\u00A02\u00A0дня навайбкодил офлайн-расшифровщик голосовых под Android',
       description: 'Вроде работает. Ниже поделюсь предысторией.',
-      dateLabel: '23 апреля 2026',
+      dateLabel: '23\u00A0апреля 2026',
     },
     en: {
-      title: 'Vibe-Coded an Offline Voice Message Transcriber for Android in 2 Days',
-      description: 'Seems to work. Below I’ll share the backstory.',
+      title: 'Vibe-Coded an\u00A0Offline Voice Message Transcriber for Android in\u00A02 Days',
+      description: 'Seems to\u00A0work. Below I’ll share the backstory.',
       dateLabel: 'April 23, 2026',
     },
   },
@@ -84,13 +84,13 @@ export const externalArticleCards: ArticleCardData[] = [
     ru: {
       title: 'Расширение для Chrome для структурирования промптов',
       description:
-        'Опубликовал AutoTagMate — бесплатное расширение для Chrome для автозакрытия тегов. Удобно использовать в том же ChatGPT, Claude AI и проч., чтобы выделять части промпта отдельными «тегами».',
-      dateLabel: '2 марта 2025',
+        'Опубликовал AutoTagMate\u00A0— бесплатное расширение для Chrome для автозакрытия тегов. Удобно использовать в\u00A0том же ChatGPT, Claude AI и\u00A0проч., чтобы выделять части промпта отдельными «тегами».',
+      dateLabel: '2\u00A0марта 2025',
     },
     en: {
       title: 'Chrome Extension for Structuring Prompts',
       description:
-        'Published AutoTagMate — a free Chrome extension for auto-closing tags. Handy for ChatGPT, Claude AI, etc., to wrap parts of your prompt in separate "tags".',
+        'Published AutoTagMate\u00A0— a\u00A0free Chrome extension for auto-closing tags. Handy for ChatGPT, Claude AI, etc., to\u00A0wrap parts of\u00A0your prompt in\u00A0separate "tags".',
       dateLabel: 'March 2, 2025',
     },
   },
@@ -104,15 +104,15 @@ export const externalArticleCards: ArticleCardData[] = [
     isExternal: true,
     externalHref: 'https://vc.ru/life/1822431-govorite-govorite-ya-vas-vnematochno-sluhayu',
     ru: {
-      title: '— Говорите, говорите, я вас внематочно слухаю!',
+      title: '— Говорите, говорите, я\u00A0вас внематочно слухаю!',
       description:
-        'В коммуникации удобство собеседника важно — факт 100%-й. Поэтому, если мои голосовые в Телеге длятся больше минуты, то перед отправкой собеседнику прогоняю их через нейросеть.',
-      dateLabel: '19 февраля 2025',
+        'В\u00A0коммуникации удобство собеседника важно\u00A0— факт 100%-й. Поэтому, если мои голосовые в\u00A0Телеге длятся больше минуты, то перед отправкой собеседнику прогоняю их через нейросеть.',
+      dateLabel: '19\u00A0февраля 2025',
     },
     en: {
       title: 'Speak, Speak, I’m Listening!',
       description:
-        'Convenience matters in communication — 100% fact. So when my voice messages on Telegram go over a minute, I run them through AI before sending. Here’s how.',
+        'Convenience matters in\u00A0communication\u00A0— 100% fact. So when my voice messages on\u00A0Telegram go over a\u00A0minute, I run them through AI before sending. Here’s how.',
       dateLabel: 'February 19, 2025',
     },
   },

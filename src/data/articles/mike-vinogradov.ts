@@ -11,9 +11,9 @@ export const mikeVinogradov: Article = {
   isSimple: false,
   ru: {
     title: 'Михаил Виноградов — портфолио фотографа — Роман Пуртов',
-    ogTitle: 'Михаил Виноградов — портфолио фотографа и видеографа',
+    ogTitle: 'Михаил Виноградов\u00A0— портфолио фотографа и\u00A0видеографа',
     description:
-      'Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4',
+      'Портфолио для travel-фотографа и\u00A0видеографа: бенто-грид с\u00A0галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на\u00A0Astro и\u00A0Tailwind CSS v4',
     ogDescription:
       'Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4.',
     h1: 'Михаил Виноградов — портфолио фотографа и&nbsp;видеографа',
@@ -40,13 +40,13 @@ export const mikeVinogradov: Article = {
 
 <p><strong>Технологии:</strong> Astro, TypeScript, Tailwind CSS v4, self-hosted fonts</p>`,
     screenshotAlt: 'Скриншот портфолио Михаила Виноградова',
-    dateLabel: '7 марта 2026',
+    dateLabel: '7\u00A0марта 2026',
   },
   en: {
     title: 'Mike Vinogradov — Photographer Portfolio — Roman Purtov',
-    ogTitle: 'Mike Vinogradov — Photographer & Videographer Portfolio',
+    ogTitle: 'Mike Vinogradov\u00A0— Photographer & Videographer Portfolio',
     description:
-      'Portfolio for a travel photographer and videographer: bento grid with galleries, lightbox and scroll animations, bilingual RU/EN interface on Astro.',
+      'Portfolio for a\u00A0travel photographer and videographer: bento grid with galleries, lightbox and scroll animations, bilingual RU/EN interface on\u00A0Astro.',
     ogDescription:
       'Portfolio for a travel photographer and videographer: bento grid with galleries, lightbox and scroll animations, bilingual RU/EN interface on Astro.',
     h1: 'Mike Vinogradov — Photographer & Videographer Portfolio',

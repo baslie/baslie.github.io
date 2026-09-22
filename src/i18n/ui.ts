@@ -19,22 +19,23 @@ export const htmlLang: Record<Lang, string> = {
 
 export const ui = {
   ru: {
-    'site.title': 'Роман Пуртов — маркетолог, дизайнер и веб-разработчик',
+    'site.title': 'Роман\u00A0Пуртов — маркетолог, дизайнер и\u00A0веб-разработчик',
     'site.metaDescription':
       'Маркетолог, UX/UI дизайнер и веб-разработчик из Томска. Делаю лендинги и сайты на чистом коде — от дизайна до деплоя',
-    'profile.name': 'Роман Пуртов',
-    'profile.about': `Делаю сайты, мобильные приложения и <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сложные IT-системы</a>. В душе — <a href="/articles/berloga" class="inline-link">маркетолог</a> из тайги. Томск, МСК+4.`,
-    'profile.joke': 'Берусь за всё, за что берусь.',
+    'profile.name': 'Роман\u00A0Пуртов',
+    // \u00A0 — неразрывный пробел: предлоги и союзы не остаются висеть в конце строки
+    'profile.about': `Делаю сайты, мобильные приложения и\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сложные IT-системы</a>. В\u00A0душе\u00A0— <a href="/articles/berloga" class="inline-link">маркетолог</a> из\u00A0тайги. Томск, МСК+4.`,
+    'profile.joke': 'Берусь за\u00A0всё, за\u00A0что берусь.',
 
     'vcard.contactsLabel': 'СВЯЗАТЬСЯ',
     'vcard.socialLabel': 'СОЦСЕТИ',
     'vcard.moreLabel': 'ЕЩЁ',
-    'link.portfolio': 'Портфолио на Тильде',
+    'link.portfolio': 'Портфолио на\u00A0Тильде',
     'link.resume': 'Резюме',
     'link.progulka': 'Томская Прогулка',
     'link.blog': 'Пурточка вещает',
 
-    'feed.subtitle': '{n} о том, что я делал руками. Так-то материалов больше, конечно 🙂',
+    'feed.subtitle': '{n} о\u00A0том, что я\u00A0делал руками. Так-то материалов больше, конечно 🙂',
     'feed.materials.one': 'материал',
     'feed.materials.few': 'материала',
     'feed.materials.many': 'материалов',
@@ -42,16 +43,16 @@ export const ui = {
     'filter.all': 'Все',
     'filter.case': 'Кейсы',
     'filter.article': 'Статьи',
-    'filter.status.one': 'Показан {n} материал',
-    'filter.status.few': 'Показано {n} материала',
-    'filter.status.many': 'Показано {n} материалов',
+    'filter.status.one': 'Показан {n}\u00A0материал',
+    'filter.status.few': 'Показано {n}\u00A0материала',
+    'filter.status.many': 'Показано {n}\u00A0материалов',
     'copy.label': 'Скопировать',
 
     'portfolio.title': 'Портфолио',
-    'portfolio.description': 'Сайты на Тильде',
+    'portfolio.description': 'Сайты на\u00A0Тильде',
     'resume.title': 'Резюме',
     'resume.description': 'Интернет-маркетолог',
-    'resume.updated': 'обновлено 05.03.26',
+    'resume.updated': 'обновлено\u00A005.03.26',
 
     'phone.title': 'Телефон',
     'phone.description': '+7 952 679-77-76',
@@ -74,22 +75,22 @@ export const ui = {
     'blog.title': 'Пурточка вещает',
     'blog.description': 'Telegram-канал',
     'tomskWalk.title': 'Томская Прогулка',
-    'tomskWalk.description': 'Гуляем с друзьями и не только',
+    'tomskWalk.description': 'Гуляем с\u00A0друзьями',
 
 
-    'article.back': 'На главную',
-    'articles.heading': 'Кейсы и статьи',
+    'article.back': 'На\u00A0главную',
+    'articles.heading': 'Кейсы и\u00A0статьи',
     'badge.article': 'статья',
     'badge.case': 'кейс',
     'tech.label': 'Технологии',
     'copy.tooltip': 'Скопировано!',
 
     'footer.name': 'Пуртов Роман Григорьевич (самозанятый)',
-    'footer.inn': 'ИНН 702406781541',
+    'footer.inn': 'ИНН\u00A0702406781541',
 
     'lang.toggleText': 'EN',
     'lang.toggleLabel': 'Switch to English',
-    'nav.home': 'На главную',
+    'nav.home': 'На\u00A0главную',
     'nav.theme': 'Переключить тему',
 
     '404.title': '404 — Страница не найдена',
@@ -98,17 +99,17 @@ export const ui = {
     '404.back': 'На главную',
   },
   en: {
-    'site.title': 'Roman Purtov — Marketer, Designer & Web Developer',
+    'site.title': 'Roman\u00A0Purtov — Marketer, Designer & Web Developer',
     'site.metaDescription':
       'Marketer, UX/UI Designer and Web Developer from Tomsk. Building landing pages and websites with clean code — from design to deploy',
-    'profile.name': 'Roman Purtov',
-    'profile.about': `I make websites, mobile apps and <a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">complex IT systems</a>. At heart, I'm a <a href="/en/articles/berloga" class="inline-link">marketer</a> from the Siberian taiga. Tomsk, UTC+7.`,
-    'profile.joke': 'I deliver on everything I commit to.',
+    'profile.name': 'Roman\u00A0Purtov',
+    'profile.about': `I make websites, mobile apps and\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">complex IT systems</a>. At heart, I'm a\u00A0<a href="/en/articles/berloga" class="inline-link">marketer</a> from the Siberian taiga. Tomsk, UTC+7.`,
+    'profile.joke': 'I deliver on\u00A0everything I\u00A0commit to.',
 
     'vcard.contactsLabel': 'GET IN TOUCH',
     'vcard.socialLabel': 'SOCIAL',
     'vcard.moreLabel': 'MORE',
-    'link.portfolio': 'Portfolio on Tilda',
+    'link.portfolio': 'Portfolio on\u00A0Tilda',
     'link.resume': 'Resume',
     'link.progulka': 'Tomsk Walk',
     'link.blog': 'Purtochka Speaks',
@@ -121,16 +122,16 @@ export const ui = {
     'filter.all': 'All',
     'filter.case': 'Cases',
     'filter.article': 'Articles',
-    'filter.status.one': 'Showing {n} material',
-    'filter.status.few': 'Showing {n} materials',
-    'filter.status.many': 'Showing {n} materials',
+    'filter.status.one': 'Showing {n}\u00A0material',
+    'filter.status.few': 'Showing {n}\u00A0materials',
+    'filter.status.many': 'Showing {n}\u00A0materials',
     'copy.label': 'Copy',
 
     'portfolio.title': 'Portfolio',
     'portfolio.description': 'Tilda websites',
     'resume.title': 'Resume',
     'resume.description': 'Internet Marketer',
-    'resume.updated': 'updated 05.03.26',
+    'resume.updated': 'updated\u00A005.03.26',
 
     'phone.title': 'Phone',
     'phone.description': '+7 952 679-77-76',
@@ -153,7 +154,7 @@ export const ui = {
     'blog.title': 'Purtochka Speaks',
     'blog.description': 'Telegram Channel',
     'tomskWalk.title': 'Tomsk Walk',
-    'tomskWalk.description': 'Walking with friends and more',
+    'tomskWalk.description': 'Walking with friends',
 
 
     'article.back': 'Back to home',
@@ -163,8 +164,8 @@ export const ui = {
     'tech.label': 'Technologies',
     'copy.tooltip': 'Copied!',
 
-    'footer.name': 'Roman G. Purtov (self-employed)',
-    'footer.inn': 'TIN 702406781541',
+    'footer.name': 'Roman G.\u00A0Purtov (self-employed)',
+    'footer.inn': 'TIN\u00A0702406781541',
 
     'lang.toggleText': 'RU',
     'lang.toggleLabel': 'Переключить на русский',

@@ -16,22 +16,22 @@ export const glazamiSchaefer: Article = {
   screenshotFramed: true,
   ru: {
     title: 'Глазами Шефер — сайт бренда оптометриста — Роман Пуртов',
-    ogTitle: 'Глазами Шефер — сайт персонального бренда оптометриста',
+    ogTitle: 'Глазами Шефер\u00A0— сайт персонального бренда оптометриста',
     description:
-      'Сайт персонального бренда оптометриста Татьяны Шефер: лендинг с тремя треками аудитории, биография-лонгрид из девяти глав и PHP-форма заявок.',
+      'Сайт персонального бренда оптометриста Татьяны Шефер: лендинг с\u00A0тремя треками аудитории, биография-лонгрид из\u00A0девяти глав и\u00A0PHP-форма заявок.',
     ogDescription:
       'Сайт персонального бренда оптометриста Татьяны Шефер: лендинг с тремя треками аудитории, биография-лонгрид из девяти глав и PHP-форма заявок.',
     h1: 'Глазами Шефер — сайт персонального бренда оптометриста',
     metaLine: 'Пуртов Роман &middot; 5 июля 2026',
     body: 'За&nbsp;плечами Татьяны Шефер шестнадцать лет в&nbsp;оптике: академия Fielmann AG, управление салонами в&nbsp;Гамбурге, обучение сотен коллег по&nbsp;Северной Германии, затем Москва и&nbsp;научный проект «Здоровое зрение». Сегодня она консультирует салоны оптики, специалистов и&nbsp;производства. Для&nbsp;этой практики я&nbsp;собрал сайт персонального бренда: лендинг и&nbsp;биографию-лонгрид.\n\nДизайн собран вокруг идеи немецкой точности. Тёмная зелень, шампань-золото, тонкие линии-разделители как в&nbsp;бухгалтерской книге, острые углы, едва заметное плёночное зерно. Внутри это небольшая дизайн-система: около полусотни CSS-токенов, весь внешний вид меняется в&nbsp;одном месте.\n\nЛендинг сразу спрашивает посетителя, кто он. Владелец салона, оптометрист и&nbsp;производитель уходят в&nbsp;отдельные треки: узнаваемые боли, форматы сотрудничества, кейс с&nbsp;цифрами «было&nbsp;→&nbsp;стало». FAQ отвечает на&nbsp;18 неудобных вопросов, от&nbsp;«звёздной болезни» сотрудников до&nbsp;конкуренции с&nbsp;сетевиками, и&nbsp;продублирован разметкой FAQPage для&nbsp;поисковиков.\n\nБиография&nbsp;— вторая страница, девять глав: от&nbsp;академии Fielmann в&nbsp;старом замке города Плён до&nbsp;золотой медали РАН за&nbsp;программу защиты зрения. Рядом с&nbsp;текстом едет оглавление, внутри глав 11&nbsp;фотографий и&nbsp;врезки с&nbsp;фактами.\n\nРаботали короткими итерациями: Татьяна присылала скриншоты с&nbsp;пометками, я&nbsp;выпускал новую версию. За&nbsp;две недели лендинг прошёл 50&nbsp;итераций, биография ещё&nbsp;14; каждая заморожена в&nbsp;архиве репозитория, а&nbsp;решения записаны в&nbsp;журнале версий.\n\nПод&nbsp;капотом чистые HTML, CSS и&nbsp;JavaScript: ни&nbsp;фреймворков, ни&nbsp;сборки. Заявки принимает PHP-обработчик с&nbsp;ловушкой для&nbsp;ботов, лимитом запросов на&nbsp;SQLite и&nbsp;письмом по&nbsp;SMTP, в&nbsp;которое попадают UTM-метки источника. Под&nbsp;152-ФЗ сделаны страница политики, cookie-плашка и&nbsp;обязательный чекбокс согласия. Деплой&nbsp;— один git push: GitHub Actions собирает рабочий набор и&nbsp;заливает его на&nbsp;хостинг.',
     screenshotAlt: 'Скриншот сайта Глазами Шефер',
-    dateLabel: '5 июля 2026',
+    dateLabel: '5\u00A0июля 2026',
   },
   en: {
     title: 'Glazami Schaefer — Optometrist Brand Website — Roman Purtov',
-    ogTitle: 'Glazami Schaefer — Personal Brand Website for an Optometrist',
+    ogTitle: 'Glazami Schaefer\u00A0— Personal Brand Website for an\u00A0Optometrist',
     description:
-      'A personal-brand site for optometrist Tatyana Schaefer: a landing page with three audience tracks, a nine-chapter longread biography and a PHP form.',
+      'A\u00A0personal-brand site for optometrist Tatyana Schaefer: a\u00A0landing page with three audience tracks, a\u00A0nine-chapter longread biography and a\u00A0PHP form.',
     ogDescription:
       'A personal-brand site for optometrist Tatyana Schaefer: a landing page with three audience tracks, a nine-chapter longread biography and a PHP form.',
     h1: 'Glazami Schaefer — Personal Brand Website for an Optometrist',

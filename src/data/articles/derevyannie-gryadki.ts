@@ -17,22 +17,22 @@ export const derevyannieGryadki: Article = {
   screenshotFramed: true,
   ru: {
     title: 'Деревянные грядки — лендинг «ДекорДома» — Роман Пуртов',
-    ogTitle: 'Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»',
+    ogTitle: 'Деревянные грядки\u00A0— лендинг производителя мини-теплиц «ДекорДом»',
     description:
-      'Лендинг с тёмно-коричневым дизайном для томской компании «ДекорДом» — высокие деревянные грядки и парники-домики под ключ.',
+      'Лендинг с\u00A0тёмно-коричневым дизайном для томской компании «ДекорДом»\u00A0— высокие деревянные грядки и\u00A0парники-домики под ключ.',
     ogDescription:
       'Лендинг с тёмно-коричневым дизайном для томской компании «ДекорДом» — высокие деревянные грядки и парники-домики под ключ.',
     h1: 'Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»',
     metaLine: 'Пуртов Роман &middot; 4 мая 2026',
     body: 'Лендинг для томской компании «ДекорДом», которая делает высокие деревянные грядки и&nbsp;парники-домики под ключ. Общался с&nbsp;Алексеем, владельцем компании: у&nbsp;него за&nbsp;плечами 9&nbsp;лет столярной практики, гарантия год, установка на&nbsp;участке за&nbsp;1–2&nbsp;дня. Дизайн — тёмно-коричневая палитра с&nbsp;терракотовым акцентом, типографика на&nbsp;Forum + Onest, светлая и&nbsp;тёмная темы без FOUC. На&nbsp;первом экране — галерея готовых работ с&nbsp;GLightbox, trust-плашки и&nbsp;два CTA: модальный калькулятор грядки (7&nbsp;шагов: размеры, материал, покрытие, укрытие, доставка, сборка, контакт) и&nbsp;форма быстрого вопроса. Заявки уходят на&nbsp;почту через PHPMailer/SMTP, на&nbsp;сабмит срабатывает цель Яндекс.Метрики. Хостинг — Beget, деплой через GitHub Actions по&nbsp;rsync. Гипотезу лендинг подтвердил и&nbsp;своё в&nbsp;сезон отработал, а&nbsp;сейчас основной домен временно не&nbsp;поднят. Поэтому по&nbsp;ссылке открывается демо-копия: я&nbsp;забрал сайт к&nbsp;себе, выложил на&nbsp;статический хостинг, форма заявки и&nbsp;калькулятор там переведены в&nbsp;демо-режим и&nbsp;ничего никуда не&nbsp;отправляют.',
     screenshotAlt: 'Скриншот сайта Деревянные грядки',
-    dateLabel: '4 мая 2026',
+    dateLabel: '4\u00A0мая 2026',
   },
   en: {
     title: 'Wooden Garden Beds — DecorDom Landing Page — Roman Purtov',
-    ogTitle: 'Wooden Garden Beds — DecorDom Mini-Greenhouse Manufacturer Landing Page',
+    ogTitle: 'Wooden Garden Beds\u00A0— DecorDom Mini-Greenhouse Manufacturer Landing Page',
     description:
-      'A landing page with a dark-brown design for DecorDom, a Tomsk-based company — raised wooden garden beds and dome-roof mini greenhouses turnkey.',
+      'A\u00A0landing page with a\u00A0dark-brown design for DecorDom, a\u00A0Tomsk-based company\u00A0— raised wooden garden beds and dome-roof mini greenhouses turnkey.',
     ogDescription:
       'A landing page with a dark-brown design for DecorDom, a Tomsk-based company — raised wooden garden beds and dome-roof mini greenhouses turnkey.',
     h1: 'Wooden Garden Beds — DecorDom Mini-Greenhouse Landing Page',

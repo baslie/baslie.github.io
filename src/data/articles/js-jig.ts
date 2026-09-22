@@ -16,22 +16,22 @@ export const jsJig: Article = {
   screenshotFramed: true,
   ru: {
     title: 'JS JIG — магазин рыболовной фурнитуры — Роман Пуртов',
-    ogTitle: 'JS JIG — интернет-магазин производителя рыболовной фурнитуры',
+    ogTitle: 'JS JIG\u00A0— интернет-магазин производителя рыболовной фурнитуры',
     description:
-      'Интернет-магазин рыболовной фурнитуры JS JIG из Ростова-на-Дону: витрина без сборки на чистом HTML, CSS и JS, корзина, Ozon Pay и админка на Laravel.',
+      'Интернет-магазин рыболовной фурнитуры JS JIG из\u00A0Ростова-на-Дону: витрина без сборки на\u00A0чистом HTML, CSS и\u00A0JS, корзина, Ozon Pay и\u00A0админка на\u00A0Laravel.',
     ogDescription:
       'Интернет-магазин рыболовной фурнитуры JS JIG из Ростова-на-Дону: витрина без сборки на чистом HTML, CSS и JS, корзина, Ozon Pay и админка на Laravel.',
     h1: 'JS JIG — интернет-магазин производителя рыболовной фурнитуры',
     metaLine: 'Пуртов Роман &middot; 24 июля 2026',
     body: 'Этот проект принёс Сергей Капустин&nbsp;— классный дизайнер, с&nbsp;которым мы легко сработались. Сайт делали для JS&nbsp;JIG, производителя рыболовной фурнитуры из&nbsp;Ростова-на-Дону: джиг-головки Barbarian и&nbsp;«Коготь», грузы штопор и&nbsp;капля. Четыре товара и&nbsp;149&nbsp;вариантов по&nbsp;размерам и&nbsp;весам. Сергей задизайнил магазин и&nbsp;собирался переносить макет на&nbsp;Тильду. Я&nbsp;отговорил: с&nbsp;таким каталогом и&nbsp;онлайн-оплатой конструктор быстро упрётся в&nbsp;потолок. Договорились просто: дизайн его, код мой.\n\nВитрина&nbsp;— чистые HTML, CSS и&nbsp;JavaScript, без&nbsp;сборки и&nbsp;фреймворков. Из&nbsp;макета в&nbsp;код переехали вертикальная бегущая строка Jig for Sports вдоль левого края и&nbsp;красные пилюли навигации. Корзина хранится в&nbsp;localStorage, поэтому счётчик одинаковый во&nbsp;всех вкладках. Карточка при&nbsp;добавлении улетает в&nbsp;корзину анимацией, но&nbsp;уважает prefers-reduced-motion. Фотографии отдаются в&nbsp;webp с&nbsp;ретина-версиями и&nbsp;фолбэком.\n\nОплата идёт через Ozon Pay: банковская карта, СБП, Ozon Карта. Готового SDK у&nbsp;Ozon нет, адаптер к&nbsp;эквайринговому API написал с&nbsp;нуля: подписи запросов, вебхуки, чеки. Два правила безопасности зашиты в&nbsp;тесты: сумму заказа считает только сервер по&nbsp;прайсу из&nbsp;базы, а&nbsp;факт оплаты подтверждается только прямым запросом статуса&nbsp;— вебхуку на&nbsp;слово не&nbsp;верим. Чек покупателю выбивает Озон Банк, своя онлайн-касса магазину не&nbsp;нужна.\n\nАдминку собрал на&nbsp;Laravel и&nbsp;Filament. Клиент сам правит цены и&nbsp;наличие, переставляет товары перетаскиванием, редактирует тексты страниц, загружает фотографии и&nbsp;выгружает заказы в&nbsp;CSV. Главная архитектурная идея: панель патчит статику прямо на&nbsp;сервере. После кнопки «Обновить витрину» Laravel перегенерирует файл с&nbsp;товарами, а&nbsp;из&nbsp;одного загруженного PNG панель делает сразу три оптимизированных изображения. Посетитель при&nbsp;этом всегда видит быстрые статические страницы, без&nbsp;базы и&nbsp;рендера.\n\nБэкенд писал по&nbsp;TDD: сначала тест, потом код. В&nbsp;итоге 453&nbsp;теста, строк в&nbsp;тестах больше, чем в&nbsp;самом коде. Деплой одной кнопкой из&nbsp;GitHub Actions: прогон тестов в&nbsp;Docker против настоящего MySQL, выгрузка на&nbsp;Beget, смоук-проверки и&nbsp;откат заменой одного файла, если что-то пошло не&nbsp;так. От&nbsp;первого коммита до&nbsp;боевых платежей прошло две недели.',
     screenshotAlt: 'Скриншот главной страницы интернет-магазина JS JIG',
-    dateLabel: '24 июля 2026',
+    dateLabel: '24\u00A0июля 2026',
   },
   en: {
     title: 'JS JIG — Fishing Tackle Online Store — Roman Purtov',
-    ogTitle: 'JS JIG — Online Store for a Fishing Tackle Manufacturer',
+    ogTitle: 'JS JIG\u00A0— Online Store for a\u00A0Fishing Tackle Manufacturer',
     description:
-      'An online store for JS JIG, a fishing tackle maker from Rostov-on-Don: a no-build HTML/CSS/JS storefront, a cart, Ozon Pay and a Laravel admin panel.',
+      'An\u00A0online store for JS JIG, a\u00A0fishing tackle maker from Rostov-on-Don: a\u00A0no-build HTML/CSS/JS storefront, a\u00A0cart, Ozon Pay and a\u00A0Laravel admin panel.',
     ogDescription:
       'An online store for JS JIG, a fishing tackle maker from Rostov-on-Don: a no-build HTML/CSS/JS storefront, a cart, Ozon Pay and a Laravel admin panel.',
     h1: 'JS JIG — Online Store for a Fishing Tackle Manufacturer',

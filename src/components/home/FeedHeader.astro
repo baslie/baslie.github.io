@@ -12,15 +12,25 @@ const { lang, count } = Astro.props;
 const t = useTranslations(lang);
 
 const word = t(`feed.materials.${pluralSuffix(lang, count)}` as TranslationKey);
-const subtitle = t('feed.subtitle').replace('{n}', `${count} ${word}`);
+// \u00A0 — число и слово не разъезжаются по строкам
+const subtitle = t('feed.subtitle').replace('{n}', `${count}\u00A0${word}`);
 ---
 
 <header class="feed__header">
   <h2 class="feed__title">{t('articles.heading')}</h2>
 
-  <!-- Подпись и фильтры живут одной строкой: слева плашка, справа пилюли -->
+  <!-- Подпись и фильтры живут одной строкой: слева плашка, справа пилюли.
+       Шаблон и формы слова едут data-атрибутами: при фильтрации число
+       пересобирает клиентский скрипт. -->
   <div class="feed__meta">
-    <p class="feed__subtitle">{subtitle}</p>
+    <p
+      class="feed__subtitle"
+      data-feed-subtitle
+      data-template={t('feed.subtitle')}
+      data-word-one={t('feed.materials.one')}
+      data-word-few={t('feed.materials.few')}
+      data-word-many={t('feed.materials.many')}
+    >{subtitle}</p>
     <FeedFilters lang={lang} />
   </div>
 </header>
