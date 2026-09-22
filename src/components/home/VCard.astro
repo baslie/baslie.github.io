@@ -14,7 +14,9 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<div class="vcard">
+<!-- data-lenis-prevent: на невысоких экранах визитка прокручивается внутри себя,
+     и колесо мыши над ней не должно уходить в плавный скролл страницы -->
+<div class="vcard" data-lenis-prevent>
   <VCardIntro lang={lang} />
 
   <hr class="vcard__divider" />

@@ -1087,6 +1087,9 @@ html.lenis {
    ======================================== */
 .home {
     display: grid;
+    /* minmax(0,…) — иначе колонка растягивается под самое длинное
+       неразрывное название и страница едет вбок */
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     /* Сверху место под фиксированный CornerNav */
     padding: 3.5rem 1.25rem 2rem;
@@ -1342,8 +1345,8 @@ html.lenis {
     opacity: 1;
 }
 
-/* Там, где курсора нет, подсказке не место: строка и так узкая */
-@media (hover: none) {
+/* Там, где курсора нет или мало места, подсказке не место */
+@media (hover: none), (max-width: 47.99rem) {
     .vcard-link__hint {
         display: none;
     }
