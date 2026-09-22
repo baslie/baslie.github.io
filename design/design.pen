@@ -940,7 +940,7 @@
       "name": "Главная — 1920",
       "clip": true,
       "width": 1920,
-      "height": 3503,
+      "height": 3523,
       "fill": [
         {
           "type": "image",
@@ -1851,7 +1851,7 @@
                   "id": "V2i3am",
                   "name": "Заголовок",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 10,
                   "children": [
                     {
                       "type": "text",
@@ -1874,24 +1874,50 @@
                       "fontWeight": "600"
                     },
                     {
-                      "type": "text",
-                      "id": "kxodf",
-                      "name": "Подпись",
-                      "fill": "$text-light",
-                      "effect": {
-                        "type": "shadow",
-                        "shadowType": "outer",
-                        "color": "#000000A6",
-                        "offset": {
-                          "x": 0,
-                          "y": 1
+                      "type": "frame",
+                      "id": "jY9cs",
+                      "name": "Подпись плашка",
+                      "fill": "$card-bg",
+                      "cornerRadius": 20,
+                      "effect": [
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#00000012",
+                          "offset": {
+                            "x": 0,
+                            "y": 1
+                          },
+                          "blur": 3
                         },
-                        "blur": 10
-                      },
-                      "content": "20 материалов о том, что я делал руками. Так-то материалов больше, конечно 🙂",
-                      "fontFamily": "$font",
-                      "fontSize": 15,
-                      "fontWeight": "normal"
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#0000001A",
+                          "offset": {
+                            "x": 0,
+                            "y": 4
+                          },
+                          "blur": 14
+                        }
+                      ],
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kxodf",
+                          "name": "Подпись",
+                          "fill": "$text-muted",
+                          "content": "20 материалов о том, что я делал руками. Так-то материалов больше, конечно 🙂",
+                          "fontFamily": "$font",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3945,7 +3971,7 @@
                   "name": "Заголовок",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 10,
                   "children": [
                     {
                       "type": "text",
@@ -3968,26 +3994,52 @@
                       "fontWeight": "600"
                     },
                     {
-                      "type": "text",
-                      "id": "Y7aBP",
-                      "name": "Подпись",
-                      "fill": "$text-light",
-                      "effect": {
-                        "type": "shadow",
-                        "shadowType": "outer",
-                        "color": "#000000A6",
-                        "offset": {
-                          "x": 0,
-                          "y": 1
+                      "type": "frame",
+                      "id": "vxF2L",
+                      "name": "Подпись плашка",
+                      "fill": "$card-bg",
+                      "cornerRadius": 20,
+                      "effect": [
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#00000012",
+                          "offset": {
+                            "x": 0,
+                            "y": 1
+                          },
+                          "blur": 3
                         },
-                        "blur": 10
-                      },
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "20 материалов о том, что я делал руками. Так-то материалов больше, конечно 🙂",
-                      "fontFamily": "$font",
-                      "fontSize": 15,
-                      "fontWeight": "normal"
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#0000001A",
+                          "offset": {
+                            "x": 0,
+                            "y": 4
+                          },
+                          "blur": 14
+                        }
+                      ],
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Y7aBP",
+                          "name": "Подпись",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 608,
+                          "content": "20 материалов о том, что я делал руками. Так-то материалов больше, конечно 🙂",
+                          "fontFamily": "$font",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -6009,7 +6061,7 @@
                   "name": "Заголовок",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 10,
                   "children": [
                     {
                       "type": "text",
@@ -6032,26 +6084,52 @@
                       "fontWeight": "600"
                     },
                     {
-                      "type": "text",
-                      "id": "uBsTS",
-                      "name": "Подпись",
-                      "fill": "$text-light",
-                      "effect": {
-                        "type": "shadow",
-                        "shadowType": "outer",
-                        "color": "#000000A6",
-                        "offset": {
-                          "x": 0,
-                          "y": 1
+                      "type": "frame",
+                      "id": "SMiJQ",
+                      "name": "Подпись плашка",
+                      "fill": "$card-bg",
+                      "cornerRadius": 20,
+                      "effect": [
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#00000012",
+                          "offset": {
+                            "x": 0,
+                            "y": 1
+                          },
+                          "blur": 3
                         },
-                        "blur": 10
-                      },
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "20 материалов о том, что я делал руками. Так-то материалов больше, конечно 🙂",
-                      "fontFamily": "$font",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#0000001A",
+                          "offset": {
+                            "x": 0,
+                            "y": 4
+                          },
+                          "blur": 14
+                        }
+                      ],
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uBsTS",
+                          "name": "Подпись",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 286,
+                          "content": "20 материалов о том, что я делал руками. Так-то материалов больше, конечно 🙂",
+                          "fontFamily": "$font",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -7126,10 +7204,10 @@
     },
     {
       "type": "frame",
-      "id": "vQbiO",
+      "id": "XnbZn",
       "x": 0,
-      "y": 5103,
-      "name": "404 — 1920",
+      "y": 5263,
+      "name": "404 v2 — 1920",
       "clip": true,
       "width": 1920,
       "height": 1080,
@@ -7144,186 +7222,125 @@
       "children": [
         {
           "type": "frame",
-          "id": "PRcaH",
-          "name": "404 Card",
-          "width": 480,
+          "id": "m4phT3",
+          "name": "Content",
+          "width": 720,
           "layout": "vertical",
-          "padding": 32,
+          "gap": 32,
           "alignItems": "center",
           "children": [
             {
               "type": "text",
-              "id": "B0ecEx",
-              "name": "Code",
+              "id": "Ewm7V",
+              "name": "Eyebrow",
               "fill": "$text-muted",
               "content": "404",
               "lineHeight": 1,
-              "fontFamily": "Inter",
-              "fontSize": 80,
-              "fontWeight": "bold"
+              "fontFamily": "$font",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 3
             },
             {
               "type": "frame",
-              "id": "veLK2",
-              "name": "Gap8",
-              "width": 1,
-              "height": 8
-            },
-            {
-              "type": "text",
-              "id": "p9HUZ",
-              "name": "Title RU",
-              "fill": "#000000",
-              "textGrowth": "fixed-width",
+              "id": "bSnIK",
+              "name": "Titles",
               "width": "fill_container",
-              "content": "Страница не найдена",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 28,
-              "fontWeight": "bold"
-            },
-            {
-              "type": "frame",
-              "id": "nYh7l",
-              "name": "Gap12",
-              "width": 1,
-              "height": 12
-            },
-            {
-              "type": "text",
-              "id": "T9H6ld",
-              "name": "Desc RU",
-              "fill": "$text-muted",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Возможно, вы перешли по устаревшей ссылке или ошиблись в адресе.",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "zjn1t",
-              "name": "Gap24",
-              "width": 1,
-              "height": 24
-            },
-            {
-              "type": "frame",
-              "id": "KdQpg",
-              "name": "Button RU",
-              "fill": "$brand",
-              "cornerRadius": 9999,
-              "padding": [
-                12,
-                24
-              ],
-              "justifyContent": "center",
+              "layout": "vertical",
+              "gap": 6,
               "alignItems": "center",
               "children": [
                 {
                   "type": "text",
-                  "id": "L511s",
-                  "name": "Label",
-                  "fill": "#FFFFFF",
-                  "content": "← Вернуться на главную",
-                  "lineHeight": 1.5,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "id": "j6Afz",
+                  "name": "Title RU",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Страница не найдена",
+                  "lineHeight": 1.25,
+                  "textAlign": "center",
+                  "fontFamily": "$font",
+                  "fontSize": 40,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
+                },
+                {
+                  "type": "text",
+                  "id": "Z2LLv",
+                  "name": "Title EN",
+                  "fill": "$text-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Page not found",
+                  "lineHeight": 1.25,
+                  "textAlign": "center",
+                  "fontFamily": "$font",
+                  "fontSize": 40,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "vESyH",
-              "name": "Gap32",
-              "width": 1,
-              "height": 32
-            },
-            {
-              "type": "rectangle",
-              "id": "EaQP9",
-              "name": "Divider",
-              "fill": "#0000001A",
-              "width": 250,
-              "height": 1
-            },
-            {
-              "type": "frame",
-              "id": "kIUlX",
-              "name": "Gap32b",
-              "width": 1,
-              "height": 32
-            },
-            {
-              "type": "text",
-              "id": "J7oaTo",
-              "name": "Title EN",
-              "fill": "#000000",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Page not found",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 28,
-              "fontWeight": "bold"
-            },
-            {
-              "type": "frame",
-              "id": "hzmMu",
-              "name": "Gap12b",
-              "width": 1,
-              "height": 12
-            },
-            {
-              "type": "text",
-              "id": "vyQhH",
-              "name": "Desc EN",
-              "fill": "$text-muted",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "You may have followed an outdated link or mistyped the address.",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "YOkm3",
-              "name": "Gap24b",
-              "width": 1,
-              "height": 24
-            },
-            {
-              "type": "frame",
-              "id": "v2b3Zg",
-              "name": "Button EN",
-              "fill": "$brand",
-              "cornerRadius": 9999,
-              "padding": [
-                12,
-                24
-              ],
-              "justifyContent": "center",
+              "id": "OdqYm",
+              "name": "Кнопки",
+              "gap": 12,
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "a0W2JJ",
-                  "name": "Label",
-                  "fill": "#FFFFFF",
-                  "content": "← Back to home",
-                  "lineHeight": 1.5,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "type": "frame",
+                  "id": "RLFqH",
+                  "name": "Кнопка RU",
+                  "fill": "$brand",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Iac2l",
+                      "name": "Label",
+                      "fill": "$text-light",
+                      "content": "← Вернуться на главную",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M5vnR",
+                  "name": "Кнопка EN",
+                  "cornerRadius": 9999,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eHXPs",
+                      "name": "Label",
+                      "fill": "$text",
+                      "content": "← Back to home",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
                 }
               ]
             }
@@ -7333,10 +7350,10 @@
     },
     {
       "type": "frame",
-      "id": "khxCd",
+      "id": "CPJYI",
       "x": 2200,
-      "y": 6940,
-      "name": "404 — 834",
+      "y": 7100,
+      "name": "404 v2 — 834",
       "clip": true,
       "width": 834,
       "height": 1112,
@@ -7351,186 +7368,125 @@
       "children": [
         {
           "type": "frame",
-          "id": "at2fs",
-          "name": "404 Card",
-          "width": 480,
+          "id": "e5T4s3",
+          "name": "Content",
+          "width": 560,
           "layout": "vertical",
-          "padding": 32,
+          "gap": 28,
           "alignItems": "center",
           "children": [
             {
               "type": "text",
-              "id": "jkpku",
-              "name": "Code",
+              "id": "VniI8",
+              "name": "Eyebrow",
               "fill": "$text-muted",
               "content": "404",
               "lineHeight": 1,
-              "fontFamily": "Inter",
-              "fontSize": 80,
-              "fontWeight": "bold"
+              "fontFamily": "$font",
+              "fontSize": 13,
+              "fontWeight": "600",
+              "letterSpacing": 2.5
             },
             {
               "type": "frame",
-              "id": "XP7Ui",
-              "name": "Gap8",
-              "width": 1,
-              "height": 8
-            },
-            {
-              "type": "text",
-              "id": "pA4cI",
-              "name": "Title RU",
-              "fill": "#000000",
-              "textGrowth": "fixed-width",
+              "id": "q48uY",
+              "name": "Titles",
               "width": "fill_container",
-              "content": "Страница не найдена",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 28,
-              "fontWeight": "bold"
-            },
-            {
-              "type": "frame",
-              "id": "Ivga2",
-              "name": "Gap12",
-              "width": 1,
-              "height": 12
-            },
-            {
-              "type": "text",
-              "id": "p9aVG",
-              "name": "Desc RU",
-              "fill": "$text-muted",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Возможно, вы перешли по устаревшей ссылке или ошиблись в адресе.",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "XZv6e",
-              "name": "Gap24",
-              "width": 1,
-              "height": 24
-            },
-            {
-              "type": "frame",
-              "id": "K4TY5",
-              "name": "Button RU",
-              "fill": "$brand",
-              "cornerRadius": 9999,
-              "padding": [
-                12,
-                24
-              ],
-              "justifyContent": "center",
+              "layout": "vertical",
+              "gap": 6,
               "alignItems": "center",
               "children": [
                 {
                   "type": "text",
-                  "id": "dsDNm",
-                  "name": "Label",
-                  "fill": "#FFFFFF",
-                  "content": "← Вернуться на главную",
-                  "lineHeight": 1.5,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "id": "e74Kjm",
+                  "name": "Title RU",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Страница не найдена",
+                  "lineHeight": 1.25,
+                  "textAlign": "center",
+                  "fontFamily": "$font",
+                  "fontSize": 34,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
+                },
+                {
+                  "type": "text",
+                  "id": "nvQC3",
+                  "name": "Title EN",
+                  "fill": "$text-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Page not found",
+                  "lineHeight": 1.25,
+                  "textAlign": "center",
+                  "fontFamily": "$font",
+                  "fontSize": 34,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "A6eSj",
-              "name": "Gap32",
-              "width": 1,
-              "height": 32
-            },
-            {
-              "type": "rectangle",
-              "id": "P69eAO",
-              "name": "Divider",
-              "fill": "#0000001A",
-              "width": 250,
-              "height": 1
-            },
-            {
-              "type": "frame",
-              "id": "zejzN",
-              "name": "Gap32b",
-              "width": 1,
-              "height": 32
-            },
-            {
-              "type": "text",
-              "id": "Cmkyb",
-              "name": "Title EN",
-              "fill": "#000000",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Page not found",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 28,
-              "fontWeight": "bold"
-            },
-            {
-              "type": "frame",
-              "id": "Qp9N1",
-              "name": "Gap12b",
-              "width": 1,
-              "height": 12
-            },
-            {
-              "type": "text",
-              "id": "TiN61",
-              "name": "Desc EN",
-              "fill": "$text-muted",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "You may have followed an outdated link or mistyped the address.",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "kcEha",
-              "name": "Gap24b",
-              "width": 1,
-              "height": 24
-            },
-            {
-              "type": "frame",
-              "id": "Jx6uM",
-              "name": "Button EN",
-              "fill": "$brand",
-              "cornerRadius": 9999,
-              "padding": [
-                12,
-                24
-              ],
-              "justifyContent": "center",
+              "id": "SWan3",
+              "name": "Кнопки",
+              "gap": 12,
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "uUYts",
-                  "name": "Label",
-                  "fill": "#FFFFFF",
-                  "content": "← Back to home",
-                  "lineHeight": 1.5,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "type": "frame",
+                  "id": "AcDCX",
+                  "name": "Кнопка RU",
+                  "fill": "$brand",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wmQ2M",
+                      "name": "Label",
+                      "fill": "$text-light",
+                      "content": "← Вернуться на главную",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vUWX4",
+                  "name": "Кнопка EN",
+                  "cornerRadius": 9999,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FQI9u",
+                      "name": "Label",
+                      "fill": "$text",
+                      "content": "← Back to home",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
                 }
               ]
             }
@@ -7540,11 +7496,10 @@
     },
     {
       "type": "frame",
-      "id": "REjsF",
-      "x": 3299.5252568419737,
-      "y": 11471,
-      "name": "404 — 390",
-      "rotation": -0.10354363422593169,
+      "id": "cnMKf",
+      "x": 3300,
+      "y": 11652,
+      "name": "404 v2 — 390",
       "clip": true,
       "width": 390,
       "height": 844,
@@ -7559,186 +7514,129 @@
       "children": [
         {
           "type": "frame",
-          "id": "lvO2w",
-          "name": "404 Card",
-          "width": 358,
+          "id": "e7nAFB",
+          "name": "Content",
+          "width": 326,
           "layout": "vertical",
-          "padding": 32,
+          "gap": 24,
           "alignItems": "center",
           "children": [
             {
               "type": "text",
-              "id": "O6tie",
-              "name": "Code",
+              "id": "p2WQ1B",
+              "name": "Eyebrow",
               "fill": "$text-muted",
               "content": "404",
               "lineHeight": 1,
-              "fontFamily": "Inter",
-              "fontSize": 80,
-              "fontWeight": "bold"
+              "fontFamily": "$font",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 2
             },
             {
               "type": "frame",
-              "id": "rAGuB",
-              "name": "Gap8",
-              "width": 1,
-              "height": 8
-            },
-            {
-              "type": "text",
-              "id": "TRSVJ",
-              "name": "Title RU",
-              "fill": "#000000",
-              "textGrowth": "fixed-width",
+              "id": "bOrUf",
+              "name": "Titles",
               "width": "fill_container",
-              "content": "Страница не найдена",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 28,
-              "fontWeight": "bold"
-            },
-            {
-              "type": "frame",
-              "id": "kBb98",
-              "name": "Gap12",
-              "width": 1,
-              "height": 12
-            },
-            {
-              "type": "text",
-              "id": "XvjZv",
-              "name": "Desc RU",
-              "fill": "$text-muted",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Возможно, вы перешли по устаревшей ссылке или ошиблись в адресе.",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "RmyHO",
-              "name": "Gap24",
-              "width": 1,
-              "height": 24
-            },
-            {
-              "type": "frame",
-              "id": "QBxoG",
-              "name": "Button RU",
-              "fill": "$brand",
-              "cornerRadius": 9999,
-              "padding": [
-                12,
-                24
-              ],
-              "justifyContent": "center",
+              "layout": "vertical",
+              "gap": 4,
               "alignItems": "center",
               "children": [
                 {
                   "type": "text",
-                  "id": "RRsEn",
-                  "name": "Label",
-                  "fill": "#FFFFFF",
-                  "content": "← Вернуться на главную",
-                  "lineHeight": 1.5,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "id": "Vk7Vf",
+                  "name": "Title RU",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Страница не найдена",
+                  "lineHeight": 1.25,
+                  "textAlign": "center",
+                  "fontFamily": "$font",
+                  "fontSize": 26,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
+                },
+                {
+                  "type": "text",
+                  "id": "Z8A27",
+                  "name": "Title EN",
+                  "fill": "$text-muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Page not found",
+                  "lineHeight": 1.25,
+                  "textAlign": "center",
+                  "fontFamily": "$font",
+                  "fontSize": 26,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "IzMSs",
-              "name": "Gap32",
-              "width": 1,
-              "height": 32
-            },
-            {
-              "type": "rectangle",
-              "id": "GtkI3",
-              "name": "Divider",
-              "fill": "#0000001A",
-              "width": 176,
-              "height": 1
-            },
-            {
-              "type": "frame",
-              "id": "k5KmaW",
-              "name": "Gap32b",
-              "width": 1,
-              "height": 32
-            },
-            {
-              "type": "text",
-              "id": "UK14I",
-              "name": "Title EN",
-              "fill": "#000000",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Page not found",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 28,
-              "fontWeight": "bold"
-            },
-            {
-              "type": "frame",
-              "id": "FdtZc",
-              "name": "Gap12b",
-              "width": 1,
-              "height": 12
-            },
-            {
-              "type": "text",
-              "id": "GtHLX",
-              "name": "Desc EN",
-              "fill": "$text-muted",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "You may have followed an outdated link or mistyped the address.",
-              "lineHeight": 1.5,
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "f539kh",
-              "name": "Gap24b",
-              "width": 1,
-              "height": 24
-            },
-            {
-              "type": "frame",
-              "id": "boUSp",
-              "name": "Button EN",
-              "fill": "$brand",
-              "cornerRadius": 9999,
-              "padding": [
-                12,
-                24
-              ],
-              "justifyContent": "center",
+              "id": "F0XBt",
+              "name": "Кнопки",
+              "width": 260,
+              "layout": "vertical",
+              "gap": 12,
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "wBy69",
-                  "name": "Label",
-                  "fill": "#FFFFFF",
-                  "content": "← Back to home",
-                  "lineHeight": 1.5,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "type": "frame",
+                  "id": "E3U8m",
+                  "name": "Кнопка RU",
+                  "width": "fill_container",
+                  "fill": "$brand",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    12,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cponN",
+                      "name": "Label",
+                      "fill": "$text-light",
+                      "content": "← Вернуться на главную",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pr11X",
+                  "name": "Кнопка EN",
+                  "width": "fill_container",
+                  "cornerRadius": 9999,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "padding": [
+                    12,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GYnw7",
+                      "name": "Label",
+                      "fill": "$text",
+                      "content": "← Back to home",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
                 }
               ]
             }
