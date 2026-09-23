@@ -34,8 +34,8 @@ for (const b of body) {
 }
 const doc = new Document({
   styles: {
-    default: { document: { run: { font: 'Arial', size: 22 } } },
-    paragraphStyles: [{ id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: 'Arial', size: 32, bold: true }, paragraph: { spacing: { before: 240, after: 120 }, outlineLevel: 0 } }],
+    default: { document: { run: { font: 'Arial', size: 22 }, paragraph: { spacing: { after: 200, line: 300 } } } },
+    paragraphStyles: [{ id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: 'Arial', size: 32, bold: true }, paragraph: { spacing: { before: 400, after: 160 }, keepNext: true, outlineLevel: 0 } }],
   },
   sections: [{ children }],
 });
