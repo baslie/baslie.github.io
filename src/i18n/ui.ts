@@ -35,7 +35,7 @@ export const ui = {
     'link.progulka': 'Томская Прогулка',
     'link.blog': 'Пурточка вещает',
 
-    'feed.subtitle': '{n} о\u00A0том, что я\u00A0делал руками. Так-то материалов больше, конечно 🙂',
+    'feed.subtitle': '{n} о\u00A0том, что я\u00A0когда-либо делал. Так-то кейсов, конечно, больше 🙂',
     'feed.materials.one': 'материал',
     'feed.materials.few': 'материала',
     'feed.materials.many': 'материалов',
@@ -114,7 +114,7 @@ export const ui = {
     'link.progulka': 'Tomsk Walk',
     'link.blog': 'Purtochka Speaks',
 
-    'feed.subtitle': '{n} about things I built with my own hands. There are more, of course 🙂',
+    'feed.subtitle': '{n} about things I’ve ever done. There are more cases, of course 🙂',
     'feed.materials.one': 'material',
     'feed.materials.few': 'materials',
     'feed.materials.many': 'materials',
