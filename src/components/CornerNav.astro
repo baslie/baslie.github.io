@@ -30,7 +30,7 @@ const logoSvg = `<svg viewBox="0 0 90 100" fill="none" xmlns="http://www.w3.org/
         </div>
     )}
     {showLang && (
-        <a href={altHref} class="corner-nav-item" aria-label={t('lang.toggleLabel')} hreflang={altLang} rel="alternate">
+        <a href={altHref} id="lang-toggle" class="corner-nav-item" aria-label={t('lang.toggleLabel')} hreflang={altLang} rel="alternate">
             <span class="text-sm font-semibold">{t('lang.toggleText')}</span>
         </a>
     )}

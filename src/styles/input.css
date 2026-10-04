@@ -429,9 +429,11 @@ a.corner-nav-item.logo-badge:hover {
 }
 
 /* Интерактивные элементы */
+a.corner-nav-item,
 button.corner-nav-item {
     cursor: pointer;
 }
+a.corner-nav-item > *,
 button.corner-nav-item > * {
     transition: transform 0.2s ease;
 }
