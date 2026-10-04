@@ -1,5 +1,71 @@
 import type { Article } from './_types';
 
+const siteLinkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>`;
+
+const bodyRu = `<p>«Не&nbsp;пиши голосовое!»&nbsp;&mdash; Android-приложение, которое переводит речь в&nbsp;текст прямо на&nbsp;телефоне. Свои надиктовки, присланные голосовые, лекции и&nbsp;даже видео. Интернет нужен один раз, чтобы скачать модель распознавания. Дальше приложение работает без связи, без аккаунта и&nbsp;подписки, а&nbsp;записи не&nbsp;покидают устройство.</p>
+
+<img src="/images/articles/negolosom/screenshot.jpg" alt="Птица-талисман и два экрана приложения «Не пиши голосовое!»: лента заметок с тегами и раскрытая расшифровка" loading="lazy">
+<p class="img-caption"><em>Лента заметок с&nbsp;тегами и&nbsp;расшифровка целиком</em></p>
+
+<a class="article-site-link" href="https://negolosom.ru" rel="noopener noreferrer" target="_blank">
+    ${siteLinkIcon}
+    negolosom.ru
+</a>
+
+<h2>Зачем</h2>
+
+<p>Я&nbsp;часто наговариваю себе заметки на&nbsp;прогулках. В&nbsp;лесу рядом с&nbsp;домом связь ловит примерно никак, а&nbsp;мысли приходят как раз там. Раньше записывал их&nbsp;на&nbsp;обычный диктофон и&nbsp;разбирал уже дома. Хотелось, чтобы заметка сразу становилась текстом, причём без интернета. Предыстория&nbsp;&mdash; в&nbsp;<a href="https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android" rel="noopener noreferrer" target="_blank">статье на&nbsp;vc.ru</a>.</p>
+
+<h2>Как устроено</h2>
+
+<p>Речь распознаёт нейросеть на&nbsp;самом телефоне. Русский считает GigaAM&nbsp;v3, открытая модель Сбера: по&nbsp;<a href="https://github.com/salute-developers/GigaAM/blob/main/evaluation.md" rel="nofollow noopener noreferrer" target="_blank">замерам разработчика</a> она в&nbsp;среднем ошибается в&nbsp;8,3&nbsp;% слов. Ещё 15&nbsp;языков&nbsp;&mdash; Whisper small. Приложение занимает 30&nbsp;МБ, модель для русского&nbsp;&mdash; 214&nbsp;МБ. Нужен Android&nbsp;7 или новее.</p>
+
+<p>На&nbsp;главном экране одна красная кнопка: держите и&nbsp;говорите. Чужое голосовое можно переслать в&nbsp;приложение через «Поделиться». Готовый текст копируется, отправляется или сохраняется файлом.</p>
+
+<h2>Как развивалось</h2>
+
+<p>Первую версию собрал за&nbsp;2&nbsp;дня на&nbsp;React Native и&nbsp;в&nbsp;апреле выпустил в&nbsp;RuStore. В&nbsp;мае переписал приложение на&nbsp;нативный Kotlin. После этого записи на&nbsp;30&ndash;40&nbsp;минут стали расшифровываться целиком, а&nbsp;распознавание продолжается в&nbsp;фоне.</p>
+
+<p>С&nbsp;тех пор обновление выходит каждые пару недель, всего их&nbsp;18. Добавились импорт аудио и&nbsp;видео, поиск по&nbsp;расшифровкам, теги, запись из&nbsp;«шторки» без открытия приложения, дозапись в&nbsp;ту&nbsp;же заметку, субтитры .srt и&nbsp;выгрузка всех записей ZIP-архивом. На&nbsp;длинных записях приложение ставит распознавание на&nbsp;паузу, пока перегретый телефон остывает.</p>
+
+<h2>Что получилось</h2>
+
+<p>Приложение бесплатное: без подписки и&nbsp;встроенных покупок, разработку окупает один рекламный баннер. В&nbsp;RuStore у&nbsp;него рейтинг 4,9 и&nbsp;больше тысячи скачиваний. Скачать можно в&nbsp;<a href="https://www.rustore.ru/catalog/app/com.baslie.negolosom" rel="noopener noreferrer" target="_blank">RuStore</a>, а&nbsp;тем, у&nbsp;кого его нет,&nbsp;&mdash; <a href="https://github.com/baslie/negolosom-releases/releases/latest/download/negolosom.apk" rel="noopener noreferrer">APK с&nbsp;GitHub</a>.</p>
+
+<p><strong>Технологии:</strong> Kotlin, Jetpack Compose, Material&nbsp;3, Hilt, Room, Kotlin Coroutines, sherpa-onnx&nbsp;1.13.2, GigaAM&nbsp;v3, Whisper small, Silero VAD, AppMetrica&nbsp;8.5.1, Рекламная сеть Яндекса.</p>`;
+
+const bodyEn = `<p>«Ne&nbsp;pishi golosovoe!» («Don&rsquo;t send voice notes!») is&nbsp;an&nbsp;Android app that turns speech into text right on&nbsp;the phone. Your own dictations, voice messages people send you, lectures, even videos. The internet is&nbsp;needed once, to&nbsp;download the speech recognition model. After that the app works offline, with no&nbsp;account and no&nbsp;subscription, and recordings never leave the device.</p>
+
+<img src="/images/articles/negolosom/screenshot.jpg" alt="The bird mascot and two screens of the «Ne pishi golosovoe!» app: a tagged notes feed and an open transcript" loading="lazy">
+<p class="img-caption"><em>A&nbsp;tagged notes feed and a&nbsp;full transcript</em></p>
+
+<a class="article-site-link" href="https://negolosom.ru" rel="noopener noreferrer" target="_blank">
+    ${siteLinkIcon}
+    negolosom.ru
+</a>
+
+<h2>Why</h2>
+
+<p>I&nbsp;often dictate notes to&nbsp;myself on&nbsp;walks. In&nbsp;the forest near my&nbsp;home there&rsquo;s next to&nbsp;no&nbsp;signal, and that&rsquo;s exactly where ideas show up. I&nbsp;used to&nbsp;record them on&nbsp;a&nbsp;regular voice recorder and sort through them at&nbsp;home. I&nbsp;wanted a&nbsp;note to&nbsp;become text straight away, and without the internet. The backstory is&nbsp;in&nbsp;<a href="https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android" rel="noopener noreferrer" target="_blank">my&nbsp;article on&nbsp;vc.ru</a> (in&nbsp;Russian).</p>
+
+<h2>How it&nbsp;works</h2>
+
+<p>A&nbsp;neural network recognises speech on&nbsp;the phone itself. Russian is&nbsp;handled by&nbsp;GigaAM&nbsp;v3, an&nbsp;open model from Sber: according to&nbsp;the <a href="https://github.com/salute-developers/GigaAM/blob/main/evaluation.md" rel="nofollow noopener noreferrer" target="_blank">developer&rsquo;s benchmarks</a>, it&nbsp;gets 8.3% of&nbsp;words wrong on&nbsp;average. Another 15&nbsp;languages run on&nbsp;Whisper small. The app takes 30&nbsp;MB, the Russian model another 214&nbsp;MB. Android&nbsp;7 or&nbsp;newer is&nbsp;required.</p>
+
+<p>The main screen has a&nbsp;single red button: hold it&nbsp;and speak. A&nbsp;voice message from a&nbsp;messenger can be&nbsp;sent to&nbsp;the app via «Share». The finished text can be&nbsp;copied, shared, or&nbsp;saved as&nbsp;a&nbsp;file.</p>
+
+<h2>How it&nbsp;evolved</h2>
+
+<p>I&nbsp;built the first version in&nbsp;2&nbsp;days on&nbsp;React Native and released it&nbsp;on&nbsp;RuStore in&nbsp;April. In&nbsp;May I&nbsp;rewrote the app in&nbsp;native Kotlin. After that, 30&ndash;40&nbsp;minute recordings started getting transcribed in&nbsp;full, and recognition keeps running in&nbsp;the background.</p>
+
+<p>Since then an&nbsp;update ships every couple of&nbsp;weeks, 18&nbsp;so&nbsp;far. They added audio and video import, search across transcripts, tags, recording from the quick settings panel without opening the app, appending to&nbsp;an&nbsp;existing note, .srt subtitles, and exporting all recordings as&nbsp;a&nbsp;ZIP archive. On&nbsp;long recordings the app pauses recognition while an&nbsp;overheated phone cools down.</p>
+
+<h2>The result</h2>
+
+<p>The app is&nbsp;free: no&nbsp;subscription and no&nbsp;in-app purchases, development is&nbsp;covered by&nbsp;a&nbsp;single ad&nbsp;banner. On&nbsp;RuStore it&nbsp;has a&nbsp;4.9 rating and over a&nbsp;thousand downloads. You can get it&nbsp;on&nbsp;<a href="https://www.rustore.ru/catalog/app/com.baslie.negolosom" rel="noopener noreferrer" target="_blank">RuStore</a>, or, if&nbsp;you don&rsquo;t have it, as&nbsp;an&nbsp;<a href="https://github.com/baslie/negolosom-releases/releases/latest/download/negolosom.apk" rel="noopener noreferrer">APK from GitHub</a>.</p>
+
+<p><strong>Tech:</strong> Kotlin, Jetpack Compose, Material&nbsp;3, Hilt, Room, Kotlin Coroutines, sherpa-onnx&nbsp;1.13.2, GigaAM&nbsp;v3, Whisper small, Silero VAD, AppMetrica&nbsp;8.5.1, Yandex Advertising Network.</p>`;
+
 export const negolosom: Article = {
   id: 'negolosom',
   slug: 'negolosom',
@@ -8,36 +74,36 @@ export const negolosom: Article = {
   sourceIcon: '/images/favicon.svg',
   sourceName: 'roman-purtow.ru',
   datePublished: '2026-04-22',
-  dateModified: '2026-05-24',
-  isSimple: true,
-  tech: 'Kotlin 2.2.21, Jetpack Compose, Material 3, Hilt, Room, Kotlin Coroutines, sherpa-onnx 1.13.2, GigaAM v3 (NeMo CTC, INT8), AppMetrica 8.2.0',
+  dateModified: '2026-10-04',
+  isSimple: false,
+  tech: 'Kotlin, Jetpack Compose, Material 3, Hilt, Room, Kotlin Coroutines, sherpa-onnx 1.13.2, GigaAM v3, Whisper small, Silero VAD, AppMetrica 8.5.1, Рекламная сеть Яндекса',
   siteUrl: 'https://negolosom.ru',
   siteDisplay: 'negolosom.ru',
   screenshotUrl: '/images/articles/negolosom/screenshot.jpg',
   ru: {
-    title: 'Не пиши голосовое! — офлайн-расшифровка речи — Роман Пуртов',
-    ogTitle: 'Не\u00A0пиши голосовое!\u00A0— мобильное приложение с\u00A0локальным распознаванием речи',
+    title: '«Не пиши голосовое!» — голос в текст офлайн — Роман Пуртов',
+    ogTitle: '«Не пиши голосовое!» — приложение для расшифровки речи прямо на телефоне',
     description:
-      'Android-приложение записывает голосовые и\u00A0расшифровывает их в\u00A0текст прямо на\u00A0телефоне: без облака и\u00A0интернета, на\u00A0русском. Вторая версия\u00A0— на\u00A0Kotlin.',
+      'Android-приложение переводит голос в текст прямо на телефоне: офлайн, без аккаунта и подписки. 16 языков, 18 выпусков, рейтинг 4,9 в RuStore.',
     ogDescription:
-      'Android-приложение записывает голосовые и расшифровывает их в текст прямо на телефоне: без облака и интернета, на русском. Вторая версия — на Kotlin.',
-    h1: 'Не пиши голосовое! — мобильное приложение с локальным распознаванием речи',
-    metaLine: 'Пуртов Роман &middot; 22 апреля 2026',
-    body: 'В&nbsp;апреле выпустил в&nbsp;RuStore Android-приложение «Не&nbsp;пиши голосовое!». Наговорил в&nbsp;микрофон, получил расшифровку. Всё прямо на&nbsp;телефоне: ни&nbsp;облака, ни&nbsp;аккаунта, ни&nbsp;интернета. Голосовые часто содержат чувствительные вещи, и&nbsp;отправлять их&nbsp;на&nbsp;чужие серверы — так себе идея.</p><p>Первую версию собрал за&nbsp;два дня на&nbsp;Expo SDK&nbsp;54 и&nbsp;React Native&nbsp;0.81. Прожила месяц. За&nbsp;это время подкрутил чанкинг, поймал пару утечек памяти на&nbsp;долгих записях, повоевал с&nbsp;JS-мостом и&nbsp;таймерами. Стало понятно: дальше пилить надстройку поверх RN значит каждый раз воевать с&nbsp;прокладкой между приложением и&nbsp;микрофоном.</p><p>Перевёл всё на&nbsp;Kotlin. Главный довод — прямой доступ к&nbsp;AudioRecord и&nbsp;foreground-сервису без RN-моста. Поток PCM-байтов идёт от&nbsp;микрофона сразу в&nbsp;sherpa-onnx, без сериализации через JS. Меньше слоёв, меньше мест, где течёт память. Заодно проще тестировать: Robolectric поднимает Android-окружение без эмулятора, тесты бегут на&nbsp;CI в&nbsp;считаные минуты. И&nbsp;инструменты: Android Studio с&nbsp;профилировщиком честнее показывает, на&nbsp;что уходит время и&nbsp;память, чем Flipper с&nbsp;RN.</p><p>Стек: Kotlin&nbsp;2.2.21, Jetpack Compose с&nbsp;Material&nbsp;3, Hilt для внедрения зависимостей, Room для базы заметок, Coroutines и&nbsp;StateFlow для состояния. Запись идёт через нативный AudioRecord, 16&nbsp;кГц mono PCM16. Навигация на&nbsp;Navigation Compose. Аналитика на&nbsp;AppMetrica&nbsp;8.2.0, события собираю анонимно: запуск записи, скачивание модели, ошибки распознавания. Поддерживает Android&nbsp;7 и&nbsp;выше, тестировал в&nbsp;основном на&nbsp;Xiaomi Poco&nbsp;M5S.</p><p>Сердце то&nbsp;же: sherpa-onnx&nbsp;1.13.2 и&nbsp;GigaAM&nbsp;v3 e2e CTC (int8). Модель Сбера весит около 320&nbsp;МБ, качается один раз, дальше работает офлайн. На&nbsp;русском она примерно в&nbsp;2,5&nbsp;раза точнее Whisper-large-v3. Длинные записи режу на&nbsp;чанки по&nbsp;22&ndash;25&nbsp;секунд и&nbsp;склеиваю результат. Поверх движка повесил VAD, чтобы не&nbsp;гонять распознавание по&nbsp;тишине. Базу со&nbsp;старыми записями подтягиваю из&nbsp;RN-версии при первом запуске — пользователю не&nbsp;нужно ничего экспортировать руками.</p><p>Что прокачалось по&nbsp;сравнению с&nbsp;RN-версией. Тестов было около шести на&nbsp;Jest, стало 295 на&nbsp;JUnit, Robolectric и&nbsp;Compose&nbsp;UI. Настройки переехали с&nbsp;AsyncStorage на&nbsp;Preferences DataStore: теперь ключи типизированы на&nbsp;этапе компиляции, а&nbsp;не&nbsp;подбираются строкой в&nbsp;рантайме. Темизацию Light, Dark и&nbsp;System собрал на&nbsp;CompositionLocal и&nbsp;Material&nbsp;3 одновременно, чтобы и&nbsp;моя палитра, и&nbsp;системные диалоги выглядели одинаково. Foreground-сервис теперь явный, со&nbsp;своим каналом уведомлений и&nbsp;обработкой отмены. Часовая запись больше не&nbsp;падает, когда телефон уходит в&nbsp;спящий режим.</p><p>Интерфейс остался прежним: список заметок, плавающая кнопка записи, live-волнограмма из&nbsp;44&nbsp;баров в&nbsp;такт громкости, свайп влево удаляет. Свайпы и&nbsp;пульсация теперь сделаны нативно через Compose-анимации вместо Reanimated. Темы переключаются прямо в&nbsp;настройках, включая режим System: приложение слушает системную тему и&nbsp;подхватывает изменение без перезапуска. Лендинг negolosom.ru не&nbsp;трогал — одностраничник с&nbsp;кнопками в&nbsp;RuStore и&nbsp;к&nbsp;контактам, он&nbsp;и&nbsp;так делал работу.',
-    screenshotAlt: 'Лендинг приложения «Не пиши голосовое!»',
-    dateLabel: '22\u00A0апреля 2026',
+      'Android-приложение переводит голос в текст прямо на телефоне: офлайн, без аккаунта и подписки. 16 языков, 18 выпусков, рейтинг 4,9 в RuStore.',
+    h1: '«Не&nbsp;пиши голосовое!»&nbsp;&mdash; приложение для расшифровки речи прямо на&nbsp;телефоне',
+    metaLine: 'Пуртов Роман &middot; 22 апреля 2026 &middot; обновлено 4 октября 2026',
+    body: bodyRu,
+    screenshotAlt: 'Птица-талисман и два экрана приложения «Не пиши голосовое!»',
+    dateLabel: '22 апреля 2026',
   },
   en: {
-    title: '«Ne pishi golosovoe!» — Offline Transcription — Roman Purtov',
-    ogTitle: '«Ne pishi golosovoe!»\u00A0— Mobile App with On-Device Speech Recognition',
+    title: '«Ne pishi golosovoe!» — Offline Voice to Text — Roman Purtov',
+    ogTitle: '«Ne pishi golosovoe!» — an App That Transcribes Speech Right on the Phone',
     description:
-      'Android app that records voice notes and transcribes them on\u00A0the device\u00A0— no cloud, no internet, Russian speech. Version 2 rewritten in\u00A0Kotlin.',
+      'Android app that turns voice into text right on the phone: offline, no account, no subscription. 16 languages, 18 releases, 4.9 rating on RuStore.',
     ogDescription:
-      'Android app that records voice notes and transcribes them on the device — no cloud, no internet, Russian speech. Version 2 rewritten in Kotlin.',
-    h1: '«Ne pishi golosovoe!» — Mobile App with On-Device Speech Recognition',
-    metaLine: 'Roman Purtov &middot; April 22, 2026',
-    body: 'In&nbsp;April I&nbsp;shipped an&nbsp;Android app «Ne pishi golosovoe!» («Don&rsquo;t send voice notes!») to&nbsp;RuStore &mdash; it&nbsp;records voice messages and transcribes them to&nbsp;text. Speak into the mic, get a&nbsp;transcript. All on&nbsp;the device: no&nbsp;cloud, no&nbsp;account, no&nbsp;internet. Voice notes often carry sensitive stuff, and pushing them to&nbsp;someone else&rsquo;s servers is&nbsp;a&nbsp;poor default.</p><p>I&nbsp;built the first version in&nbsp;two days on&nbsp;Expo SDK&nbsp;54 and React Native&nbsp;0.81. It&nbsp;lived for a&nbsp;month. During that month I&nbsp;tuned the chunking, hunted a&nbsp;couple of&nbsp;memory leaks on&nbsp;long recordings, and wrestled with the JS bridge and timers. It&nbsp;became clear: piling more on&nbsp;top of&nbsp;RN meant constantly fighting the layer between the app and the microphone.</p><p>I&nbsp;rewrote everything in&nbsp;Kotlin. The main argument: direct access to&nbsp;AudioRecord and a&nbsp;foreground service with no&nbsp;RN bridge in&nbsp;between. The PCM byte stream now flows from the mic straight into sherpa-onnx, with no&nbsp;serialisation through JS. Fewer layers, fewer places where memory leaks. Testing also got easier &mdash; Robolectric spins up&nbsp;an&nbsp;Android environment without an&nbsp;emulator, so&nbsp;tests run on&nbsp;CI in&nbsp;a&nbsp;couple of&nbsp;minutes. Tooling too: Android Studio&rsquo;s profiler shows where time and memory actually go&nbsp;far more honestly than Flipper ever did with RN.</p><p>The stack: Kotlin&nbsp;2.2.21, Jetpack Compose with Material&nbsp;3, Hilt for dependency injection, Room for the notes database, Coroutines and StateFlow for state. Recording goes through native AudioRecord at&nbsp;16&nbsp;kHz mono PCM16. Navigation runs on&nbsp;Navigation Compose. Analytics through AppMetrica&nbsp;8.2.0, events sent anonymously: recording started, model downloaded, recognition errors. Targets Android&nbsp;7 and up, mostly tested on&nbsp;a&nbsp;Xiaomi Poco&nbsp;M5S.</p><p>The core is&nbsp;the same: sherpa-onnx&nbsp;1.13.2 and Sber&rsquo;s GigaAM&nbsp;v3 e2e CTC (int8). The model weighs around 320&nbsp;MB, downloads once, then runs offline. On&nbsp;Russian it&rsquo;s roughly 2.5&times; more accurate than Whisper-large-v3. Long recordings get chopped into 22&ndash;25&nbsp;second chunks and the transcripts are joined back together. On&nbsp;top of&nbsp;the engine I&nbsp;bolted on&nbsp;a&nbsp;VAD so&nbsp;the recogniser doesn&rsquo;t waste cycles on&nbsp;silence. Old recordings from the RN version get pulled in&nbsp;on&nbsp;first launch &mdash; no&nbsp;manual export needed.</p><p>What got better compared to&nbsp;the RN version. The test count went from about six in&nbsp;Jest to&nbsp;295 across JUnit, Robolectric, and Compose UI. Settings moved from AsyncStorage to&nbsp;Preferences DataStore: keys are now type-checked at&nbsp;compile time rather than picked by&nbsp;string at&nbsp;runtime. Light, Dark, and System theming runs on&nbsp;CompositionLocal and Material&nbsp;3 in&nbsp;parallel, so&nbsp;my&nbsp;own palette and the system dialogs stay consistent. The foreground service is&nbsp;now explicit, with its own notification channel and a&nbsp;proper cancel path. Hour-long recordings no&nbsp;longer crash when the phone goes to&nbsp;sleep.</p><p>The UI stayed the same: a&nbsp;list of&nbsp;notes, a&nbsp;floating record button, a&nbsp;live waveform of&nbsp;44&nbsp;bars pulsing with loudness, swipe-left to&nbsp;delete. Swipes and pulse animations are now native Compose instead of&nbsp;Reanimated. Themes switch right in&nbsp;settings, including a&nbsp;System mode that listens to&nbsp;the OS theme and picks up&nbsp;changes without a&nbsp;restart. I&nbsp;left the negolosom.ru landing alone &mdash; a&nbsp;one-pager with buttons to&nbsp;RuStore and contacts, it&nbsp;was already doing its job.',
-    screenshotAlt: '«Ne pishi golosovoe!» app landing',
+      'Android app that turns voice into text right on the phone: offline, no account, no subscription. 16 languages, 18 releases, 4.9 rating on RuStore.',
+    h1: '«Ne&nbsp;pishi golosovoe!»&nbsp;&mdash; an&nbsp;App That Transcribes Speech Right on&nbsp;the Phone',
+    metaLine: 'Roman Purtov &middot; April 22, 2026 &middot; updated October 4, 2026',
+    body: bodyEn,
+    screenshotAlt: 'The bird mascot and two screens of the «Ne pishi golosovoe!» app',
     dateLabel: 'April 22, 2026',
   },
 };
