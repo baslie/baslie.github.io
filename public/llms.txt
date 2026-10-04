@@ -37,6 +37,7 @@
 
 ## Статьи
 
+- [DHIRA в Томске — лендинг мантра-концерта](https://roman-purtow.ru/articles/dhira-tomsk) (4 октября 2026, roman-purtow.ru)
 - [JS JIG — интернет-магазин производителя рыболовной фурнитуры](https://roman-purtow.ru/articles/js-jig) (24 июля 2026, roman-purtow.ru)
 - [Печь Поликарпова — лендинг печи длительного горения](https://roman-purtow.ru/articles/pech-polikarpova) (22 июля 2026, roman-purtow.ru)
 - [Глазами Шефер — сайт персонального бренда оптометриста](https://roman-purtow.ru/articles/glazami-schaefer) (5 июля 2026, roman-purtow.ru)
