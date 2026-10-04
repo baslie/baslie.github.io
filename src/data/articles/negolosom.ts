@@ -24,7 +24,7 @@ const bodyRu = `<p>«Не&nbsp;пиши голосовое!»&nbsp;&mdash; Andro
 
 <h2>Как развивалось</h2>
 
-<p>Первую версию собрал за&nbsp;2&nbsp;дня на&nbsp;React Native и&nbsp;в&nbsp;апреле выпустил в&nbsp;RuStore. В&nbsp;мае переписал приложение на&nbsp;нативный Kotlin. После этого записи на&nbsp;30&ndash;40&nbsp;минут стали расшифровываться целиком, а&nbsp;распознавание продолжается в&nbsp;фоне.</p>
+<p>Первую версию собрал за&nbsp;2&nbsp;дня на&nbsp;React Native и&nbsp;в&nbsp;апреле выпустил в&nbsp;RuStore. В&nbsp;мае переписал приложение на&nbsp;нативный Kotlin. После этого записи на&nbsp;<span class="whitespace-nowrap">30&ndash;40&nbsp;минут</span> стали расшифровываться целиком, а&nbsp;распознавание продолжается в&nbsp;фоне.</p>
 
 <p>С&nbsp;тех пор обновление выходит каждые пару недель, всего их&nbsp;18. Добавились импорт аудио и&nbsp;видео, поиск по&nbsp;расшифровкам, теги, запись из&nbsp;«шторки» без открытия приложения, дозапись в&nbsp;ту&nbsp;же заметку, субтитры .srt и&nbsp;выгрузка всех записей ZIP-архивом. На&nbsp;длинных записях приложение ставит распознавание на&nbsp;паузу, пока перегретый телефон остывает.</p>
 
@@ -56,7 +56,7 @@ const bodyEn = `<p>«Ne&nbsp;pishi golosovoe!» («Don&rsquo;t send voice notes!
 
 <h2>How it&nbsp;evolved</h2>
 
-<p>I&nbsp;built the first version in&nbsp;2&nbsp;days on&nbsp;React Native and released it&nbsp;on&nbsp;RuStore in&nbsp;April. In&nbsp;May I&nbsp;rewrote the app in&nbsp;native Kotlin. After that, 30&ndash;40&nbsp;minute recordings started getting transcribed in&nbsp;full, and recognition keeps running in&nbsp;the background.</p>
+<p>I&nbsp;built the first version in&nbsp;2&nbsp;days on&nbsp;React Native and released it&nbsp;on&nbsp;RuStore in&nbsp;April. In&nbsp;May I&nbsp;rewrote the app in&nbsp;native Kotlin. After that, <span class="whitespace-nowrap">30&ndash;40&nbsp;minute</span> recordings started getting transcribed in&nbsp;full, and recognition keeps running in&nbsp;the background.</p>
 
 <p>Since then an&nbsp;update ships every couple of&nbsp;weeks, 18&nbsp;so&nbsp;far. They added audio and video import, search across transcripts, tags, recording from the quick settings panel without opening the app, appending to&nbsp;an&nbsp;existing note, .srt subtitles, and exporting all recordings as&nbsp;a&nbsp;ZIP archive. On&nbsp;long recordings the app pauses recognition while an&nbsp;overheated phone cools down.</p>
 
