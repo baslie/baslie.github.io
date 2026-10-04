@@ -74,7 +74,7 @@ export const externalArticleCards: ArticleCardData[] = [
   {
     id: 'autotagmate',
     badge: 'article',
-    image: '/images/articles/autotagmate/cover.png',
+    image: '/images/articles/autotagmate/cover.jpg',
     sourceIcon: '/images/vc-icon.svg',
     sourceName: 'vc.ru',
     datePublished: '2025-03-02',
