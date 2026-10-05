@@ -25,6 +25,8 @@ export interface Article {
   siteDisplay?: string;
   screenshotUrl?: string;
   screenshotFramed?: boolean; // показывать скриншот в прокручиваемом «окне браузера»
+  /** Что описывает кейс в JSON-LD (своё приложение). Без поля — сайт клиента из siteUrl */
+  schemaAbout?: Record<string, unknown>;
   ru: ArticleI18n;
   en: ArticleI18n;
 }

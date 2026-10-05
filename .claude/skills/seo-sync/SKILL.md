@@ -38,8 +38,10 @@ user_invocable: true
 
 Обновить **только** секцию `## Статьи` (остальной файл не трогать). Одна строка на статью, внутренние и внешние вперемешку, сортировка по `datePublished` по убыванию:
 
-- Внутренние: `- [{ru.ogTitle}](https://roman-purtow.ru/articles/{slug}/) ({ru.dateLabel}, roman-purtow.ru)`
-- Внешние: `- [{ru.title}](externalHref) ({ru.dateLabel}, vc.ru)`
+- Внутренние: `- [{ru.ogTitle}](https://roman-purtow.ru/articles/{slug}/): {ru.description} ({ru.dateLabel}, roman-purtow.ru)`
+- Внешние: `- [{ru.title}](externalHref): {ru.description} ({ru.dateLabel}, vc.ru)`
+
+Формат `[название](url): описание` — из спецификации llms.txt: по описанию модель понимает, о чём страница, не открывая её. Ссылки — с завершающим слэшем, как canonical. Ссылка на `llms-full.txt` живёт в отдельной секции `## Полная версия` в конце файла.
 
 В заголовках заменить HTML-сущности на обычные символы (`&nbsp;` → пробел, `&mdash;` → «—» и т. п.).
 

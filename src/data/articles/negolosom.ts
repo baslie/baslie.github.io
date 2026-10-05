@@ -79,6 +79,16 @@ export const negolosom: Article = {
   tech: 'Kotlin, Jetpack Compose, Material 3, Hilt, Room, Kotlin Coroutines, sherpa-onnx 1.13.2, GigaAM v3, Whisper small, Silero VAD, AppMetrica 8.5.1, Рекламная сеть Яндекса',
   siteUrl: 'https://negolosom.ru',
   siteDisplay: 'negolosom.ru',
+  // Рейтинг из RuStore не размечаем: оценки своего продукта правила запрещают
+  schemaAbout: {
+    '@type': 'SoftwareApplication',
+    name: '«Не пиши голосовое!»',
+    operatingSystem: 'Android',
+    applicationCategory: 'UtilitiesApplication',
+    url: 'https://negolosom.ru',
+    downloadUrl: 'https://www.rustore.ru/catalog/app/com.baslie.negolosom',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'RUB' },
+  },
   screenshotUrl: '/images/articles/negolosom/screenshot.jpg',
   ru: {
     title: '«Не пиши голосовое!» — голос в текст офлайн — Роман Пуртов',

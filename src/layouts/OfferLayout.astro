@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro';
 import CornerNav from '../components/CornerNav.astro';
+import { offerGraph } from '../data/schema';
 
 interface Props {
   pageNumber: number;
@@ -9,12 +10,15 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  /** Вилка цены для разметки услуги — только если она названа на самой странице */
+  price?: { min: number; max: number };
 }
 
-const { pageNumber, title, description, ogTitle, ogDescription, ogImage } = Astro.props;
+const { pageNumber, title, description, ogTitle, ogDescription, ogImage, price } = Astro.props;
 
 const BASE_URL = 'https://roman-purtow.ru/offer';
 const pageUrl = `${BASE_URL}/${pageNumber}/`;
+const offerJsonLd = offerGraph(pageUrl, title, description, price);
 ---
 
 <Base
@@ -27,6 +31,7 @@ const pageUrl = `${BASE_URL}/${pageNumber}/`;
   ogImageHeight={1080}
   ogUrl={pageUrl}
   canonical={pageUrl}
+  jsonLd={offerJsonLd}
   noPreload={true}
   lang="ru"
 >

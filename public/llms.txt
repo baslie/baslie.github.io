@@ -1,6 +1,6 @@
 # Роман Пуртов
 
-> Agentic Engineer, маркетолог и UX/UI-дизайнер из Томска (МСК+4). Делаю сайты и пишу к ним код.
+> Маркетолог, UX/UI дизайнер и веб-разработчик из Томска (МСК+4). Работаю как Agentic Engineer: проектирую и пишу код вместе с AI-агентами.
 
 ## Обо мне
 
@@ -33,29 +33,31 @@
 - [Томская Прогулка](https://vk.com/tomsk_progulka): Городской проект
 - [Telegram-канал](https://t.me/purtochka_live): Блог о разработке и дизайне
 
-- [Полная версия для LLM](https://roman-purtow.ru/llms-full.txt)
-
 ## Статьи
 
-- [DHIRA в Томске — лендинг мантра-концерта](https://roman-purtow.ru/articles/dhira-tomsk/) (4 октября 2026, roman-purtow.ru)
-- [FBO Центр — сайт подготовки грузов для Ozon](https://roman-purtow.ru/articles/fbo24/) (1 октября 2026, roman-purtow.ru)
-- [JS JIG — интернет-магазин производителя рыболовной фурнитуры](https://roman-purtow.ru/articles/js-jig/) (24 июля 2026, roman-purtow.ru)
-- [Печь Поликарпова — лендинг печи длительного горения](https://roman-purtow.ru/articles/pech-polikarpova/) (22 июля 2026, roman-purtow.ru)
-- [Глазами Шефер — сайт персонального бренда оптометриста](https://roman-purtow.ru/articles/glazami-schaefer/) (5 июля 2026, roman-purtow.ru)
-- [СибАНАНДА — лендинг ретрита по Крия-йоге под Томском](https://roman-purtow.ru/articles/sibananda-retrit/) (2 июня 2026, roman-purtow.ru)
-- [TikTok Downloader — Android-приложение для скачивания видео из TikTok](https://roman-purtow.ru/articles/tiktok-downloader/) (16 мая 2026, roman-purtow.ru)
-- [ALOEMERO — лендинг скульптурной мастерской из Томска](https://roman-purtow.ru/articles/aloemero/) (12 мая 2026, roman-purtow.ru)
-- [Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»](https://roman-purtow.ru/articles/derevyannie-gryadki/) (4 мая 2026, roman-purtow.ru)
-- [За 2 дня навайбкодил офлайн-расшифровщик голосовых под Android](https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android) (23 апреля 2026, vc.ru)
-- [«Не пиши голосовое!» — приложение для расшифровки речи прямо на телефоне](https://roman-purtow.ru/articles/negolosom/) (22 апреля 2026, roman-purtow.ru)
-- [ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании](https://roman-purtow.ru/articles/ehomestroy/) (21 апреля 2026, roman-purtow.ru)
-- [Виджет «Таланты и профессии» для Академии ПрофМастерства](https://roman-purtow.ru/articles/academy-profmasterstva-widget/) (16 марта 2026, roman-purtow.ru)
-- [Михаил Виноградов — портфолио фотографа и видеографа](https://roman-purtow.ru/articles/mike-vinogradov/) (7 марта 2026, roman-purtow.ru)
-- [Нутрилигал — сайт консалтинговой компании по регистрации продукции](https://roman-purtow.ru/articles/nutrilegal/) (28 февраля 2026, roman-purtow.ru)
-- [TrueDogAge — калькулятор возраста собаки по научной формуле](https://roman-purtow.ru/articles/truedogage/) (10 января 2026, roman-purtow.ru)
-- [ЭкоHomeСтрой — лендинг строительной компании](https://roman-purtow.ru/articles/sandwich-ehomestroy/) (30 декабря 2025, roman-purtow.ru)
-- [Korea Motors — лендинг по заказу авто из Южной Кореи](https://roman-purtow.ru/articles/korea-motors/) (20 декабря 2025, roman-purtow.ru)
-- [Ретрознак — лендинг производителя адресных табличек](https://roman-purtow.ru/articles/retroznak/) (1 ноября 2025, roman-purtow.ru)
-- [Расширение для Chrome для структурирования промптов](https://vc.ru/chatgpt/1841565-rasshirenie-dlya-chrome-dlya-strukturirovaniya-promptov) (2 марта 2025, vc.ru)
-- [— Говорите, говорите, я вас внематочно слухаю!](https://vc.ru/life/1822431-govorite-govorite-ya-vas-vnematochno-sluhayu) (19 февраля 2025, vc.ru)
-- [Как запускалась «Берлога» и как зарабатывались миллионы?](https://roman-purtow.ru/articles/berloga/) (12 апреля 2022, roman-purtow.ru)
+- [DHIRA в Томске — лендинг мантра-концерта](https://roman-purtow.ru/articles/dhira-tomsk/): Лендинг мантра-концерта DHIRA в Томске для Mantra Yoga Tomsk: всё о вечере на одной странице, а билет — через мессенджер или звонок организатору. (4 октября 2026, roman-purtow.ru)
+- [FBO Центр — сайт подготовки грузов для Ozon](https://roman-purtow.ru/articles/fbo24/): Сайт FBO Центра, который готовит грузы для складов Ozon: дизайн владельца сервиса, перенесённый в код до мелочей, и автодеплой на Beget. (1 октября 2026, roman-purtow.ru)
+- [JS JIG — интернет-магазин производителя рыболовной фурнитуры](https://roman-purtow.ru/articles/js-jig/): Интернет-магазин рыболовной фурнитуры JS JIG из Ростова-на-Дону: витрина без сборки на чистом HTML, CSS и JS, корзина, Ozon Pay и админка на Laravel. (24 июля 2026, roman-purtow.ru)
+- [Печь Поликарпова — лендинг печи длительного горения](https://roman-purtow.ru/articles/pech-polikarpova/): Лендинг стальной печи длительного горения из Томска: запатентованная топка с перегородкой, десять экранов от истории изобретения до оффера. (22 июля 2026, roman-purtow.ru)
+- [Глазами Шефер — сайт персонального бренда оптометриста](https://roman-purtow.ru/articles/glazami-schaefer/): Сайт персонального бренда оптометриста Татьяны Шефер: лендинг с тремя треками аудитории, биография-лонгрид из девяти глав и PHP-форма заявок. (5 июля 2026, roman-purtow.ru)
+- [СибАНАНДА — лендинг ретрита по Крия-йоге под Томском](https://roman-purtow.ru/articles/sibananda-retrit/): Лендинг первого в Сибири ретрита по Крия-йоге «СибАНАНДА» — 7–9 августа 2026 на Кедровой заимке под Томском. Программа, наставники и регистрация. (2 июня 2026, roman-purtow.ru)
+- [TikTok Downloader — Android-приложение для скачивания видео из TikTok](https://roman-purtow.ru/articles/tiktok-downloader/): TikTok Downloader — Android-приложение в RuStore: скачивает видео без водяных знаков, до Full HD, аудио в MP3. Бесплатно, без рекламы и подписок. (16 мая 2026, roman-purtow.ru)
+- [ALOEMERO — лендинг скульптурной мастерской из Томска](https://roman-purtow.ru/articles/aloemero/): Сайт-визитка скульптурной мастерской ALOEMERO из Томска: парковая и интерьерная скульптура, барельефы, фигуры для фонтанов. Галерея на 12 работ. (12 мая 2026, roman-purtow.ru)
+- [Деревянные грядки — лендинг производителя мини-теплиц «ДекорДом»](https://roman-purtow.ru/articles/derevyannie-gryadki/): Лендинг с тёмно-коричневым дизайном для томской компании «ДекорДом» — высокие деревянные грядки и парники-домики под ключ. (4 мая 2026, roman-purtow.ru)
+- [За 2 дня навайбкодил офлайн-расшифровщик голосовых под Android](https://vc.ru/life/2882180-oflajn-rasshifrovshchik-golosovykh-soobshcheniy-dlya-android): Вроде работает. Ниже поделюсь предысторией. (23 апреля 2026, vc.ru)
+- [«Не пиши голосовое!» — приложение для расшифровки речи прямо на телефоне](https://roman-purtow.ru/articles/negolosom/): Android-приложение переводит голос в текст прямо на телефоне: офлайн, без аккаунта и подписки. 16 языков, 18 выпусков, рейтинг 4,9 в RuStore. (22 апреля 2026, roman-purtow.ru)
+- [ЭкоHomeСтрой 2.0 — редизайн сайта строительной компании](https://roman-purtow.ru/articles/ehomestroy/): Редизайн основного сайта ЭкоHomeСтрой — строительство домов и бань из СИП-панелей в Москве и Московской области с 2014 года. (21 апреля 2026, roman-purtow.ru)
+- [Виджет «Таланты и профессии» для Академии ПрофМастерства](https://roman-purtow.ru/articles/academy-profmasterstva-widget/): Интерактивный виджет профориентации на основе натальной карты: квиз, PDF-отчёт, интеграция с GetCourse и встраивание на любой сайт (16 марта 2026, roman-purtow.ru)
+- [Михаил Виноградов — портфолио фотографа и видеографа](https://roman-purtow.ru/articles/mike-vinogradov/): Портфолио для travel-фотографа и видеографа: бенто-грид с галереями, лайтбокс, scroll-анимации, двуязычный интерфейс на Astro и Tailwind CSS v4 (7 марта 2026, roman-purtow.ru)
+- [Нутрилигал — сайт консалтинговой компании по регистрации продукции](https://roman-purtow.ru/articles/nutrilegal/): Нутрилигал — консалтинговая компания, которая помогает с государственной регистрацией продукции: БАД, спортивное питание, получение СГР. (28 февраля 2026, roman-purtow.ru)
+- [TrueDogAge — калькулятор возраста собаки по научной формуле](https://roman-purtow.ru/articles/truedogage/): Веб-приложение, которое рассчитывает «человеческий» возраст собаки по эпигенетической формуле учёных из Калифорнийского университета. (10 января 2026, roman-purtow.ru)
+- [ЭкоHomeСтрой — лендинг строительной компании](https://roman-purtow.ru/articles/sandwich-ehomestroy/): Лендинг для компании «ЭкоHomeСтрой» — строительство быстровозводимых зданий из сэндвич-панелей в Москве и Московской области. (30 декабря 2025, roman-purtow.ru)
+- [Korea Motors — лендинг по заказу авто из Южной Кореи](https://roman-purtow.ru/articles/korea-motors/): Лендинг для компании, которая импортирует автомобили из Южной Кореи в Россию: от подбора до доставки за 7 дней. (20 декабря 2025, roman-purtow.ru)
+- [Ретрознак — лендинг производителя адресных табличек](https://roman-purtow.ru/articles/retroznak/): Лендинг с интерактивным конструктором для компании «Ретрознак» из Томска — дизайнерские адресные таблички с LED-подсветкой. (1 ноября 2025, roman-purtow.ru)
+- [Расширение для Chrome для структурирования промптов](https://vc.ru/chatgpt/1841565-rasshirenie-dlya-chrome-dlya-strukturirovaniya-promptov): Опубликовал AutoTagMate — бесплатное расширение для Chrome для автозакрытия тегов. Удобно использовать в том же ChatGPT, Claude AI и проч., чтобы выделять части промпта отдельными «тегами». (2 марта 2025, vc.ru)
+- [— Говорите, говорите, я вас внематочно слухаю!](https://vc.ru/life/1822431-govorite-govorite-ya-vas-vnematochno-sluhayu): В коммуникации удобство собеседника важно — факт 100%-й. Поэтому, если мои голосовые в Телеге длятся больше минуты, то перед отправкой собеседнику прогоняю их через нейросеть. (19 февраля 2025, vc.ru)
+- [Как запускалась «Берлога» и как зарабатывались миллионы?](https://roman-purtow.ru/articles/berloga/): Как запускалась «Берлога» и как зарабатывались миллионы? История создания интернет-магазина премиальных эко-продуктов. (12 апреля 2022, roman-purtow.ru)
+
+## Полная версия
+
+- [Полная версия для LLM](https://roman-purtow.ru/llms-full.txt): все кейсы целиком, с технологиями и ссылками на проекты

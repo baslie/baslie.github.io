@@ -1,8 +1,8 @@
 // Общие узлы Schema.org. Главная, статьи и запасной блок в Base собирают граф
 // из одних и тех же кусков, чтобы Person и WebSite не расходились между страницами.
 import { SITE } from '../i18n/utils';
-import { htmlLang, type Lang } from '../i18n/ui';
-import { vcardSocials, vcardLinks } from './vcard';
+import { htmlLang, ui, type Lang } from '../i18n/ui';
+import { vcardSocials, vcardLinks, vcardContacts } from './vcard';
 import type { Article } from './articles';
 
 export const PERSON_ID = `${SITE}/#person`;
@@ -38,6 +38,9 @@ const sameAs = [
   ...vcardLinks.filter((l) => l.type === 'portfolio').map((l) => l.href),
 ];
 
+// Почта и телефон видны в визитке на главной — берём оттуда же
+const contact = (type: string) => vcardContacts.find((c) => c.type === type)?.copy;
+
 export function websiteNode() {
   return {
     '@type': 'WebSite',
@@ -68,6 +71,12 @@ export function personNode(lang: Lang) {
     jobTitle: ru
       ? 'Маркетолог, UX/UI дизайнер и веб-разработчик'
       : 'Marketer, UX/UI Designer & Web Developer',
+    description: ui[lang]['site.metaDescription'],
+    knowsAbout: ru
+      ? ['Веб-разработка', 'UX/UI дизайн', 'Интернет-маркетинг', 'Agentic Engineering']
+      : ['Web development', 'UX/UI design', 'Internet marketing', 'Agentic Engineering'],
+    email: contact('mail'),
+    telephone: contact('phone'),
     address: {
       '@type': 'PostalAddress',
       addressLocality: ru ? 'Томск' : 'Tomsk',
@@ -152,9 +161,12 @@ export function articleGraph(article: Article, lang: Lang, canonical: string) {
         publisher: { '@id': PERSON_ID },
         mainEntityOfPage: { '@id': `${canonical}#webpage` },
         isPartOf: { '@id': WEBSITE_ID },
-        ...(article.siteUrl
-          ? { about: { '@type': 'WebSite', name: article.siteDisplay, url: article.siteUrl } }
-          : {}),
+        // Что описывает кейс: своё приложение — из данных кейса, иначе сайт клиента
+        ...(article.schemaAbout
+          ? { about: { ...article.schemaAbout, author: { '@id': PERSON_ID } } }
+          : article.siteUrl
+            ? { about: { '@type': 'WebSite', name: article.siteDisplay, url: article.siteUrl } }
+            : {}),
       },
       {
         '@type': 'BreadcrumbList',
@@ -163,6 +175,55 @@ export function articleGraph(article: Article, lang: Lang, canonical: string) {
           { '@type': 'ListItem', position: 1, name: lang === 'en' ? 'Home' : 'Главная', item: `${SITE}${homePath}` },
           { '@type': 'ListItem', position: 2, name: plainText(l.h1), item: canonical },
         ],
+      },
+    ],
+  };
+}
+
+/** Граф страниц оффера: страница и услуга. Цену даём, только если она видна на странице. */
+export function offerGraph(
+  canonical: string,
+  title: string,
+  description: string,
+  price?: { min: number; max: number },
+) {
+  const serviceId = `${SITE}/offer/#service`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      websiteNode(),
+      personNode('ru'),
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        url: canonical,
+        name: plainText(title),
+        description: plainText(description),
+        inLanguage: htmlLang.ru,
+        isPartOf: { '@id': WEBSITE_ID },
+        about: { '@id': serviceId },
+      },
+      {
+        '@type': 'Service',
+        '@id': serviceId,
+        name: 'Разработка сайтов и лендингов',
+        serviceType: 'Разработка лендингов',
+        provider: { '@id': PERSON_ID },
+        areaServed: { '@type': 'Country', name: 'Россия' },
+        url: `${SITE}/offer/1/`,
+        ...(price
+          ? {
+              offers: {
+                '@type': 'Offer',
+                priceSpecification: {
+                  '@type': 'PriceSpecification',
+                  minPrice: price.min,
+                  maxPrice: price.max,
+                  priceCurrency: 'RUB',
+                },
+              },
+            }
+          : {}),
       },
     ],
   };
