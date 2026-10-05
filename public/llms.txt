@@ -24,10 +24,6 @@
 - [Портфолио](https://experts.tilda.cc/roman-purtow): Tilda-эксперт
 - [Резюме](https://drive.google.com/drive/folders/12dIbY-UeM19LdSKmtvPeecExkNq2hgUx?usp=sharing)
 
-## Услуги
-
-- [Лендинг за 2 дня — 35 000 ₽](https://roman-purtow.ru/offer/1): Лендинг на чистом коде за 2 рабочих дня. Дизайн с нуля, адаптивная вёрстка, форма заявки, SEO-основа. Воронка /offer/1 → /offer/2 → /offer/3 → /offer/4 описывает проблемы выбора подрядчика, подход автора, этапы работы и стоимость.
-
 ## Проекты
 
 - [Томская Прогулка](https://vk.com/tomsk_progulka): Городской проект

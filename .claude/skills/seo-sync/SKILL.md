@@ -23,7 +23,7 @@ user_invocable: true
 
 Источник данных о статьях: `src/data/articles/{slug}.ts`, реестр — `src/data/articles/index.ts` (массив `articles` — внутренние статьи, `externalArticleCards` — внешние публикации на vc.ru). Страницы рендерятся динамическими роутами `src/pages/articles/[slug].astro` и `src/pages/en/articles/[slug].astro` — отдельных `.astro`-файлов на статью нет, поэтому **новая статья попадает в sitemap автоматически**: `astro.config.mjs` импортирует `articles` и проставляет `lastmod` из `dateModified || datePublished`.
 
-Скрытие разделов от индексации делается **исключением из sitemap** через `EXCLUDED_PREFIXES` в `astro.config.mjs` (сейчас: `/archive/`, `/glavred-calls/`, `/helpa-research/`), а не через Disallow в robots.txt.
+Скрытие разделов от индексации делается **исключением из sitemap** через `EXCLUDED_PREFIXES` в `astro.config.mjs` (сейчас: `/archive/`, `/glavred-calls/`, `/helpa-research/`, `/offer/`), а не через Disallow в robots.txt.
 
 ---
 

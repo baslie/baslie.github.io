@@ -3,7 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { articles } from './src/data/articles/index';
 
-const EXCLUDED_PREFIXES = ['/archive/', '/glavred-calls/', '/helpa-research/'];
+// /offer/ — рекламная воронка: по прямой ссылке открывается, в поиск не попадает
+const EXCLUDED_PREFIXES = ['/archive/', '/glavred-calls/', '/helpa-research/', '/offer/'];
 
 const articleLastmod = new Map(
   articles.map((a) => [a.slug, a.dateModified || a.datePublished]),
@@ -40,9 +41,6 @@ export default defineConfig({
           item.priority = 1.0;
           item.changefreq = 'monthly';
           item.lastmod = homeLastmod;
-        } else if (url.pathname.startsWith('/offer/')) {
-          item.priority = 0.8;
-          item.changefreq = 'monthly';
         } else if (
           url.pathname.startsWith('/articles/') ||
           url.pathname.startsWith('/en/articles/')
