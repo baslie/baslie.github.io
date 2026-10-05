@@ -8,6 +8,8 @@ const EXCLUDED_PREFIXES = ['/archive/', '/glavred-calls/', '/helpa-research/'];
 const articleLastmod = new Map(
   articles.map((a) => [a.slug, a.dateModified || a.datePublished]),
 );
+// Главная — лента кейсов, поэтому она меняется вместе с самым свежим из них
+const homeLastmod = [...articleLastmod.values()].sort().at(-1);
 
 export default defineConfig({
   site: 'https://roman-purtow.ru',
@@ -37,6 +39,7 @@ export default defineConfig({
         if (url.pathname === '/' || url.pathname === '/en/') {
           item.priority = 1.0;
           item.changefreq = 'monthly';
+          item.lastmod = homeLastmod;
         } else if (url.pathname.startsWith('/offer/')) {
           item.priority = 0.8;
           item.changefreq = 'monthly';

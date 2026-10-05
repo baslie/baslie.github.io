@@ -32,6 +32,18 @@ npm run og       # Пересобрать og-картинки кейсов (по
 
 ---
 
+## RULE: SEO и разметка (seo-geo-tools)
+
+- Сайт подключён к тулкиту `C:\Users\Roman\Desktop\seo-geo-tools` как проект `roman-purtow`
+  (Вебмастер, IndexNow). Команды CLI запускать из каталога тулкита: `uv run seo-geo ... --project roman-purtow`.
+  Изменения в тулките коммитятся и пушатся в его собственный репозиторий.
+- `public/it8wtjeZdY9fPUl7uSBc2ptekgUiayVf.txt` — ключ IndexNow, не удалять.
+- После деплоя заметных правок: `/seo-geo:publish` (IndexNow и переобход в Яндексе).
+- JSON-LD собирается только в `src/data/schema.ts` (Person, WebSite, граф статьи и страницы).
+  Узлы связаны через `@id`, поэтому разметку не писать руками в страницах. `sameAs` берётся из `src/data/vcard.ts`.
+
+---
+
 ## RULE: Обложки карточек (cover.jpg)
 
 Все обложки ленты «Кейсы и статьи» сгенерированы одной серией. Стиль `scene`: фотореалистичный

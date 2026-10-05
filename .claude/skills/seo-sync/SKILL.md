@@ -38,7 +38,7 @@ user_invocable: true
 
 Обновить **только** секцию `## Статьи` (остальной файл не трогать). Одна строка на статью, внутренние и внешние вперемешку, сортировка по `datePublished` по убыванию:
 
-- Внутренние: `- [{ru.ogTitle}](https://roman-purtow.ru/articles/{slug}) ({ru.dateLabel}, roman-purtow.ru)`
+- Внутренние: `- [{ru.ogTitle}](https://roman-purtow.ru/articles/{slug}/) ({ru.dateLabel}, roman-purtow.ru)`
 - Внешние: `- [{ru.title}](externalHref) ({ru.dateLabel}, vc.ru)`
 
 В заголовках заменить HTML-сущности на обычные символы (`&nbsp;` → пробел, `&mdash;` → «—» и т. п.).
@@ -52,7 +52,7 @@ user_invocable: true
 ```
 ### {ru.ogTitle}
 
-- **URL:** https://roman-purtow.ru/articles/{slug}
+- **URL:** https://roman-purtow.ru/articles/{slug}/
 - **Дата:** {ru.dateLabel}
 - **Описание:** {ru.description}
 - **Сайт проекта:** {siteUrl}

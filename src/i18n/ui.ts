@@ -24,7 +24,7 @@ export const ui = {
       'Маркетолог, UX/UI дизайнер и веб-разработчик из Томска. Делаю лендинги и сайты на чистом коде — от дизайна до деплоя',
     'profile.name': 'Роман\u00A0Пуртов',
     // \u00A0 — неразрывный пробел: предлоги и союзы не остаются висеть в конце строки
-    'profile.about': `Делаю сайты, мобильные приложения и\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сложные IT-системы</a>. В\u00A0душе\u00A0— <a href="/articles/berloga" class="inline-link">маркетолог</a> из\u00A0тайги. Томск, МСК+4.`,
+    'profile.about': `Делаю сайты, мобильные приложения и\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">сложные IT-системы</a>. В\u00A0душе\u00A0— <a href="/articles/berloga/" class="inline-link">маркетолог</a> из\u00A0тайги. Томск, МСК+4.`,
     'profile.joke': 'Берусь за\u00A0всё, за\u00A0что берусь.',
 
     'vcard.contactsLabel': 'СВЯЗАТЬСЯ',
@@ -103,7 +103,7 @@ export const ui = {
     'site.metaDescription':
       'Marketer, UX/UI Designer and Web Developer from Tomsk. Building landing pages and websites with clean code — from design to deploy',
     'profile.name': 'Roman\u00A0Purtov',
-    'profile.about': `I make websites, mobile apps and\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">complex IT systems</a>. At heart, I'm a\u00A0<a href="/en/articles/berloga" class="inline-link">marketer</a> from the Siberian taiga. Tomsk, UTC+7.`,
+    'profile.about': `I make websites, mobile apps and\u00A0<a href="https://github.com/baslie" target="_blank" rel="nofollow noopener noreferrer" class="inline-link">complex IT systems</a>. At heart, I'm a\u00A0<a href="/en/articles/berloga/" class="inline-link">marketer</a> from the Siberian taiga. Tomsk, UTC+7.`,
     'profile.joke': 'I deliver on\u00A0everything I\u00A0commit to.',
 
     'vcard.contactsLabel': 'GET IN TOUCH',

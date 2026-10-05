@@ -859,6 +859,7 @@ html.lenis {
 
 .article-body img {
     width: 100%;
+    height: auto;
     border-radius: var(--radius);
     margin: var(--article-spacing-lg) 0;
 }

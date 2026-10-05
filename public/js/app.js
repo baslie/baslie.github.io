@@ -80,13 +80,12 @@ function initBackgroundVideo() {
     const video = document.getElementById('background-video');
     if (!video) return;
 
+    // На мобильных и при reduced-motion видео скрыто стилями, фон рисует
+    // body::before. Не трогаем <video>, иначе браузер скачает 3 МБ впустую.
     // WCAG 2.2.2: зацикленное видео на весь экран — это движение дольше 5 секунд.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        video.removeAttribute('autoplay');
-        video.pause();
-        return;
-    }
+    if (window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches) return;
 
+    video.poster = video.dataset.poster;
     video.play().catch(e => console.log('Autoplay blocked:', e));
 
     document.addEventListener('click', () => {
