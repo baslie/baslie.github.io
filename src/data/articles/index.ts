@@ -7,6 +7,7 @@ import { academyProfmasterstvaWidget } from './academy-profmasterstva-widget';
 import { derevyannieGryadki } from './derevyannie-gryadki';
 import { dhiraTomsk } from './dhira-tomsk';
 import { ehomestroy } from './ehomestroy';
+import { fbo24 } from './fbo24';
 import { glazamiSchaefer } from './glazami-schaefer';
 import { jsJig } from './js-jig';
 import { koreaMotors } from './korea-motors';
@@ -24,6 +25,7 @@ export type { Article, ArticleI18n, ArticleCardData } from './_types';
 
 export const articles: Article[] = [
   dhiraTomsk,
+  fbo24,
   jsJig,
   pechPolikarpova,
   glazamiSchaefer,
