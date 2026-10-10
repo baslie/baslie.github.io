@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "og": "node scripts/build-og-images.mjs"
+    "og": "node scripts/build-og-images.mjs",
+    "covers": "node scripts/import-covers.mjs && npm run og"
   },
   "repository": {
     "type": "git",

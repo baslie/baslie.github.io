@@ -12,6 +12,7 @@ npm run dev      # Dev-сервер с HMR
 npm run build    # Продакшн-сборка в dist/
 npm run preview  # Превью продакшн-билда
 npm run og       # Пересобрать og-картинки кейсов (после замены cover.jpg)
+npm run covers   # Забрать обложки из covers-incoming/ в cover.jpg 1600×900, затем og
 ```
 
 **Структура:**
@@ -22,6 +23,7 @@ npm run og       # Пересобрать og-картинки кейсов (по
 - `src/styles/input.css` — исходный Tailwind CSS
 - `public/` — статические ассеты (images, videos, js/app.js, CNAME и др.)
 - `scripts/build-og-images.mjs` — генератор og.jpg 1200×630 из cover.jpg
+- `scripts/import-covers.mjs` — забирает обложки из `covers-incoming/` (их кладёт движок генерации)
 
 **Важно:**
 - `dist/` — результат сборки, **не коммитится** (в .gitignore)
@@ -53,7 +55,8 @@ npm run og       # Пересобрать og-картинки кейсов (по
 
 - Новый кейс: сначала положи в `public/images/articles/<slug>/cover.jpg` скриншот первого
   экрана. Затем через скилл `royal-techno` сделай обложку в стиле серии. `rt previews apply`
-  сама заменит `cover.jpg` и запустит `npm run og`.
+  положит выбранную картинку в полном размере в `covers-incoming/<slug>.jpg` (в git не попадает).
+  Затем здесь `npm run covers`: ужмёт её до `cover.jpg` 1600×900 и пересоберёт `og.jpg`.
 - Не подкладывай вместо обложки сырой скриншот: он выбьется из серии.
 - Исходные скриншоты, на которых построены обложки, лежат в движке в `previews/originals/`.
 
