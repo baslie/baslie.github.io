@@ -1,0 +1,11 @@
+---
+import { offerSlots } from '../../data/offer-slots';
+---
+
+<!-- Скрыт, пока src/scripts/offer-slots.ts не отрисует неделю; при ошибке так и остаётся скрытым -->
+<section class="o3-slots" data-offer-slots data-config={JSON.stringify(offerSlots)} aria-label="Свободные слоты на неделе" hidden>
+  <p class="o3-slots-counter" data-slots-counter></p>
+  <div class="o3-slots-meter" aria-hidden="true"><span data-slots-meter></span></div>
+  <div class="o3-slots-grid" data-slots-grid></div>
+  <p class="o3-slots-hint">Нажмите на свободное время, чтобы выбрать его в заявке. Время {offerSlots.timeZoneLabel}.</p>
+</section>

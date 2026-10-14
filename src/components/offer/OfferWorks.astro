@@ -1,0 +1,42 @@
+---
+import { getArticleBySlug } from '../../data/articles';
+
+// Работы для страницы 3: slug кейса и короткий комментарий
+const works = [
+  {
+    slug: 'pech-polikarpova',
+    name: 'Печь Поликарпова',
+    note: 'Инженерную идею печи объяснили за десять экранов: от истории изобретения до патента и инструкции по растопке.',
+  },
+  {
+    slug: 'glazami-schaefer',
+    name: 'Глазами Шефер',
+    note: 'Сайт личного бренда оптометриста: три сценария для трёх аудиторий и 50 итераций лендинга за две недели.',
+  },
+  {
+    slug: 'korea-motors',
+    name: 'Korea Motors',
+    note: 'Лендинг заказа авто из Южной Кореи. Главная цель — привести человека в Telegram-канал компании.',
+  },
+]
+  .map((w) => ({ ...w, article: getArticleBySlug(w.slug) }))
+  .filter((w) => w.article);
+---
+
+<div class="o3-works">
+  {works.map((w) => (
+    <a class="o3-work" href={`/articles/${w.slug}/`}>
+      <img
+        class="o3-work-thumb"
+        src={w.article!.image}
+        alt={`Обложка кейса ${w.name}`}
+        width="1600"
+        height="900"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="o3-work-name">{w.name}</span>
+      <span class="o3-work-note">{w.note}</span>
+    </a>
+  ))}
+</div>
