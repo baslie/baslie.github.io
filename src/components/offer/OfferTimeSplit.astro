@@ -1,5 +1,6 @@
 ---
-// Инфографика «на что уходит время»: доля смыслов раньше и сейчас
+// Инфографика «на что уходит время»: доля смыслов раньше и сейчас.
+// Две колонки, в каждой полоса из двух отрезков и подписи ровно под ними
 const rows = [
   { label: 'Раньше', think: 18, thinkText: '15–20%', doText: '80–85%' },
   { label: 'Сейчас', think: 80, thinkText: 'около 80%', doText: 'около 20%', accent: true },
@@ -8,10 +9,14 @@ const rows = [
 
 <figure class="o3-timesplit">
   {rows.map((row) => (
-    <div class="o3-timesplit-row" aria-hidden="true">
+    <div class="o3-timesplit-col" aria-hidden="true">
       <span class:list={['o3-timesplit-label', { 'is-accent': row.accent }]}>{row.label}</span>
-      <div class="o3-timesplit-bar"><span style={`width: ${row.think}%`}></span></div>
-      <span class="o3-timesplit-caption">смыслы {row.thinkText} · вёрстка и запуск {row.doText}</span>
+      <div class="o3-timesplit-track" style={`grid-template-columns: minmax(0, ${row.think}fr) minmax(0, ${100 - row.think}fr)`}>
+        <span class="o3-timesplit-seg is-think"></span>
+        <span class="o3-timesplit-seg is-do"></span>
+        <span class="o3-timesplit-note is-think"><b>{row.thinkText}</b>смыслы</span>
+        <span class="o3-timesplit-note is-do"><b>{row.doText}</b>вёрстка и запуск</span>
+      </div>
     </div>
   ))}
   <div class="sr-only">

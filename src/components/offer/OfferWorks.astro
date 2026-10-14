@@ -13,12 +13,12 @@ const works = [
   {
     slug: 'glazami-schaefer',
     name: 'Глазами Шефер',
-    note: 'Сайт личного бренда оптометриста: три сценария для трёх аудиторий и 50 итераций лендинга за две недели.',
+    note: 'Сайт личного бренда оптометриста: три сценария для трёх аудиторий и 50 итераций сайта за две недели.',
   },
   {
     slug: 'korea-motors',
     name: 'Korea Motors',
-    note: 'Лендинг заказа авто из Южной Кореи. Главная цель — привести человека в Telegram-канал компании.',
+    note: 'Сайт заказа авто из Южной Кореи. Главная цель — привести человека в Telegram-канал компании.',
   },
   {
     slug: 'nutrilegal',
@@ -35,10 +35,15 @@ const items = await Promise.all(
     return { ...w, src: article.screenshotUrl, width, height };
   }),
 );
+
+// Высота всех окон — по самому короткому скриншоту, длинные листаются внутри
+const shown = items.filter(Boolean);
+const shortest = shown.reduce((a, b) => (b!.height! / b!.width! < a!.height! / a!.width! ? b : a), shown[0]);
+const shotRatio = shortest ? `${shortest.width} / ${shortest.height}` : undefined;
 ---
 
-<div class="o3-works">
-  {items.filter(Boolean).map((w) => (
+<div class="o3-works" style={shotRatio && `--o3-shot-ratio: ${shotRatio}`}>
+  {shown.map((w) => (
     <div class="o3-work">
       <figure class="o3-browser">
         <div class="o3-browser-bar" aria-hidden="true">

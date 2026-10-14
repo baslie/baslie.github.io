@@ -176,6 +176,11 @@ body {
   width: 100%;
 }
 
+/* Подзаголовки внутри текста отделяют смысловые блоки */
+.o3-body > .o3-subheading {
+  margin: 1.75rem 0 0.5rem;
+}
+
 /* ========================================
    Important Note callout (page 4)
    ======================================== */
@@ -367,18 +372,22 @@ body {
    Time split infographic (page 3)
    ======================================== */
 .o3-timesplit {
-  margin: 1.25rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
+  margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
 }
 
-.o3-timesplit-row {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  column-gap: 0.75rem;
-  row-gap: 0.3rem;
-  align-items: center;
+@media (max-width: 480px) {
+  .o3-timesplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+.o3-timesplit-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .o3-timesplit-label {
@@ -391,27 +400,53 @@ body {
   color: var(--color-offer-accent);
 }
 
-.o3-timesplit-bar {
-  height: 10px;
-  border-radius: 9999px;
+/* Полоса и подписи в одной сетке: подпись стоит ровно под своим отрезком */
+.o3-timesplit-track {
+  display: grid;
+  grid-template-rows: 10px auto;
+  column-gap: 3px;
+  row-gap: 0.45rem;
+}
+
+.o3-timesplit-seg {
+  grid-row: 1;
   background: #e5e5e4;
-  overflow: hidden;
+  border-radius: 0 9999px 9999px 0;
 }
 
-.o3-timesplit-bar span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
+.o3-timesplit-seg.is-think {
   background: var(--color-offer-accent);
+  border-radius: 9999px 0 0 9999px;
 }
 
-.o3-timesplit-caption {
-  grid-column: 2;
+.o3-timesplit-note {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
   font-size: 0.8125rem;
+  line-height: 1.3;
   color: var(--color-text-muted);
+  white-space: nowrap;
 }
 
-.dark .o3-timesplit-bar {
+/* Подпись второго отрезка прижата к концу полосы: с узкого отрезка она выходит влево, а не за край */
+.o3-timesplit-note.is-do {
+  justify-self: end;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.o3-timesplit-note b {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.o3-timesplit-note.is-think b {
+  color: var(--color-offer-accent);
+}
+
+.dark .o3-timesplit-seg.is-do {
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -467,7 +502,8 @@ body {
 .o3-browser-bar span:nth-child(3) { background: #28c840; }
 
 .o3-browser-scroll {
-  height: 22rem;
+  /* Пропорции самого короткого скриншота задаёт OfferWorks.astro */
+  aspect-ratio: var(--o3-shot-ratio, 16 / 10);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
