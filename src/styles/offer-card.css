@@ -185,8 +185,10 @@ body {
 .o3-body .o3-numbered {
   list-style: none;
   counter-reset: o3-num;
-  margin: 0 0 0.75rem;
-  padding: 0;
+  margin: 1.25rem 0;
+  padding: 1.25rem 1.5rem;
+  border: 3px solid var(--color-offer-accent);
+  border-radius: 1rem;
 }
 
 .o3-body .o3-numbered li {
@@ -194,6 +196,10 @@ body {
   position: relative;
   padding-left: 2.25rem;
   margin-bottom: 0.75rem;
+}
+
+.o3-body .o3-numbered li:last-child {
+  margin-bottom: 0;
 }
 
 .o3-body .o3-numbered li::before {
@@ -395,9 +401,9 @@ body {
    ======================================== */
 .o3-timesplit {
   margin: 1.5rem 0;
-  padding: 1.1rem 1.25rem 1.2rem;
-  border-radius: 0.75rem;
-  background: rgba(0, 0, 0, 0.04);
+  padding: 1.25rem 1.5rem;
+  border: 3px solid var(--color-offer-accent);
+  border-radius: 1rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem 2rem;
@@ -469,10 +475,6 @@ body {
 
 .o3-timesplit-note.is-think b {
   color: var(--color-offer-accent);
-}
-
-.dark .o3-timesplit {
-  background: rgba(255, 255, 255, 0.05);
 }
 
 .dark .o3-timesplit-seg.is-do {
