@@ -24,7 +24,7 @@ const urlParams = new URLSearchParams(utmSearch);
 
 const form = document.querySelector<HTMLFormElement>('.o3-form');
 
-// Выбор времени в блоке слотов (src/scripts/offer-slots.ts) попадает в заявку
+// Выбор дня в блоке слотов (src/scripts/offer-slots.ts) попадает в заявку
 document.addEventListener('offer:slot', (e) => {
   const slot = (e as CustomEvent<string>).detail;
   const input = document.querySelector<HTMLInputElement>('#o3-slot');
@@ -32,7 +32,7 @@ document.addEventListener('offer:slot', (e) => {
   if (!input || !form) return;
   input.value = slot;
   if (chip) {
-    chip.textContent = `Удобное время: ${slot}`;
+    chip.textContent = `Удобный день: ${slot}`;
     chip.hidden = false;
   }
   form.closest('.o3-form-wrap')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -61,7 +61,7 @@ if (form) {
 
     let text = `📩 <b>Новая заявка</b>\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}`;
     if (slot) {
-      text += `\n🗓 Время: ${slot}`;
+      text += `\n🗓 День: ${slot}`;
     }
     if (project) {
       text += `\n📝 Проект: ${project}`;

@@ -6,9 +6,7 @@ export interface OfferSlotsConfig {
   limit: number;
   /** Часовой пояс недели и подсветки «сегодня» */
   timeZone: string;
-  /** Подпись часового пояса в выбранном времени */
-  timeZoneLabel: string;
-  /** Время слотов внутри дня; день с k слотами берёт первые k */
+  /** Внутренние моменты слотов: на странице не показываются, нужны, чтобы слоты сегодняшнего дня «проходили» */
   times: string[];
   /** Доля слотов, которые за неделю так и остаются свободными (0–1) */
   neverBooked: number;
@@ -17,7 +15,6 @@ export interface OfferSlotsConfig {
 export const offerSlots: OfferSlotsConfig = {
   limit: 20,
   timeZone: 'Asia/Tomsk',
-  timeZoneLabel: 'по Томску',
   times: ['11:00', '14:00', '17:00', '19:00'],
   neverBooked: 0.3,
 };

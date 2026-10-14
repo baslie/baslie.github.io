@@ -100,9 +100,12 @@ function counterText(free: number, limit: number): string {
   return `На этой неделе свободно ${free} из ${limit} ${plural(limit, 'слота', 'слотов', 'слотов')}`;
 }
 
-function cellLabel(cell: Cell, cfg: OfferSlotsConfig): string {
-  const d = new Date(cell.at);
-  return `${DAY_SHORT[cell.day]}, ${d.getUTCDate()} ${MONTH_SHORT[d.getUTCMonth()]}, ${cell.time} ${cfg.timeZoneLabel}`;
+function dayLabel(date: Date, day: number): string {
+  return `${DAY_SHORT[day]}, ${date.getUTCDate()} ${MONTH_SHORT[date.getUTCMonth()]}`;
+}
+
+function freeText(n: number): string {
+  return n === 0 ? 'нет мест' : `${n} ${plural(n, 'свободен', 'свободно', 'свободно')}`;
 }
 
 /* ---------- отрисовка ---------- */
@@ -135,43 +138,59 @@ function render(root: HTMLElement) {
   const grid = root.querySelector<HTMLElement>('[data-slots-grid]')!;
   grid.textContent = '';
 
+  // День — одна колонка: ячейки без времени и число свободных. Время договариваемся отдельно
   for (let day = 0; day < 7; day++) {
-    const col = document.createElement('div');
+    const date = new Date(weekStart + day * DAY_MS);
+    const dayCells = cells.filter((c) => c.day === day);
+    const dayFree = dayCells.filter((c) => c.state === 'free').length;
+    const label = dayLabel(date, day);
+
+    let col: HTMLElement;
+    if (dayFree > 0) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.dataset.day = label;
+      btn.setAttribute('aria-label', `${label}: ${freeText(dayFree)}. Выбрать день`);
+      col = btn;
+    } else {
+      col = document.createElement('div');
+      col.setAttribute('aria-label', `${label}: нет мест`);
+    }
     col.className = 'o3-slots-day';
     if (day === todayIdx) col.classList.add('is-today');
     if (day < todayIdx) col.classList.add('is-past');
+    if (dayFree === 0) col.classList.add('is-full');
 
-    const date = new Date(weekStart + day * DAY_MS);
-    const head = document.createElement('div');
+    const head = document.createElement('span');
     head.className = 'o3-slots-head';
     head.innerHTML = `<span>${DAY_SHORT[day]}</span><span>${date.getUTCDate()}</span>`;
     col.appendChild(head);
 
-    for (const cell of cells.filter((c) => c.day === day)) {
-      let el: HTMLElement;
-      if (cell.state === 'free') {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.dataset.slot = cellLabel(cell, cfg);
-        btn.setAttribute('aria-label', `Выбрать ${btn.dataset.slot}`);
-        el = btn;
-      } else {
-        el = document.createElement('span');
-        el.setAttribute('aria-label', cell.state === 'taken' ? `${cell.time} — занято` : `${cell.time} — прошло`);
-      }
-      el.className = `o3-slot is-${cell.state}`;
-      el.textContent = cell.time;
-      col.appendChild(el);
+    const pips = document.createElement('span');
+    pips.className = 'o3-slots-pips';
+    pips.setAttribute('aria-hidden', 'true');
+    for (const cell of dayCells) {
+      const pip = document.createElement('span');
+      pip.className = `o3-slot is-${cell.state}`;
+      pips.appendChild(pip);
     }
+    col.appendChild(pips);
+
+    const count = document.createElement('span');
+    count.className = 'o3-slots-free';
+    count.setAttribute('aria-hidden', 'true');
+    count.textContent = day < todayIdx ? '—' : dayFree === 0 ? 'нет' : String(dayFree);
+    col.appendChild(count);
+
     grid.appendChild(col);
   }
 
   grid.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-slot]');
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-day]');
     if (!btn) return;
     grid.querySelectorAll('.is-selected').forEach((b) => b.classList.remove('is-selected'));
     btn.classList.add('is-selected');
-    document.dispatchEvent(new CustomEvent('offer:slot', { detail: btn.dataset.slot }));
+    document.dispatchEvent(new CustomEvent('offer:slot', { detail: btn.dataset.day }));
   });
 
   root.hidden = false;
