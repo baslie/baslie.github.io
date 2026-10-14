@@ -826,12 +826,12 @@ body {
 /* Карточка работы целиком открывает лайтбокс */
 .o3-work {
   cursor: zoom-in;
-  transition: border-color 0.15s ease;
+  transition: box-shadow 0.15s ease;
 }
 
-/* При наведении только обводка становится акцентной: без заливки и тени, чтобы не мутнел фон */
+/* При наведении только лёгкая тень: без заливки, чтобы не мутнел фон */
 .o3-work:hover {
-  border-color: var(--color-offer-accent);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .o3-work:focus-visible {
