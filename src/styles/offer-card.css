@@ -813,6 +813,150 @@ body {
 }
 
 /* ========================================
+   Works lightbox (page 3)
+   ======================================== */
+/* Карточка работы целиком открывает лайтбокс */
+.o3-work {
+  cursor: zoom-in;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.o3-work:hover {
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.o3-work:focus-visible {
+  outline: 2px solid var(--color-offer-accent);
+  outline-offset: 2px;
+}
+
+.dark .o3-work:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Адрес копируется, поэтому над ним обычный текстовый курсор */
+.o3-work-address {
+  cursor: text;
+}
+
+/* Большое «окно браузера» почти во весь экран, скриншот листается внутри */
+.o3-lightbox {
+  width: min(72rem, calc(100% - 2rem));
+  height: calc(100dvh - 2rem);
+  max-height: none;
+  overflow: hidden;
+}
+
+.o3-lightbox[open] {
+  display: flex;
+}
+
+.o3-lightbox-browser {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  border-bottom: none;
+}
+
+.o3-lightbox-bar {
+  flex-shrink: 0;
+  height: auto;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.85rem;
+  gap: 7px;
+}
+
+.o3-lightbox-bar > span {
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+}
+
+.o3-lightbox-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex: 1;
+  min-width: 0;
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.o3-lightbox-title b {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.o3-lightbox-address {
+  /* сбрасываем стили точек из .o3-browser-bar span */
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.o3-lightbox-close {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.o3-lightbox-close:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--color-text);
+}
+
+.dark .o3-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.o3-lightbox-view {
+  flex: 1;
+  min-height: 0;
+}
+
+.o3-lightbox-scroll {
+  height: 100%;
+  aspect-ratio: auto;
+  outline: none;
+}
+
+/* Страница под попапом не прокручивается */
+html:has(.o3-lightbox[open]) {
+  overflow: hidden;
+}
+
+/* На телефоне попап во весь экран */
+@media (max-width: 600px) {
+  .o3-lightbox {
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    border-radius: 0;
+  }
+
+  .o3-lightbox-address {
+    display: none;
+  }
+}
+
+/* ========================================
    Footer
    ======================================== */
 .o3-footer {

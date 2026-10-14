@@ -8,22 +8,22 @@ const works = [
   {
     slug: 'pech-polikarpova',
     name: 'Печь Поликарпова',
-    note: 'Инженерную идею печи объяснили за десять экранов: от истории изобретения до патента и инструкции по растопке.',
+    note: 'Инженерную идею печи объяснили за десять экранов: от истории изобретения до патента и инструкции по растопке.',
   },
   {
     slug: 'glazami-schaefer',
     name: 'Глазами Шефер',
-    note: 'Сайт личного бренда оптометриста: три сценария для трёх аудиторий и 50 итераций сайта за две недели.',
+    note: 'Сайт личного бренда оптометриста: три сценария для трёх аудиторий и 50 итераций сайта за две недели.',
   },
   {
     slug: 'korea-motors',
     name: 'Korea Motors',
-    note: 'Сайт заказа авто из Южной Кореи. Главная цель — привести человека в Telegram-канал компании.',
+    note: 'Сайт заказа авто из Южной Кореи. Главная цель — привести человека в Telegram-канал компании.',
   },
   {
     slug: 'nutrilegal',
     name: 'Нутрилигал',
-    note: 'Сайт консалтинга по регистрации БАД и СГР: сложную бюрократическую услугу разложили на понятные шаги.',
+    note: 'Сайт консалтинга по регистрации БАД и СГР: сложную бюрократическую услугу разложили на понятные шаги.',
   },
 ];
 
@@ -46,13 +46,25 @@ const shotRatio = shortest ? `${shortest.width} / ${shortest.height}` : undefine
 
 <div class="o3-works" style={shotRatio && `--o3-shot-ratio: ${shotRatio}`}>
   {shown.map((w) => (
-    <div class="o3-work">
+    <div
+      class="o3-work"
+      role="button"
+      tabindex="0"
+      aria-haspopup="dialog"
+      aria-label={`Открыть скриншот сайта ${w!.name}`}
+      data-work-open
+      data-src={w!.src}
+      data-name={w!.name}
+      data-address={w!.address}
+      data-width={w!.width}
+      data-height={w!.height}
+    >
       <figure class="o3-browser">
         <div class="o3-browser-bar" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
         <div class="o3-browser-view">
-          <div class="o3-browser-scroll" data-drag-scroll data-overlay-scroll>
+          <div class="o3-browser-scroll" data-overlay-scroll>
             <img
               src={w!.src}
               alt={`Скриншот сайта ${w!.name}`}
@@ -67,18 +79,38 @@ const shotRatio = shortest ? `${shortest.width} / ${shortest.height}` : undefine
         </div>
       </figure>
       <span class="o3-work-name">{w!.name}</span>
-      {w!.address && <span class="o3-work-address">{w!.address}</span>}
+      {w!.address && <span class="o3-work-address" data-no-open>{w!.address}</span>}
       <span class="o3-work-note">{w!.note}</span>
     </div>
   ))}
 </div>
 
+<!-- Лайтбокс: одно большое «окно браузера», наполняется данными кликнутой работы.
+     data-lenis-prevent: колёсико внутри листает скриншот, а не страницу под попапом -->
+<dialog class="o3-dialog o3-lightbox" aria-labelledby="o3-lightbox-title" data-work-dialog data-lenis-prevent>
+  <figure class="o3-browser o3-lightbox-browser">
+    <div class="o3-browser-bar o3-lightbox-bar">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      <div class="o3-lightbox-title">
+        <b id="o3-lightbox-title" data-work-name></b>
+        <span class="o3-lightbox-address" data-work-address></span>
+      </div>
+      <button type="button" class="o3-lightbox-close" aria-label="Закрыть" data-work-close>&times;</button>
+    </div>
+    <div class="o3-browser-view o3-lightbox-view">
+      <div class="o3-browser-scroll o3-lightbox-scroll" tabindex="-1" data-drag-scroll data-overlay-scroll>
+        <img alt="" draggable="false" decoding="async" data-work-img />
+      </div>
+      <span class="o3-browser-thumb" aria-hidden="true"></span>
+    </div>
+  </figure>
+</dialog>
+
 <script>
   import { initDragScroll } from '../../scripts/drag-scroll';
 
-  initDragScroll();
-
   // Полоса прокрутки поверх скриншота: системный скроллбар спрятан, ползунок рисуем сами
+  const thumbUpdaters = new Map<HTMLElement, () => void>();
   document.querySelectorAll<HTMLElement>('[data-overlay-scroll]').forEach((el) => {
     const thumb = el.parentElement?.querySelector<HTMLElement>('.o3-browser-thumb');
     if (!thumb) return;
@@ -96,5 +128,59 @@ const shotRatio = shortest ? `${shortest.width} / ${shortest.height}` : undefine
     window.addEventListener('resize', update);
     el.querySelector('img')?.addEventListener('load', update);
     update();
+    thumbUpdaters.set(el, update);
   });
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-work-dialog]');
+  const scroll = dialog?.querySelector<HTMLElement>('.o3-lightbox-scroll');
+  const img = dialog?.querySelector<HTMLImageElement>('[data-work-img]');
+  let opener: HTMLElement | null = null;
+
+  const refresh = () => {
+    initDragScroll();
+    if (scroll) thumbUpdaters.get(scroll)?.();
+  };
+
+  const open = (card: HTMLElement) => {
+    if (!dialog || !scroll || !img) return;
+    const { src = '', name = '', address = '', width = '', height = '' } = card.dataset;
+    img.src = src;
+    img.alt = `Скриншот сайта ${name}`;
+    img.width = Number(width);
+    img.height = Number(height);
+    dialog.querySelector('[data-work-name]')!.textContent = name;
+    dialog.querySelector('[data-work-address]')!.textContent = address;
+    opener = card;
+    dialog.showModal();
+    scroll.scrollTop = 0;
+    // фокус на окно со скриншотом: стрелки и PageDown сразу листают его
+    scroll.focus({ preventScroll: true });
+    refresh();
+    if (!img.complete) img.addEventListener('load', refresh, { once: true });
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-work-open]').forEach((card) => {
+    card.addEventListener('click', (e) => {
+      // адрес выделяется целиком для копирования, попап при этом не нужен
+      if ((e.target as HTMLElement).closest('[data-no-open]')) return;
+      open(card);
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.target !== card || (e.key !== 'Enter' && e.key !== ' ')) return;
+      e.preventDefault();
+      open(card);
+    });
+  });
+
+  if (dialog) {
+    dialog.querySelector('[data-work-close]')?.addEventListener('click', () => dialog.close());
+    // Клик по затемнению: событие приходит на сам <dialog>, а не на его содержимое
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      opener?.focus({ preventScroll: true });
+      opener = null;
+    });
+  }
 </script>
