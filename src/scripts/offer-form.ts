@@ -45,7 +45,7 @@ if (form) {
       return isResolved(v) ? v : null;
     };
 
-    let text = `📩 <b>Новая заявка</b>\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}`;
+    let text = `📩 <b>Новая заявка</b>\n\n👤 Имя: ${name || '—'}\n📱 Контакт: ${contact}`;
     if (slot) {
       text += `\n🗓 День: ${slot}`;
     }

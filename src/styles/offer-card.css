@@ -259,9 +259,35 @@ body {
   margin-bottom: 0.3rem;
 }
 
-.o3-optional {
-  color: var(--color-text-muted);
-  font-weight: 400;
+.o3-required {
+  position: relative;
+  color: #ef4444;
+  font-weight: 700;
+  cursor: help;
+}
+
+/* Подсказка у звёздочки: обязательное поле */
+.o3-required::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%) translateY(2px);
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.375rem;
+  background: #18181b;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.o3-required:hover::after {
+  opacity: 1;
+  transform: translateX(-50%);
 }
 
 .o3-input {

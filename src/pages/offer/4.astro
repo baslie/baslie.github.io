@@ -49,19 +49,19 @@ const slotsConfig = JSON.stringify(offerSlots);
         <form class="o3-form" action="#" method="POST">
           <div class="o3-field">
             <label class="o3-label" for="o3-name">Имя</label>
-            <input class="o3-input" type="text" id="o3-name" name="name" required placeholder="Как вас зовут" />
+            <input class="o3-input" type="text" id="o3-name" name="name" placeholder="Как вас зовут" />
           </div>
           <div class="o3-field">
-            <label class="o3-label" for="o3-contact">Телефон или Telegram</label>
+            <label class="o3-label" for="o3-contact">Телефон или Telegram <span class="o3-required" data-tip="Обязательное поле" aria-hidden="true">*</span></label>
             <input class="o3-input" type="text" id="o3-contact" name="contact" required placeholder="+7 ... или @username" />
           </div>
           <fieldset class="o3-days" data-slots-days data-config={slotsConfig} hidden>
-            <legend class="o3-label">Удобный день <span class="o3-optional">(необязательно)</span></legend>
+            <legend class="o3-label">Удобный день</legend>
             <div class="o3-days-list" data-days-list></div>
             <p class="o3-days-hint">Время согласуем в переписке.</p>
           </fieldset>
           <div class="o3-field">
-            <label class="o3-label" for="o3-project">Коротко о деле <span class="o3-optional">(необязательно)</span></label>
+            <label class="o3-label" for="o3-project">Коротко о деле</label>
             <textarea class="o3-input o3-textarea" id="o3-project" name="project" rows="3" placeholder="Чем занимаетесь, зачем нужен сайт, ссылка на текущий, если есть"></textarea>
           </div>
           <button type="submit" class="o3-cta o3-cta--submit">Записаться на разговор</button>
