@@ -32,7 +32,9 @@ const items = await Promise.all(
     const article = getArticleBySlug(w.slug);
     if (!article?.screenshotUrl) return null;
     const { width, height } = await sharp(`public${article.screenshotUrl}`).metadata();
-    return { ...w, src: article.screenshotUrl, width, height };
+    // Адрес показываем текстом без ссылки: пусть человек сам скопирует его в браузер
+    const address = article.siteUrl?.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    return { ...w, src: article.screenshotUrl, width, height, address };
   }),
 );
 
@@ -49,19 +51,23 @@ const shotRatio = shortest ? `${shortest.width} / ${shortest.height}` : undefine
         <div class="o3-browser-bar" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
-        <div class="o3-browser-scroll" data-drag-scroll>
-          <img
-            src={w!.src}
-            alt={`Скриншот сайта ${w!.name}`}
-            width={w!.width}
-            height={w!.height}
-            loading="lazy"
-            decoding="async"
-            draggable="false"
-          />
+        <div class="o3-browser-view">
+          <div class="o3-browser-scroll" data-drag-scroll data-overlay-scroll>
+            <img
+              src={w!.src}
+              alt={`Скриншот сайта ${w!.name}`}
+              width={w!.width}
+              height={w!.height}
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+            />
+          </div>
+          <span class="o3-browser-thumb" aria-hidden="true"></span>
         </div>
       </figure>
-      <a class="o3-work-name" href={`/articles/${w!.slug}/`}>{w!.name}</a>
+      <span class="o3-work-name">{w!.name}</span>
+      {w!.address && <span class="o3-work-address">{w!.address}</span>}
       <span class="o3-work-note">{w!.note}</span>
     </div>
   ))}
@@ -71,4 +77,24 @@ const shotRatio = shortest ? `${shortest.width} / ${shortest.height}` : undefine
   import { initDragScroll } from '../../scripts/drag-scroll';
 
   initDragScroll();
+
+  // Полоса прокрутки поверх скриншота: системный скроллбар спрятан, ползунок рисуем сами
+  document.querySelectorAll<HTMLElement>('[data-overlay-scroll]').forEach((el) => {
+    const thumb = el.parentElement?.querySelector<HTMLElement>('.o3-browser-thumb');
+    if (!thumb) return;
+    const inset = 6;
+    const update = () => {
+      const max = el.scrollHeight - el.clientHeight;
+      thumb.hidden = max <= 1;
+      if (max <= 1) return;
+      const track = el.clientHeight - inset * 2;
+      const size = Math.max(28, (track * el.clientHeight) / el.scrollHeight);
+      thumb.style.height = `${size}px`;
+      thumb.style.transform = `translateY(${inset + ((track - size) * el.scrollTop) / max}px)`;
+    };
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    el.querySelector('img')?.addEventListener('load', update);
+    update();
+  });
 </script>

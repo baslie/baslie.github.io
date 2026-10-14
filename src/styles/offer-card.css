@@ -498,17 +498,13 @@ body {
 /* ========================================
    Works (page 3)
    ======================================== */
+/* Одна работа в ряд, колонка уже текста и по центру */
 .o3-works {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 1rem;
-  margin: 1rem 0 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .o3-works {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  max-width: 26rem;
+  margin: 1rem auto 0.5rem;
 }
 
 /* Карточка работы: окно браузера сверху, под ним название и описание на сером фоне */
@@ -523,6 +519,7 @@ body {
 }
 
 .o3-work-name,
+.o3-work-address,
 .o3-work-note {
   padding: 0 1rem;
 }
@@ -559,13 +556,17 @@ body {
 .o3-browser-bar span:nth-child(2) { background: #febc2e; }
 .o3-browser-bar span:nth-child(3) { background: #28c840; }
 
+.o3-browser-view {
+  position: relative;
+}
+
 .o3-browser-scroll {
   /* Пропорции самого короткого скриншота задаёт OfferWorks.astro */
   aspect-ratio: var(--o3-shot-ratio, 16 / 10);
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(120, 120, 128, 0.55) transparent;
+  /* системный скроллбар спрятан, вместо него .o3-browser-thumb поверх скриншота */
+  scrollbar-width: none;
   touch-action: pan-y;
   -webkit-user-select: none;
   user-select: none;
@@ -580,6 +581,25 @@ body {
   cursor: grabbing;
 }
 
+.o3-browser-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.o3-browser-thumb {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width: 5px;
+  border-radius: 9999px;
+  background: rgba(20, 20, 24, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+.o3-browser-thumb[hidden] {
+  display: none;
+}
+
 .o3-browser-scroll img {
   display: block;
   width: 100%;
@@ -589,15 +609,15 @@ body {
 .o3-work-name {
   font-weight: 600;
   color: var(--color-text);
-  text-decoration: none;
 }
 
-.o3-work-name:hover {
+/* Адрес сайта текстом, без ссылки: выделяется целиком одним кликом */
+.o3-work-address {
+  font-size: 0.8125rem;
   color: var(--color-offer-accent);
-}
-
-.o3-work-name::after {
-  content: ' →';
+  user-select: all;
+  -webkit-user-select: all;
+  overflow-wrap: anywhere;
 }
 
 .o3-work-note {
