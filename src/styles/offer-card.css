@@ -181,6 +181,44 @@ body {
   margin: 1.75rem 0 0.5rem;
 }
 
+/* Нумерованный список с акцентными цифрами (стр. 2: виды исполнителей) */
+.o3-body .o3-numbered {
+  list-style: none;
+  counter-reset: o3-num;
+  margin: 0 0 0.75rem;
+  padding: 0;
+}
+
+.o3-body .o3-numbered li {
+  counter-increment: o3-num;
+  position: relative;
+  padding-left: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.o3-body .o3-numbered li::before {
+  content: counter(o3-num);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-offer-accent);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+/* Цифры, которые нужно заметить при беглом чтении */
+.o3-figure {
+  font-weight: 700;
+  color: var(--color-offer-accent);
+  white-space: nowrap;
+}
+
 /* ========================================
    Important Note callout (page 4)
    ======================================== */
@@ -373,6 +411,9 @@ body {
    ======================================== */
 .o3-timesplit {
   margin: 1.5rem 0;
+  padding: 1.1rem 1.25rem 1.2rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.04);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem 2rem;
@@ -446,6 +487,10 @@ body {
   color: var(--color-offer-accent);
 }
 
+.dark .o3-timesplit {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .dark .o3-timesplit-seg.is-do {
   background: rgba(255, 255, 255, 0.12);
 }
@@ -466,17 +511,30 @@ body {
   }
 }
 
+/* Карточка работы: окно браузера сверху, под ним название и описание на сером фоне */
 .o3-work {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  padding-bottom: 1rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.o3-work-name,
+.o3-work-note {
+  padding: 0 1rem;
+}
+
+.dark .o3-work {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* «Окно браузера» с длинным скриншотом, как в кейсах (.screenshot-browser в input.css) */
 .o3-browser {
-  margin: 0 0 0.4rem;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 0.625rem;
+  margin: 0 0 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
   background: var(--card-bg);
 }
@@ -549,7 +607,7 @@ body {
 }
 
 .dark .o3-browser {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .dark .o3-browser-bar {
