@@ -181,14 +181,24 @@ body {
   margin: 1.75rem 0 0.5rem;
 }
 
+/* Смысловой блок в оранжевой рамке (стр. 2: «Что поменяли нейросети») */
+.o3-frame {
+  margin: 1.75rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border: 3px solid var(--color-offer-accent);
+  border-radius: 1rem;
+}
+
+.o3-frame .o3-subheading {
+  margin-bottom: 0.5rem;
+}
+
 /* Нумерованный список с акцентными цифрами (стр. 2: виды исполнителей) */
 .o3-body .o3-numbered {
   list-style: none;
   counter-reset: o3-num;
-  margin: 1.25rem 0;
-  padding: 1.25rem 1.5rem;
-  border: 3px solid var(--color-offer-accent);
-  border-radius: 1rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
 }
 
 .o3-body .o3-numbered li {
@@ -196,10 +206,6 @@ body {
   position: relative;
   padding-left: 2.25rem;
   margin-bottom: 0.75rem;
-}
-
-.o3-body .o3-numbered li:last-child {
-  margin-bottom: 0;
 }
 
 .o3-body .o3-numbered li::before {
