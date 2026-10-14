@@ -224,9 +224,10 @@ body {
    ======================================== */
 .o3-important {
   margin: 1.25rem 0;
-  padding: 1rem 1.25rem;
-  border-radius: 0.5rem;
-  background: rgba(246, 82, 46, 0.06);
+  padding: 1.25rem 1.5rem;
+  border: 3px solid var(--color-offer-accent);
+  border-radius: 1rem;
+  background: transparent;
   font-size: clamp(14px, 1.25vw, 15px);
   line-height: 1.6;
   color: var(--color-offer-body);
@@ -246,7 +247,6 @@ body {
 }
 
 .dark .o3-important {
-  background: rgba(246, 82, 46, 0.1);
   color: rgba(255, 255, 255, 0.8);
 }
 
