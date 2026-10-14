@@ -91,10 +91,10 @@ function plural(n: number, one: string, few: string, many: string): string {
 function counterText(free: number, limit: number): string {
   if (free <= 5) {
     const verb = plural(free, 'остался', 'осталось', 'осталось');
-    return `На этой неделе ${verb} ${free} ${plural(free, 'слот', 'слота', 'слотов')}`;
+    return `На этой неделе ${verb} ${free} ${plural(free, 'слот', 'слота', 'слотов')}`;
   }
   // «из 20 слотов», «из 21 слота»
-  return `На этой неделе свободно ${free} из ${limit} ${plural(limit, 'слота', 'слотов', 'слотов')}`;
+  return `На этой неделе свободно ${free} из ${limit} ${plural(limit, 'слота', 'слотов', 'слотов')}`;
 }
 
 /* ---------- отрисовка ---------- */

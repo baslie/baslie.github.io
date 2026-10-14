@@ -30,7 +30,7 @@ if (form) {
 
     const btn = form.querySelector<HTMLButtonElement>('.o3-cta--submit')!;
     const originalText = btn.textContent;
-    btn.textContent = 'Отправка...';
+    btn.textContent = 'Отправка…';
     btn.disabled = true;
 
     const name = (form.querySelector('#o3-name') as HTMLInputElement).value.trim();
@@ -108,7 +108,7 @@ if (form) {
       const wrap = form.closest('.o3-form-wrap')!;
       const note = wrap.querySelector('.o3-form-note');
       localStorage.removeItem('o3_utm');
-      form.innerHTML = '<p class="o3-success">✓ Заявка отправлена! Свяжусь с вами в течение часа.</p>';
+      form.innerHTML = '<p class="o3-success">✓ Заявка отправлена! Свяжусь с вами в течение часа.</p>';
       if (note) note.remove();
     } catch {
       btn.textContent = originalText;
@@ -117,7 +117,7 @@ if (form) {
       if (!form.querySelector('.o3-error')) {
         const err = document.createElement('p');
         err.className = 'o3-error';
-        err.textContent = `Не удалось отправить. Напишите в Telegram: ${TELEGRAM_HANDLE}`;
+        err.textContent = `Не удалось отправить. Напишите в Telegram: ${TELEGRAM_HANDLE}`;
         form.appendChild(err);
       }
     }
