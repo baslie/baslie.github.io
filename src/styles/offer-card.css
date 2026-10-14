@@ -512,9 +512,9 @@ body {
   flex-direction: column;
   gap: 0.35rem;
   padding-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.04);
 }
 
 .o3-work-name,
@@ -524,7 +524,7 @@ body {
 }
 
 .dark .o3-work {
-  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* «Окно браузера» с длинным скриншотом, как в кейсах (.screenshot-browser в input.css) */
@@ -826,21 +826,17 @@ body {
 /* Карточка работы целиком открывает лайтбокс */
 .o3-work {
   cursor: zoom-in;
-  transition: background 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
+/* При наведении только обводка становится акцентной: без заливки и тени, чтобы не мутнел фон */
 .o3-work:hover {
-  background: rgba(0, 0, 0, 0.06);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-offer-accent);
 }
 
 .o3-work:focus-visible {
   outline: 2px solid var(--color-offer-accent);
   outline-offset: 2px;
-}
-
-.dark .o3-work:hover {
-  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Адрес копируется, поэтому над ним обычный текстовый курсор */
