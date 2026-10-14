@@ -3,3 +3,5 @@ dist/
 .astro/
 # Обложки от движка генерации ждут npm run covers
 covers-incoming/
+# Логи браузерного инструмента Playwright MCP
+.playwright-mcp/
