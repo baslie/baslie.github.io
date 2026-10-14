@@ -24,21 +24,6 @@ const urlParams = new URLSearchParams(utmSearch);
 
 const form = document.querySelector<HTMLFormElement>('.o3-form');
 
-// Выбор дня в блоке слотов (src/scripts/offer-slots.ts) попадает в заявку
-document.addEventListener('offer:slot', (e) => {
-  const slot = (e as CustomEvent<string>).detail;
-  const input = document.querySelector<HTMLInputElement>('#o3-slot');
-  const chip = document.querySelector<HTMLElement>('[data-slot-chip]');
-  if (!input || !form) return;
-  input.value = slot;
-  if (chip) {
-    chip.textContent = `Удобный день: ${slot}`;
-    chip.hidden = false;
-  }
-  form.closest('.o3-form-wrap')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  form.querySelector<HTMLInputElement>('#o3-name')?.focus({ preventScroll: true });
-});
-
 if (form) {
   form.addEventListener('submit', async (e: SubmitEvent) => {
     e.preventDefault();
@@ -51,7 +36,8 @@ if (form) {
     const name = (form.querySelector('#o3-name') as HTMLInputElement).value.trim();
     const contact = (form.querySelector('#o3-contact') as HTMLInputElement).value.trim();
     const project = (form.querySelector('#o3-project') as HTMLTextAreaElement).value.trim();
-    const slot = form.querySelector<HTMLInputElement>('#o3-slot')?.value.trim() || '';
+    // Удобный день — необязательные радиокнопки (src/scripts/offer-slots.ts)
+    const slot = form.querySelector<HTMLInputElement>('input[name="slot"]:checked')?.value || '';
 
     const isResolved = (v: string | null) => v && !v.includes('{') && !v.includes('}');
     const get = (k: string) => {
@@ -121,7 +107,6 @@ if (form) {
 
       const wrap = form.closest('.o3-form-wrap')!;
       const note = wrap.querySelector('.o3-form-note');
-      wrap.querySelector('[data-slot-chip]')?.remove();
       localStorage.removeItem('o3_utm');
       form.innerHTML = '<p class="o3-success">✓ Заявка отправлена! Свяжусь с вами в течение часа.</p>';
       if (note) note.remove();

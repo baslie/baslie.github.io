@@ -1,7 +1,9 @@
 ---
+import sharp from 'sharp';
 import { getArticleBySlug } from '../../data/articles';
 
-// Работы для страницы 3: slug кейса и короткий комментарий
+// Работы для страницы 3: slug кейса и короткий комментарий.
+// Скриншот берётся из кейса (screenshotUrl) и листается в «окне браузера»
 const works = [
   {
     slug: 'pech-polikarpova',
@@ -18,25 +20,50 @@ const works = [
     name: 'Korea Motors',
     note: 'Лендинг заказа авто из Южной Кореи. Главная цель — привести человека в Telegram-канал компании.',
   },
-]
-  .map((w) => ({ ...w, article: getArticleBySlug(w.slug) }))
-  .filter((w) => w.article);
+  {
+    slug: 'nutrilegal',
+    name: 'Нутрилигал',
+    note: 'Сайт консалтинга по регистрации БАД и СГР: сложную бюрократическую услугу разложили на понятные шаги.',
+  },
+];
+
+const items = await Promise.all(
+  works.map(async (w) => {
+    const article = getArticleBySlug(w.slug);
+    if (!article?.screenshotUrl) return null;
+    const { width, height } = await sharp(`public${article.screenshotUrl}`).metadata();
+    return { ...w, src: article.screenshotUrl, width, height };
+  }),
+);
 ---
 
 <div class="o3-works">
-  {works.map((w) => (
-    <a class="o3-work" href={`/articles/${w.slug}/`}>
-      <img
-        class="o3-work-thumb"
-        src={w.article!.image}
-        alt={`Обложка кейса ${w.name}`}
-        width="1600"
-        height="900"
-        loading="lazy"
-        decoding="async"
-      />
-      <span class="o3-work-name">{w.name}</span>
-      <span class="o3-work-note">{w.note}</span>
-    </a>
+  {items.filter(Boolean).map((w) => (
+    <div class="o3-work">
+      <figure class="o3-browser">
+        <div class="o3-browser-bar" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="o3-browser-scroll" data-drag-scroll>
+          <img
+            src={w!.src}
+            alt={`Скриншот сайта ${w!.name}`}
+            width={w!.width}
+            height={w!.height}
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+          />
+        </div>
+      </figure>
+      <a class="o3-work-name" href={`/articles/${w!.slug}/`}>{w!.name}</a>
+      <span class="o3-work-note">{w!.note}</span>
+    </div>
   ))}
 </div>
+
+<script>
+  import { initDragScroll } from '../../scripts/drag-scroll';
+
+  initDragScroll();
+</script>

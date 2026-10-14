@@ -1,5 +1,5 @@
 ---
-// Инфографика «на что уходит время»: доля «думать» и «делать» раньше и сейчас
+// Инфографика «на что уходит время»: доля смыслов раньше и сейчас
 const rows = [
   { label: 'Раньше', think: 18, thinkText: '15–20%', doText: '80–85%' },
   { label: 'Сейчас', think: 80, thinkText: 'около 80%', doText: 'около 20%', accent: true },
@@ -7,30 +7,24 @@ const rows = [
 ---
 
 <figure class="o3-timesplit">
-  <figcaption class="o3-timesplit-title">На что уходит время проекта</figcaption>
-  <div class="o3-timesplit-legend" aria-hidden="true">
-    <span><i class="o3-timesplit-swatch o3-timesplit-swatch--think"></i>Думать: маркетинг, смыслы, визуальная идея</span>
-    <span><i class="o3-timesplit-swatch o3-timesplit-swatch--do"></i>Делать: вёрстка, настройка, запуск</span>
-  </div>
   {rows.map((row) => (
     <div class="o3-timesplit-row" aria-hidden="true">
       <span class:list={['o3-timesplit-label', { 'is-accent': row.accent }]}>{row.label}</span>
-      <div class="o3-timesplit-bar">
-        <span class="o3-timesplit-seg o3-timesplit-seg--think" style={`flex-basis: ${row.think}%`}>{row.thinkText}</span>
-        <span class="o3-timesplit-seg o3-timesplit-seg--do" style={`flex-basis: ${100 - row.think}%`}>{row.doText}</span>
-      </div>
+      <div class="o3-timesplit-bar"><span style={`width: ${row.think}%`}></span></div>
+      <span class="o3-timesplit-caption">смыслы {row.thinkText} · вёрстка и запуск {row.doText}</span>
     </div>
   ))}
   <div class="sr-only">
-  <table>
-    <thead>
-      <tr><th></th><th>Думать: маркетинг, смыслы, визуальная идея</th><th>Делать: вёрстка, настройка, запуск</th></tr>
-    </thead>
-    <tbody>
-      {rows.map((row) => (
-        <tr><th>{row.label}</th><td>{row.thinkText}</td><td>{row.doText}</td></tr>
-      ))}
-    </tbody>
-  </table>
+    <table>
+      <caption>На что уходит время проекта</caption>
+      <thead>
+        <tr><th></th><th>Маркетинг, смыслы, визуальная идея</th><th>Вёрстка, настройка, запуск</th></tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr><th>{row.label}</th><td>{row.thinkText}</td><td>{row.doText}</td></tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 </figure>
