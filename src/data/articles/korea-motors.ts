@@ -10,8 +10,8 @@ export const koreaMotors: Article = {
   datePublished: '2025-12-20',
   isSimple: true,
   tech: 'Astro 5, React 19, TypeScript, Tailwind CSS v4, Motion, Lucide React, Typograf',
-  siteUrl: 'https://exportautorus.ru',
-  siteDisplay: 'exportautorus.ru',
+  siteUrl: 'https://roman-purtow.ru/exportautorus-ru/',
+  siteDisplay: 'roman-purtow.ru/exportautorus-ru',
   screenshotUrl: '/images/articles/korea-motors/screenshot.jpg',
   screenshotFramed: true,
   ru: {

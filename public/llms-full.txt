@@ -282,7 +282,7 @@ TikTok Downloader — моё Android-приложение в RuStore. Оно с�
 - **URL:** https://roman-purtow.ru/articles/korea-motors/
 - **Дата:** 20 декабря 2025
 - **Описание:** Лендинг для компании, которая импортирует автомобили из Южной Кореи в Россию: от подбора до доставки за 7 дней.
-- **Сайт проекта:** https://exportautorus.ru
+- **Сайт проекта:** https://roman-purtow.ru/exportautorus-ru/
 - **Технологии:** Astro 5, React 19, TypeScript, Tailwind CSS v4, Motion, Lucide React, Typograf
 
 Лендинг для компании, которая импортирует автомобили из Южной Кореи в Россию. Основной фокус — конверсия в Telegram-канал компании. Каталог брендов: Genesis, BMW, Mercedes, Porsche, Audi, Hyundai, Kia, Volkswagen.
