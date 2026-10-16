@@ -106,7 +106,7 @@
     /* Accent цвет (золотой) */
     --color-link: var(--link);
 
-    /* Фирменный оранжевый (логотип, кнопки, офферы) */
+    /* Фирменный оранжевый (логотип, кнопки) */
     --color-brand-rgb: 246, 82, 46;
     --color-brand: rgb(var(--color-brand-rgb));
     --color-brand-hover: var(--brand-hover);
@@ -155,11 +155,6 @@
     --nav-theme-hover-dark: #1e1e3a;
     --nav-theme-active: #dddcfb;
     --nav-theme-active-dark: #272747;
-
-    /* Offer page accent */
-    --color-offer-accent: var(--color-brand);
-    --color-offer-accent-hover: var(--color-brand-hover);
-    --color-offer-body: #374151;   /* тёмное значение — в блоке .dark */
 
     /* Размеры */
     --radius: 1.5rem;
@@ -210,8 +205,6 @@
     --surface-raised: #2B2B2B;
     --surface-raised-hover: #353535;
     --ring-hairline: rgba(255, 255, 255, 0.07);
-
-    --color-offer-body: rgba(255, 255, 255, 0.75);
 
     /* Текст и ссылки */
     --text-primary: #F9FAFB;
