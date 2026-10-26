@@ -57,7 +57,6 @@ export const vcardContacts: VCardContact[] = [
 
 export const vcardSocials: VCardSocial[] = [
   { type: 'github', href: 'https://github.com/baslie', icon: 'github', labelKey: 'github.title' },
-  { type: 'youtube', href: 'https://www.youtube.com/@roman-purtow', icon: 'youtube', labelKey: 'youtube.title' },
   { type: 'instagram', href: 'https://instagram.com/roman.purtow', icon: 'instagram', labelKey: 'instagram.title' },
   { type: 'threads', href: 'https://www.threads.com/@roman.purtow', icon: 'threads', labelKey: 'threads.title' },
   { type: 'vk', href: 'https://vk.com/roman_purtow', icon: 'vk', labelKey: 'vk.title' },

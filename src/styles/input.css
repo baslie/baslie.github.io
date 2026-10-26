@@ -121,7 +121,6 @@
     --icon-threads: #000000;
     --icon-instagram: #E4405F;
     --icon-vk: #0077FF;
-    --icon-youtube: #FF0000;
     --icon-github: #333333;
     --icon-blog: #0088CC;
     --icon-progulka: #0D571B;
@@ -225,7 +224,6 @@
     --icon-threads: #E5E7EB;
     --icon-instagram: #F472B6;
     --icon-vk: #60A5FA;
-    --icon-youtube: #F87171;
     --icon-github: #E5E7EB;
     --icon-blog: #38BDF8;
     --icon-progulka: #4CAF50;
@@ -317,7 +315,6 @@ body[data-background="plain"]::before {
 .icon-threads { color: var(--icon-threads); fill: currentColor; }
 .icon-instagram { color: var(--icon-instagram); }
 .icon-vk { color: var(--icon-vk); fill: currentColor; }
-.icon-youtube { color: var(--icon-youtube); }
 .icon-github { color: var(--icon-github); }
 .icon-blog { color: var(--icon-blog); }
 .icon-progulka { color: var(--icon-progulka); }
